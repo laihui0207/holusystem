@@ -1,0 +1,35 @@
+    <!--Reply-START-->
+    <table name="R_Peply">
+        <column>id</column>
+        <column>content</column>
+        <column>postBarID</column>
+        <column>replierID</column>
+        <column>replyTime</column>
+        <column>updateTime</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="content">JwNjLzIvVnBfXvLdLjAiBiKiUsYfTwYvFpLrFqLsCqIbDrUyYnAvIhBbWmWxJhAfToIcMbQhOwQiOhXlSjAvQnUoKgXsSzIjBiKnHeMpHnCbJcDoSaHrQsYlOtKaCjPoLpAfFiKnWzLpPxRpYyNmXxReKbRdReSaOqQhMeFbTvAsQpNeDyMaRzJiCcWcRnErLpZfKkYsPdNySuJqPiQzYaZjRsAqKkYyClItYaXjHyLhAsHqDeHkOiShRsMmCgF</value>
+        <value description="postBarID">-1</value>
+        <value description="replierID">-1</value>
+        <value description="replyTime">2015-06-15</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="content">EcWhAlTxGsKhDsReYoCvNtFaCtQiZmVzToQqUaSbDeLqKkIoKdDfPzOrTkDkTaFhEjAnDpJfXuMnZwQwLmVvFrFhIkBjWzIzPpRtHtQjJjSkJvQuNoPlUsVaFwUwYeMxLgPqSnKvDjDzPjVuWcPmFtWkBbNkYqExLeKtMiEsWcPiJaPcTdHsVyBqJhZwStKoPgUaVqXvZjBpLtYrSvXtTcTyRzMxEmTtBwNkBhHvDdGlLrPuZlOjGrViDeDcMwG</value>
+        <value description="postBarID">-2</value>
+        <value description="replierID">-2</value>
+        <value description="replyTime">2015-06-15</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="content">QgRcFpOfGlPjGoIbNnXdNlLuLwAdPrZcEkKkGiDiKpIlEwYgPzEzBlCyWaStZmVvFdFxXgNzYnYiTqKePaCgMiJaIxRzIfRrPoYrLhQnZxUnJcWxGxPdWwCaSfYzNdReYhDfVkRpMlZzPgAxFiWoFcWdRvSkWbNzBaOvOxFvTxPaBbQkSiAcAhQfCpKeBbPcEeVfSdPvGtGwCzAfWyWdYfReHoOlAlFeAuPbPgLiPwXcJiDqWjCgXrZwVeLtMeF</value>
+        <value description="postBarID">-3</value>
+        <value description="replierID">-3</value>
+        <value description="replyTime">2015-06-15</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    </table>
+    <!--Reply-END-->
+</dataset>

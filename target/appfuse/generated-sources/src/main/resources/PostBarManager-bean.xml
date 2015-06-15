@@ -1,0 +1,7 @@
+<!--PostBarManager-START-->
+    <bean id="postBarManager" class="com.huivip.holu.service.impl.PostBarManagerImpl">
+        <constructor-arg ref="postBarDao"/>
+    </bean>
+    <!--PostBarManager-END-->
+
+    <!-- Add new Managers here -->

@@ -1,0 +1,4 @@
+        <!--PostSubject-START-->
+        <Menu name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
+        <!--PostSubject-END-->
+    </Menus>

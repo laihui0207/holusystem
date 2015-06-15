@@ -1,0 +1,7 @@
+<!--ProjectManager-START-->
+    <bean id="projectManager" class="com.huivip.holu.service.impl.ProjectManagerImpl">
+        <constructor-arg ref="projectDao"/>
+    </bean>
+    <!--ProjectManager-END-->
+
+    <!-- Add new Managers here -->

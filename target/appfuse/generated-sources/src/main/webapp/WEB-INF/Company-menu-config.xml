@@ -1,0 +1,4 @@
+        <!--Company-START-->
+        <Menu name="CompanyMenu" title="companyList.title" page="/companies"/>
+        <!--Company-END-->
+    </Menus>

@@ -1,0 +1,4 @@
+        <!--Message-START-->
+        <Menu name="MessageMenu" title="messageList.title" page="/messages"/>
+        <!--Message-END-->
+    </Menus>

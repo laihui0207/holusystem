@@ -1,0 +1,93 @@
+    <!--News-START-->
+    <!-- runs news-related tests -->
+    <target name="NewsTests"
+            depends="SearchNewss,EditNews,SaveNews,AddNews,DeleteNews"
+            description="Call and executes all news test cases (targets)">
+        <echo>Successfully ran all News UI tests!</echo>
+    </target>
+
+    <!-- Verify the newss list screen displays without errors -->
+    <target name="SearchNewss" description="Tests search for and displaying all newss">
+        <webtest name="searchNewss">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View News link" url="/newss"/>
+                <verifytitle description="we should see the newsList title"
+                    text=".*${newsList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the newsList title"
+                    text=".*${newsList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit news screen displays without errors -->
+    <target name="EditNews" description="Tests editing an existing News's information">
+        <webtest name="editNews">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View News List" url="/newss"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the newsDetail title"
+                    text=".*${newsDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a news and then save -->
+    <target name="SaveNews" description="Tests editing and saving a news">
+        <webtest name="saveNews">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit News link" url="/newsform?id=-1"/>
+                <verifytitle description="we should see the newsDetail title"
+                    text=".*${newsDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${newsDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${news.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new News -->
+    <target name="AddNews" description="Adds a new News">
+        <webtest name="addNews">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/newsform"/>
+                <verifytitle description="we should see the newsDetail title"
+                    text=".*${newsDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="News List appears if save successful"
+                    text=".*${newsList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${news.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing news -->
+    <target name="DeleteNews" description="Deletes existing News">
+        <webtest name="deleteNews">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit News link" url="/newsform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display News List" text=".*${newsList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${news.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--News-END-->
+</project>

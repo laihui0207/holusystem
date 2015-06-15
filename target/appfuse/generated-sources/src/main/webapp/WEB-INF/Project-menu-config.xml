@@ -1,0 +1,4 @@
+        <!--Project-START-->
+        <Menu name="ProjectMenu" title="projectList.title" page="/projects"/>
+        <!--Project-END-->
+    </Menus>

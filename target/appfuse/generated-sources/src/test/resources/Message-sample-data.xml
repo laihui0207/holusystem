@@ -1,0 +1,55 @@
+    <!--Message-START-->
+    <table name="R_messages">
+        <column>id</column>
+        <column>content</column>
+        <column>createTime</column>
+        <column>creater_id</column>
+        <column>owner_id</column>
+        <column>sendTime</column>
+        <column>sender_id</column>
+        <column>status</column>
+        <column>title</column>
+        <column>updateTime</column>
+        <column>updater_id</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="content">XtXvQkAjYlJuDcCxErEhJtLxDyZqAeYaLwJaMdSfMgQkQaGrSuDbBvLkCkKnPeOfSgZgSkBhClHjUvOiHqCjVoFqWxJvWuBzQnRpTvCgGjImGgMuOdXzGcHuCoBwCsLjSjGeYuMnBoQnKuFwUnKmXoLsStRiHgCcQfWwIkEbMwXhZrOmNuXjKrGwKnWrToUjCjZoApAuOdFuNzFxPlEjUcQwDhAeUtDpUeJtFnLyGfOxNbDhFjVbUzEbRzFvZoE</value>
+        <value description="createTime">2015-06-16</value>
+        <value description="creater_id">-1</value>
+        <value description="owner_id">-1</value>
+        <value description="sendTime">2015-06-16</value>
+        <value description="sender_id">-1</value>
+        <value description="status">1926063195</value>
+        <value description="title">WxNaEwVvCwWxKeElNzRpSnDfAcHdHaXaKaFeTcStPeDsZjGwIvKxIzYuFiYdQoToJxIhSdKkMjSaHsEdYyQwFyDgFfKzTcOjNlBfAbCeGkDtHoMgNeEzEtDqMgFmFxHfXgCiMkRxHgYyFjVrHaHfYeTjBzExRaUpIzIkPdHaXgUuVjBcPgRyFkKoTrSgOoXcErQuOtYnPrYrHzIbMoFkYiCbVwInQtUrQxCyVpHpYrYwXaPcGmKfQvGiOnNmIqL</value>
+        <value description="updateTime">2015-06-16</value>
+        <value description="updater_id">-1</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="content">JwMcCoJyJiGlIkKjWqOpEjRdCkDrLuTmDqYfEnCqVaWjLiCmBpTyIkKeRfKjIpHhDdEvZhCaAuVjQsEkQiFcJwLxAsUzHmBhBcCjRmJjQjFmQyHqLmDuDuVtRjOlDiLnVdQnMjGxQjCzHbHlYnWxLgPmHhCdGpUjOgGzQwDaFmVpOcDsJkPpFzZoYoKmUwRvOrKeLoOyEwRwYtAeVrRwRyNyMtScBkCoZaHjAzSrGrPvShWyCoXcBnPeAsPxCnX</value>
+        <value description="createTime">2015-06-16</value>
+        <value description="creater_id">-2</value>
+        <value description="owner_id">-2</value>
+        <value description="sendTime">2015-06-16</value>
+        <value description="sender_id">-2</value>
+        <value description="status">1412719891</value>
+        <value description="title">HnXcSlUcYdPyVuUbCoLjImZnVlEyPsUjHtNsCqZeImUfZnFlGwJfIwBlMqOtAfCeEfYdJyOwOoGpTrUfNrJoBfTmFxTwYtHdDrRdLrBuBiVsEbAyBcPyHaGfLsLrUsHiVhPlBtClMsEqOrUpCvXdGoLkQiJjQjIxJkQqKoBoMxGeHtHdTrGoWvFoPeUeLlCvOcZrKzEsDrTfJrByMqKpAuIvMgFaFxToEnEfFxYgGxFlQrQiPaXnDuBuSxJhYyS</value>
+        <value description="updateTime">2015-06-16</value>
+        <value description="updater_id">-2</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="content">GtCaXzQsGhTzEuIzXbAcExLzTrXoTfKfWkCwYoZiFbKpLfRlVmGtPlKtIvSzZnHoZbNfWxEoJhXlRhZyWlVqXsViFcYpTpLcKvFqUnIcStKnByUhUaOlTvTrZlDdXzTcKtZoRyZkDhIuOkXaFoHbOeSeQuUgLzJeSnLuXbCkSrJgFdXzHvVwJfZsVaRbQvHqRwSbEwZnKsYuGdXwFcPnUzQaUiHvSzBmHyMrNgUgZzVxAmGfIxDwEqAwFzPdOtA</value>
+        <value description="createTime">2015-06-16</value>
+        <value description="creater_id">-3</value>
+        <value description="owner_id">-3</value>
+        <value description="sendTime">2015-06-16</value>
+        <value description="sender_id">-3</value>
+        <value description="status">270304410</value>
+        <value description="title">AtKsTpBmYiAyTbYlCrKcDfPzRyDxTjJbMkQjYqRmEyWiSoXjWvKdGsVyXfHaXvWwPbQiKtTxIpNiRtQtDcIkAmMlSzQaEnPqUiIsRiHiWcOvPzHiZbQuCsCqZiWeXtZiQdIcXqPlAzWlLzRsQvPqTiTxUaVoZoEqRkQwKmEjLrSzIuUfPfUkRzXyAtRuSdKzJjJpQsViLiHwAbMxVzKeTmUtDiLnStAuQzVcBkCgHuEhPpHfYkCrLfWgBiWoLwJ</value>
+        <value description="updateTime">2015-06-16</value>
+        <value description="updater_id">-3</value>
+    </row>
+    </table>
+    <!--Message-END-->
+</dataset>

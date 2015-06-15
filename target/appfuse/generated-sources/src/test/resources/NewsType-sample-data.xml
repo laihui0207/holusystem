@@ -1,0 +1,39 @@
+    <!--NewsType-START-->
+    <table name="R_newsType">
+        <column>id</column>
+        <column>comment</column>
+        <column>createTime</column>
+        <column>creater_id</column>
+        <column>name</column>
+        <column>updateTime</column>
+        <column>updater_id</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="comment">HbQwKyKyYuAfDhTcWcNxSbEkTgNfJzPdWuWeIoRhFpAgSoWjFzUzVzWcPlOvOzLkMjPxNeXpXdYgPgClTwDtIsTsNeHjEtSzHqOaVqJkXnElBvDsIhHrBuYnSzJmNjIeMeBxRaXeNhQxQmWiIsKwXeXaRlReYfExAnHhUcMpEtWzNpZyHaXmGcUcTdYmDgFsCtUxJtAzJxCbVuMkNrJdRdYyMcMcToAkGxFqKaUcZfCgJaSzHdEpYxStSjPsXzC</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-1</value>
+        <value description="name">MgBfXeYmGtAvBeXqPaEwYbOlBkYwCoHyLwMtKbCdOvXlEhJgOxWhOvXuUgRxSjJyUbAsUsYvIzMsVhOgEoMlXoLcLcWgOmSwNlUlXhXyDqInAtBzBeXaCxWjMvUoFeFfXyAuCaGoLmHoNkDtKwDwXcVcZoLzExFlKoIkYcLbGcWpKxMfMzZcDnXtKxTwIlToXuDfApWzMyBrPqAbQcHwYePcYmAuXnXyEuFeByKfSrGpCxCzGzCbStAaWaHnIpX</value>
+        <value description="updateTime">2015-06-15</value>
+        <value description="updater_id">-1</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="comment">MoFtDiMuMfLmTsExAeVfSzVnPcDlQuStUaZkGgErUhWyHaYzSfXbXtHpJeBeCpXvZgPvJfRjOvRqHmKhEcEqYyAaUmUiHzNeFfJfVwUqNyImJbQfTmPwQeVmBlIpZkGiFwHjHhYtHeBjKqZyLhBdZqReDkOkZoWjZbTrHrYtYoAxTcUgDjHbZoBtXkStScPdDtUuKiGeZkYwJpCeOgHpUnVnYiXzClRtYqOzEpZuIwLiNvYjDiRgBiYyBkZbWsA</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-2</value>
+        <value description="name">KePwJzJuPxCpWkUqHcDtQnUvFhTpMuGeIuXdVlQnHdKpAkQjAbVdIzIuJlJrOpZtCyHrQsLfVyYrDfCeAtJoWgDnLiDvOsKuDpMwXlXrCtJjEnQcIvGvBrCkVrLlMkJoKuWaSmQsEdWbAsGjYgZfMoTiAeTmUmToPqOfElKgNdNoAzKiKpSvJgMjQqIeOqTuFlLlVwYeRmUfQpGzVxCrOcCkNoRhXqUeBxWbLhBuYlEaKoZkVnFkWxPaHzTeLhN</value>
+        <value description="updateTime">2015-06-15</value>
+        <value description="updater_id">-2</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="comment">LgVcKsXbKpMnFhEqZdHdTnMbWxIrWgAfBaVoSrBkXcTaXcJwAzFhBbNyUvYrGaNiNxOtJwQlFvYxBdUgUgXnZkTpWxHcZgPeSpXaDiUsGrPbThNsLmRbRaGaDdAaYzLeYhRcBeXeRhKhRgSeNeUuYnDuWfTsRrAySaJaCyYwSkVlSxTlNpTaUnGjYnMsPeSbAtGmObWvEiByCgNnXpEgIqOrQfDuMeIwXyVhHkJdSuBoOdByAsTeRrFpNxEmOwF</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-3</value>
+        <value description="name">GgIeYmFvJoBdNtRdNqOiDhLmFoCvTlQrIpXaRnIrEeGkRaQlGoPjRlEhZtKcVlJrUsEqVdQsDkXuFkHaJlTwIgZnFrNpJiPtStRhAxQzYuUdDvEoCzWbViVjTlTaXcIhRfVuAsKuScYrPoPhBhXtJlDyCyUlLxRuBySjWxUsPdDlAyWeFlOtDtTbQfMhKuCpRhRpShUiTyGnPkFzHnGrGuVnAfIdVyVwIuOaQpGyJxHwFqRcYnFsXkCgAtQhOpH</value>
+        <value description="updateTime">2015-06-15</value>
+        <value description="updater_id">-3</value>
+    </row>
+    </table>
+    <!--NewsType-END-->
+</dataset>

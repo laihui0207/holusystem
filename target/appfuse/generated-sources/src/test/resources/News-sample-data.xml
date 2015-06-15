@@ -1,0 +1,47 @@
+    <!--News-START-->
+    <table name="R_news">
+        <column>id</column>
+        <column>content</column>
+        <column>createTime</column>
+        <column>creater_id</column>
+        <column>expiredTime</column>
+        <column>newsType_id</column>
+        <column>thumbnailUrl</column>
+        <column>title</column>
+        <column>updateTime</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="content">UfXeGyVwTcZdJcAdKoAdSxRsWjFnArMaHeEhSnEqViThUqXlUfRbJqCnPpZkQoKcLlEwFvIkLrOgKeXkLyBqDgBlToExLjOyNmWwWbCrOyWuHrTmStPgPxDfEuKqZkLoOeDtXfSgUjAqHpXgKsReEkQrXvKaZfXmDzEsIsAmTiZuIgEwNrTjTgIsXlKbLiGqRdDsQsNcLjGfAaBnVdJhRzLpJiKwXoHlXbZnBkEeZoAqQkTfAeViXnSrYaKvUfU</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-1</value>
+        <value description="expiredTime">2015-06-15</value>
+        <value description="newsType_id">-1</value>
+        <value description="thumbnailUrl">FiFnYsUwGpArSeQfVyCyWpCwGgDcRmPlZhAyOkHsAaUjKtDkKgTxNoGeLbWjJaZlEcCjGaHfVpRbQfUyQbRqJmZlVzKuFpRbXnVpPfEuTlVrFcVbSdZgZyLeWfBmRyGxMiZmZeFoXdDnTvQlIzWuZyPwUuNcWbGsWhTaGqHjRaYzIvAvZsDgPnHuTtYgOjWgQjChMfHbStKlYlTkMlDvTvKuAcByQwGpIzAzAdBbSyKnJuBsTqWkDhOmVbUkMrQ</value>
+        <value description="title">RoYmVxVqCsFkKlSwWyJfGuYuSyXmGrVbSyDkRkDoGrKcPjJtQoRuDnGnDaQlRbEaNvTsLtSnExBnWeRnIbNqLiDzCtFnCaVvLpVzRfJgTkAiMyMxHuUiTzXoWoWaUzNrCxRgXqEuSvSjLqJoKuQkOaYpAlOaIcJkToCuXqHsVzCkLpIfAfYbIaJpZcCpJhAgReHmGuKvBsGhNfEcXuDtOzYhEdCrTpVxYqLjKjKeErCfLrOsUuGrPxFdWyIuVnG</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="content">YhFgDqYyYkTlFeHdVrTfSaYbIvEkLxWwHoKaLkUuFrJdBiRvObClLxMkOvDlKgUeEtVqYfRyFqHmEhMnYnKmTaNcLrCnLyXaChHfUdDkNkNfCkGbOrIgAdOcZeTqEjAwHlImKgMvAfSfZhQePcRgMbHbItEpKpPxCaTaOsRqJmKvGqObZvNzXlZvWyVvIkBrDiQcLtYlSdYmWbDvUvXzHcXpJkDhMbVrYnLjFdWmLbGfOjHrCwQqGkWyRxTcJzX</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-2</value>
+        <value description="expiredTime">2015-06-15</value>
+        <value description="newsType_id">-2</value>
+        <value description="thumbnailUrl">SuVkLvPvQkXiThWaQuSbRbFiJgZqAwXqOvMhRzBlFiDkUdHuJxIuNnTnBmKeEoCsGfQfPgHkOlHyIiJbNxNtHrUyPrCjLkZlCbMvCrVpNiNlPpJiQrTkQbIyLtIlPrYfGwUtFnZkEdItVpHbNdImFwDuFyDzZgIeOxQeAgIeDzQlSvSeHtPjAuAsKvZpJtVmNiKwUqHhPnDrQsPuIvQrMtRoMqNoBpAiMbWgMlXwDxRzPsNwYfDbEyQgUtAkGoD</value>
+        <value description="title">NhCtWfBfKlVbTeBeLqHjCkKqXiJkQoGeFzImZlNhFkEeLpNzDkGnTmNvYgThWcIeBrCaOzScDjHfKmKyNmNlTuUaOvHoHhIuEdMfKlWjXxFeAgWbHcHjOqDaJsCvAmNdYxLgNxJoBkRrOlOoEsTaDnDoLjUmIiZsPlPgVuRiWhKaAsGpIlEaPyReJuOrHwFyFwZjCdOfZiAiQkAkEmHhLvToVkHaOkUmDhZxAzOjNdRgXfPdAhDeJxTyFfFwPdD</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="content">FgKaWsYxUjCjQxIsPhLzGoSqWpNqOvLvFxDsRhFhQtKfPpLcUaHkYqLpIwFzHmAzDwVbZxVdYdJeTrKmUiIyVlLcTgDaTeVyQoFgCtVhHfYaVlXuChIrTsLqTyXkOiLfJpGgIpDmEfRgHeKwZeHgQdVmTdRmLcUqVoSeRjLmEmRtOlLeDvXaDqDaYbRfAmWtXwChZeIjSiBfFzBvQfHoXxUtRqEpQpYpGeFwVfSxWbHfKnNxFiQiTgIlTxSaOjW</value>
+        <value description="createTime">2015-06-15</value>
+        <value description="creater_id">-3</value>
+        <value description="expiredTime">2015-06-15</value>
+        <value description="newsType_id">-3</value>
+        <value description="thumbnailUrl">OdXjViPmGmJhGvCjDmHpTmNoHkGnEiIrNpVgBqOmFoUjDpNqMwVnFiMcTcKfZnSkIpFbJaSpCxOmRrBgJkWcQpHgIyWxVnVkNsAoOzAhMyTzReLwWwHiHjIaQzUbItRiDwMtSuHdZxMgUkCtHiHrPvGhUdShTbSdZnTnWeUuYePaGqPcCvNhHhEoCeYwHhAqCrXtTjEgZvJjGqKmSgWuDbJpWvTuFkQuFwKoXfScIrPpBaToAmIcIeWpLkKuMkF</value>
+        <value description="title">AzOhScOoJqFcXyAbCxZbRsJqHrMsAkWsTyNePrHmGxDxMuRgEzIuRuSvSoYpPtMrGaXcZqXxMtWnWpZmQpEoVhWhVzGfPyEkYdZyLsBvPvLpNjJgYhOkGwEiRxVxGrYuOhVvXlTjRuQnOjQjZgFpOaPwPtXzLoPySoLtFaHnEaKwZjXuKdEbDhFoVyNzHiDhYrCxIbBwHxJfWnWyDbAyCvPmFwRaFwUeSnTqPpWvDpWgAzJzAaQmUyWuKwZrEyD</value>
+        <value description="updateTime">2015-06-15</value>
+    </row>
+    </table>
+    <!--News-END-->
+</dataset>

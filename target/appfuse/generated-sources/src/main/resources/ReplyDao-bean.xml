@@ -1,0 +1,5 @@
+<!--ReplyDao-START-->
+    <bean id="replyDao" class="com.huivip.holu.dao.hibernate.ReplyDaoHibernate"/>
+    <!--ReplyDao-END-->
+
+    <!-- Add new DAOs here -->

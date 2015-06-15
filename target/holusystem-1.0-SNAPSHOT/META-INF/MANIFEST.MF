@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: AppFuse Spring MVC Application
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: com.huivip.holu
+Build-Jdk: 1.8.0_20
+Built-By: sunlaihui
+Created-By: IntelliJ IDEA
+Main-Class: ${start-class}
+

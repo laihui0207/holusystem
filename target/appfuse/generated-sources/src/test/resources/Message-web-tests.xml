@@ -1,0 +1,95 @@
+    <!--Message-START-->
+    <!-- runs message-related tests -->
+    <target name="MessageTests"
+            depends="SearchMessages,EditMessage,SaveMessage,AddMessage,DeleteMessage"
+            description="Call and executes all message test cases (targets)">
+        <echo>Successfully ran all Message UI tests!</echo>
+    </target>
+
+    <!-- Verify the messages list screen displays without errors -->
+    <target name="SearchMessages" description="Tests search for and displaying all messages">
+        <webtest name="searchMessages">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Message link" url="/messages"/>
+                <verifytitle description="we should see the messageList title"
+                    text=".*${messageList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the messageList title"
+                    text=".*${messageList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit message screen displays without errors -->
+    <target name="EditMessage" description="Tests editing an existing Message's information">
+        <webtest name="editMessage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Message List" url="/messages"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the messageDetail title"
+                    text=".*${messageDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a message and then save -->
+    <target name="SaveMessage" description="Tests editing and saving a message">
+        <webtest name="saveMessage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Message link" url="/messageform?id=-1"/>
+                <verifytitle description="we should see the messageDetail title"
+                    text=".*${messageDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set status" name="status" value="61150973"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${messageDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${message.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Message -->
+    <target name="AddMessage" description="Adds a new Message">
+        <webtest name="addMessage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/messageform"/>
+                <verifytitle description="we should see the messageDetail title"
+                    text=".*${messageDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set status" name="status" value="763204748"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Message List appears if save successful"
+                    text=".*${messageList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${message.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing message -->
+    <target name="DeleteMessage" description="Deletes existing Message">
+        <webtest name="deleteMessage">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Message link" url="/messageform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Message List" text=".*${messageList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${message.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Message-END-->
+</project>

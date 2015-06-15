@@ -1,0 +1,5 @@
+<!--ProjectDao-START-->
+    <bean id="projectDao" class="com.huivip.holu.dao.hibernate.ProjectDaoHibernate"/>
+    <!--ProjectDao-END-->
+
+    <!-- Add new DAOs here -->

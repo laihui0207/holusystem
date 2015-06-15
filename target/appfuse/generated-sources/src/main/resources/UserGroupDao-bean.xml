@@ -1,0 +1,5 @@
+<!--UserGroupDao-START-->
+    <bean id="userGroupDao" class="com.huivip.holu.dao.hibernate.UserGroupDaoHibernate"/>
+    <!--UserGroupDao-END-->
+
+    <!-- Add new DAOs here -->

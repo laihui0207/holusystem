@@ -1,0 +1,4 @@
+        <!--PostBar-START-->
+        <Menu name="PostBarMenu" title="postBarList.title" page="/postBars"/>
+        <!--PostBar-END-->
+    </Menus>

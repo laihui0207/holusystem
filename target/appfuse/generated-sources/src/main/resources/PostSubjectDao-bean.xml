@@ -1,0 +1,5 @@
+<!--PostSubjectDao-START-->
+    <bean id="postSubjectDao" class="com.huivip.holu.dao.hibernate.PostSubjectDaoHibernate"/>
+    <!--PostSubjectDao-END-->
+
+    <!-- Add new DAOs here -->

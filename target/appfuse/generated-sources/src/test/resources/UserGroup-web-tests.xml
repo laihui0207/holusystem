@@ -1,0 +1,93 @@
+    <!--UserGroup-START-->
+    <!-- runs userGroup-related tests -->
+    <target name="UserGroupTests"
+            depends="SearchUserGroups,EditUserGroup,SaveUserGroup,AddUserGroup,DeleteUserGroup"
+            description="Call and executes all userGroup test cases (targets)">
+        <echo>Successfully ran all UserGroup UI tests!</echo>
+    </target>
+
+    <!-- Verify the userGroups list screen displays without errors -->
+    <target name="SearchUserGroups" description="Tests search for and displaying all userGroups">
+        <webtest name="searchUserGroups">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View UserGroup link" url="/userGroups"/>
+                <verifytitle description="we should see the userGroupList title"
+                    text=".*${userGroupList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the userGroupList title"
+                    text=".*${userGroupList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit userGroup screen displays without errors -->
+    <target name="EditUserGroup" description="Tests editing an existing UserGroup's information">
+        <webtest name="editUserGroup">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View UserGroup List" url="/userGroups"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the userGroupDetail title"
+                    text=".*${userGroupDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a userGroup and then save -->
+    <target name="SaveUserGroup" description="Tests editing and saving a userGroup">
+        <webtest name="saveUserGroup">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit UserGroup link" url="/userGroupform?id=-1"/>
+                <verifytitle description="we should see the userGroupDetail title"
+                    text=".*${userGroupDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${userGroupDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${userGroup.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new UserGroup -->
+    <target name="AddUserGroup" description="Adds a new UserGroup">
+        <webtest name="addUserGroup">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/userGroupform"/>
+                <verifytitle description="we should see the userGroupDetail title"
+                    text=".*${userGroupDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="UserGroup List appears if save successful"
+                    text=".*${userGroupList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${userGroup.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing userGroup -->
+    <target name="DeleteUserGroup" description="Deletes existing UserGroup">
+        <webtest name="deleteUserGroup">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit UserGroup link" url="/userGroupform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display UserGroup List" text=".*${userGroupList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${userGroup.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--UserGroup-END-->
+</project>

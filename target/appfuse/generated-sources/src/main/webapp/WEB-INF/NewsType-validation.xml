@@ -1,0 +1,5 @@
+        <!--NewsType-START-->
+        <form name="newsType">
+        </form>
+        <!--NewsType-END-->
+    </formset>
