@@ -1,4 +1,0 @@
-        <!--News-START-->
-        <Menu name="NewsMenu" title="newsList.title" page="/newss"/>
-        <!--News-END-->
-    </Menus>

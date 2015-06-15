@@ -1,4 +1,0 @@
-        <!--NewsType-START-->
-        <Menu name="NewsTypeMenu" title="newsTypeList.title" page="/newsTypes"/>
-        <!--NewsType-END-->
-    </Menus>

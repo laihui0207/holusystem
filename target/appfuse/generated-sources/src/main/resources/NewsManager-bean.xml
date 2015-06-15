@@ -1,7 +1,0 @@
-<!--NewsManager-START-->
-    <bean id="newsManager" class="com.huivip.holu.service.impl.NewsManagerImpl">
-        <constructor-arg ref="newsDao"/>
-    </bean>
-    <!--NewsManager-END-->
-
-    <!-- Add new Managers here -->

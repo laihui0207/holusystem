@@ -1,4 +1,0 @@
-        <!--Post-START-->
-        <Menu name="PostMenu" title="postList.title" page="/posts"/>
-        <!--Post-END-->
-    </Menus>

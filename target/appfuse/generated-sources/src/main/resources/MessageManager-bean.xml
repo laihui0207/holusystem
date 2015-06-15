@@ -1,7 +1,0 @@
-<!--MessageManager-START-->
-    <bean id="messageManager" class="com.huivip.holu.service.impl.MessageManagerImpl">
-        <constructor-arg ref="messageDao"/>
-    </bean>
-    <!--MessageManager-END-->
-
-    <!-- Add new Managers here -->

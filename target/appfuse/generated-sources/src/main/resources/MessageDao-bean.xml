@@ -1,5 +1,0 @@
-<!--MessageDao-START-->
-    <bean id="messageDao" class="com.huivip.holu.dao.hibernate.MessageDaoHibernate"/>
-    <!--MessageDao-END-->
-
-    <!-- Add new DAOs here -->

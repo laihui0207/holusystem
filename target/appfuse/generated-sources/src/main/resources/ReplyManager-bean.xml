@@ -1,7 +1,0 @@
-<!--ReplyManager-START-->
-    <bean id="replyManager" class="com.huivip.holu.service.impl.ReplyManagerImpl">
-        <constructor-arg ref="replyDao"/>
-    </bean>
-    <!--ReplyManager-END-->
-
-    <!-- Add new Managers here -->

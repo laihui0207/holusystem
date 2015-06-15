@@ -1,5 +1,0 @@
-<!--NewsDao-START-->
-    <bean id="newsDao" class="com.huivip.holu.dao.hibernate.NewsDaoHibernate"/>
-    <!--NewsDao-END-->
-
-    <!-- Add new DAOs here -->

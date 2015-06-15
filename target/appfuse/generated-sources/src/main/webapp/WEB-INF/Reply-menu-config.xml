@@ -1,4 +1,0 @@
-        <!--Reply-START-->
-        <Menu name="ReplyMenu" title="replyList.title" page="/replies"/>
-        <!--Reply-END-->
-    </Menus>

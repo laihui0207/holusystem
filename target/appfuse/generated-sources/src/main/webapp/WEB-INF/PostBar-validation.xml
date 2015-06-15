@@ -1,8 +1,0 @@
-        <!--PostBar-START-->
-        <form name="postBar">
-            <field property="ifAccessAllReply" depends="required">
-                <arg key="postBar.ifAccessAllReply"/>
-            </field>
-        </form>
-        <!--PostBar-END-->
-    </formset>

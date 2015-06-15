@@ -1,4 +1,0 @@
-        <!--UserGroup-START-->
-        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups"/>
-        <!--UserGroup-END-->
-    </Menus>

@@ -1,7 +1,0 @@
-<!--NewsTypeManager-START-->
-    <bean id="newsTypeManager" class="com.huivip.holu.service.impl.NewsTypeManagerImpl">
-        <constructor-arg ref="newsTypeDao"/>
-    </bean>
-    <!--NewsTypeManager-END-->
-
-    <!-- Add new Managers here -->

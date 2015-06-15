@@ -1,7 +1,0 @@
-<!--CompanyManager-START-->
-    <bean id="companyManager" class="com.huivip.holu.service.impl.CompanyManagerImpl">
-        <constructor-arg ref="companyDao"/>
-    </bean>
-    <!--CompanyManager-END-->
-
-    <!-- Add new Managers here -->

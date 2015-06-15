@@ -1,7 +1,0 @@
-<!--PostManager-START-->
-    <bean id="postManager" class="com.huivip.holu.service.impl.PostManagerImpl">
-        <constructor-arg ref="postDao"/>
-    </bean>
-    <!--PostManager-END-->
-
-    <!-- Add new Managers here -->

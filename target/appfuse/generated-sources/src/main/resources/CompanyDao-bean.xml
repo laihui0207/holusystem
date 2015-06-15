@@ -1,5 +1,0 @@
-<!--CompanyDao-START-->
-    <bean id="companyDao" class="com.huivip.holu.dao.hibernate.CompanyDaoHibernate"/>
-    <!--CompanyDao-END-->
-
-    <!-- Add new DAOs here -->

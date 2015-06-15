@@ -1,7 +1,0 @@
-<!--UserGroupManager-START-->
-    <bean id="userGroupManager" class="com.huivip.holu.service.impl.UserGroupManagerImpl">
-        <constructor-arg ref="userGroupDao"/>
-    </bean>
-    <!--UserGroupManager-END-->
-
-    <!-- Add new Managers here -->

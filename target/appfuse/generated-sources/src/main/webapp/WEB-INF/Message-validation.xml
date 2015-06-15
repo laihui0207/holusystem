@@ -1,8 +1,0 @@
-        <!--Message-START-->
-        <form name="message">
-            <field property="status" depends="required">
-                <arg key="message.status"/>
-            </field>
-        </form>
-        <!--Message-END-->
-    </formset>
