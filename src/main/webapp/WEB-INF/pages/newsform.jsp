@@ -11,61 +11,39 @@
    "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 
-<div class="col-sm-3">
+<%--<div class="col-sm-3">
     <h2><fmt:message key="newsDetail.heading"/></h2>
     <fmt:message key="newsDetail.message"/>
-</div>
+</div>--%>
 
-<div class="col-sm-6">
+<div class="col-sm-12">
+    <h2><fmt:message key="newsDetail.heading"/></h2>
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
 <form:form commandName="news" method="post" action="newsform" cssClass="well"
            id="newsForm" onsubmit="return validateNews(this)">
 <form:hidden path="id"/>
+    <spring:bind path="news.title">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+    <appfuse:label key="news.title" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="title" id="title"  maxlength="255"/>
+    <form:errors path="title" cssClass="help-block"/>
+    </div>
+    <appfuse:label key="news.newsType"  styleClass="control-label"/>
+    <form:select cssClass="form-control" path="newsType.id" items="${newsTypeList}" itemLabel="name" itemValue="id"/>
     <spring:bind path="news.content">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="news.content" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="content" id="content"  maxlength="255"/>
+        <form:input cssClass="form-control" path="content" id="contentinput"  maxlength="255"/>
         <form:errors path="content" cssClass="help-block"/>
     </div>
-    <spring:bind path="news.createTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="news.createTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createTime" id="createTime"  maxlength="255"/>
-        <form:errors path="createTime" cssClass="help-block"/>
-    </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="creater" items="createrList" itemLabel="label" itemValue="value"/>
     <spring:bind path="news.expiredTime">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="news.expiredTime" styleClass="control-label"/>
         <form:input cssClass="form-control" path="expiredTime" id="expiredTime"  maxlength="255"/>
         <form:errors path="expiredTime" cssClass="help-block"/>
-    </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="newsType" items="newsTypeList" itemLabel="label" itemValue="value"/>
-    <spring:bind path="news.thumbnailUrl">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="news.thumbnailUrl" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="thumbnailUrl" id="thumbnailUrl"  maxlength="255"/>
-        <form:errors path="thumbnailUrl" cssClass="help-block"/>
-    </div>
-    <spring:bind path="news.title">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="news.title" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="title" id="title"  maxlength="255"/>
-        <form:errors path="title" cssClass="help-block"/>
-    </div>
-    <spring:bind path="news.updateTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="news.updateTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="updateTime" id="updateTime"  maxlength="255"/>
-        <form:errors path="updateTime" cssClass="help-block"/>
     </div>
 
     <div class="form-group">
@@ -87,9 +65,21 @@
 
 <v:javascript formName="news" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/scripts/validator.jsp'/>"></script>
-
+<script type="text/javascript" charset="utf-8" src="<c:url value='/scripts/editor/kindeditor.js'/>"></script>
+<c:if test="${pageContext.request.locale.language != 'en'}">
+    <script type="text/javascript"
+            src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/locales/bootstrap-datepicker.${pageContext.request.locale.language}.js'/>"></script>
+</c:if>
 <script type="text/javascript">
     $(document).ready(function() {
         $("input[type='text']:visible:enabled:first", document.forms['newsForm']).focus();
+        $("#expiredTime").datepicker({autoclose: true});
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#contentinput', {
+                uploadJson: "<c:url value='/editeruploadattachement'/>",
+                fileManagerJson: "<c:url value='/editeruploadattachement'/>",
+                allowFileManager: true, filterMode: false
+            });
+        });
     });
 </script>

@@ -1,12 +1,9 @@
 package com.huivip.holu.webapp.controller;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.huivip.holu.Constants;
+import com.huivip.holu.model.Company;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.CompanyManager;
 import com.huivip.holu.service.RoleManager;
 import com.huivip.holu.service.UserExistsException;
 import com.huivip.holu.webapp.util.RequestUtil;
@@ -22,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Locale;
+
 /**
  * Controller to signup new users.
  *
@@ -31,6 +33,8 @@ import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 @RequestMapping("/signup*")
 public class SignupController extends BaseFormController {
     private RoleManager roleManager;
+    @Autowired
+    private CompanyManager companyManager;
 
     @Autowired
     public void setRoleManager(final RoleManager roleManager) {
@@ -116,5 +120,9 @@ public class SignupController extends BaseFormController {
         }
 
         return getSuccessView();
+    }
+    @ModelAttribute("companyList")
+    public List<Company> companyList(){
+        return companyManager.getAll();
     }
 }

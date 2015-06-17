@@ -38,9 +38,9 @@
     <display:column property="id" sortable="true" href="newsTypeform" media="html"
         paramId="id" paramProperty="id" titleKey="newsType.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="newsType.id"/>
+    <display:column property="name" sortable="true" titleKey="newsType.name"/>
     <display:column property="comment" sortable="true" titleKey="newsType.comment"/>
     <display:column property="createTime" sortable="true" titleKey="newsType.createTime"/>
-    <display:column property="name" sortable="true" titleKey="newsType.name"/>
     <display:column property="updateTime" sortable="true" titleKey="newsType.updateTime"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="newsTypeList.newsType"/></display:setProperty>

@@ -1,12 +1,10 @@
 package com.huivip.holu.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.huivip.holu.service.NewsTypeManager;
 import com.huivip.holu.model.NewsType;
-import com.huivip.holu.webapp.controller.BaseFormController;
-
+import com.huivip.holu.model.User;
+import com.huivip.holu.service.NewsTypeManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +69,10 @@ public class NewsTypeFormController extends BaseFormController {
             newsTypeManager.remove(newsType.getId());
             saveMessage(request, getText("newsType.deleted", locale));
         } else {
+            final User cleanUser = getUserManager().getUserByUsername(
+                    request.getRemoteUser());
+            newsType.setCreater(cleanUser);
+            newsType.setUpdater(cleanUser);
             newsTypeManager.save(newsType);
             String key = (isNew) ? "newsType.added" : "newsType.updated";
             saveMessage(request, getText(key, locale));

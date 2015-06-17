@@ -1,17 +1,13 @@
 package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.dao.SearchException;
-import com.huivip.holu.service.NewsManager;
 import com.huivip.holu.model.News;
-
+import com.huivip.holu.service.NewsManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/newss*")
@@ -34,5 +30,11 @@ public class NewsController {
             model.addAttribute(newsManager.getAll());
         }
         return model;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/view/{id}",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String viewNews(@PathVariable("id")String id) {
+        News news = newsManager.get(Long.parseLong(id));
+        return news.getContent();
     }
 }

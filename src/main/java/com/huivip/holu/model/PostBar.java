@@ -1,7 +1,7 @@
 package com.huivip.holu.model;
 
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,6 +30,7 @@ public class PostBar extends BaseObject implements Serializable {
 
     // if true, all user can reply the post, if false, just allow reply groups and reply user can reply the post
     private boolean ifAccessAllReply= true;
+    private boolean ifAccessAllView= true;
     private Set<UserGroup> replyGroups=new HashSet<>();
     private Set<User>  replyUsers=new HashSet<>();
     private Set<UserGroup> viewGroups=new HashSet<>();
@@ -46,7 +47,8 @@ public class PostBar extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(nullable = false)
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getTitle() {
         return title;
     }
@@ -54,7 +56,9 @@ public class PostBar extends BaseObject implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    @Column(nullable = false)
+    @Lob
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getContent() {
         return content;
     }
@@ -62,7 +66,7 @@ public class PostBar extends BaseObject implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-
+    @Column(updatable = false)
     public Date getCreateTime() {
         return createTime;
     }
@@ -96,7 +100,7 @@ public class PostBar extends BaseObject implements Serializable {
         this.lastReplyUser = lastReplyUser;
     }
     @ManyToOne
-    @JoinColumn(name = "createrID")
+    @JoinColumn(name = "createrID",updatable = false)
     public User getCreater() {
         return creater;
     }
@@ -163,6 +167,15 @@ public class PostBar extends BaseObject implements Serializable {
     public void setReplies(List<Reply> replies) {
         this.replies = replies;
     }
+
+    public boolean isIfAccessAllView() {
+        return ifAccessAllView;
+    }
+
+    public void setIfAccessAllView(boolean ifAccessAllView) {
+        this.ifAccessAllView = ifAccessAllView;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "postBarViewGroups",

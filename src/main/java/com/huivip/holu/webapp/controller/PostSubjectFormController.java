@@ -1,12 +1,10 @@
 package com.huivip.holu.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.huivip.holu.service.PostSubjectManager;
 import com.huivip.holu.model.PostSubject;
-import com.huivip.holu.webapp.controller.BaseFormController;
-
+import com.huivip.holu.model.User;
+import com.huivip.holu.service.PostSubjectManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +69,10 @@ public class PostSubjectFormController extends BaseFormController {
             postSubjectManager.remove(postSubject.getId());
             saveMessage(request, getText("postSubject.deleted", locale));
         } else {
+            final User cleanUser = getUserManager().getUserByUsername(
+                    request.getRemoteUser());
+            postSubject.setCreater(cleanUser);
+            postSubject.setUpdater(cleanUser);
             postSubjectManager.save(postSubject);
             String key = (isNew) ? "postSubject.added" : "postSubject.updated";
             saveMessage(request, getText(key, locale));

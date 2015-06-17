@@ -29,7 +29,7 @@
 <p><fmt:message key="replyList.message"/></p>
 
 <div id="actions" class="btn-group">
-    <a href='<c:url value="/replyform"/>' class="btn btn-primary">
+    <a href='<c:url value="/replyform/${post.id}"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
     <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
 </div>
@@ -41,9 +41,6 @@
     <display:column property="content" sortable="true" titleKey="reply.content"/>
     <display:column sortProperty="replyTime" sortable="true" titleKey="reply.replyTime">
          <fmt:formatDate value="${replyList.replyTime}" pattern="${datePattern}"/>
-    </display:column>
-    <display:column sortProperty="updateTime" sortable="true" titleKey="reply.updateTime">
-         <fmt:formatDate value="${replyList.updateTime}" pattern="${datePattern}"/>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="replyList.reply"/></display:setProperty>

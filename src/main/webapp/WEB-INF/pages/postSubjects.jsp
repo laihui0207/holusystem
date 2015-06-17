@@ -38,16 +38,11 @@
     <display:column property="id" sortable="true" href="postSubjectform" media="html"
         paramId="id" paramProperty="id" titleKey="postSubject.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="postSubject.id"/>
+    <display:column property="name" sortable="true" titleKey="postSubject.name"/>
     <display:column property="comment" sortable="true" titleKey="postSubject.comment"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="postSubject.createTime">
          <fmt:formatDate value="${postSubjectList.createTime}" pattern="${datePattern}"/>
     </display:column>
-    <display:column property="creater" sortable="true" titleKey="postSubject.creater"/>
-    <display:column property="name" sortable="true" titleKey="postSubject.name"/>
-    <display:column sortProperty="updateTime" sortable="true" titleKey="postSubject.updateTime">
-         <fmt:formatDate value="${postSubjectList.updateTime}" pattern="${datePattern}"/>
-    </display:column>
-    <display:column property="updater" sortable="true" titleKey="postSubject.updater"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="postSubjectList.postSubject"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="postSubjectList.postSubjects"/></display:setProperty>

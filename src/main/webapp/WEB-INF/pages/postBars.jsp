@@ -38,18 +38,22 @@
     <display:column property="id" sortable="true" href="postBarform" media="html"
         paramId="id" paramProperty="id" titleKey="postBar.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="postBar.id"/>
-    <display:column property="content" sortable="true" titleKey="postBar.content"/>
+    <display:column property="title" sortable="true" titleKey="postBar.title"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="postBar.createTime">
          <fmt:formatDate value="${postBarList.createTime}" pattern="${datePattern}"/>
     </display:column>
     <display:column sortProperty="ifAccessAllReply" sortable="true" titleKey="postBar.ifAccessAllReply">
         <input type="checkbox" disabled="disabled" <c:if test="${postBarList.ifAccessAllReply}">checked="checked"</c:if>/>
     </display:column>
+    <display:column sortProperty="ifAccessAllView" sortable="true" titleKey="postBar.ifAccessAllView">
+        <input type="checkbox" disabled="disabled" <c:if test="${postBarList.ifAccessAllView}">checked="checked"</c:if>/>
+    </display:column>
     <display:column property="lastReplyTime" sortable="true" titleKey="postBar.lastReplyTime"/>
-    <display:column property="thumbnailUrl" sortable="true" titleKey="postBar.thumbnailUrl"/>
-    <display:column property="title" sortable="true" titleKey="postBar.title"/>
     <display:column sortProperty="updateTime" sortable="true" titleKey="postBar.updateTime">
          <fmt:formatDate value="${postBarList.updateTime}" pattern="${datePattern}"/>
+    </display:column>
+    <display:column  sortable="false" titleKey="PostBar.Action">
+        <a href="postBars/${postBarList.id}/replies">Replies</a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="postBarList.postBar"/></display:setProperty>

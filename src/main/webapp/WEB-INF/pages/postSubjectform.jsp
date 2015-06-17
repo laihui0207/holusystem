@@ -21,47 +21,19 @@
 <form:form commandName="postSubject" method="post" action="postSubjectform" cssClass="well"
            id="postSubjectForm" onsubmit="return validatePostSubject(this)">
 <form:hidden path="id"/>
+    <spring:bind path="postSubject.name">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+    <appfuse:label key="postSubject.name" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="name" id="name"  maxlength="255"/>
+    <form:errors path="name" cssClass="help-block"/>
+    </div>
     <spring:bind path="postSubject.comment">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="postSubject.comment" styleClass="control-label"/>
         <form:input cssClass="form-control" path="comment" id="comment"  maxlength="255"/>
         <form:errors path="comment" cssClass="help-block"/>
-    </div>
-    <spring:bind path="postSubject.createTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="postSubject.createTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createTime" id="createTime" size="11" title="date" datepicker="true"/>
-        <form:errors path="createTime" cssClass="help-block"/>
-    </div>
-    <spring:bind path="postSubject.creater">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="postSubject.creater" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="creater" id="creater"  maxlength="255"/>
-        <form:errors path="creater" cssClass="help-block"/>
-    </div>
-    <spring:bind path="postSubject.name">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="postSubject.name" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="name" id="name"  maxlength="255"/>
-        <form:errors path="name" cssClass="help-block"/>
-    </div>
-    <spring:bind path="postSubject.updateTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="postSubject.updateTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="updateTime" id="updateTime" size="11" title="date" datepicker="true"/>
-        <form:errors path="updateTime" cssClass="help-block"/>
-    </div>
-    <spring:bind path="postSubject.updater">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="postSubject.updater" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="updater" id="updater"  maxlength="255"/>
-        <form:errors path="updater" cssClass="help-block"/>
     </div>
 
     <div class="form-group">

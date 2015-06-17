@@ -4,6 +4,7 @@
     <title><fmt:message key="userGroupDetail.title"/></title>
     <meta name="menu" content="UserGroupMenu"/>
     <meta name="heading" content="<fmt:message key='userGroupDetail.heading'/>"/>
+    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="userGroupList.userGroup"/></c:set>
@@ -21,6 +22,13 @@
 <form:form commandName="userGroup" method="post" action="userGroupform" cssClass="well"
            id="userGroupForm" onsubmit="return validateUserGroup(this)">
 <form:hidden path="id"/>
+    <spring:bind path="userGroup.name">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+    <appfuse:label key="userGroup.name" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="name" id="name"  maxlength="255"/>
+    <form:errors path="name" cssClass="help-block"/>
+    </div>
     <spring:bind path="userGroup.comment">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
@@ -28,33 +36,10 @@
         <form:input cssClass="form-control" path="comment" id="comment"  maxlength="255"/>
         <form:errors path="comment" cssClass="help-block"/>
     </div>
-    <spring:bind path="userGroup.createTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="userGroup.createTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createTime" id="createTime" size="11" title="date" datepicker="true"/>
-        <form:errors path="createTime" cssClass="help-block"/>
-    </div>
+    <appfuse:label key="userGroup.comment" styleClass="control-label"/>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="creater" items="createrList" itemLabel="label" itemValue="value"/>
-    <spring:bind path="userGroup.name">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="userGroup.name" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="name" id="name"  maxlength="255"/>
-        <form:errors path="name" cssClass="help-block"/>
-    </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="owner" items="ownerList" itemLabel="label" itemValue="value"/>
-    <spring:bind path="userGroup.updateTime">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="userGroup.updateTime" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="updateTime" id="updateTime" size="11" title="date" datepicker="true"/>
-        <form:errors path="updateTime" cssClass="help-block"/>
-    </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="updater" items="updaterList" itemLabel="label" itemValue="value"/>
+    <form:select cssClass="form-control" id="members" multiple="true" path="members" items="${usersList}" itemLabel="username" itemValue="id"/>
+
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
@@ -78,12 +63,10 @@
 
 <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/webjars/bootstrap-datepicker/1.3.1/css/datepicker.css'/>" />
 <script type="text/javascript" src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js'/>"></script>
-<c:if test="${pageContext.request.locale.language != 'en'}">
-<script type="text/javascript" src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/locales/bootstrap-datepicker.${pageContext.request.locale.language}.js'/>"></script>
-</c:if>
+<script type="text/javascript" src="<c:url value='/scripts/multieselect/bootstrap-multiselect.js'/>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $("input[type='text']:visible:enabled:first", document.forms['userGroupForm']).focus();
-        $('.text-right.date').datepicker({format: "<fmt:message key='calendar.format'/>", weekStart: "<fmt:message key='calendar.weekstart'/>", language: '${pageContext.request.locale.language}'});
+        $("#members").multiselect({numberDisplayed:20});
     });
 </script>

@@ -1,7 +1,7 @@
 package com.huivip.holu.model;
 
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,8 +21,8 @@ public class PostSubject extends BaseObject implements Serializable {
     private Long id;
     private String name;
     private String comment;
-    private Date createTime;
-    private Date updateTime;
+    private Date createTime=new Date();
+    private Date updateTime=new Date();
     private User creater;
     private User updater;
     private List<PostBar> posts=new ArrayList<>();
@@ -37,7 +37,8 @@ public class PostSubject extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(nullable = false)
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getName() {
         return name;
     }
@@ -53,7 +54,7 @@ public class PostSubject extends BaseObject implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
+    @Column(updatable = false)
     public Date getCreateTime() {
         return createTime;
     }
@@ -69,7 +70,8 @@ public class PostSubject extends BaseObject implements Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-
+    @ManyToOne
+    @JoinColumn(name="createrID",updatable = false)
     public User getCreater() {
         return creater;
     }
@@ -77,7 +79,8 @@ public class PostSubject extends BaseObject implements Serializable {
     public void setCreater(User creater) {
         this.creater = creater;
     }
-
+    @ManyToOne
+    @JoinColumn(name="updaterID")
     public User getUpdater() {
         return updater;
     }

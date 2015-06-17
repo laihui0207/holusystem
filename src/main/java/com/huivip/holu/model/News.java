@@ -43,6 +43,7 @@ public class News extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Column(nullable = false)
     @Field(index= org.hibernate.search.annotations.Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getTitle() {
         return title;
@@ -51,6 +52,8 @@ public class News extends BaseObject implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+    @Lob
+    @Column(nullable = false)
     @Field(index= org.hibernate.search.annotations.Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getContent() {
         return content;

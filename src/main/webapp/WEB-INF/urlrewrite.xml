@@ -43,6 +43,10 @@
         <to>/assets/$1</to>
     </rule>
     <rule>
+        <from>/attached/**</from>
+        <to>/attached/$1</to>
+    </rule>
+    <rule>
         <from>/images/**</from>
         <to>/images/$1</to>
     </rule>

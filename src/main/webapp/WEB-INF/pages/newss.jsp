@@ -38,12 +38,12 @@
     <display:column property="id" sortable="true" href="newsform" media="html"
         paramId="id" paramProperty="id" titleKey="news.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="news.id"/>
-    <display:column property="content" sortable="true" titleKey="news.content"/>
+    <display:column property="title" sortable="true" titleKey="news.title"/>
     <display:column property="createTime" sortable="true" titleKey="news.createTime"/>
     <display:column property="expiredTime" sortable="true" titleKey="news.expiredTime"/>
-    <display:column property="thumbnailUrl" sortable="true" titleKey="news.thumbnailUrl"/>
-    <display:column property="title" sortable="true" titleKey="news.title"/>
-    <display:column property="updateTime" sortable="true" titleKey="news.updateTime"/>
+    <display:column  sortable="false" titleKey="news.Action">
+        <a href="/newss/view/${newsList.id}" target="_blank">View</a>
+    </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="newsList.news"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="newsList.newss"/></display:setProperty>

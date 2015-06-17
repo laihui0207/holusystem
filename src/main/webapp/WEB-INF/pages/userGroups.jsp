@@ -38,11 +38,11 @@
     <display:column property="id" sortable="true" href="userGroupform" media="html"
         paramId="id" paramProperty="id" titleKey="userGroup.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="userGroup.id"/>
+    <display:column property="name" sortable="true" titleKey="userGroup.name"/>
     <display:column property="comment" sortable="true" titleKey="userGroup.comment"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="userGroup.createTime">
          <fmt:formatDate value="${userGroupList.createTime}" pattern="${datePattern}"/>
     </display:column>
-    <display:column property="name" sortable="true" titleKey="userGroup.name"/>
     <display:column sortProperty="updateTime" sortable="true" titleKey="userGroup.updateTime">
          <fmt:formatDate value="${userGroupList.updateTime}" pattern="${datePattern}"/>
     </display:column>
