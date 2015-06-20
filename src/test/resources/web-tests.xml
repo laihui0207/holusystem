@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,MessageTests,ReplyTests,PostBarTests,PostTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -1178,7 +1178,292 @@
             </steps>
         </webtest>
     </target>    <!--Message-END-->
+    
+    <!--DocType-START-->
+    <!-- runs docType-related tests -->
+    <target name="DocTypeTests"
+            depends="SearchDocTypes,EditDocType,SaveDocType,AddDocType,DeleteDocType"
+            description="Call and executes all docType test cases (targets)">
+        <echo>Successfully ran all DocType UI tests!</echo>
+    </target>
+
+    <!-- Verify the docTypes list screen displays without errors -->
+    <target name="SearchDocTypes" description="Tests search for and displaying all docTypes">
+        <webtest name="searchDocTypes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View DocType link" url="/docTypes"/>
+                <verifytitle description="we should see the docTypeList title"
+                    text=".*${docTypeList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the docTypeList title"
+                    text=".*${docTypeList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit docType screen displays without errors -->
+    <target name="EditDocType" description="Tests editing an existing DocType's information">
+        <webtest name="editDocType">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View DocType List" url="/docTypes"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the docTypeDetail title"
+                    text=".*${docTypeDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a docType and then save -->
+    <target name="SaveDocType" description="Tests editing and saving a docType">
+        <webtest name="saveDocType">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit DocType link" url="/docTypeform?id=-1"/>
+                <verifytitle description="we should see the docTypeDetail title"
+                    text=".*${docTypeDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${docTypeDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${docType.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new DocType -->
+    <target name="AddDocType" description="Adds a new DocType">
+        <webtest name="addDocType">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/docTypeform"/>
+                <verifytitle description="we should see the docTypeDetail title"
+                    text=".*${docTypeDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="DocType List appears if save successful"
+                    text=".*${docTypeList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${docType.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing docType -->
+    <target name="DeleteDocType" description="Deletes existing DocType">
+        <webtest name="deleteDocType">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit DocType link" url="/docTypeform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display DocType List" text=".*${docTypeList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${docType.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--DocType-END-->
+    <!--Documentation-START-->
+    <!-- runs documentation-related tests -->
+    <target name="DocumentationTests"
+            depends="SearchDocumentations,EditDocumentation,SaveDocumentation,AddDocumentation,DeleteDocumentation"
+            description="Call and executes all documentation test cases (targets)">
+        <echo>Successfully ran all Documentation UI tests!</echo>
+    </target>
+
+    <!-- Verify the documentations list screen displays without errors -->
+    <target name="SearchDocumentations" description="Tests search for and displaying all documentations">
+        <webtest name="searchDocumentations">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Documentation link" url="/documentations"/>
+                <verifytitle description="we should see the documentationList title"
+                    text=".*${documentationList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the documentationList title"
+                    text=".*${documentationList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit documentation screen displays without errors -->
+    <target name="EditDocumentation" description="Tests editing an existing Documentation's information">
+        <webtest name="editDocumentation">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Documentation List" url="/documentations"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the documentationDetail title"
+                    text=".*${documentationDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a documentation and then save -->
+    <target name="SaveDocumentation" description="Tests editing and saving a documentation">
+        <webtest name="saveDocumentation">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Documentation link" url="/documentationform?id=-1"/>
+                <verifytitle description="we should see the documentationDetail title"
+                    text=".*${documentationDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set docSize" name="docSize" value="1478019255"/>
+                <setCheckbox description="set viewLimit" name="viewLimit" value="true"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${documentationDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${documentation.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Documentation -->
+    <target name="AddDocumentation" description="Adds a new Documentation">
+        <webtest name="addDocumentation">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/documentationform"/>
+                <verifytitle description="we should see the documentationDetail title"
+                    text=".*${documentationDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set docSize" name="docSize" value="1464968890"/>
+                <setCheckbox description="set viewLimit" name="viewLimit" value="true"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Documentation List appears if save successful"
+                    text=".*${documentationList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${documentation.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing documentation -->
+    <target name="DeleteDocumentation" description="Deletes existing Documentation">
+        <webtest name="deleteDocumentation">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Documentation link" url="/documentationform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Documentation List" text=".*${documentationList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${documentation.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Documentation-END-->
+    <!--Note-START-->
+    <!-- runs note-related tests -->
+    <target name="NoteTests"
+            depends="SearchNotes,EditNote,SaveNote,AddNote,DeleteNote"
+            description="Call and executes all note test cases (targets)">
+        <echo>Successfully ran all Note UI tests!</echo>
+    </target>
+
+    <!-- Verify the notes list screen displays without errors -->
+    <target name="SearchNotes" description="Tests search for and displaying all notes">
+        <webtest name="searchNotes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Note link" url="/notes"/>
+                <verifytitle description="we should see the noteList title"
+                    text=".*${noteList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the noteList title"
+                    text=".*${noteList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit note screen displays without errors -->
+    <target name="EditNote" description="Tests editing an existing Note's information">
+        <webtest name="editNote">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Note List" url="/notes"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the noteDetail title"
+                    text=".*${noteDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a note and then save -->
+    <target name="SaveNote" description="Tests editing and saving a note">
+        <webtest name="saveNote">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Note link" url="/noteform?id=-1"/>
+                <verifytitle description="we should see the noteDetail title"
+                    text=".*${noteDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${noteDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${note.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Note -->
+    <target name="AddNote" description="Adds a new Note">
+        <webtest name="addNote">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/noteform"/>
+                <verifytitle description="we should see the noteDetail title"
+                    text=".*${noteDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Note List appears if save successful"
+                    text=".*${noteList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${note.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing note -->
+    <target name="DeleteNote" description="Deletes existing Note">
+        <webtest name="deleteNote">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Note link" url="/noteform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Note List" text=".*${noteList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${note.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Note-END-->
 </project>
+
+
+
+
 
 
 

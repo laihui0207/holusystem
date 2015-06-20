@@ -579,7 +579,146 @@
     </row>
     </table>
     <!--Message-END-->
+    
+    <!--DocType-START-->
+    <table name="R_doctype">
+        <column>id</column>
+        <column>comment</column>
+        <column>createTime</column>
+        <column>creater_id</column>
+        <column>name</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="comment">EpAjOcYcWuXnVyEsPsGrTyEtCnTbAdLoTcFjJbCtXxXpWmYfYfZqOfBmMmGoZgPeEdMcLbEwZvQjObLuRgZwLtGlNpDaFeSqKmUjPkWeSnFtOmIgZpEhSwGgPpWtGnAzOvQyFrBgZeNdMrBhZbCfYwYpGhLwIlOeYaTlHaAxLwHeEhIxQaShUqYnWdRlYdOyDyDjYdKsDePaApTeHkLuCjQkKgVpGyNlKnYpYfTdJlOwXoXeSrJbAzWyJkKjYkG</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-1</value>
+        <value description="name">KfVaWvCdJcXgLyYqEiEvFsGsIkRfGlWcQgTrStYdBdHcAxGhEwWcGbPlXqXrJdYuFkLfRhXyQcNaSmDuPtAnHpXzXkSnUcUaUhPlMpCtNcYkQgVkDqKqXzPkIsPnBtZxIuLwVxYpBzKxWjGxDcSvBkEnLaNoXeEaPwJjCcQbAzZsGaQjYqXzXjTiFhGyNfPcRwPeQqWqFdQbNtIpSxJoGvXwZlSeRhIcYtCuAqYaIiGtXhZgDhVwWiXdSqRmIdC</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="comment">ZySxRrMyVhNaHoKrCbQtPiQzSyNpDlXzIxEqQvIfPiDzAtFrJnFbMaMdUrTzRcOcWhUcXnAfUaUrOwPcRsXrLgQuLxUlLqJlGoYiDaFmIuEhMyYbXyYaUwBdLrDxOjUcIhGuYlXxIkHaKhEdIsIaSzRiRlLvXiRuJoMwIqAfWdWkBlVoKhCaEzWjKnDcJjMmTmTrVhIsFnChShRmDjNhSsUsQwJuRiXjTcTwMgOiJgKuDpHrKaMlYxKnKeUkWuS</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-2</value>
+        <value description="name">AuJoAgFvXoGyQdQeEyYjQyEeEwBfGuTyXpPiArOjRfGsRdExNxAzEyStQePxCbRaZyZpVvMjWhDlOmMoVrTvKnUdPuEnDuWpUpNnKkIbBmGlBcAmWvMqUvAvLbJcDmZhMdXoAaGiDyCxBmViCfNcGaGiSbLlVbVtLqDhSaBeXiEfHzUcQqPtUzOdQlQtPbNaVcWrYgJsWwGqZeNuSnOmJpKnGdCeJmPePiKhQhVhDtMiCnXaBxIuZsFaEjUfUjS</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="comment">DrCqAlTaXyZpPjMvAzOfRyWzWkYwRsZmTlLnZcZaYtAbDaNbWaSgNsYmRpYfQrFjEkHqMhYtXlFaWnTmWwNyNkGhScHbVaBeKcKyPnHeUyDxUqLiMhHgAeTnAcCeDzJmFjJzQkXbIuDvHpFfBnNuHmNgXcMcMaEkDsZcEcLsQkLvKuZsFuMjQqTvWfUoUrTxYeAbZcDeIbHrToQtEhBmNtLxNlSlLfMsDyUaPcErJsFmDbOyQzKoDuWaYqXqQbI</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-3</value>
+        <value description="name">GtYnKvJxAtIxHcStKrEpZcXcJdUtKmBfGqZpJrDkRaLaYcTxKxZuOpArQwVmWtFhSqRfJkHsUeWkGhXwYaDcIlUrMsKkTmMjNeDfAbMoNwQlOlLlTmBoMqOzVhDkPfEyRhKdCwEcUuKvXeRhJoFlMfXuTtVzShBbInUsYkIgBiXkQjEcUkQoTeAkHrFxZhGwQgOjCjWwIoPlWvUzUrWdBsRdZdVyNyDcHoYdZhZsWfVyLhQlGdWvVtKuZsDbRfJ</value>
+    </row>
+    </table>
+    <!--DocType-END-->
+    <!--Documentation-START-->
+    <table name="R_Documents">
+        <column>id</column>
+        <column>comment</column>
+        <column>content</column>
+        <column>createTime</column>
+        <column>creater_id</column>
+        <column>docSize</column>
+        <column>doctype_id</column>
+        <column>introduction</column>
+        <column>name</column>
+        <column>storePath</column>
+        <column>updateTime</column>
+        <column>updater_id</column>
+        <column>viewLimit</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="comment">EuHlZvIgTiJbYuSsKlWtJnPzAoPkKaAvDkIwWiImRtIcFtJwIkMfVoOnUzOsLkMeKzRsDwQhNdFxHsDgMwGhLtNyHgCpUxPzPlMzDmDmUgXiDiZxBwMhMkAhQjNlXyFsZzGyTyUbOwQsZeYaQaNtFiTgHrZtZtLgTdPiHsRxBcWsCxYyLrBpRqLaOqMdTpBaMfLaJxAmApRnYyBoXjCzYzHfDyCoRuRpZqKsJqVaPgYzNmBcQmReLcIyDmStRqJ</value>
+        <value description="content">KeXhZsPhUjXhKyKeSmCmTrImMgBvCmOqUlMfSwUwRtStJeXvYxDzZbQgVcYnLwUiGzEoNgSjZkBgWhVeXpWpLaVjScWvJsWdZrPjOnPkRbRwOqVjBkLfDpYbTeJiVpZePbYcOcYcMrWrMoHjZhYzNwZaZcBzTiXuGnDkGzLxPsHlYfUyPyLjVyUgNvNbYcQpSvAfTtYvMpSeKoTvOeJgAdHqLhFsNnEcCvViMuUxZqBfFuEfUwHpMjXfDfPiHfL</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-1</value>
+        <value description="docSize">1983541882</value>
+        <value description="doctype_id">-1</value>
+        <value description="introduction">MmDvBwKrQaVfWwZnNdScGsFcRhVlMoQzAdSbVyBgEcPwAmFjKqIiMlAlMrGvUlOlDzZtFcAoNcZiQwUtThIuCbIxKtLsLqQzAtKmOxUnRpRjHmFoKxDrRuZyUuNoAiQqOtHdGvQwFaTlTiXjLpHkSdGvYlNoTpBlEdYxYdNbRnKfYwJfLzPtYvUlAzCcYqRqCkSmDxCkRxOdXfAaTvNbAbUwSaPsUsFxAbWiZdAmQbDqHiXbIwVuPqMrQkDxHwJ</value>
+        <value description="name">EtSaGgNnVmKlYyQxOiBpGfYuUuNeWoLaHgEkNuAfWwWpAsYbTqVhOaPhPbPiPeEuGzCzUvZdZhRmRoLhDvUcBgSkFlLaCeHvIhTfQdKdByYvCzAeXeKtPfHsXaKaEqBsBfTpYqKjBgZmNpAcQiKjOmWxAqMvBlNsSoPtEbCdYiJeFaVqLpYlNgHkYkTgMdGkOdCwCjNxXtPeOvFhXdHpYdDvNsDoEhYiIhWaMkAsRuAmQgKbXvPyGwWgKmGqGaK</value>
+        <value description="storePath">XpOtBnGpQiSpFxIxZaAgCyUoAyQqJcMsXuWrRxGwSaEnAzFgDtRzIiZuOfQeMnEwUfRiPuRzVjHnFaAbMpXqYaBwQkTtNwYeNkNyFfMyHrPvOdEiTpJyBfEdUdWeYwOpLwTdFuLcCrJgUaFfJaJvHrZqBlGlQeLmUsQgUqJyYlGfGyMpAlYmEoGaXuEbTtQsXxOxUiQcHpBtPxGlIuGfJuNuFgTuOuAoEpOpIlBrNpWwYeDxKbBhHlXnDeHoQsW</value>
+        <value description="updateTime">2015-06-18</value>
+        <value description="updater_id">-1</value>
+        <value description="viewLimit">0</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="comment">NzRaUoDxRtPgXhWuCkUzYhShPhXrPlRoTyRwCrZdXjDcSyAnUnFfVnSyEeUcBzUmEjUqWdGbXgMeGpPqPyMiQmWxGzPzKuJkQcLcVkCbFcZiIeFqGkZnXpGdCfXfNdPuJlPbElJqYyTuTkOzEpIuEhQpWkAoZmGsVnTfQzJvNzMwNgMwLjAaLxFpNwZkFhTsKpEpHtBmUoTpOtEgRkYgOhAqAdStKvScVyYaWwJkDrKwHiPjPcUlKlJgRgUiJnE</value>
+        <value description="content">LpYxVfVzDfHeVxVgGkToIqHrDuKbBqLqGqBeXeJaKlJnLnIyRsUxPlZjOpAvVcXeYiQoZfVhMjWaGuZeCsOaDwFgFiWyLkOpFrLrEfTtIqYpNsYnFiAjWvYyWsLnRdNbKtTrQkMxGrQfOrXgKaBhOdGsTrUqYxWzEmPcTqIxLmRwGwNkUkUzXaOjZaJmXrJbToIvEuXpLpNrYoLwDmCtAoXqAsDmJqMoWpEqPqMyBhPgNgGyGyRkAqVoUjGyOzO</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-2</value>
+        <value description="docSize">1925856234</value>
+        <value description="doctype_id">-2</value>
+        <value description="introduction">KtKtGtXpDiCpQlVyUtAfWdZjVsLwNfFnCgQpFvOuEmLrMcCdWyVqSdOkRqGvYkGxNlDzLcToRsQvLfPaGtQpZsNkNgYoZcKwHcSkJdCbZkMfFnXtWaVcHqLcEjFfNzThQsSsSsJcKxCfEoRtDpLwFqCuEzQfOiAtBfDyJiQhLgVpAcKuCiYfKrAlImSkBfLqIdJjWiIwHgEpJoIbIcNlApObGkEhUkQoTqSyTaZiSrHhExGqLfCiLaTzKfCmMbX</value>
+        <value description="name">VoYoVjJwZcZjJrPgIqXoPzKeWdPaRlCpJvGmFvJcRtTmYhByKlEwGeLcMhSmKeLxRhMwPlPxEiBwSiBqXdYyOeRuCqBmSgAwFpPpWbWeLvNwLbQcDtKlNiLjZcBuHqGmAyBcEzEdGnXuSzCdGxLvUaUpDpMqQcQfIqPnQvBoBeYqNnLeGqTuMyCbIrSuTyXvYdYiKxCzFuGdVuQyFkPzMkMlHfNoUxYfJhJxEsMbGgRaStTuRqLsVbVnGeSgFjK</value>
+        <value description="storePath">PiXwUpRfQpLwRcKuViCiCoQuQvWoAyXgEuIbRiFgPkNvZuMcPcZwQrGfHuLaRcWwQvNyCxYzFtLhGkExAdWfOfRsDnLnXmJzHcIkBkFzPyVrObIcIlEjXyBqZkTqRcNlEhWlDqYcPdZuNuTiNkRaPzTbLsXqZwXmPcIwRlMnTjCnTqRfWyNaTsNfHmFhTqFbVcYmGlClPoZxFsTbWlCtIdXeTuVeArFrBgGbMpGtFxSkLrZlFnQjEhWpEkIbLyB</value>
+        <value description="updateTime">2015-06-18</value>
+        <value description="updater_id">-2</value>
+        <value description="viewLimit">0</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="comment">EqIoZaRoWzOrLbIdPhKrIvZpWzIaKvCoZoVpVuFrGpLaBrQhHpDaGeSuNtZlKgLaPdCrIoOrUkMbCwVuUtNsEyZaXrKxCfDeDyKtSmHmJwYbKnSaIlWnQqVhXgRmUyYiIfVbCjRrDnAlJlObMyKnKqIyDdWdOeVyTcWsDuSkPqUxQcXdEmKyHnUxIiVgLdCeElOtZnByDzIbFtPkKiIfFtWyZnQeHsQxIwXmSlNuTzAgTsKaCsFmOqDkCvAeHvN</value>
+        <value description="content">ZsVfSnMoUaPiNyXrPyEnBvGsClRbSsCrRwEeTmUeZlMoAlUaSyJwKiYgIuXiQpZbHwXuFtJbXvDaJwFtRwOkCkAgMrIbFdSwEuBsHkRwCbLmTzYdQxCfKpLmMeEqQvWeYxYuIfTwVeMsQhDcCcLzQnErTzDlOiCoXrRaMeMuHlQlHuBgDfZwGjGoJxNvHhYhVeUlRoZwOcTlGaJuOpRyUfUaNkPiNmEmTxHoZcJjLtQwEiFeUwJiHjPtZlHeHeZ</value>
+        <value description="createTime">2015-06-18</value>
+        <value description="creater_id">-3</value>
+        <value description="docSize">1641221250</value>
+        <value description="doctype_id">-3</value>
+        <value description="introduction">JrWyVkWxAsCaUjYsIaAcZsHrCqCdEwAbHrJxCvZqScQdGxVjGrFfAwVfApFnPbZnZcMsVdZbQfZoUvDbYqFqPaBlXrAgQpByMqRyMcTnYmNbGlOaMuVuMmNjRqQqWxGeTmNxQpQuWjCoLxOnPzYiJaUzXvVyMqCaBqBlNpVyJnAzEeLrNnAzYyOyYsGmWrNgTcRhYzUlTnIiZwErRrZwXzMbJgVwEfFvFrUbVsAjXgMeXoXeWiGvJuYnLxJmGfW</value>
+        <value description="name">PwZlYkMeIiGyFkMjBmGdDjLgUgUnHwYaVyMkQbFbXyUgCuZuEcGkPxIaOqXxTzZuNzBdGiFjCjHkUtXyQmWfOxCrXtWmHrKkPvMsScFiNqGjRcOjFjBbJpFmXoThNuYgHvPyIdYtBsCtJwKcZaFgFeJoDvFiGiZvFhKzOuUeQrNwMpVjGvRkXqJiYgTrHtDpEgIxFzVnJwWeZvCpQxBiGwIcJuOxWsRfOiEvPkWtAoZpGaRzSkGfHbTyXjDuBwR</value>
+        <value description="storePath">VwZvZfDfWjPeLyMuSjTiUeHlXzTnEpHwAlXrIoFzDiLiKwScByDwBzIbEdRuDvPjKrYsDfSlTvKrTzXvFiPpCbWjZdFkJzVaFbRnAzZyJiHgAwYxWkTdEgToGmNhWsHqJyYbFuAqFiAdSlEqMoMcAwSsVcPvWuTqKeFwYgLwJeTkHsUlJxFiOjCwXkNjYfVcIeEmEtGlFiAzOwNuNcYkPsBwLkTrLjSvVjWdQzBrEpLbAwHpDaGsAvZvIiWyCoB</value>
+        <value description="updateTime">2015-06-18</value>
+        <value description="updater_id">-3</value>
+        <value description="viewLimit">0</value>
+    </row>
+    </table>
+    <!--Documentation-END-->
+    <!--Note-START-->
+    <table name="R_Note">
+        <column>id</column>
+        <column>content</column>
+        <column>createTime</column>
+        <column>createrID</column>
+        <column>fromUserID</column>
+        <column>receiveUserID</column>
+        <column>receriveTime</column>
+        <column>title</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="content">ZsUmZwInPxUkUzDyRpZbLrCcRwCoYwFdKpFjTaRyWiWjZrYeVoVfJwJoLnArGxWwOrVsGlDfByRsEfIvMyUdQwGlBwUbGoYiNcReKiFqHuKhBmGbEiJdZjPbVmTsDkCfAlOjWgLyYdVtJkOgXmHsOpBaIbDmGqHrNbPfBgPdFlNwEaHeFhGyXgGgAtKwEhOfLbFtWdUrVyFnPxTdLhFkYfClGqWuPtScNdJuBfYbDaTmJwMrJjNeHbOnClQtDjR</value>
+        <value description="createTime">2015-06-20</value>
+        <value description="createrID">-1</value>
+        <value description="fromUserID">-1</value>
+        <value description="receiveUserID">-1</value>
+        <value description="receriveTime">2015-06-20</value>
+        <value description="title">DlBxMqWrLfDbUaTjBzQnDbAhOaLsEnTxMzZmLpTaNmZhEcPoPnOnOlIyViUjAaTzWbPgMyEaAkWoVrAvUwLrYyMjEeAxSzDpXdShSvOvUnEoLfVzTaZnXuZjOnRlFyHrTyZyMbHtVrHnHnAaDaJkShLkYsGyIpGvBmBmBvWbClTqXcSpFxGiSzMwHwPyMiXbDfUeAqCiScNoTnTzWzHcDmOjAzHvKsPpGiTkNpTtLkQaEnCaLqUpDyGgNzGzKrV</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="content">FjPeGdWjDnXcZtQzKhVmJfRmQzYzTqKeMbJtZoHjQlMvWqVuGxKzLqWsJnZoAtYsNoOeEdMfFfEeBmUqZdHxOhVfOmYgRuQnZgDmXwYfXyXmTfXxFuZrEtEyXbOdPhGgCgZzBmSeSjBxUmBdEiRlKqQhYcWeToAjEjReGzUmMzUnBbFdEyWfNbSoTfWlQnCeIgReRiLoIbVqDpPnOuBiJlUdQdGlWgFpGsVeFhDhVkLoRnUbNoDyIrPiNfTcClL</value>
+        <value description="createTime">2015-06-20</value>
+        <value description="createrID">-2</value>
+        <value description="fromUserID">-2</value>
+        <value description="receiveUserID">-2</value>
+        <value description="receriveTime">2015-06-20</value>
+        <value description="title">QnMzDbReXzSuFvNpVnEgFgJsHzIfNfOpRyZbChSiZeUfLhUjGyXuGbIlFfAoHpMmMhQbFyUzXhRiFuXmLrQuQxNvTmSkZwLoXeDsIdJbIiDqKcShVhHlCkYfTqJjWtCyOfDwYlEsBcIbKrSxEjSyHjBmEdHgVgXlTnDvBwPbAcTiKhNrNyQoDoLiJzIwRwRzYhRdOlJxRxNtSiMpTjZwCuGyIeAvQoOlBtSiSsNiQrVgJqThCjKlAdPsPiHoYjE</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="content">HiLfKaCpWiRoLxLqSaGyNuSvOdLhXzPtYhLeYfOzGgLlLnWyTmOgGtJwWlEmOlIbAcEqDnOrObZzIlBrNeXtUzUeQcZzBsYbFyIfIfIeHlHfHoHhKfUaBxUxTmAcVuCcXwZqQnHtXrYfXdXqTcFxKlByPoQdQdUgQtAqAlSqLuGeNbMsLqZgUwUsYiVrDvUyHpXhGgTaPzKnAeIcJpOiBnUtZaKsUhGwTyKeNxPuXaZlBuLjZdEeKgZbRxQgAtS</value>
+        <value description="createTime">2015-06-20</value>
+        <value description="createrID">-3</value>
+        <value description="fromUserID">-3</value>
+        <value description="receiveUserID">-3</value>
+        <value description="receriveTime">2015-06-20</value>
+        <value description="title">CbVbEdXxReEsPwOkWsUdSkJuDjHeInKbIfPhHiGoViHjAgSoOyNgJvZaQsPaXyMcQvFhUoXpLeBcMzGsRqGuRdEyEpYcGtYzHtVvUxBmPuOxTxQuOeHjQyVtLqQqQgZkYwMmQtEjOxGiKhPwDhJjKyLyKrLeYfDkWkEcYuYzFtUlUdGjGnTkQuLeXqKsCfKaPdZhTbOqPvPdHdLvMlPgKpJmNtNxZsYvAiTqXoDdYhGoSoLjAuPrXkUoMrNtKbO</value>
+    </row>
+    </table>
+    <!--Note-END-->
 </dataset>
+
+
+
+
 
 
 

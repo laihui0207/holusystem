@@ -120,7 +120,7 @@ public class NewsFormController extends BaseFormController {
         String imgRegex="<img.*?(?: |\\t|\\r|\\n)?src=['\"]?(.+?)['\"]?(?:(?: |\\t|\\r|\\n)+.*?)?>";
         Pattern r = Pattern.compile(imgRegex);
         Matcher m=r.matcher(news.getContent());
-        String attacheDir= SteelConfig.getConfigureAttachDir();
+        String attacheDir= SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
         if(null==attacheDir || attacheDir.length()==0){
             attacheDir=getServletContext().getRealPath("/");
         }

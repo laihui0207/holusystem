@@ -89,41 +89,58 @@ public class PostBarFormController extends BaseFormController {
                 String[] replayUsers = request.getParameterValues("replyUsers");
                 String[] replyGroups = request.getParameterValues("replyGroups");
                 if(null!=replayUsers){
-                    postBar.getReplyUsers().clear();
+                    if(null!=postBar.getReplyUsers()){
+                        postBar.getReplyUsers().clear();
+                    }
                     for(String userID:replayUsers){
                         postBar.getReplyUsers().add(userManager.get(Long.parseLong(userID)));
                     }
                 }
                 if(null!=replyGroups){
-                    postBar.getReplyGroups().clear();
+                    if(null!=postBar.getReplyGroups()){
+                        postBar.getReplyGroups().clear();
+                    }
                     for(String groupId:replyGroups){
                         postBar.getReplyGroups().add(userGroupManager.get(Long.parseLong(groupId)));
                     }
                 }
             }
             else {
-                postBar.getReplyGroups().clear();
-                postBar.getReplyUsers().clear();
+
+                if(null!=postBar.getReplyUsers()) {
+                    postBar.getReplyGroups().clear();
+                }
+                if(null!=postBar.getReplyGroups()) {
+                    postBar.getReplyUsers().clear();
+                }
             }
             if(!postBar.isIfAccessAllView()) {
                 String[] viewUsers = request.getParameterValues("viewUsers");
                 String[] viewGroups = request.getParameterValues("viewGroups");
                 if(null!=viewUsers){
-                    postBar.getViewUsers().clear();
+                    if(null!=postBar.getViewUsers()){
+                        postBar.getViewUsers().clear();
+                    }
                     for(String userID:viewUsers){
                         postBar.getViewUsers().add(userManager.get(Long.parseLong(userID)));
                     }
                 }
                 if(null!=viewGroups){
-                    postBar.getViewGroups().clear();
+                    if(null!=postBar.getViewGroups()){
+                        postBar.getViewGroups().clear();
+                    }
                     for(String groupId:viewGroups){
                         postBar.getViewGroups().add(userGroupManager.get(Long.parseLong(groupId)));
                     }
                 }
             }
             else {
-                postBar.getViewGroups().clear();
-                postBar.getViewUsers().clear();
+                if(null!=postBar.getViewGroups()) {
+                    postBar.getViewGroups().clear();
+                }
+                if(null!=postBar.getViewUsers()) {
+                    postBar.getViewUsers().clear();
+                }
             }
 
             final User cleanUser = getUserManager().getUserByUsername(
@@ -157,7 +174,7 @@ public class PostBarFormController extends BaseFormController {
         String imgRegex = "<img.*?(?: |\\t|\\r|\\n)?src=['\"]?(.+?)['\"]?(?:(?: |\\t|\\r|\\n)+.*?)?>";
         Pattern r = Pattern.compile(imgRegex);
         Matcher m = r.matcher(post.getContent());
-        String attacheDir = SteelConfig.getConfigureAttachDir();
+        String attacheDir = SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
         if (null == attacheDir || attacheDir.length() == 0) {
             attacheDir = getServletContext().getRealPath("/");
         }

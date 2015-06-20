@@ -9,7 +9,9 @@ import java.util.Properties;
  * Created by sunlaihui on 6/9/15.
  */
 public class SteelConfig {
-    public static String getConfigureAttachDir(){
+   public static String EditorAttachedDirectory="editorAttachDirectory";
+    public static String DocumentManagerDirectory="DocumentationDirectory";
+    public static String getConfigure(String key){
         Properties prop = new Properties();
         try {
             prop.load(new ClassPathResource("steel.properties").getInputStream());
@@ -17,7 +19,8 @@ public class SteelConfig {
 
         }
         // the directory to upload to
-        String configureUploadDir=prop.getProperty("editorAttachDirectroy");
+        String configureUploadDir=prop.getProperty(key,"");
         return configureUploadDir;
     }
+
 }

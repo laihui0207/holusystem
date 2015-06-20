@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/replyform*")
+@RequestMapping("/replyform")
 public class ReplyFormController extends BaseFormController {
     private ReplyManager replyManager = null;
     @Autowired
@@ -73,7 +75,7 @@ public class ReplyFormController extends BaseFormController {
             if(!canReply){
                 Locale locale = request.getLocale();
                 saveMessage(request, getText("reply.noAllow", locale));
-                return "redirect:/postbars/"+postID+"/replies";
+                return "redirect:/postBars/"+postID+"/replies";
             }
         }
         reply.setPostBar(postBarManager.get(Long.parseLong(postID)));
@@ -106,15 +108,28 @@ public class ReplyFormController extends BaseFormController {
             replyManager.remove(reply.getId());
             saveMessage(request, getText("reply.deleted", locale));
         } else {
+
+            final User cleanUser = getUserManager().getUserByUsername(
+                    request.getRemoteUser());
+            reply.setReplier(cleanUser);
             replyManager.save(reply);
             String key = (isNew) ? "reply.added" : "reply.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+           /* if (!isNew) {
                 success = "redirect:replyform?id=" + reply.getId();
-            }
+            }*/
+            PostBar postBar=postBarManager.get(reply.getPostBar().getId());
+            postBar.setLastReplyUser(cleanUser);
+            postBar.setLastReplyTime(new Timestamp(new Date().getTime()));
+            postBarManager.save(postBar);
         }
-
-        return success;
+        return "redirect:/postBars/"+reply.getPostBar().getId()+"/replies";
+        //return success;
+    }
+    @RequestMapping(method = RequestMethod.GET,value = "{postbarid}/delete/{replyid}")
+    public String deleteReply(@PathVariable("postbarid") String postbarid,@PathVariable("replyid") String replyId){
+        replyManager.remove(Long.parseLong(replyId));
+        return "redirect:/postBars/"+postbarid+"/replies";
     }
 }

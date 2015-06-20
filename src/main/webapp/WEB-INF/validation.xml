@@ -96,5 +96,24 @@
             </field>
         </form>
         <!--Message-END-->
+        
+        <!--DocType-START-->
+        <form name="docType">
+        </form>
+        <!--DocType-END-->
+        <!--Documentation-START-->
+        <form name="documentation">
+            <field property="docSize" depends="required">
+                <arg key="documentation.docSize"/>
+            </field>
+            <field property="viewLimit" depends="required">
+                <arg key="documentation.viewLimit"/>
+            </field>
+        </form>
+        <!--Documentation-END-->
+        <!--Note-START-->
+        <form name="note">
+        </form>
+        <!--Note-END-->
     </formset>
 </form-validation>

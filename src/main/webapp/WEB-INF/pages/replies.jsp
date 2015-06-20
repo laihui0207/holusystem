@@ -4,7 +4,10 @@
     <title><fmt:message key="replyList.title"/></title>
     <meta name="menu" content="ReplyMenu"/>
 </head>
-
+<c:set var="delObject" scope="request"><fmt:message key="replyList.reply"/></c:set>
+<script type="text/javascript">var msgDelConfirm =
+        "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
+</script>
 <c:if test="{'$'}{not empty searchError}">
     <div class="alert alert-danger alert-dismissable">
         <a href="#" data-dismiss="alert" class="close">&times;</a>
@@ -29,7 +32,7 @@
 <p><fmt:message key="replyList.message"/></p>
 
 <div id="actions" class="btn-group">
-    <a href='<c:url value="/replyform/${post.id}"/>' class="btn btn-primary">
+    <a href='<c:url value="/replyform/${postBar.id}"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
     <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
 </div>
@@ -41,6 +44,9 @@
     <display:column property="content" sortable="true" titleKey="reply.content"/>
     <display:column sortProperty="replyTime" sortable="true" titleKey="reply.replyTime">
          <fmt:formatDate value="${replyList.replyTime}" pattern="${datePattern}"/>
+    </display:column>
+    <display:column title="action">
+        <a href="/replyform/${replyList.postBar.id}/delete/${replyList.id}" onclick="bCancel=true;return confirmMessage(msgDelConfirm)">Delete</a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="replyList.reply"/></display:setProperty>

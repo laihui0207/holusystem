@@ -18,5 +18,9 @@
         <mapping class="com.huivip.holu.model.Reply"/>
         <mapping class="com.huivip.holu.model.PostSubject"/>
         <mapping class="com.huivip.holu.model.Message"/>
+        <mapping class="com.huivip.holu.model.DocType"/>
+    
+        <mapping class="com.huivip.holu.model.Documentation"/>
+        <mapping class="com.huivip.holu.model.Note"/>
     </session-factory>
 </hibernate-configuration>

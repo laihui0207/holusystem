@@ -25,7 +25,7 @@ public class EditorUploadController extends BaseFormController {
     public void onSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // the directory to upload to
-        String configureUploadDir= SteelConfig.getConfigureAttachDir();
+        String configureUploadDir= SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
         String uploadDir=getServletContext().getRealPath("/");
         if(null!=configureUploadDir && configureUploadDir.length()>0){
             uploadDir=configureUploadDir;
@@ -89,7 +89,7 @@ public class EditorUploadController extends BaseFormController {
 
         String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
         // the directory to upload to
-        String configureUploadDir=SteelConfig.getConfigureAttachDir();
+        String configureUploadDir=SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
         String rootPath=getServletContext().getRealPath("/");
         String rootUrl = request.getContextPath() + "/attached/";
         if(null!=configureUploadDir && configureUploadDir.length()>0){

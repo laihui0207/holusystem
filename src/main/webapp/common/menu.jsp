@@ -13,10 +13,13 @@
     <menu:displayMenu name="PostBarMenu"/>
     <menu:displayMenu name="MessageMenu"/>
     <menu:displayMenu name="ProjectMenu"/>
+    <menu:displayMenu name="DocumentationMenu"/>
+    <menu:displayMenu name="NoteMenu"/>
     <menu:displayMenu name="UserGroupMenu"/>
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    
 </ul>
 </div>
 </menu:useMenuDisplayer>

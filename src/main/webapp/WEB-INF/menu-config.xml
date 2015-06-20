@@ -8,6 +8,7 @@
         <Menu name="NewsMenu" title="newsList.title" roles="ROLE_ADMIN,ROLE_USER" page="/newss"/>
         <Menu name="PostBarMenu" title="postBarList.title" page="/postBars" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="ProjectMenu" title="projectList.title" page="/projects" roles="ROLE_ADMIN,ROLE_USER" />
+        <Menu name="DocumentationMenu" title="documentationList.title" page="/documentations"/>
         <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
@@ -20,12 +21,18 @@
             <Item name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
             <Item name="PostMenu" title="postList.title" page="/posts"/>
             <Item name="ReplyMenu" title="replyList.title" page="/replies"/>
+            <Item name="DocTypeMenu" title="docTypeList.title" page="/docTypes"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
-        <!--Message-START-->
         <Menu name="MessageMenu" title="messageList.title" page="/messages"/>
-        <!--Message-END-->
+        <!--Note-START-->
+        <Menu name="NoteMenu" title="noteList.title" page="/notes"/>
+        <!--Note-END-->
     </Menus>
+
+
+
+
 
 
 

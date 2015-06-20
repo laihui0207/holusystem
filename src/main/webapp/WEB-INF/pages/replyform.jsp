@@ -18,10 +18,10 @@
 
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="reply" method="post" action="replyform" cssClass="well"
+<form:form commandName="reply" method="post" action="/replyform" cssClass="well"
            id="replyForm" onsubmit="return validateReply(this)">
 <form:hidden path="id"/>
-    <form:hidden path="post.id"/>
+    <form:hidden path="postBar.id"/>
     <spring:bind path="reply.content">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

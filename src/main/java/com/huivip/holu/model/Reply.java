@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by sunlaihui on 6/15/15.
  */
 @Entity
-@Table(name="R_Peply")
+@Table(name="R_Reply")
 @Indexed
 @XmlRootElement
 public class Reply extends BaseObject implements Serializable {
