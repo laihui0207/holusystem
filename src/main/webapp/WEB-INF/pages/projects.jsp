@@ -38,13 +38,14 @@
     <display:column property="id" sortable="true" href="projectform" media="html"
         paramId="id" paramProperty="id" titleKey="project.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="project.id"/>
-    <display:column property="batchFullName" sortable="true" titleKey="project.batchFullName"/>
-    <display:column property="batchShortName" sortable="true" titleKey="project.batchShortName"/>
-    <display:column property="projectFullName" sortable="true" titleKey="project.projectFullName"/>
     <display:column property="projectID" sortable="true" titleKey="project.projectID"/>
     <display:column property="projectShortName" sortable="true" titleKey="project.projectShortName"/>
+    <display:column property="projectFullName" sortable="true" titleKey="project.projectFullName"/>
+    <display:column property="batchFullName" sortable="true" titleKey="project.batchFullName"/>
+    <display:column property="batchShortName" sortable="true" titleKey="project.batchShortName"/>
     <display:column property="unitFullName" sortable="true" titleKey="project.unitFullName"/>
     <display:column property="unitShortName" sortable="true" titleKey="project.unitShortName"/>
+    <display:column property="company.companyShortNameCN" sortable="true" titleKey="company.name"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="projectList.project"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="projectList.projects"/></display:setProperty>

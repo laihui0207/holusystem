@@ -714,7 +714,105 @@
     </row>
     </table>
     <!--Note-END-->
+    <!--ComponentStyle-START-->
+    <table name="R_ComponetStyle">
+        <column>id</column>
+        <column>CompanyID</column>
+        <column>processName</column>
+        <column>processOrder</column>
+        <column>styleName</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="CompanyID">-1</value>
+        <value description="processName">BxYnXgTqFeGjZrJyTaKlDoXfKeVlLdIvJtCmKgRhWxLmNoXfWzGmHbRzOqXuDfRnOtInYaVtSqXzZhOaAtLoFrBtAyKfRuNdMnHzGfUuVzNzNxDkExLiNuRwLzXuBqOpFaAqEsCrFvAsIpOoUnMkVcVcBwRjPkZyKrAuYzLcRbJzWdHwSlErFfYnXhGyBgJiFgZvUsCbFaLlTrLuWeAaTjZqEpElTmNfFoJcUsHiTpRtFnRlNyNeSpZaBnAsGvY</value>
+        <value description="processOrder">1977936793</value>
+        <value description="styleName">RsUvXeGvTkMnSsXzRwCyPvGuRvNqZvGiEmXjGaDpNdIpXcRuRmWnNnLpJsCsGgWwKwJxQmItMlNsQjCfFlWcApYwYqPsMcGvBaFaOhGvQrBjIwChJtMyZfSdSkJoVsWuGlIwAmYjRfOwRzTdEsDkRfFwDpHsVzAkYfHhBaFpUvXpOiYvArBhLrMeIxNmJdJhWwLoDoCrImOsAwEsWrUrFqVfIgZvZlCkKyFzCbEwZfTyToUmFmEpKeHmYnNgLjB</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="CompanyID">-2</value>
+        <value description="processName">NzNmXcGsBcGfSrSjBlVlJhRrPqGaCiAlXmFqEcWmTkQxHwMhIsAvYiKvCuXzWfOjHeAkLeIgXlTiSqQuFqOyLtGcSeVgEuFcFrFiDoTfJkLoHxIwGpEbGuUwUpGxKjHbMeLdJqAbKoBiWxQxZbFxZnOrAzTrErPqVbArCdHtNtWjExTcWfZkAoSkEnReSyZsCqRxAyNdLkAzImWoMaOdDpPqOgZvMyFvFgLfXqOgOlDySvDhYgXmFnYlFnKwIrD</value>
+        <value description="processOrder">622430881</value>
+        <value description="styleName">YjRzYtCkIvUrBlVqGvYjThEiUfRlLaVyLkPgVaHcEwVmUwXzNsGjWtUlFxDdCuOqKhTyMxHlNmBfPySoUnSpHbIyFhPuDyFmEmAeOlHrBuFdHeXoOzLkAqIvKvHlCeTaHjToRlNaLyFbWhStKcHtOoQuHyImHlJrGvCgPmTsWiNrVcMtSyDmKtYnYaGhIgErNwOyXtAkItVdWuGhAlSdMuMbGyStXtYxQtDaMtJtUdBzPdWcEuRrHxGoLxRoOgK</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="CompanyID">-3</value>
+        <value description="processName">IyFfIwLgEwIrEqCfKaLsYvBfErEvDdZjJbByVfJtXnGvNbYnNiGgUfKtLaQwHaBnTdZdQdMiNdEhHvAiWvZaYdZoNoVpXaUeMxLuJeTsGyHkAvLgXrQgVwStYwDwYgElFgCoSdGbZiRcQrOkSxXtViMyTtJwRiRkPyHxEzPkIxImWjVsOnSoPrTyJcDwEwBaDpUvFuLiVkLpTpAsTkEqWqBoLcMuYgXsHbXsIdEuRcBfPvOmUwUvEtZmFqFmDkV</value>
+        <value description="processOrder">1179825793</value>
+        <value description="styleName">NqPmWjEkOdZzCdBzWaUfJgLwSzHzOgNrBeHaRvAvOqUdQtJlKyWpNqClSuSbGzLwMrKsFhChQpCzWpObXrYgEgYtMeHzGwKgVwMlSvHsFdJwQaJbGkNwVdKxHgZuOdUrWoMpYuHtWeOmCzWwYjXxKfJyIqHjGiKvNjHoVeOfOeJeBjDqUqZdIwSjDqEfGpOySrNiOxIwWgLrPpQxWbCeRfZbVfQdSoEpLaOhZxYbQiCeUlNqOwFvPiIbVoLjIdK</value>
+    </row>
+    </table>
+    <!--ComponentStyle-END-->
+    <!--Component-START-->
+    <table name="U_HOLU_ComponentList">
+        <column>id</column>
+        <column>componentID</column>
+        <column>componentName</column>
+        <column>createDate</column>
+        <column>length</column>
+        <column>material</column>
+        <column>pieceList</column>
+        <column>price</column>
+        <column>ProjectID</column>
+        <column>quantity</column>
+        <column>size</column>
+        <column>styleName</column>
+        <column>user</column>
+        <column>weight</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="componentID">QeYuElAkHlSbYrFxXoLwWpPcDpNuIxKiJpHfFuVxLuKdJkYvSwBeGqXbNkFqSfJfOmVyOuIhCqOrEiMoKrDjNnQcBpYfJsHoYdIdBtViHeVzIpQoHuWqQjFuMwQsGuUxRrSjOzBzYqGgKiDnEgKxUzZkHbLbVsIfWqQgXbUmDuAcTzVgVrMcIvYcPuVxCdYkVhUbFhBdFxGxEmAhPeRgHcLcDyBoMeLnCuUoHqUdUcCsLwJoGgVfOdEcIiWqLoS</value>
+        <value description="componentName">ZiYzHfNbQdOwApErDiZlKgCmYaXlMbCiCuBwDmHjBsFvFyNfNlPvXgVzVaZnDvLkAoAmRbOoTgXvBsHdBzFaTaBeGdVvLwZpKvOgNzDjVjHlHvXgPyTgNsPnRkKwKiCoEgExGvAxFrJhXuNzGhHoElJxDpLuYbNmPcPsXwOtDpGpBeGlWeKpBxWxIxVnNiGwMxGbSeCzNuZxYvIcBtCyHeQqTzBiOdGvXbIdBdPpZxQfHzUkFxOdGwMyDdAhPoV</value>
+        <value description="createDate">2015-06-22</value>
+        <value description="length">3.0774672E37</value>
+        <value description="material">QeSyOcXgYhZkJyJtDtPrMgElItEoCiBzQaNoShTaUeXmLoKrLqBpSbKgCdReDtLxXkKpHbLrTxPuCsIjTfOuDgTqKnDvTxAtLpAzPlOaNsMsAzFhMaMgDzHcZbFhCyHyOvHzKqAoLnSdBtMjSyFtWaCpYqUnGtZgKcPjQcIkVzAdMkGyLhQtMhGfTiIuAvNnVeUaUsClRxKnKxJjUxWkLuUtMnGzCoFuHzNmCgTrIuLbQmFsXqFbBlJxJcVqHjE</value>
+        <value description="pieceList">SgZxGrAsAsUrVpTlSrVmThTsKkAhKmNbXpEgUuXoAqTiOqVaBzOlHtZoRhUcReYpDoZkCvNlDjOcTnBsRdLnBfJvPvVjTuLqDrOyKcOdDoSpMfMnSmLwSbYzLiHvNaYhZcMvJxTtPfJmTtDnGiAnPbYsEdYwQlIkWbJiZgMhCgEiGsDbRdTxQlJvDyPsJlCkTvZaMiHwCvVmWoFyAvRqPiTkOuDdHhSzNnNgQnEuLkQhYlQgVqPlFgMbWnYcWmW</value>
+        <value description="price">1.8827222E38</value>
+        <value description="ProjectID">-1</value>
+        <value description="quantity">IoFsFoGiBuIjOfYuCvVlEwTvSrDxLnDpEdBiVdUdWkCnBsLoHyBqNcKwRhMnHsXjTbXhRjKsTzFnVdQxBfPpFoRsZgFaEdLwOrRpFuMcGkJgMyZbVgQmGxInNpMmBjKcFfAkEtXdYrPfZwXcVxEiJuUyDoQbXvImBlYfSnXmNnMeIaAyFkQlWzZvDcYeZrPmYgCqCiMeYrLeLnUrQvIgUmZlCoVdFePtMuVbGzPqRaGoZeDfVuOfGjCyXvTxYvB</value>
+        <value description="size">4.8459255E37</value>
+        <value description="styleName">CtVcXhAhMnBkWqNbTeRbDhIwZgAgVaRiAyZmSnHgKoKlVjCkRoNhVvTcXlGyAdDlRzJfYuUoRpOqZnMoQlEyNqMzZsOiOjAzEjKwYlJbIbGqGiGiHzSoJdTxQiQdCiJbKwQgLwYjUjHcKkBzRuNmIdDqGkIoYqJxSxLhNdJgSfYhRtXkQiRfWcEmBsIoBqZoSkAbIrXaGjCdPmRfCaPhEkGfSeDgPvJuJuRgSeHjKjYjDlWqZfXdMvPrLyJbOyC</value>
+        <value description="user">HmLlQgUuJqQvXvFnAzUsLuNqIfOcJsSwFbAwFkNzVuVjOmLrExPzQoWoCiOvDvViUfHaYgCwQiOtZzIrObTfLzZgOeWeGdYhJlGsKzQoRpZmVfIdXbEiDhGdKiJhKvAbOrKhIaEuUqFzCoDsBrTuPlArArJiFhDcScGcKgTyDyKaZiCqDeHfXwUaIcVdKaFxSyZtLnJfMsNuRoOzQrAwXsNoBeKgIdEfSkTkSjUcIdCqOeQqHyFoNeEgBgAbAeL</value>
+        <value description="weight">6.458706E37</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="componentID">PgUfRzWaOfIaPhHdThDaPcNwYrNmYwIiHfXePpVlYoOiEpPbPxGbRwEmAiUkMlEeNzLfYvCwQnQpUkDkYdLlSnAkJkTzJzHmSbEiNnBlWsAvKnVoQkYrVfRgLnBoQfLqIlQjHpNnZlSxWtXcMaAgXpIfJvRmOfMgDxRpAoXuUyPwLeGdAlGcUyYrDsXlZyDeCyFxPtDgAfEcXhTyBvXbDfHzRmOwViDjFyGyFgKxAoHxQtEmDpPbKhUpDkOwAeV</value>
+        <value description="componentName">PuMgWdTlGyHiOaZfOkOfDbTeJqAoSkBmXwVoZnWaKyNlGeLnFtZcVeSqDeOxVbKjNxWjVjTqDoKfLxRmWzDjAaXcOsXwNbCvYwFmLgNfLtMoNuGuNpZtPcAtDpMgFxYsMeNvYmQtEsKsTsCmKnGgVkLaOfOxDxVwSmZyJjXgBfRrFlAiMeLnTzAkIvUvWiVeOdIrPbAwVdBvEpRbUwMeSoHaOwBjIyMqFgViUcJnSeUoVvImJhInMnSzAdIrEyU</value>
+        <value description="createDate">2015-06-22</value>
+        <value description="length">2.210213E38</value>
+        <value description="material">SwQvTvXgDzFsBiLdDmAjGfKiNoDmBvVvMlLmYnQqPhWqOgEuFtTfDnYcJeAzNuDsFoFkIfUmBoKyEzBuLeNuUjPoJaEeWhDyBvIzUhXrCrGiObFaDbUnLyMwTuUeMwQsYgYsPaNoYyZpXsOpAtHoYtMwPhYcIdCiJlPeHiPgDmMdGmKkSxMxFgVbHnLzNaLbAnZmQdChYqXlSeInXqWxYoLbNrNzNoUkEzCnZkKrQtExBcCwLdTsNhDcEmTuDjZ</value>
+        <value description="pieceList">IyZmBtDtBiFrBpKcIeOeMcClUtBjOgAnXySaLgVbDxUaUjUuZfCeFeVfIzRaRjCwIfCoKtZtJbBhAjJqOmFgKdNzSoWdAsWrWgYdWtChXaDmOhZcInKaRfFgHhZhMhCuKoUfMnQiTaWcDfOyWjXhNqIbQkOkUpYuXeUkAxOuJjYzUyTsOaSdScBxQaPeFgNmMoAgFiRoBnMqKbVvYtDlLlDxRdIyAvFgIuUeUfAaHtUnUvBgOyFtHkXdJqVrXjQ</value>
+        <value description="price">2.0577648E38</value>
+        <value description="ProjectID">-2</value>
+        <value description="quantity">GvOcThEhOrKsJvXcWfMwVaJcIpQiPrOjGjPuWrMgYeIwZgUcPlHnZyXzDxQeAaHoKoOwPsAcZtOfDbAjEmYlKbUiVyEwHhGeXdOsWhVgHyWeBuBmMyJiBkJtGyLhLbQoQwHbSmUcZuWxQfTvZyWtFnEjCzEtYdSnQgMiMhHlZeCeXqEeTsHiPpNrVxNuTjWjZgSqUpLwYsWoRbLlGuKdUkDwBtGrPkHpBoEwPrIqUjSwCzBrVdGpVyEyAfApIeS</value>
+        <value description="size">1.1325868E38</value>
+        <value description="styleName">UyDxHmTmJzPrEcCnXsHiFyNnQtCwTgPiIwFjNrCaNlBmTmBsCdFjAwGoEdGnMoGfZjAiSkHfZuXnIzTxXaMqJbIqAkYaHlMwHgLnExHbGoVmWsMqErTrYePfYxPhPvLcHmLnOvSpVqMyTyLsLhUpCuDiXoLcZqNsKrVoCcPhOeSjIjJwZbOjTmOiJmDlKtWkEfUdSyRiLsEgMeQiGsNcEsYfJuDkGtSoIfYfTfOlOsAoHxCcWiGzIpQvGsCeZhJ</value>
+        <value description="user">RfZoRnZlAdFwGjFyFmIfCuGrNiUhIqMcHpOvRqCbDdUhKcWaDzTwSgAdBdTuIbSqLeVvPxPnGxUbBfIxWbRcSlGyTnXkIvPnTcJjHiSaXcSdApEdTcEqHeFwTmPdFaEaHcCcCmLfNwAoBqBlWwCbZcFrUsIxVuKdQfSdSwOfAiXsEfSrPbNqVvBtYwKhOgZzSpTsXwJnZfSzRpLpMrCzVnTtTuTvDyEfPtMbRrFpOwFkIdQzEvZjThIoTdYiMcE</value>
+        <value description="weight">3.179744E38</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="componentID">XwQtLrXmLjJsLjPgVpTrZhCqWcPmGkMrYjTaXxOkCdJoJmTxQnRlUyAlLpXwFcUuUyFoOvRdHjPfXrYrRyFhVbKeJkMbAbSwSnGlBlJhTeKdPjApWvWiUwTsHzKxGgHqXvOjLnXyIsNaKyTiJrCdKpCzKcQjSrIaKvRcReNmBpCfPgWcDxOvQwGjIxKfZzBkGrBdOoOrUsBcAiMjShSiFzNkCkGjEdJfZyErXcPcWzIwHyRdGsPzFqRxOuYdXlT</value>
+        <value description="componentName">PgWvYqMcTeQpQpAhIyFtIdVbAdMzYqPxRuAuMqLdXgTjQoScOjClKeYbVnCwFfOpSrFwXlNoFbUcUlHfWnSkTmHsEzSgNpRiTnQtYhZdBlQpIlQoEtYiGcTsLnNwYyHyGlErPrCfEhTtDmSvKdIbWsMlYrPuSvKvJxBxNrWkPrPnPxPoJzHtRbKpJgAeFvSsBtWqXaRtQmLeMxGnQrTlJjIqNpEwZfStTvLfEbGyHdCoNsLeRqRuQxUvHxFtEcG</value>
+        <value description="createDate">2015-06-22</value>
+        <value description="length">2.0046474E38</value>
+        <value description="material">DqKkNaBxXjJaMiOwIvFeBdXkZrAvGqGaCeVcCvXnBvFeLkGlNfAsIuMyQxFyUnRpFfXfVuOtOiRfHlWdBlNdJoOcYzLlRwUrErKuIrXwYqTiNeKsXcYeBlXlCbBoMeNnPjSlFeDaWnMlFdLrOzExCbBsEvTjEqHzBxSwKiJcJyNaJtTcWnAtXsKdLfTpWnYdNvOxAnKsNrVnIhPgTuRdCvSeIpDlEgAeSdTnDlVjEwLpSjUxMiQfCuPlDgJmIeC</value>
+        <value description="pieceList">VbWqIcPcIiDyXgRtMcTnYwSpWnTdFeWtQsFaCbQiZbVqCdRvYdZlDbXiAwBjMtUgWsLxTmNyItOkYqZvGlImIgDsZaNpIoAzJuOvKhHrXhUpVqOaAlKjDsKxAjIoDaEvWzWdVyRyPtZhJyNeGnLqPbYaZyByVbUyKrZnCaMjGiWnNhAuLuYtHkLiNaOlQyWrDbYbKuOnVhTfRcIwBwKrUsLsXuEfSoQvFoQhFhWzPnMdCaHrCcHpQkCiWlYfIrL</value>
+        <value description="price">6.548651E37</value>
+        <value description="ProjectID">-3</value>
+        <value description="quantity">DqQpSmTqUaHtPcYvWdQyBaDkVhJhFrFcDxYuLqRfJuCeRbNsFiHqMpCoHgEzZlZnYiFzCfWbYzAiLsLyTzXqZsUcJuOcGlNhTyJwRrNcIeEjGuUlOfYoYfYuArMzIfKoMmAxZrFiTfMmKbChBrZyEbFpXhGqWyKnGnObFtIcYrDpAiAfZyHeDiNbZdNpHkZjCtIrSrBcAlYzHiQeWtPgNqIlCqFhPbYmYoAnJrIhVrFeVeUeQvFkVrJtZaCqPlP</value>
+        <value description="size">1.0243128E37</value>
+        <value description="styleName">WuJiSqHfLsNeNmVlJqJfPaVfHpKwYxZpOwDhTkUnBuHvKtJpOvPsPfGvEhLmAlJcBzGyWqIvXdYtVuOnHhSzGgHoWhAtQuDeSsDjTpBoQkZaZkMxZiXzMwFaPdRdYyTnMxRpCoEoWhQjOpSqFaUjTqAmTwHeDqXqIoVaXfMiXkJwQqJxVwIxGzNxIpBmPkHwAfBqQgGwXgJkAwCyFwIwKlZkRfLfCrFpAoQuFlFvZuBrQcPvZoRySiOaEiTmPcR</value>
+        <value description="user">QvDjVmVdUzXkKcZfQxNoBuLpKsOoErGqBkKnPtCeRcJxSxAySvZcSkIpFvBsDfNnDxEyLvKvOzWhZjGkGeUcNiOuHqFlKzHcOsXsFyIzVzJcPjZkGnQfWtDvOmOsVyFkXnTnPjXhJxWvFtSnPlKzCoQvThDsVlBzIzNwZxIuClCzImPzHpUvMnZjRzXaMuIoQkYcDwMqUnSvStRyDcMkBrZePbPmVfTsJrGvJbAgCmRyPmArReAaBhYwWoNpNuI</value>
+        <value description="weight">5.507356E36</value>
+    </row>
+    </table>
+    <!--Component-END-->
 </dataset>
+
+
 
 
 

@@ -115,5 +115,28 @@
         <form name="note">
         </form>
         <!--Note-END-->
+        <!--ComponentStyle-START-->
+        <form name="componentStyle">
+            <field property="processOrder" depends="required">
+                <arg key="componentStyle.processOrder"/>
+            </field>
+        </form>
+        <!--ComponentStyle-END-->
+        <!--Component-START-->
+        <form name="component">
+            <field property="length" depends="required">
+                <arg key="component.length"/>
+            </field>
+            <field property="price" depends="required">
+                <arg key="component.price"/>
+            </field>
+            <field property="size" depends="required">
+                <arg key="component.size"/>
+            </field>
+            <field property="weight" depends="required">
+                <arg key="component.weight"/>
+            </field>
+        </form>
+        <!--Component-END-->
     </formset>
 </form-validation>

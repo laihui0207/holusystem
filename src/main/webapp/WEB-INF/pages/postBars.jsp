@@ -52,7 +52,7 @@
     <display:column sortProperty="updateTime" sortable="true" titleKey="postBar.updateTime">
          <fmt:formatDate value="${postBarList.updateTime}" pattern="${datePattern}"/>
     </display:column>
-    <display:column  sortable="false" titleKey="PostBar.Action">
+    <display:column  sortable="false" titleKey="list.action">
         <a href="postBars/${postBarList.id}/replies">Replies</a>
     </display:column>
 

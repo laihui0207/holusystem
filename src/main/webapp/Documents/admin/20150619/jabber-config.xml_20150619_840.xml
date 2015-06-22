@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config version="1.0">
+  <Client>
+    <AnalyticsServerUrl>http://gwydlvm675.cisco.com/jabberPrtReport/scripts/submitAnalytics.php</AnalyticsServerUrl>
+    <AnalyticsEventListSize>1</AnalyticsEventListSize>
+    <PrtLogServerUrl>http://gwydlvm711.cisco.com/jabberPrtReport/scripts/autoUploadPrt.php</PrtLogServerUrl>
+    <UpdateUrl>http://gwydlvm376.cisco.com/update.xml</UpdateUrl>
+    <Forgot_Password_URL>https://www.webex.com/go/connect_forgot_pw</Forgot_Password_URL>
+  </Client>
+  <!-- LDAP Directory aaa asdfasd f  configuration for windows platform clients -->
+  <Directory>
+    <DirectoryServerType>EDI</DirectoryServerType>
+    <PrimaryServerName>10.63.63.94</PrimaryServerName>
+    <PresenceDomain>svarog.pst</PresenceDomain>
+    <PresenceServer>10.63.63.95</PresenceServer>
+    <ServerPort1>389</ServerPort1>
+    <ConnectionUsername>administrator</ConnectionUsername>:w
+    <ConnectionPassword>xxxxxxx</ConnectionPassword>
+    <UseWindowsCredentials>0</UseWindowsCredentials>
+    <PhotoURISubstitutionEnabled>True</PhotoURISubstitutionEnabled>
+    <PhotoURISubstitutionToken>%%uid%%</PhotoURISubstitutionToken>
+    <UDSPhotoURIWithToken>http://10.63.63.94/photo/%%uid%%.jpg</UDSPhotoURIWithToken>
+    <OtherPhone>telephoneNumber</OtherPhone>
+    <SearchBase1>CN=Users,DC=svarog,DC=pst</SearchBase1>
+    <EnableSIPURIDialling>True</EnableSIPURIDialling>
+  </Directory>
+  <!-- LDAP Directory configuration for non-windows platform clients <Directory> <DirectoryServerType>BDI</DirectoryServerType> <BDIPhotoURISubstitutionEnabled>True</BDIPhotoURISubstitutionEnabled> <BDIPhotoURISubstitutionToken>sAMAccountName</BDIPhotoURISubstitutionToken> <BDIPhotoURIWithToken>https://10.63.60.89/software/photo/sAMAccountName.jpg</BDIPhotoURIWithToken> <BDIOtherPhone>telephoneNumber</BDIOtherPhone> <BDIEmailAddress>mail</BDIEmailAddress> <BDILDAPServerType>AD</BDILDAPServerType> <BDIPrimaryServerName>10.63.63.94</BDIPrimaryServerName> <BDIPresenceDomain>svarog.pst</BDIPresenceDomain> <BDIServerPort1>389</BDIServerPort1> <BDISearchBase1>CN=Users,DC=svarog,DC=pst</BDISearchBase1> <BDIConnectionUserDN>CN=administrator,CN=Users,DC=svarog,DC=pst</BDIConnectionUserDN> <BDIConnectionPassword>cisco123!@#</BDIConnectionPassword> <EnableSIPURIDialling>True</EnableSIPURIDialling> <BDIDirectoryUri>msRTCSIP-PrimaryUserAddress</BDIDirectoryUri> <BDIDirectoryUriPrefix>sip:</BDIDirectoryUriPrefix> </Directory> -->
+  <CUCM>
+    <Video_Start_Port_Range>14040</Video_Start_Port_Range>
+    <Video_End_Port_Range>14240</Video_End_Port_Range>
+    <Audio_Start_Port_Range>24576</Audio_Start_Port_Range>
+    <Audio_End_Port_Range>24656</Audio_End_Port_Range>
+  </CUCM>
+</config>

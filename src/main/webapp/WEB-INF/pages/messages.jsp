@@ -26,7 +26,7 @@
 </div>
 </form>
 
-<p><fmt:message key="messageList.message"/></p>
+<p><fmt:message key="messageList.messageInfo"/></p>
 
 <div id="actions" class="btn-group">
     <a href='<c:url value="/messageform"/>' class="btn btn-primary">
@@ -38,12 +38,14 @@
     <display:column property="id" sortable="true" href="messageform" media="html"
         paramId="id" paramProperty="id" titleKey="message.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="message.id"/>
-    <display:column property="content" sortable="true" titleKey="message.content"/>
-    <display:column property="createTime" sortable="true" titleKey="message.createTime"/>
-    <display:column property="sendTime" sortable="true" titleKey="message.sendTime"/>
-    <display:column property="status" sortable="true" titleKey="message.status"/>
     <display:column property="title" sortable="true" titleKey="message.title"/>
-    <display:column property="updateTime" sortable="true" titleKey="message.updateTime"/>
+<%--    <display:column property="content" sortable="true" titleKey="message.content"/>--%>
+    <display:column property="createTime" sortable="true" titleKey="message.createTime"/>
+    <display:column property="status" sortable="true" titleKey="message.status"/>
+    <display:column property="owner.fullName" sortable="true" titleKey="message.owner"/>
+    <display:column title="Action">
+            <a href="/messageform/${messageList.id}/Send">Read and Send</a>
+    </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="messageList.message"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="messageList.messages"/></display:setProperty>

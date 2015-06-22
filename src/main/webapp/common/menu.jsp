@@ -20,6 +20,12 @@
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
     
+    <!--ComponentStyle-START-->
+<%--    <menu:displayMenu name="ComponentStyleMenu"/>--%>
+    <!--ComponentStyle-END-->
+    <!--Component-START-->
+<%--    <menu:displayMenu name="ComponentMenu"/>--%>
+    <!--Component-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

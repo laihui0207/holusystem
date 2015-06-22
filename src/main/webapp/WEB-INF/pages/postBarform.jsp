@@ -30,9 +30,12 @@
         <form:input cssClass="form-control" path="title" id="title" maxlength="255"/>
         <form:errors path="title" cssClass="help-block"/>
         </div>
-        <appfuse:label key="postBar.Subject" styleClass="control-label"/>
-        <form:select cssClass="form-control" path="postSubject" items="${postSubjectList}" itemLabel="name"
-                     itemValue="id"/>
+
+        <div class="form-group">
+            <appfuse:label key="postBar.subject" styleClass="control-label"/>
+            <form:select cssClass="form-control" path="postSubject" items="${postSubjectList}" itemLabel="name"
+                         itemValue="id"/>
+        </div>
         <spring:bind path="postBar.content">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
@@ -48,16 +51,19 @@
         <form:errors path="ifAccessAllReply" cssClass="help-block"/>
         </div>
 
-        <div class="form-group" style="display: none;" id="replyuserdiv">
-            <appfuse:label key="postBar.Subject" styleClass="control-label"/>
-            <form:select cssClass="form-control" path="replyUsers" items="${userList}" itemLabel="fullName"
-                         itemValue="id"/>
+        <div class="row" id="replyDiv" style="display: none;">
+            <div class="form-group col-sm-6" id="replyuserdiv">
+                <appfuse:label key="postBar.replyUsers" styleClass="control-label"/>:<br>
+                <form:select cssClass="form-control" path="replyUsers" items="${userList}" itemLabel="fullName"
+                             itemValue="id"/>
+            </div>
+            <div class="form-group col-sm-6" id="replygroupdiv">
+                <appfuse:label key="postBar.replyUserGroups" styleClass="control-label"/>:<br>
+                <form:select cssClass="form-control" path="replyGroups" items="${userGroupList}" itemLabel="name"
+                             itemValue="id"/>
+            </div>
         </div>
-        <div class="form-group" style="display:none" id="replygroupdiv">
-            <appfuse:label key="postBar.Subject" styleClass="control-label"/>
-            <form:select cssClass="form-control" path="replyGroups" items="${userGroupList}" itemLabel="name"
-                         itemValue="id"/>
-        </div>
+
         <spring:bind path="postBar.ifAccessAllView">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
@@ -66,16 +72,19 @@
         <form:errors path="ifAccessAllView" cssClass="help-block"/>
         </div>
 
-        <div class="form-group" style="display:none" id="viewUserdiv">
-            <appfuse:label key="postBar.Subject" styleClass="control-label"/>
-            <form:select cssClass="form-control" path="viewUsers" items="${userList}" itemLabel="fullName"
-                         itemValue="id"/>
+        <div class="row" style="display:none" id="viewDiv">
+            <div class="form-group col-sm-6"  id="viewUserdiv">
+                <appfuse:label key="postBar.viewUsers" styleClass="control-label"/>:
+                <form:select cssClass="form-control" path="viewUsers" items="${userList}" itemLabel="fullName"
+                             itemValue="id"/>
+            </div>
+            <div class="form-group col-sm-6" id="viewGroupdiv">
+                <appfuse:label key="postBar.viewUserGroups" styleClass="control-label"/>:
+                <form:select cssClass="form-control" path="viewGroups" items="${userGroupList}" itemLabel="name"
+                             itemValue="id"/>
+            </div>
         </div>
-        <div class="form-group" style="display:none" id="viewGroupdiv">
-            <appfuse:label key="postBar.Subject" styleClass="control-label"/>
-            <form:select cssClass="form-control" path="viewGroups" items="${userGroupList}" itemLabel="name"
-                         itemValue="id"/>
-        </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
                 <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
@@ -125,30 +134,24 @@
         $("#replyUsers").multiselect();
         $("#replyGroups").multiselect();
         $("#ifAccessAllReply").click(function () {
-            $("#replyuserdiv").toggle(!this.checked);
-            $("#replygroupdiv").toggle(!this.checked);
+            $("#replyDiv").toggle(!this.checked);
         })
         if ($("#ifAccessAllReply").attr('checked')) {
-            $("#replyuserdiv").hide();
-            $("#replygroupdiv").hide();
+            $("#replyDiv").hide();
         }
         else {
-            $("#replyuserdiv").show();
-            $("#replygroupdiv").show();
+            $("#replyDiv").show();
         }
         $("#viewUsers").multiselect();
         $("#viewGroups").multiselect();
         $("#ifAccessAllView").click(function () {
-            $("#viewUserdiv").toggle(!this.checked);
-            $("#viewGroupdiv").toggle(!this.checked);
+            $("#viewDiv").toggle(!this.checked);
         })
         if ($("#ifAccessAllView").attr('checked')) {
-            $("#viewUserdiv").hide();
-            $("#viewGroupdiv").hide();
+            $("#viewDiv").hide();
         }
         else {
-            $("#viewUserdiv").show();
-            $("#viewGroupdiv").show();
+            $("#viewDiv").show();
         }
     });
 </script>

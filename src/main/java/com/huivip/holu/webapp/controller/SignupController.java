@@ -6,12 +6,8 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.CompanyManager;
 import com.huivip.holu.service.RoleManager;
 import com.huivip.holu.service.UserExistsException;
-import com.huivip.holu.webapp.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -100,24 +96,24 @@ public class SignupController extends BaseFormController {
         request.getSession().setAttribute(Constants.REGISTERED, Boolean.TRUE);
 
         // log user in automatically
-        final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+      /*  final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                 user.getUsername(), password, user.getAuthorities());
         auth.setDetails(user);
-        SecurityContextHolder.getContext().setAuthentication(auth);
+        SecurityContextHolder.getContext().setAuthentication(auth);*/
 
         // Send user an e-mail
-        if (log.isDebugEnabled()) {
+      /*  if (log.isDebugEnabled()) {
             log.debug("Sending user '" + user.getUsername() + "' an account information e-mail");
-        }
+        }*/
 
         // Send an account information e-mail
-        message.setSubject(getText("signup.email.subject", locale));
+      /*  message.setSubject(getText("signup.email.subject", locale));
 
         try {
             sendUserMessage(user, getText("signup.email.message", locale), RequestUtil.getAppURL(request));
         } catch (final MailException me) {
             saveError(request, me.getMostSpecificCause().getMessage());
-        }
+        }*/
 
         return getSuccessView();
     }

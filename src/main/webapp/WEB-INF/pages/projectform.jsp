@@ -36,9 +36,9 @@
         <form:errors path="batchShortName" cssClass="help-block"/>
     </div>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="company" items="companyList" itemLabel="label" itemValue="value"/>
+    <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="owner" items="ownerList" itemLabel="label" itemValue="value"/>
+    <form:select cssClass="form-control" path="owner.id" items="${userList}" itemLabel="fullName" itemValue="id"/>
     <spring:bind path="project.projectFullName">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

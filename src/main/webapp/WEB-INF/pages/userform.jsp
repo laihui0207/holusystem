@@ -88,39 +88,7 @@
                 <form:input cssClass="form-control" path="phoneNumber" id="phoneNumber"/>
             </div>
         </div>
-        <div class="form-group">
-            <appfuse:label styleClass="control-label" key="user.website"/>
-            <form:input cssClass="form-control" path="website" id="website"/>
-        </div>
-        <div>
-            <legend class="accordion-heading">
-                <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
-            </legend>
-            <div id="collapse-address" class="accordion-body collapse">
-                <div class="form-group">
-                    <appfuse:label styleClass="control-label" key="user.address.address"/>
-                    <form:input cssClass="form-control" path="address.address" id="address.address"/>
-                </div>
-                <div class="row">
-                    <div class="col-sm-7 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.city"/>
-                        <form:input cssClass="form-control" path="address.city" id="address.city"/>
-                    </div>
-                    <div class="col-sm-2 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.province"/>
-                        <form:input cssClass="form-control" path="address.province" id="address.province"/>
-                    </div>
-                    <div class="col-sm-3 form-group">
-                        <appfuse:label styleClass="control-label" key="user.address.postalCode"/>
-                        <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <appfuse:label styleClass="control-label" key="user.address.country"/>
-                    <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
-                </div>
-            </div>
-        </div>
+
 <c:choose>
     <c:when test="${param.from == 'list' or param.method == 'Add'}">
         <div class="form-group">

@@ -36,9 +36,10 @@
         <form:input cssClass="form-control" path="comment" id="comment"  maxlength="255"/>
         <form:errors path="comment" cssClass="help-block"/>
     </div>
-    <appfuse:label key="userGroup.comment" styleClass="control-label"/>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" id="members" multiple="true" path="members" items="${usersList}" itemLabel="username" itemValue="id"/>
+    <div class="form-group">
+        <appfuse:label key="userGroup.members" styleClass="control-label"/>:<br>
+        <form:select cssClass="form-control" id="members" multiple="true" path="members" items="${usersList}" itemLabel="username" itemValue="id"/>
+    </div>
 
 
     <div class="form-group">

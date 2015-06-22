@@ -28,7 +28,15 @@
         <!--Note-START-->
         <Menu name="NoteMenu" title="noteList.title" page="/notes"/>
         <!--Note-END-->
+        <!--ComponentStyle-START-->
+<!--        <Menu name="ComponentStyleMenu" title="componentStyleList.title" page="/componentStyles"/>-->
+        <!--ComponentStyle-END-->
+        <!--Component-START-->
+<!--        <Menu name="ComponentMenu" title="componentList.title" page="/components"/>-->
+        <!--Component-END-->
     </Menus>
+
+
 
 
 

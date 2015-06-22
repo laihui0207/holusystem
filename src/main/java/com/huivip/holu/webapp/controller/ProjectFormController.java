@@ -1,12 +1,13 @@
 package com.huivip.holu.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.huivip.holu.service.ProjectManager;
+import com.huivip.holu.model.Company;
 import com.huivip.holu.model.Project;
-import com.huivip.holu.webapp.controller.BaseFormController;
-
+import com.huivip.holu.model.User;
+import com.huivip.holu.service.CompanyManager;
+import com.huivip.holu.service.ProjectManager;
+import com.huivip.holu.service.UserManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,12 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
 @RequestMapping("/projectform*")
 public class ProjectFormController extends BaseFormController {
     private ProjectManager projectManager = null;
+    @Autowired
+    private CompanyManager companyManager;
+    @Autowired
+    private UserManager userManager;
+
 
     @Autowired
     public void setProjectManager(ProjectManager projectManager) {
@@ -71,6 +78,7 @@ public class ProjectFormController extends BaseFormController {
             projectManager.remove(project.getId());
             saveMessage(request, getText("project.deleted", locale));
         } else {
+            project.setOwner(userManager.get(project.getOwner().getId()));
             projectManager.save(project);
             String key = (isNew) ? "project.added" : "project.updated";
             saveMessage(request, getText(key, locale));
@@ -81,5 +89,14 @@ public class ProjectFormController extends BaseFormController {
         }
 
         return success;
+    }
+
+    @ModelAttribute("companyList")
+    public List<Company> companyList(){
+        return companyManager.getAll();
+    }
+    @ModelAttribute("userList")
+    public List<User> userList(){
+        return userManager.getAll();
     }
 }

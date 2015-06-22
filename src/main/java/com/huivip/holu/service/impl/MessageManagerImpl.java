@@ -2,6 +2,7 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.model.Message;
+import com.huivip.holu.model.User;
 import com.huivip.holu.service.MessageManager;
 import com.huivip.holu.service.impl.GenericManagerImpl;
 
@@ -20,5 +21,10 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     public MessageManagerImpl(MessageDao messageDao) {
         super(messageDao);
         this.messageDao = messageDao;
+    }
+
+    @Override
+    public List<Message> messageByOwner(User user) {
+        return messageDao.messageByOwner(user);
     }
 }

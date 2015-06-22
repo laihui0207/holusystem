@@ -29,8 +29,10 @@
     <form:input cssClass="form-control" path="title" id="title"  maxlength="255"/>
     <form:errors path="title" cssClass="help-block"/>
     </div>
-    <appfuse:label key="news.newsType"  styleClass="control-label"/>
-    <form:select cssClass="form-control" path="newsType.id" items="${newsTypeList}" itemLabel="name" itemValue="id"/>
+    <div class="form-group">
+        <appfuse:label key="news.newsType"  styleClass="control-label"/>
+        <form:select cssClass="form-control" path="newsType.id" items="${newsTypeList}" itemLabel="name" itemValue="id"/>
+    </div>
     <spring:bind path="news.content">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

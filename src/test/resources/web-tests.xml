@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -1459,7 +1459,203 @@
             </steps>
         </webtest>
     </target>    <!--Note-END-->
+    <!--ComponentStyle-START-->
+    <!-- runs componentStyle-related tests -->
+    <target name="ComponentStyleTests"
+            depends="SearchComponentStyles,EditComponentStyle,SaveComponentStyle,AddComponentStyle,DeleteComponentStyle"
+            description="Call and executes all componentStyle test cases (targets)">
+        <echo>Successfully ran all ComponentStyle UI tests!</echo>
+    </target>
+
+    <!-- Verify the componentStyles list screen displays without errors -->
+    <target name="SearchComponentStyles" description="Tests search for and displaying all componentStyles">
+        <webtest name="searchComponentStyles">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View ComponentStyle link" url="/componentStyles"/>
+                <verifytitle description="we should see the componentStyleList title"
+                    text=".*${componentStyleList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the componentStyleList title"
+                    text=".*${componentStyleList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit componentStyle screen displays without errors -->
+    <target name="EditComponentStyle" description="Tests editing an existing ComponentStyle's information">
+        <webtest name="editComponentStyle">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View ComponentStyle List" url="/componentStyles"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the componentStyleDetail title"
+                    text=".*${componentStyleDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a componentStyle and then save -->
+    <target name="SaveComponentStyle" description="Tests editing and saving a componentStyle">
+        <webtest name="saveComponentStyle">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ComponentStyle link" url="/componentStyleform?id=-1"/>
+                <verifytitle description="we should see the componentStyleDetail title"
+                    text=".*${componentStyleDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set processOrder" name="processOrder" value="1548192745"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${componentStyleDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${componentStyle.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new ComponentStyle -->
+    <target name="AddComponentStyle" description="Adds a new ComponentStyle">
+        <webtest name="addComponentStyle">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/componentStyleform"/>
+                <verifytitle description="we should see the componentStyleDetail title"
+                    text=".*${componentStyleDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set processOrder" name="processOrder" value="1161430126"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="ComponentStyle List appears if save successful"
+                    text=".*${componentStyleList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${componentStyle.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing componentStyle -->
+    <target name="DeleteComponentStyle" description="Deletes existing ComponentStyle">
+        <webtest name="deleteComponentStyle">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ComponentStyle link" url="/componentStyleform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display ComponentStyle List" text=".*${componentStyleList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${componentStyle.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--ComponentStyle-END-->
+    <!--Component-START-->
+    <!-- runs component-related tests -->
+    <target name="ComponentTests"
+            depends="SearchComponents,EditComponent,SaveComponent,AddComponent,DeleteComponent"
+            description="Call and executes all component test cases (targets)">
+        <echo>Successfully ran all Component UI tests!</echo>
+    </target>
+
+    <!-- Verify the components list screen displays without errors -->
+    <target name="SearchComponents" description="Tests search for and displaying all components">
+        <webtest name="searchComponents">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Component link" url="/components"/>
+                <verifytitle description="we should see the componentList title"
+                    text=".*${componentList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the componentList title"
+                    text=".*${componentList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit component screen displays without errors -->
+    <target name="EditComponent" description="Tests editing an existing Component's information">
+        <webtest name="editComponent">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Component List" url="/components"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the componentDetail title"
+                    text=".*${componentDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a component and then save -->
+    <target name="SaveComponent" description="Tests editing and saving a component">
+        <webtest name="saveComponent">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Component link" url="/componentform?id=-1"/>
+                <verifytitle description="we should see the componentDetail title"
+                    text=".*${componentDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set length" name="length" value="2.2925238E38"/>
+                <setInputField description="set price" name="price" value="3.2706325E38"/>
+                <setInputField description="set size" name="size" value="1.2970888E38"/>
+                <setInputField description="set weight" name="weight" value="1.7057012E38"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${componentDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${component.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Component -->
+    <target name="AddComponent" description="Adds a new Component">
+        <webtest name="addComponent">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/componentform"/>
+                <verifytitle description="we should see the componentDetail title"
+                    text=".*${componentDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set length" name="length" value="1.0658821E37"/>
+                <setInputField description="set price" name="price" value="3.0023826E38"/>
+                <setInputField description="set size" name="size" value="1.5960363E38"/>
+                <setInputField description="set weight" name="weight" value="2.4256918E38"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Component List appears if save successful"
+                    text=".*${componentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${component.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing component -->
+    <target name="DeleteComponent" description="Deletes existing Component">
+        <webtest name="deleteComponent">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Component link" url="/componentform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Component List" text=".*${componentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${component.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Component-END-->
 </project>
+
+
 
 
 
