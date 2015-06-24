@@ -38,6 +38,7 @@
     <display:column property="id" sortable="true" href="componentStyleform" media="html"
         paramId="id" paramProperty="id" titleKey="componentStyle.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="componentStyle.id"/>
+    <display:column property="company.companyShortNameCN" sortable="true" titleKey="companyList.title"/>
     <display:column property="processName" sortable="true" titleKey="componentStyle.processName"/>
     <display:column property="processOrder" sortable="true" titleKey="componentStyle.processOrder"/>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>

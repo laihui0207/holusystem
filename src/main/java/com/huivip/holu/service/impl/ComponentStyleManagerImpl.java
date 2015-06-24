@@ -21,4 +21,9 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         super(componentStyleDao);
         this.componentStyleDao = componentStyleDao;
     }
+
+    @Override
+    public List<ComponentStyle> getComponentStypeListByCompany(String companyId) {
+        return componentStyleDao.getComponentStypeListByCompany(companyId);
+    }
 }

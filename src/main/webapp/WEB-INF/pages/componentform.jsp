@@ -18,7 +18,7 @@
 
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="component" method="post" action="componentform" cssClass="well"
+<form:form commandName="component" method="post" action="/componentform/${project.id}" cssClass="well"
            id="componentForm" onsubmit="return validateComponent(this)">
 <form:hidden path="id"/>
     <spring:bind path="component.componentID">
@@ -70,8 +70,10 @@
         <form:input cssClass="form-control" path="price" id="price"  maxlength="255"/>
         <form:errors path="price" cssClass="help-block"/>
     </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="project" items="projectList" itemLabel="label" itemValue="value"/>
+    <div class="form-group">
+        <appfuse:label key="projectList.title" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="project.id" items="${projectList}" itemLabel="projectFullName" itemValue="id" disabled="true"/>
+    </div>
     <spring:bind path="component.quantity">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
@@ -86,20 +88,17 @@
         <form:input cssClass="form-control" path="size" id="size"  maxlength="255"/>
         <form:errors path="size" cssClass="help-block"/>
     </div>
-    <spring:bind path="component.styleName">
+    <div class="form-group">
+        <appfuse:label key="component.styleName" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="styleName" items="${componentStyleList}" itemLabel="styleName" itemValue="styleName"/>
+    </div>
+   <%-- <spring:bind path="component.styleName">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="component.styleName" styleClass="control-label"/>
         <form:input cssClass="form-control" path="styleName" id="styleName"  maxlength="255"/>
         <form:errors path="styleName" cssClass="help-block"/>
-    </div>
-    <spring:bind path="component.user">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="component.user" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="user" id="user"  maxlength="255"/>
-        <form:errors path="user" cssClass="help-block"/>
-    </div>
+    </div>--%>
     <spring:bind path="component.weight">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

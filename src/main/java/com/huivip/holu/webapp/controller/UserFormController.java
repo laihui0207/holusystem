@@ -1,19 +1,15 @@
 package com.huivip.holu.webapp.controller;
 
-import java.util.Locale;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringUtils;
 import com.huivip.holu.Constants;
+import com.huivip.holu.model.Company;
 import com.huivip.holu.model.Role;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.CompanyManager;
 import com.huivip.holu.service.RoleManager;
 import com.huivip.holu.service.UserExistsException;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.webapp.util.RequestUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
@@ -24,6 +20,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -38,6 +40,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserFormController extends BaseFormController {
 
     private RoleManager roleManager;
+    @Autowired
+    private CompanyManager companyManager;
 
     @Autowired
     public void setRoleManager(final RoleManager roleManager) {
@@ -222,5 +226,9 @@ public class UserFormController extends BaseFormController {
     protected boolean isAdd(final HttpServletRequest request) {
         final String method = request.getParameter("method");
         return (method != null && method.equalsIgnoreCase("add"));
+    }
+    @ModelAttribute("companyList")
+    public List<Company> companyList(){
+        return companyManager.getAll();
     }
 }

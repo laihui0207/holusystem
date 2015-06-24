@@ -1,12 +1,11 @@
 package com.huivip.holu.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.huivip.holu.service.ComponentStyleManager;
+import com.huivip.holu.model.Company;
 import com.huivip.holu.model.ComponentStyle;
-import com.huivip.holu.webapp.controller.BaseFormController;
-
+import com.huivip.holu.service.CompanyManager;
+import com.huivip.holu.service.ComponentStyleManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
 @RequestMapping("/componentStyleform*")
 public class ComponentStyleFormController extends BaseFormController {
     private ComponentStyleManager componentStyleManager = null;
+    @Autowired
+    private CompanyManager companyManager;
 
     @Autowired
     public void setComponentStyleManager(ComponentStyleManager componentStyleManager) {
@@ -81,5 +83,9 @@ public class ComponentStyleFormController extends BaseFormController {
         }
 
         return success;
+    }
+    @ModelAttribute("companyList")
+    public List<Company> companyList(){
+        return companyManager.getAll();
     }
 }

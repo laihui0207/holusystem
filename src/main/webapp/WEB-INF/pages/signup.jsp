@@ -47,6 +47,7 @@
                 <form:errors path="passwordHint" cssClass="help-block"/>
             </div>
         </div>
+
         <div class="row">
             <spring:bind path="user.firstName">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -62,6 +63,10 @@
                 <form:input cssClass="form-control" path="lastName" id="lastName" maxlength="50"/>
                 <form:errors path="lastName" cssClass="help-block"/>
             </div>
+        </div>
+        <div class="form-group">
+            <appfuse:label key="companyList.title" styleClass="control-label"/>:
+            <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
         </div>
         <div class="row">
             <spring:bind path="user.email">

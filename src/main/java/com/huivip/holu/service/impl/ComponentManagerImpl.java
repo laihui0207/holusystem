@@ -21,4 +21,9 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
         super(componentDao);
         this.componentDao = componentDao;
     }
+
+    @Override
+    public List<Component> listComponentByProject(String projectID) {
+        return componentDao.listComponentByProject(projectID);
+    }
 }

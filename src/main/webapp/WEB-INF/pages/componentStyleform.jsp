@@ -21,8 +21,17 @@
 <form:form commandName="componentStyle" method="post" action="componentStyleform" cssClass="well"
            id="componentStyleForm" onsubmit="return validateComponentStyle(this)">
 <form:hidden path="id"/>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="company" items="companyList" itemLabel="label" itemValue="value"/>
+    <div class="form-group">
+        <appfuse:label key="companyList.title" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
+    </div>
+    <spring:bind path="componentStyle.styleName">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+    <appfuse:label key="componentStyle.styleName" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="styleName" id="styleName"  maxlength="255"/>
+    <form:errors path="styleName" cssClass="help-block"/>
+    </div>
     <spring:bind path="componentStyle.processName">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
@@ -36,13 +45,6 @@
         <appfuse:label key="componentStyle.processOrder" styleClass="control-label"/>
         <form:input cssClass="form-control" path="processOrder" id="processOrder"  maxlength="255"/>
         <form:errors path="processOrder" cssClass="help-block"/>
-    </div>
-    <spring:bind path="componentStyle.styleName">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="componentStyle.styleName" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="styleName" id="styleName"  maxlength="255"/>
-        <form:errors path="styleName" cssClass="help-block"/>
     </div>
 
     <div class="form-group">

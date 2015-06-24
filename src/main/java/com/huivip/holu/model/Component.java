@@ -35,6 +35,7 @@ public class Component extends BaseObject implements Serializable {
     Long id;
     String componentID;
     Project project;
+    String projectID;
     String componentName;
     float size;
     String material;
@@ -44,7 +45,7 @@ public class Component extends BaseObject implements Serializable {
     float price;
     String styleName;
     String pieceList;
-    User user;
+    User creater;
     Timestamp createDate = new Timestamp(new Date().getTime());
 
     @Id
@@ -66,7 +67,7 @@ public class Component extends BaseObject implements Serializable {
         this.componentID = componentID;
     }
     @ManyToOne
-    @JoinColumn(name="ProjectID")
+    @JoinColumn(name="Project_id")
     public Project getProject() {
         return project;
     }
@@ -147,12 +148,12 @@ public class Component extends BaseObject implements Serializable {
         this.pieceList = pieceList;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreater() {
+        return creater;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreater(User user) {
+        this.creater = user;
     }
 
     public Timestamp getCreateDate() {
@@ -161,6 +162,14 @@ public class Component extends BaseObject implements Serializable {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
+    }
+
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
     }
 
     @Override
@@ -184,7 +193,7 @@ public class Component extends BaseObject implements Serializable {
         if (quantity != null ? !quantity.equals(component.quantity) : component.quantity != null) return false;
         if (styleName != null ? !styleName.equals(component.styleName) : component.styleName != null) return false;
         if (pieceList != null ? !pieceList.equals(component.pieceList) : component.pieceList != null) return false;
-        if (user != null ? !user.equals(component.user) : component.user != null) return false;
+        if (creater != null ? !creater.equals(component.creater) : component.creater != null) return false;
         return !(createDate != null ? !createDate.equals(component.createDate) : component.createDate != null);
 
     }
@@ -203,7 +212,7 @@ public class Component extends BaseObject implements Serializable {
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + (styleName != null ? styleName.hashCode() : 0);
         result = 31 * result + (pieceList != null ? pieceList.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (creater != null ? creater.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
     }
@@ -223,7 +232,7 @@ public class Component extends BaseObject implements Serializable {
                 ", price=" + price +
                 ", styleName='" + styleName + '\'' +
                 ", pieceList='" + pieceList + '\'' +
-                ", user=" + user +
+                ", user=" + creater +
                 ", createDate=" + createDate +
                 '}';
     }

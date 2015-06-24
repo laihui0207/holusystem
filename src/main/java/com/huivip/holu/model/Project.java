@@ -36,6 +36,7 @@ public class Project extends BaseObject implements Serializable {
     private String batchShortName;
     private User Owner;
     private Company company;
+    private String companyID;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,13 +114,21 @@ public class Project extends BaseObject implements Serializable {
         Owner = owner;
     }
     @ManyToOne
-    @JoinColumn(name = "companyID")
+    @JoinColumn(name = "company_id")
     public Company getCompany() {
         return company;
     }
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
     @Override

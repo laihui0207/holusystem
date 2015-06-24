@@ -21,4 +21,9 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
         super(projectDao);
         this.projectDao = projectDao;
     }
+
+    @Override
+    public List<Project> getProjectListByCompany(String CompanyID) {
+        return projectDao.getProjectListByCompany(CompanyID);
+    }
 }
