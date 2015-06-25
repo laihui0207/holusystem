@@ -147,7 +147,8 @@ public class Component extends BaseObject implements Serializable {
     public void setPieceList(String pieceList) {
         this.pieceList = pieceList;
     }
-
+    @ManyToOne
+    @JoinColumn(name="creater")
     public User getCreater() {
         return creater;
     }

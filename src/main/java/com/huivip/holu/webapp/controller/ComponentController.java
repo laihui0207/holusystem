@@ -4,7 +4,9 @@ import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.Component;
 import com.huivip.holu.model.Project;
 import com.huivip.holu.service.ComponentManager;
+import com.huivip.holu.service.ComponentStyleManager;
 import com.huivip.holu.service.ProjectManager;
+import com.huivip.holu.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -23,6 +25,10 @@ public class ComponentController {
     private ComponentManager componentManager;
     @Autowired
     private ProjectManager projectManager;
+    @Autowired
+    private ComponentStyleManager componentStyleManager;
+    @Autowired
+    private UserManager userManager;
 
     @Autowired
     public void setComponentManager(ComponentManager componentManager) {
@@ -51,4 +57,5 @@ public class ComponentController {
         view.addObject("project",project);
         return view;
     }
+
 }

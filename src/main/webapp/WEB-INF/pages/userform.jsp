@@ -125,6 +125,15 @@
                 </c:forEach>
             </select>
         </div>
+        <div class="form-group">
+            <label for="userRoles" class="control-label"><fmt:message key="postList.title"/></label>
+            <%--<form:select cssClass="form-control" path="posts" items="${postList}" itemLabel="postName" itemValue="id" multiple="true"/>--%>
+            <select id="userPosts" name="userPosts" multiple="true" class="form-control">
+                <c:forEach items="${postList}" var="post">
+                    <option value="${post.id}" ${fn:contains(user.posts,post.id ) ? 'selected' : ''}>${post.postName}</option>
+                </c:forEach>
+            </select>
+        </div>
     </c:when>
     <c:when test="${not empty user.username}">
         <div class="form-group">

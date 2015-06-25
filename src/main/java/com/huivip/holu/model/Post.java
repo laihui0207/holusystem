@@ -31,7 +31,7 @@ public class Post extends BaseObject implements Serializable {
     private String processName;
     private String postNote;
     private Company company;
-    private Date createDate;
+    private Date createDate=new Date();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,7 +75,8 @@ public class Post extends BaseObject implements Serializable {
     public void setPostNote(String postNote) {
         this.postNote = postNote;
     }
-
+    @ManyToOne
+    @JoinColumn(name="companyID")
     public Company getCompany() {
         return company;
     }

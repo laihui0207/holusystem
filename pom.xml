@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.huivip.holu</groupId>
@@ -70,8 +71,8 @@
         <dao.framework>hibernate</dao.framework>
         <db.name>holusystem</db.name>
         <web.framework>spring</web.framework>
-		<jdbc.username>root</jdbc.username>
-		<jdbc.password>root</jdbc.password>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>root</jdbc.password>
 
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.0</appfuse.version>
@@ -93,6 +94,22 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>prod_sqlserver</id>
+            <properties>
+                <p6spy.driverClassName>net.sourceforge.jtds.jdbc.Driver</p6spy.driverClassName>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.mssql.MsSqlDataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.operation.type>MSSQL_CLEAN_INSERT</dbunit.operation.type>
+                <hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
+                <jdbc.groupId>net.sourceforge.jtds</jdbc.groupId>
+                <jdbc.artifactId>jtds</jdbc.artifactId>
+                <jdbc.version>1.2</jdbc.version>
+                <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:jtds:sqlserver://127.0.0.1:1433/${db.name}</jdbc.url>
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password>band2010!@#</jdbc.password>
+            </properties>
         </profile>
     </profiles>
 

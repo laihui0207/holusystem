@@ -21,33 +21,23 @@
 <form:form commandName="post" method="post" action="postform" cssClass="well"
            id="postForm" onsubmit="return validatePost(this)">
 <form:hidden path="id"/>
-    <spring:bind path="post.company">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="post.company" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="company" id="company"  maxlength="255"/>
-        <form:errors path="company" cssClass="help-block"/>
-    </div>
-    <spring:bind path="post.createDate">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="post.createDate" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createDate" id="createDate" size="11" title="date" datepicker="true"/>
-        <form:errors path="createDate" cssClass="help-block"/>
-    </div>
     <spring:bind path="post.postID">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="post.postID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="postID" id="postID"  maxlength="255"/>
-        <form:errors path="postID" cssClass="help-block"/>
+    <appfuse:label key="post.postID" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="postID" id="postID"  maxlength="255"/>
+    <form:errors path="postID" cssClass="help-block"/>
     </div>
     <spring:bind path="post.postName">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="post.postName" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="postName" id="postName"  maxlength="255"/>
-        <form:errors path="postName" cssClass="help-block"/>
+    <appfuse:label key="post.postName" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="postName" id="postName"  maxlength="255"/>
+    <form:errors path="postName" cssClass="help-block"/>
+    </div>
+    <div class="form-group">
+        <appfuse:label key="post.company" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
     </div>
     <spring:bind path="post.postNote">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">

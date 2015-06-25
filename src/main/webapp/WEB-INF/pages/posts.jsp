@@ -38,7 +38,7 @@
     <display:column property="id" sortable="true" href="postform" media="html"
         paramId="id" paramProperty="id" titleKey="post.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="post.id"/>
-    <display:column property="company" sortable="true" titleKey="post.company"/>
+    <display:column property="company.companyShortNameCN" sortable="true" titleKey="post.company"/>
     <display:column sortProperty="createDate" sortable="true" titleKey="post.createDate">
          <fmt:formatDate value="${postList.createDate}" pattern="${datePattern}"/>
     </display:column>

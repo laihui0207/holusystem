@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface ComponentStyleDao extends GenericDao<ComponentStyle, Long> {
     List<ComponentStyle> getComponentStypeListByCompany(String companyId);
+    List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleName,String companyId);
 
 }

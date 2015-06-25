@@ -72,9 +72,9 @@ public class ComponentFormController extends BaseFormController {
                            HttpServletResponse response)
     throws Exception {
         if (request.getParameter("cancel") != null) {
-            return getCancelView();
+            return "redirect:/components/"+projectID+"/Component";
         }
-
+        Project project=projectManager.get(Long.parseLong(projectID));
         if (validator != null) { // validator is null during testing
             validator.validate(component, errors);
 
@@ -96,16 +96,19 @@ public class ComponentFormController extends BaseFormController {
             final User cleanUser = getUserManager().getUserByUsername(
                     request.getRemoteUser());
             component.setCreater(cleanUser);
+            component.setProject(project);
+            component.setProjectID(project.getProjectID());
+            component.setCreateDate(new Timestamp(new Date().getTime()));
             componentManager.save(component);
             String key = (isNew) ? "component.added" : "component.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+            /*if (!isNew) {
                 success = "redirect:componentform?id=" + component.getId();
-            }
+            }*/
         }
 
-        return success;
+        return "redirect:/components/"+projectID+"/Component";
     }
     @InitBinder
     public void binder(WebDataBinder binder) {binder.registerCustomEditor(Timestamp.class,

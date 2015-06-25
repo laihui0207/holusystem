@@ -35,10 +35,14 @@
         <form:input cssClass="form-control" path="batchShortName" id="batchShortName"  maxlength="255"/>
         <form:errors path="batchShortName" cssClass="help-block"/>
     </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="owner.id" items="${userList}" itemLabel="fullName" itemValue="id"/>
+    <div class="form-group">
+        <appfuse:label key="companyList.title" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
+    </div>
+    <div class="form-group">
+        <appfuse:label key="userList.title" styleClass="control-label"/>
+        <form:select cssClass="form-control" path="owner.id" items="${userList}" itemLabel="fullName" itemValue="id"/>
+        </div>
     <spring:bind path="project.projectFullName">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

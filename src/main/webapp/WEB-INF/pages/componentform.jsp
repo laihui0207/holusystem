@@ -35,13 +35,6 @@
         <form:input cssClass="form-control" path="componentName" id="componentName"  maxlength="255"/>
         <form:errors path="componentName" cssClass="help-block"/>
     </div>
-    <spring:bind path="component.createDate">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="component.createDate" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createDate" id="createDate"  maxlength="255"/>
-        <form:errors path="createDate" cssClass="help-block"/>
-    </div>
     <spring:bind path="component.length">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

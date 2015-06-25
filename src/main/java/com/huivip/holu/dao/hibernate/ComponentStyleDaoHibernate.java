@@ -17,8 +17,17 @@ public class ComponentStyleDaoHibernate extends GenericDaoHibernate<ComponentSty
     @Override
     public List<ComponentStyle> getComponentStypeListByCompany(String companyId) {
         String queryString="From ComponentStyle where company.id="+companyId;
+        queryString+=" group by company,styleName";
         Query query=getSession().createQuery(queryString);
 
+        return query.list();
+    }
+
+    @Override
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleName, String companyId) {
+        String queryString="From ComponentStyle where company.id="+companyId+" and styleName='"+styleName+"'";
+        queryString+=" order by processOrder";
+        Query query=getSession().createQuery(queryString);
         return query.list();
     }
 }

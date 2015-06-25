@@ -2,12 +2,10 @@ package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.Constants;
 import com.huivip.holu.model.Company;
+import com.huivip.holu.model.Post;
 import com.huivip.holu.model.Role;
 import com.huivip.holu.model.User;
-import com.huivip.holu.service.CompanyManager;
-import com.huivip.holu.service.RoleManager;
-import com.huivip.holu.service.UserExistsException;
-import com.huivip.holu.service.UserManager;
+import com.huivip.holu.service.*;
 import com.huivip.holu.webapp.util.RequestUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +40,8 @@ public class UserFormController extends BaseFormController {
     private RoleManager roleManager;
     @Autowired
     private CompanyManager companyManager;
+    @Autowired
+    private PostManager postManager;
 
     @Autowired
     public void setRoleManager(final RoleManager roleManager) {
@@ -76,7 +76,7 @@ public class UserFormController extends BaseFormController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String onSubmit(@ModelAttribute("user") final User user, final BindingResult errors, final HttpServletRequest request,
+    public String onSubmit(@ModelAttribute("user") final User user, BindingResult errors, final HttpServletRequest request,
             final HttpServletResponse response)
             throws Exception {
         if (request.getParameter("cancel") != null) {
@@ -87,14 +87,14 @@ public class UserFormController extends BaseFormController {
             }
         }
 
-        if (validator != null) { // validator is null during testing
+       /* if (validator != null) { // validator is null during testing
             validator.validate(user, errors);
 
             if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
                 return "userform";
             }
-        }
-
+        }*/
+        //errors.getAllErrors().remove(0);
         log.debug("entering 'onSubmit' method...");
 
         final Locale locale = request.getLocale();
@@ -135,8 +135,18 @@ public class UserFormController extends BaseFormController {
                 // good choice
                 // here
             }
-
+            String[] posts=request.getParameterValues("userPosts");
+            if(null!=posts){
+                user.getPosts().clear();
+                for(String postid:posts){
+                    user.getPosts().add(postManager.get(Long.parseLong(postid)));
+                }
+            }
+            else {
+                user.getPosts().clear();
+            }
             try {
+
                 getUserManager().saveUser(user);
             } catch (final AccessDeniedException ade) {
                 // thrown by UserSecurityAdvice configured in aop:advisor userManagerSecurity
@@ -230,5 +240,9 @@ public class UserFormController extends BaseFormController {
     @ModelAttribute("companyList")
     public List<Company> companyList(){
         return companyManager.getAll();
+    }
+    @ModelAttribute("postList")
+    public List<Post> postList(){
+        return postManager.getAll();
     }
 }
