@@ -1,9 +1,11 @@
 package com.huivip.holu.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -87,8 +89,10 @@ public class News extends BaseObject implements Serializable {
     public void setExpiredTime(Timestamp expiredTime) {
         this.expiredTime = expiredTime;
     }
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "creater_id")
+    @XmlTransient
+    @JsonIgnore
     public User getCreater() {
         return creater;
     }
@@ -96,8 +100,10 @@ public class News extends BaseObject implements Serializable {
     public void setCreater(User creater) {
         this.creater = creater;
     }
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="newsType_id")
+    @XmlTransient
+    @JsonIgnore
     public NewsType getNewsType() {
         return newsType;
     }

@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -32,7 +33,7 @@ public class Company extends BaseObject implements Serializable {
     String companyWebSite;
     String companyNote;
 
-    Set<Project> projectSet=new HashSet<>();
+   /* Set<Project> projectSet=new HashSet<>();*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -148,7 +149,8 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyNote(String companyNote) {
         this.companyNote = companyNote;
     }
-    @OneToMany(mappedBy = "company")
+    /*@OneToMany(mappedBy = "company")
+    @JsonIgnore
     public Set<Project> getProjectSet() {
         return projectSet;
     }
@@ -156,7 +158,7 @@ public class Company extends BaseObject implements Serializable {
     public void setProjectSet(Set<Project> projectSet) {
         this.projectSet = projectSet;
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

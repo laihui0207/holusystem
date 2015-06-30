@@ -21,4 +21,14 @@ public class DocumentationManagerImpl extends GenericManagerImpl<Documentation, 
         super(documentationDao);
         this.documentationDao = documentationDao;
     }
+
+    @Override
+    public List<Documentation> getDocumentations() {
+        return null;
+    }
+
+    @Override
+    public Documentation downloadDocumentation(String id) {
+        return null;
+    }
 }

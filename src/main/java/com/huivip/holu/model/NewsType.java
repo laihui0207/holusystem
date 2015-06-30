@@ -28,7 +28,7 @@ public class NewsType extends BaseObject implements Serializable {
     private Timestamp updateTime=new Timestamp(new Date().getTime());
     private User creater;
     private User updater;
-    private List<News> news=new ArrayList<>();
+   /* private List<News> news=new ArrayList<>();*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,7 +90,7 @@ public class NewsType extends BaseObject implements Serializable {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
-    @IndexedEmbedded
+   /* @IndexedEmbedded
     @OneToMany(mappedBy = "newsType")
     @Transient
     public List<News> getNews() {
@@ -99,7 +99,7 @@ public class NewsType extends BaseObject implements Serializable {
 
     public void setNews(List<News> news) {
         this.news = news;
-    }
+    }*/
     @PrePersist
     protected void onCreate() {
         createTime=new Timestamp(new Date().getTime());

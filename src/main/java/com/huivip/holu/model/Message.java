@@ -93,7 +93,7 @@ public class Message extends BaseObject implements Serializable {
     public void setSendTime(Timestamp sendTime) {
         this.sendTime = sendTime;
     }
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "messagereceiveusers",
             joinColumns = {@JoinColumn(name = "message_id")},
@@ -106,7 +106,7 @@ public class Message extends BaseObject implements Serializable {
     public void setReceiveUsers(Set<User> recerivers) {
         this.receiveUsers = recerivers;
     }
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "messagereceivegroups",
             joinColumns = {@JoinColumn(name = "message_id")},

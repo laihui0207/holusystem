@@ -9,13 +9,13 @@ import java.io.Serializable;
 
 /**
  * Created by sunlaihui on 6/22/15.
- *
+ * <p/>
  * SELECT TOP 1000 [ID]
- ,[StyleName]
- ,[ProcessName]
- ,[ProcessOrder]
- ,[CompanyID]
- FROM [MidDatabase].[dbo].[R_ComponentStyle]
+ * ,[StyleName]
+ * ,[ProcessName]
+ * ,[ProcessOrder]
+ * ,[CompanyID]
+ * FROM [MidDatabase].[dbo].[R_ComponentStyle]
  */
 
 @Entity
@@ -28,6 +28,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     String processName;
     int processOrder;
     Company company;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @DocumentId
@@ -38,6 +39,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     public String getStyleName() {
         return styleName;
@@ -46,6 +48,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setStyleName(String styleName) {
         this.styleName = styleName;
     }
+
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     public String getProcessName() {
         return processName;
@@ -62,6 +65,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setProcessOrder(int processOrder) {
         this.processOrder = processOrder;
     }
+
     @ManyToOne
     @JoinColumn(name = "CompanyID")
     public Company getCompany() {

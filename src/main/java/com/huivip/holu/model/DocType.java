@@ -24,7 +24,7 @@ public class DocType extends BaseObject implements Serializable {
     Timestamp createTime = new Timestamp(new Date().getTime());
     User creater;
 
-    Set<Documentation> documentations;
+   /* Set<Documentation> documentations;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,14 +71,14 @@ public class DocType extends BaseObject implements Serializable {
     public void setCreater(User creater) {
         this.creater = creater;
     }
-    @OneToMany(mappedBy = "docType")
+   /* @OneToMany(mappedBy = "docType")
     public Set<Documentation> getDocumentations() {
         return documentations;
     }
 
     public void setDocumentations(Set<Documentation> documents) {
         this.documentations = documents;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -91,8 +91,7 @@ public class DocType extends BaseObject implements Serializable {
         if (name != null ? !name.equals(docType.name) : docType.name != null) return false;
         if (comment != null ? !comment.equals(docType.comment) : docType.comment != null) return false;
         if (createTime != null ? !createTime.equals(docType.createTime) : docType.createTime != null) return false;
-        if (creater != null ? !creater.equals(docType.creater) : docType.creater != null) return false;
-        return !(documentations != null ? !documentations.equals(docType.documentations) : docType.documentations != null);
+        return !(creater != null ? !creater.equals(docType.creater) : docType.creater != null);
 
     }
 
@@ -103,7 +102,6 @@ public class DocType extends BaseObject implements Serializable {
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creater != null ? creater.hashCode() : 0);
-        result = 31 * result + (documentations != null ? documentations.hashCode() : 0);
         return result;
     }
 
@@ -115,7 +113,6 @@ public class DocType extends BaseObject implements Serializable {
                 ", comment='" + comment + '\'' +
                 ", createTime=" + createTime +
                 ", creater=" + creater +
-                ", documents=" + documentations +
                 '}';
     }
 }

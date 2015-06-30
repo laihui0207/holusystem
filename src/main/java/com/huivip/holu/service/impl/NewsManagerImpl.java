@@ -21,4 +21,14 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
         super(newsDao);
         this.newsDao = newsDao;
     }
+
+    @Override
+    public List<News> getNewss() {
+        return newsDao.getAll();
+    }
+
+    @Override
+    public News getNews(String id) {
+        return get(Long.parseLong(id));
+    }
 }

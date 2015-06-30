@@ -164,7 +164,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return firstName + ' ' + lastName;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "user_role",
@@ -268,6 +268,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
     @ManyToOne
     @JoinColumn(name="companyID")
+    @JsonIgnore
     public Company getCompany() {
         return company;
     }
@@ -304,7 +305,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         getRoles().add(role);
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "R_UserPostMappingTable",

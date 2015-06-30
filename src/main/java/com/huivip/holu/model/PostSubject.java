@@ -25,7 +25,7 @@ public class PostSubject extends BaseObject implements Serializable {
     private Date updateTime=new Date();
     private User creater;
     private User updater;
-    private List<PostBar> posts=new ArrayList<>();
+    /*private List<PostBar> posts=new ArrayList<>();*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,14 +88,14 @@ public class PostSubject extends BaseObject implements Serializable {
     public void setUpdater(User updater) {
         this.updater = updater;
     }
-    @OneToMany(mappedBy = "postSubject")
+   /* @OneToMany(mappedBy = "postSubject")
     public List<PostBar> getPosts() {
         return posts;
     }
 
     public void setPosts(List<PostBar> posts) {
         this.posts = posts;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -110,8 +110,7 @@ public class PostSubject extends BaseObject implements Serializable {
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
         if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
         if (creater != null ? !creater.equals(that.creater) : that.creater != null) return false;
-        if (updater != null ? !updater.equals(that.updater) : that.updater != null) return false;
-        return !(posts != null ? !posts.equals(that.posts) : that.posts != null);
+        return !(updater != null ? !updater.equals(that.updater) : that.updater != null);
 
     }
 
@@ -124,7 +123,6 @@ public class PostSubject extends BaseObject implements Serializable {
         result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
         result = 31 * result + (creater != null ? creater.hashCode() : 0);
         result = 31 * result + (updater != null ? updater.hashCode() : 0);
-        result = 31 * result + (posts != null ? posts.hashCode() : 0);
         return result;
     }
 
@@ -138,7 +136,6 @@ public class PostSubject extends BaseObject implements Serializable {
                 ", updateTime=" + updateTime +
                 ", creater=" + creater +
                 ", updater=" + updater +
-                ", posts=" + posts +
                 '}';
     }
 }

@@ -104,7 +104,7 @@ public class Project extends BaseObject implements Serializable {
     public void setBatchShortName(String batchShortName) {
         this.batchShortName = batchShortName;
     }
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="ownerID")
     public User getOwner() {
         return Owner;
