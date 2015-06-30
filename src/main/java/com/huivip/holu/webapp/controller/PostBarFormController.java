@@ -195,5 +195,8 @@ public class PostBarFormController extends BaseFormController {
             post.setThumbnailUrl(thumbnailURL);
             break;
         }
+        if(post.getThumbnailUrl()==null || post.getThumbnailUrl().equalsIgnoreCase("")){
+            post.setThumbnailUrl("/attached/holu_default.jpg");
+        }
     }
 }

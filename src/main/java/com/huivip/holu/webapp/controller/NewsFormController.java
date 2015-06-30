@@ -141,5 +141,8 @@ public class NewsFormController extends BaseFormController {
             news.setThumbnailUrl(thumbnailURL);
             break;
         }
+        if(news.getThumbnailUrl()==null || news.getThumbnailUrl().equalsIgnoreCase("")){
+            news.setThumbnailUrl("/attached/holu_default.jpg");
+        }
     }
 }
