@@ -3,15 +3,13 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.NoteDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Note;
+import com.huivip.holu.model.User;
 import com.huivip.holu.service.NoteManager;
-import com.huivip.holu.service.impl.GenericManagerImpl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 import javax.jws.WebService;
+import java.util.List;
 
 @Service("noteManager")
 @WebService(serviceName = "NoteService", endpointInterface = "com.huivip.holu.service.NoteManager")
@@ -49,8 +47,13 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     }
 
     @Override
-    public String saveNote(Note note) {
+    public Note saveNote(String title, String content, String userId) {
+        User user=userDao.get(Long.parseLong(userId));
+        Note note=new Note();
+        note.setTitle(title);
+        note.setContent(content);
+        note.setCreater(user);
         noteDao.save(note);
-        return "OK";
+        return note;
     }
 }

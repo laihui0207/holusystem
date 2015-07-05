@@ -8,7 +8,6 @@ import com.huivip.holu.service.PostBarManager;
 import com.huivip.holu.service.PostSubjectManager;
 import com.huivip.holu.service.UserGroupManager;
 import com.huivip.holu.service.UserManager;
-import com.huivip.holu.util.SteelConfig;
 import com.huivip.holu.util.Thumbnail;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/postBarform*")
@@ -146,7 +143,7 @@ public class PostBarFormController extends BaseFormController {
             final User cleanUser = getUserManager().getUserByUsername(
                     request.getRemoteUser());
             postBar.setCreater(cleanUser);
-            handleThumbnail(postBar);
+            postBar.setThumbnailUrl(Thumbnail.handleThumbnail(postBar.getContent(),getServletContext()));
             postBarManager.save(postBar);
             String key = (isNew) ? "postBar.added" : "postBar.updated";
             saveMessage(request, getText(key, locale));
@@ -169,34 +166,5 @@ public class PostBarFormController extends BaseFormController {
     @ModelAttribute("postSubjectList")
     public List<PostSubject> postSubjectsList(){
         return postSubjectManager.getAll();
-    }
-    private void handleThumbnail(PostBar post) {
-        String imgRegex = "<img.*?(?: |\\t|\\r|\\n)?src=['\"]?(.+?)['\"]?(?:(?: |\\t|\\r|\\n)+.*?)?>";
-        Pattern r = Pattern.compile(imgRegex);
-        Matcher m = r.matcher(post.getContent());
-        String attacheDir = SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
-        if (null == attacheDir || attacheDir.length() == 0) {
-            attacheDir = getServletContext().getRealPath("/");
-        }
-        if (!attacheDir.endsWith("/")) {
-            attacheDir += "/";
-        }
-        while (m.find()) {
-            String imgUrl = m.group(1);
-            if (imgUrl.indexOf("attached") < 0) {
-                continue;
-            }
-            String fileUrl = attacheDir + imgUrl.substring(imgUrl.indexOf("/attached"));
-            //to do  check if need create thumbnail
-            Thumbnail.thumbnail_create(fileUrl.substring(0, fileUrl.lastIndexOf("/") + 1),
-                    fileUrl.substring(fileUrl.lastIndexOf("/") + 1));
-            String thumbnailURL = imgUrl.substring(imgUrl.indexOf("/attached"), imgUrl.lastIndexOf("/") + 1) + imgUrl.substring(imgUrl.lastIndexOf("/") + 1,
-                    imgUrl.lastIndexOf(".")) + "_smaller" + imgUrl.substring(imgUrl.lastIndexOf("."));
-            post.setThumbnailUrl(thumbnailURL);
-            break;
-        }
-        if(post.getThumbnailUrl()==null || post.getThumbnailUrl().equalsIgnoreCase("")){
-            post.setThumbnailUrl("/attached/holu_default.jpg");
-        }
     }
 }

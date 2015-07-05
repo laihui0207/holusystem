@@ -3,10 +3,7 @@ package com.huivip.holu.service;
 import com.huivip.holu.model.Note;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
@@ -29,6 +26,6 @@ public interface NoteManager extends GenericManager<Note, Long> {
     String deleteNote(@PathParam("id")String noteId);
 
     @POST
-    String saveNote(Note note);
+    Note saveNote(@FormParam("title") String title, @FormParam("content") String content, @FormParam("userId") String userId);
 
 }

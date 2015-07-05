@@ -20,7 +20,7 @@
 
 <div class="col-sm-8">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="note" method="post" action="/noteform/${note.id}/Send" cssClass="well"
+<form:form commandName="note" method="post" action="${pageContext.request.contextPath}/noteform/${note.id}/Send" cssClass="well"
            id="noteForm" onsubmit="return validateNote(this)">
 <form:hidden path="id"/>
     <spring:bind path="note.title">

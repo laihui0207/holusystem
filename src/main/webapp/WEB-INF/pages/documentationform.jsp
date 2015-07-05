@@ -4,7 +4,7 @@
     <title><fmt:message key="documentationDetail.title"/></title>
     <meta name="menu" content="DocumentationMenu"/>
     <meta name="heading" content="<fmt:message key='documentationDetail.heading'/>"/>
-    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/styles/bootstrap-multiselect.css'/>" type="text/css"/>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="documentationList.documentation"/></c:set>

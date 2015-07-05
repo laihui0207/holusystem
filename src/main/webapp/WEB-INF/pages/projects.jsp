@@ -28,11 +28,11 @@
 
 <p><fmt:message key="projectList.message"/></p>
 
-<div id="actions" class="btn-group">
+<%--<div id="actions" class="btn-group">
     <a href='<c:url value="/projectform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
     <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
-</div>
+</div>--%>
 
 <display:table name="projectList" class="table table-condensed table-striped table-hover" requestURI="" id="projectList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="projectform" media="html"

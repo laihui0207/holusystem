@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -35,8 +36,8 @@ public class Documentation extends BaseObject implements Serializable {
     DocType docType;
     boolean viewLimit;
 
-    Set<User> viewUsers;
-    Set<UserGroup> viewUserGroups;
+    Set<User> viewUsers=new HashSet<>();
+    Set<UserGroup> viewUserGroups=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
