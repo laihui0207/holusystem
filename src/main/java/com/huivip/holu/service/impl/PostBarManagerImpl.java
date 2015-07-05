@@ -21,4 +21,9 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
         super(postBarDao);
         this.postBarDao = postBarDao;
     }
+
+    @Override
+    public List<PostBar> postBarBySubject(String subjectId) {
+        return null;
+    }
 }

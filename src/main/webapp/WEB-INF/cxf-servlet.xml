@@ -23,6 +23,10 @@
         <jaxrs:serviceBeans>
             <ref bean="userManager"/>
             <ref bean="newsManager"/>
+            <ref bean="documentationManager"/>
+            <ref bean="noteManager"/>
+            <ref bean="postBarManager"/>
+            <ref bean="postSubjectManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

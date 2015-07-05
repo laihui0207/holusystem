@@ -6,8 +6,8 @@
     <groupId>com.huivip.holu</groupId>
     <artifactId>holusystem</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>AppFuse Spring MVC Application</name>
+    <version>1.0</version>
+    <name>HongLu System</name>
 
     <parent>
         <groupId>org.appfuse</groupId>
@@ -111,7 +111,8 @@
                 <jdbc.artifactId>jtds</jdbc.artifactId>
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:jtds:sqlserver://127.0.0.1:1433/${db.name}</jdbc.url>
+<!--                <jdbc.url>jdbc:jtds:sqlserver://220.178.1.10:1433/${db.name}</jdbc.url>-->
+                 <jdbc.url>jdbc:jtds:sqlserver://127.0.0.1:1433/${db.name}</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
             </properties>
@@ -127,7 +128,7 @@
                 <jdbc.artifactId>jtds</jdbc.artifactId>
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.136:1433/${db.name}</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.134:1433/${db.name}</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>pass</jdbc.password>
             </properties>

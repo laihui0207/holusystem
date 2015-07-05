@@ -53,7 +53,7 @@
          <fmt:formatDate value="${postBarList.updateTime}" pattern="${datePattern}"/>
     </display:column>
     <display:column  sortable="false" titleKey="list.action">
-        <a href="postBars/${postBarList.id}/replies">Replies</a>
+        <a href="postBars/${postBarList.id}/replies"><fmt:message key="action.replies"/> </a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="postBarList.postBar"/></display:setProperty>

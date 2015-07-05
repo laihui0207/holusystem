@@ -45,9 +45,9 @@
     <display:column property="batchShortName" sortable="true" titleKey="project.batchShortName"/>
     <display:column property="unitFullName" sortable="true" titleKey="project.unitFullName"/>
     <display:column property="unitShortName" sortable="true" titleKey="project.unitShortName"/>
-    <display:column property="company.companyShortNameCN" sortable="true" titleKey="company.name"/>
+    <display:column property="company.companyShortNameCN" sortable="true" titleKey="company.title"/>
     <display:column titleKey="list.action">
-        <a href="/app/components/${projectList.id}/Component">Components</a>
+        <a href="components/${projectList.id}/Component"><fmt:message key="action.components"/></a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="projectList.project"/></display:setProperty>

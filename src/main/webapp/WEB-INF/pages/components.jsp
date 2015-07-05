@@ -51,7 +51,7 @@
     <display:column property="creater.fullName" sortable="true" titleKey="component.user"/>
     <display:column property="weight" sortable="true" titleKey="component.weight"/>
     <display:column titleKey="list.action">
-        <spring:url value="/componentStyles/processlist" var="url">
+        <spring:url value="componentStyles/processlist" var="url">
             <spring:param name="styleName" value="${componentList.styleName}"></spring:param>
             <spring:param name="companyId" value="${componentList.project.company.id}"></spring:param>
         </spring:url>
@@ -59,7 +59,7 @@
             <c:param name="styleName"><c:out value="${componentList.styleName}"></c:out></c:param>
             <c:param name="companyId">${componentList.project.company.id}</c:param>
         </c:url>--%>
-        <a href="${url}">Process List</a>
+        <a href="${url}" methods="post"><fmt:message key="action.processList"/></a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentList.component"/></display:setProperty>

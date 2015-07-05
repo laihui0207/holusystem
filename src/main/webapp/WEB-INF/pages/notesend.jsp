@@ -4,7 +4,7 @@
     <title><fmt:message key="noteDetail.title"/></title>
     <meta name="menu" content="NoteMenu"/>
     <meta name="heading" content="<fmt:message key='noteDetail.heading'/>"/>
-    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/styles/bootstrap-multiselect.css'/>" type="text/css"/>
 </head>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
@@ -39,12 +39,12 @@
     </div>
 
     <div class="form-group"  id="viewUserdiv">
-        <appfuse:label key="postBar.Subject" styleClass="control-label"/>
+        <appfuse:label key="messageSend.toUser" styleClass="control-label"/>
         <form:select cssClass="form-control" path="sendToUserList" items="${userList}" itemLabel="fullName"
                      itemValue="id"/>
     </div>
     <div class="form-group"  id="viewGroupdiv">
-        <appfuse:label key="postBar.Subject" styleClass="control-label"/>
+        <appfuse:label key="messageSend.toGrout" styleClass="control-label"/>
         <form:select cssClass="form-control" path="sendToUserGroupList" items="${userGroupList}" itemLabel="name"
                      itemValue="id"/>
     </div>

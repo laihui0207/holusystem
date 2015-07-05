@@ -132,11 +132,11 @@ public class NewsFormController extends BaseFormController {
             if(imgUrl.indexOf("attached")<0){
                 continue;
             }
-            String fileUrl=attacheDir+imgUrl;
+            String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached"));
             //to do  check if need create thumbnail
             Thumbnail.thumbnail_create(fileUrl.substring(0, fileUrl.lastIndexOf("/") + 1),
                     fileUrl.substring(fileUrl.lastIndexOf("/") + 1));
-            String thumbnailURL=imgUrl.substring(0,imgUrl.lastIndexOf("/")+1)+imgUrl.substring(imgUrl.lastIndexOf("/")+1,
+            String thumbnailURL=imgUrl.substring(imgUrl.indexOf("/attached"),imgUrl.lastIndexOf("/")+1)+imgUrl.substring(imgUrl.lastIndexOf("/")+1,
                     imgUrl.lastIndexOf("."))+"_smaller"+imgUrl.substring(imgUrl.lastIndexOf("."));
             news.setThumbnailUrl(thumbnailURL);
             break;

@@ -1,6 +1,7 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.MessageDao;
+import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.MessageManager;
@@ -16,6 +17,8 @@ import javax.jws.WebService;
 @WebService(serviceName = "MessageService", endpointInterface = "com.huivip.holu.service.MessageManager")
 public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implements MessageManager {
     MessageDao messageDao;
+    @Autowired
+    UserDao userDao;
 
     @Autowired
     public MessageManagerImpl(MessageDao messageDao) {
@@ -26,5 +29,11 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     @Override
     public List<Message> messageByOwner(User user) {
         return messageDao.messageByOwner(user);
+    }
+
+    @Override
+    public List<Message> myMessage(String userId) {
+        User user=userDao.get(Long.parseLong(userId));
+        return messageByOwner(user);
     }
 }

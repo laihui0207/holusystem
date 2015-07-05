@@ -170,6 +170,20 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         userDao.remove(new Long(userId));
     }
 
+    @Override
+    public User userLogin(String username, String password) {
+        try {
+            User user = getUserByUsername(username);
+            if (user == null) return null;
+            if (!passwordEncoder.matches(password, user.getPassword())) {
+                return null;
+            }
+            return user;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     /**
      * {@inheritDoc}
      *

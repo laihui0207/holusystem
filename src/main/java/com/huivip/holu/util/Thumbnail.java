@@ -13,4 +13,8 @@ public class Thumbnail {
         String thumbnailFile=filePath+name.substring(0,name.lastIndexOf("."))+"_smaller"+name.substring(name.lastIndexOf("."));
         ImageUtil.compressImage(sourceFile,thumbnailFile,90,120);
     }
+    public static void main(String[] args){
+        String fileUrl="/holusystem/attached/aa.jpg";
+        System.out.println(fileUrl.substring(fileUrl.indexOf("/attached"), fileUrl.lastIndexOf("/") + 1));
+    }
 }

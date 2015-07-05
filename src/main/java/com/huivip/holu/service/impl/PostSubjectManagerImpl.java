@@ -21,4 +21,9 @@ public class PostSubjectManagerImpl extends GenericManagerImpl<PostSubject, Long
         super(postSubjectDao);
         this.postSubjectDao = postSubjectDao;
     }
+
+    @Override
+    public List<PostSubject> postSubjects() {
+        return getAll();
+    }
 }

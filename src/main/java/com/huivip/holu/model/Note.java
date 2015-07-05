@@ -50,7 +50,7 @@ public class Note extends BaseObject implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    @Lob
+    @Column(nullable = false,length = 8000)
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     public String getContent() {
         return content;

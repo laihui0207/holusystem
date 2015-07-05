@@ -24,7 +24,7 @@ public class DocumentationManagerImpl extends GenericManagerImpl<Documentation, 
 
     @Override
     public List<Documentation> getDocumentations() {
-        return null;
+        return documentationDao.getAll();
     }
 
     @Override

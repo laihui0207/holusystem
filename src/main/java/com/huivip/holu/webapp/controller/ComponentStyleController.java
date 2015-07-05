@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -46,11 +45,6 @@ public class ComponentStyleController {
     @RequestMapping(method = RequestMethod.GET, value = "processlist")
     public ModelAndView processListByStyleAndCompany(@RequestParam("styleName") String styleName,
                                                      @RequestParam("companyId") String companyId,HttpServletRequest request){
-        try {
-            styleName=new String(styleName.getBytes(), "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
         ModelAndView view=new ModelAndView("processListOfStyleAndCompany");
         List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleName,companyId);
         view.addObject("componentStyleList",componentStyleList);

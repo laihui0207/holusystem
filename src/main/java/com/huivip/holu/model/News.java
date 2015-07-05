@@ -1,6 +1,7 @@
 package com.huivip.holu.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
@@ -9,8 +10,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by sunlaihui on 6/15/15.
@@ -54,8 +53,8 @@ public class News extends BaseObject implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    @Lob
-    @Column(nullable = false)
+
+    @Column(nullable = false,length = 8000)
     @Field(index= org.hibernate.search.annotations.Index.YES, analyze= Analyze.YES, store= Store.NO)
     public String getContent() {
         return content;

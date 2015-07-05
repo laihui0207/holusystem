@@ -45,8 +45,8 @@
     <display:column sortProperty="replyTime" sortable="true" titleKey="reply.replyTime">
          <fmt:formatDate value="${replyList.replyTime}" pattern="${datePattern}"/>
     </display:column>
-    <display:column title="action">
-        <a href="/replyform/${replyList.postBar.id}/delete/${replyList.id}" onclick="bCancel=true;return confirmMessage(msgDelConfirm)">Delete</a>
+    <display:column titleKey="list.action">
+        <a href="${pageContext.request.contextPath}/replyform/${replyList.postBar.id}/delete/${replyList.id}" onclick="bCancel=true;return confirmMessage(msgDelConfirm)"><fmt:message key="action.delete"></fmt:message> </a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="replyList.reply"/></display:setProperty>

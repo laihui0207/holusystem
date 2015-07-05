@@ -64,7 +64,7 @@ public class Documentation extends BaseObject implements Serializable {
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
     }
-    @Lob
+    @Column(length = 8000)
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     public String getContent() {
         return content;

@@ -48,7 +48,7 @@
         <input type="checkbox" disabled="disabled" <c:if test="${documentationList.viewLimit}">checked="checked"</c:if>/>
     </display:column>
     <display:column titleKey="list.action">
-        <a href="/app/documentations/${documentationList.id}/Download">Download</a>
+        <a href="documentations/${documentationList.id}/Download"><fmt:message key="action.download"/></a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="documentationList.documentation"/></display:setProperty>

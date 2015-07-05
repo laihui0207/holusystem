@@ -42,7 +42,7 @@
     <display:column property="createTime" sortable="true" titleKey="news.createTime"/>
     <display:column property="expiredTime" sortable="true" titleKey="news.expiredTime"/>
     <display:column  sortable="false" titleKey="list.action">
-        <a href="/newss/view/${newsList.id}" target="_blank"><fmt:message key="newsList.view"/></a>
+        <a href="newss/view/${newsList.id}" target="_blank"><fmt:message key="newsList.view"/></a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="newsList.news"/></display:setProperty>

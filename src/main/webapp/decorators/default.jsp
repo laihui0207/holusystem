@@ -54,6 +54,8 @@
             <c:if test="${pageContext.request.remoteUser != null}">
             | <fmt:message key="user.status"/> ${pageContext.request.remoteUser}
             </c:if>
+            | <fmt:message key="page.language"/>: <a href="?locale=zh"><fmt:message key="page.zh"/> </a> <a href="?locale=en"><fmt:message key="page.en"/> </a>
+
         </span>
         <span class="col-sm-6 text-right">
             &copy; <fmt:message key="copyright.year"/> <a href="<fmt:message key="company.url"/>"><fmt:message key="company.name"/></a>

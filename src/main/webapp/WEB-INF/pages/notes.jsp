@@ -41,10 +41,10 @@
     <display:column property="title" sortable="true" titleKey="note.title"/>
     <display:column property="createTime" sortable="true" titleKey="note.createTime"/>
     <display:column property="receriveTime" sortable="true" titleKey="note.receriveTime"/>
-    <display:column title="Action">
-        <a href="/notes/view/${noteList.id}" target="_blank">View</a>
+    <display:column titleKey="list.action">
+        <a href="notes/view/${noteList.id}" target="_blank"><fmt:message key="action.view"/></a>
          |
-        <a href="/noteform/${noteList.id}/Send"> Send </a>
+        <a href="noteform/${noteList.id}/Send"> <fmt:message key="action.send"/> </a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="noteList.note"/></display:setProperty>

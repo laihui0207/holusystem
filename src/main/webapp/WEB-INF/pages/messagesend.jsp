@@ -4,7 +4,7 @@
     <title><fmt:message key="messageDetail.title"/></title>
     <meta name="menu" content="MessageMenu"/>
     <meta name="heading" content="<fmt:message key='messageDetail.heading'/>"/>
-    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/styles/bootstrap-multiselect.css'/>" type="text/css"/>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="messageList.message"/></c:set>
@@ -19,7 +19,7 @@
 
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="message" method="post" action="/messageform/${message.id}/Send" cssClass="well"
+<form:form commandName="message" method="post" action="${pageContext.request.contextPath}/messageform/${message.id}/Send" cssClass="well"
            id="messageForm" onsubmit="return validateMessage(this)">
 <form:hidden path="id"/>
     <spring:bind path="message.title">

@@ -15,7 +15,7 @@
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
-            <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
+           <!-- <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>-->
             <Item name="NewsTypeMenu" title="newsTypeList.title" page="/newsTypes"/>
             <Item name="CompanyMenu" title="companyList.title" page="/companies"/>
             <Item name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
