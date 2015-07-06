@@ -21,4 +21,9 @@ public class NewsTypeManagerImpl extends GenericManagerImpl<NewsType, Long> impl
         super(newsTypeDao);
         this.newsTypeDao = newsTypeDao;
     }
+
+    @Override
+    public List<NewsType> newsTypeList() {
+        return getAll();
+    }
 }

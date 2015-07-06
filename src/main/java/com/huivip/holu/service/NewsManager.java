@@ -18,4 +18,8 @@ public interface NewsManager extends GenericManager<News, Long> {
     @Path("{id}")
     @GET
     News getNews(@PathParam("id")String id);
+
+    @Path("newstype/{typeId}")
+    @GET
+    List<News> getNewsByType(@PathParam("typeId") String typeID);
 }

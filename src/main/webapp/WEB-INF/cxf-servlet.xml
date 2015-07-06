@@ -27,6 +27,7 @@
             <ref bean="noteManager"/>
             <ref bean="postBarManager"/>
             <ref bean="postSubjectManager"/>
+            <ref bean="newsTypeManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

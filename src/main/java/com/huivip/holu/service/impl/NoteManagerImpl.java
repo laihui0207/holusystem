@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service("noteManager")
@@ -41,18 +43,22 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     }
 
     @Override
-    public String deleteNote(String noteId) {
+    public void deleteNote(String noteId) {
         noteDao.remove(Long.parseLong(noteId));
-        return "OK";
     }
 
     @Override
-    public Note saveNote(String title, String content, String userId) {
+    public Note saveNote(String title, String content, String userId, String noteId) {
         User user=userDao.get(Long.parseLong(userId));
         Note note=new Note();
+        if(noteId!=null && noteId.length()>0 && !noteId.equalsIgnoreCase("undefined")){
+            note=noteDao.get(Long.parseLong(noteId));
+        }
         note.setTitle(title);
         note.setContent(content);
         note.setCreater(user);
+        note.setUpdater(user);
+        note.setUpdateTime(new Timestamp(new Date().getTime()));
         noteDao.save(note);
         return note;
     }

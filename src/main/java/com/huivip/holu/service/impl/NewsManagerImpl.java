@@ -31,4 +31,14 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
     public News getNews(String id) {
         return get(Long.parseLong(id));
     }
+
+    @Override
+    public List<News> getNewsByType(String typeID) {
+        if(null!=typeID && typeID.equalsIgnoreCase("all")){
+            return getAll();
+        }
+        else {
+           return newsDao.getNewsByType(typeID);
+        }
+    }
 }

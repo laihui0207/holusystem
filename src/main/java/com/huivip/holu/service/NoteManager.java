@@ -23,9 +23,10 @@ public interface NoteManager extends GenericManager<Note, Long> {
 
     @GET
     @Path("{id}/delete")
-    String deleteNote(@PathParam("id")String noteId);
+    void deleteNote(@PathParam("id") String noteId);
 
     @POST
-    Note saveNote(@FormParam("title") String title, @FormParam("content") String content, @FormParam("userId") String userId);
+    Note saveNote(@FormParam("title") String title, @FormParam("content") String content,
+                  @FormParam("userId") String userId,@FormParam("noteId") String noteId);
 
 }
