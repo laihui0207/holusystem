@@ -4,7 +4,7 @@
     <title><fmt:message key="postBarDetail.title"/></title>
     <meta name="menu" content="PostBarMenu"/>
     <meta name="heading" content="<fmt:message key='postBarDetail.heading'/>"/>
-    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/styles/bootstrap-multiselect.css'/>" type="text/css"/>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="postBarList.postBar"/></c:set>

@@ -16,7 +16,7 @@ public class NoteDaoHibernate extends GenericDaoHibernate<Note, Long> implements
 
     @Override
     public List<Note> myNotes(String userid) {
-        String queryString="From Note where creater.id="+userid+ " or receiver.id="+userid;
+        String queryString="From Note where receiver.id="+userid;
         Query query=getSession().createQuery(queryString);
         return query.list();
     }

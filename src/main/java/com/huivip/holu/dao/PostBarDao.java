@@ -10,5 +10,6 @@ import java.util.List;
 public interface PostBarDao extends GenericDao<PostBar, Long> {
 
     List<PostBar> getPostBarListBySubject(String subjectId);
+    public List<PostBar> postBarByUser(String userId);
 
 }

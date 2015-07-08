@@ -17,7 +17,7 @@
     <fmt:message key="documentationDetail.message"/>
 </div>
 
-<div class="col-sm-6">
+<div class="col-sm-8">
     <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:form commandName="documentation" method="post" action="documentationform" cssClass="well" enctype="multipart/form-data"
                id="documentationForm" onsubmit="return validateDocumentation(this)">
@@ -99,6 +99,7 @@
 <v:javascript formName="documentation" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/scripts/validator.jsp'/>"></script>
 <script type="text/javascript" src="<c:url value='/scripts/multieselect/bootstrap-multiselect.js'/>"></script>
+<script type="text/javascript" charset="utf-8" src="<c:url value='/scripts/editor/kindeditor.js'/>"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -117,5 +118,12 @@
             $("#viewUserdiv").hide();
             $("#viewGroupdiv").hide();
         }
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#introduction', {
+                uploadJson: "<c:url value='/editeruploadattachement'/>",
+                fileManagerJson: "<c:url value='/editeruploadattachement'/>",
+                allowFileManager: true, filterMode: false
+            });
+        });
     });
 </script>

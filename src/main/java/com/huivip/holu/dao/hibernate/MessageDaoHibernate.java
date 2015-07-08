@@ -17,7 +17,7 @@ public class MessageDaoHibernate extends GenericDaoHibernate<Message, Long> impl
 
     @Override
     public List<Message> messageByOwner(User user) {
-        String queryString="From Message where creater.id="+user.getId()+" or owner.id="+user.getId();
+        String queryString="From Message where owner.id="+user.getId();
         Query query=getSession().createQuery(queryString);
 
         return query.list();

@@ -4,7 +4,7 @@
     <title><fmt:message key="userGroupDetail.title"/></title>
     <meta name="menu" content="UserGroupMenu"/>
     <meta name="heading" content="<fmt:message key='userGroupDetail.heading'/>"/>
-    <link rel="stylesheet" href="/styles/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/styles/bootstrap-multiselect.css'/>" type="text/css"/>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="userGroupList.userGroup"/></c:set>
@@ -38,7 +38,7 @@
     </div>
     <div class="form-group">
         <appfuse:label key="userGroup.members" styleClass="control-label"/>:<br>
-        <form:select cssClass="form-control" id="members" multiple="true" path="members" items="${usersList}" itemLabel="username" itemValue="id"/>
+        <form:select cssClass="form-control" id="members" multiple="true" path="members" items="${usersList}" itemLabel="fullName" itemValue="id"/>
     </div>
 
 

@@ -35,15 +35,20 @@
 </div>
 
 <display:table name="newsList" class="table table-condensed table-striped table-hover" requestURI="" id="newsList" export="true" pagesize="25">
+    <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
     <display:column property="id" sortable="true" href="newsform" media="html"
         paramId="id" paramProperty="id" titleKey="news.id"/>
+    </c:if>
     <display:column property="id" media="csv excel xml pdf" titleKey="news.id"/>
-    <display:column property="title" sortable="true" titleKey="news.title"/>
+
+    <display:column  sortable="true" titleKey="news.title">
+        <a href="newss/view/${newsList.id}">${newsList.title}</a>
+            </display:column>
     <display:column property="createTime" sortable="true" titleKey="news.createTime"/>
     <display:column property="expiredTime" sortable="true" titleKey="news.expiredTime"/>
-    <display:column  sortable="false" titleKey="list.action">
+   <%-- <display:column  sortable="false" titleKey="list.action">
         <a href="newss/view/${newsList.id}" target="_blank"><fmt:message key="newsList.view"/></a>
-    </display:column>
+    </display:column>--%>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="newsList.news"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="newsList.newss"/></display:setProperty>

@@ -145,6 +145,7 @@ public class MessageFormController extends BaseFormController {
             message.setCreater(cleanUser);
             message.setOwner(cleanUser);
             message.setUpdater(cleanUser);
+            message.setOwner(cleanUser);
             message.setStatus(0);
             messageManager.save(message);
             String key = (isNew) ? "message.added" : "message.updated";

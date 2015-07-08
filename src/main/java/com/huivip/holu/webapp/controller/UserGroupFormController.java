@@ -89,9 +89,9 @@ public class UserGroupFormController extends BaseFormController {
             String key = (isNew) ? "userGroup.added" : "userGroup.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+            /*if (!isNew) {
                 success = "redirect:userGroupform?id=" + userGroup.getId();
-            }
+            }*/
         }
 
         return success;

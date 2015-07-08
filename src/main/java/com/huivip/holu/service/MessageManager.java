@@ -4,16 +4,29 @@ import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
-@Path("/messages")
+@Path("/msgs")
 public interface MessageManager extends GenericManager<Message, Long> {
     List<Message> messageByOwner(User user);
 
-    @Path("/user/{userId}")
     @GET
-    List<Message> myMessage(String userId);
+    @Path("user/{userId}")
+    List<Message> myMessage(@PathParam("userId")String userId);
+
+    @GET
+    @Path("{id}")
+    Message getMessage(@PathParam("id")String id);
+
+
+
+    @GET
+    @Path("{id}/delete")
+    void deleteMessage(@PathParam("id")String messageId);
+
+    @POST
+    Message saveMessage(@FormParam("title") String title, @FormParam("content") String content,
+                        @FormParam("userId") String userId,@FormParam("messageId") String messageId);
 }

@@ -1,5 +1,6 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.Constants;
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/messages*")
@@ -34,11 +37,23 @@ public class MessageController {
                 request.getRemoteUser());
         Model model = new ExtendedModelMap();
         try {
-            if(null!=query && query.length()>0) {
+            if(request.isUserInRole(Constants.ADMIN_ROLE)){
                 model.addAttribute(messageManager.search(query, Message.class));
             }
             else {
-                model.addAttribute(messageManager.messageByOwner(cleanUser));
+                List<Message> resultList=new ArrayList<>();
+                if(query==null || query.equals("")){
+                    resultList=messageManager.messageByOwner(cleanUser);
+                }
+                else {
+                    List<Message> messageList = messageManager.search(query, Message.class);
+                    for (Message message : messageList) {
+                        if (message.getOwner().getUsername().equals(cleanUser.getUsername())) {
+                            resultList.add(message);
+                        }
+                    }
+                }
+                model.addAttribute(resultList);
             }
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());

@@ -1,9 +1,12 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.Constants;
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.PostBar;
+import com.huivip.holu.model.User;
 import com.huivip.holu.service.PostBarManager;
 import com.huivip.holu.service.ReplyManager;
+import com.huivip.holu.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -14,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/postBars*")
 public class PostBarController {
     private PostBarManager postBarManager;
     @Autowired
     private ReplyManager replyManager;
+    @Autowired
+    private UserManager userManager;
 
     @Autowired
     public void setPostBarManager(PostBarManager postBarManager) {
@@ -27,11 +34,22 @@ public class PostBarController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Model handleRequest(@RequestParam(required = false, value = "q") String query)
+    public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
         Model model = new ExtendedModelMap();
+        User user=userManager.getUserByUsername(request.getRemoteUser());
         try {
-            model.addAttribute(postBarManager.search(query, PostBar.class));
+            if(request.isUserInRole(Constants.ADMIN_ROLE)) {
+                model.addAttribute(postBarManager.search(query, PostBar.class));
+            }
+            else {
+                if(null == query || query.equals("")){
+                    model.addAttribute(postBarManager.getAll());
+                }
+                else {
+
+                }
+            }
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(postBarManager.getAll());

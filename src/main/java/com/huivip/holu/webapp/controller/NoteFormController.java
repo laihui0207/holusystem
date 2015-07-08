@@ -85,6 +85,7 @@ public class NoteFormController extends BaseFormController {
                     request.getRemoteUser());
             note.setCreater(cleanUser);
             note.setUpdater(cleanUser);
+            note.setReceiver(cleanUser);
             noteManager.save(note);
             String key = (isNew) ? "note.added" : "note.updated";
             saveMessage(request, getText(key, locale));

@@ -1,5 +1,6 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.Constants;
 import com.huivip.holu.model.News;
 import com.huivip.holu.model.NewsType;
 import com.huivip.holu.model.User;
@@ -59,6 +60,9 @@ public class NewsFormController extends BaseFormController {
     @RequestMapping(method = RequestMethod.GET)
     protected News showForm(HttpServletRequest request)
     throws Exception {
+        if(!request.isUserInRole(Constants.ADMIN_ROLE)){
+            saveError(request, getText("privilege.NotAllow", request.getLocale()));
+        }
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
@@ -75,7 +79,9 @@ public class NewsFormController extends BaseFormController {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
-
+        if(!request.isUserInRole(Constants.ADMIN_ROLE)){
+            return getCancelView();
+        }
         if (validator != null) { // validator is null during testing
             validator.validate(news, errors);
 

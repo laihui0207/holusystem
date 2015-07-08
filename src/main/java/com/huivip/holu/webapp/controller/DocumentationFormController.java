@@ -120,9 +120,9 @@ public class DocumentationFormController extends BaseFormController {
             String key = (isNew) ? "documentation.added" : "documentation.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+           /* if (!isNew) {
                 success = "redirect:documentationform?id=" + documentation.getId();
-            }
+            }*/
         }
 
         return success;

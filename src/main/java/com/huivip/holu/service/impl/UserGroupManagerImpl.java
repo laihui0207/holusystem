@@ -21,4 +21,9 @@ public class UserGroupManagerImpl extends GenericManagerImpl<UserGroup, Long> im
         super(userGroupDao);
         this.userGroupDao = userGroupDao;
     }
+
+    @Override
+    public List<UserGroup> userGroups() {
+        return getAll();
+    }
 }

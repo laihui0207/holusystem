@@ -1,5 +1,6 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.Constants;
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.Documentation;
 import com.huivip.holu.model.User;
@@ -39,11 +40,29 @@ public class DocumentationController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Model handleRequest(@RequestParam(required = false, value = "q") String query)
+    public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
         Model model = new ExtendedModelMap();
+        User user= userManager.getUserByUsername(request.getRemoteUser());
         try {
-            model.addAttribute(documentationManager.search(query, Documentation.class));
+            if(!request.isUserInRole(Constants.ADMIN_ROLE)){
+                List<Documentation> resultList=new ArrayList<>();
+                if(null==query || query==""){
+                    resultList=documentationManager.myDocumentations(user.getId().toString());
+                }
+                else {
+                    List<Documentation> documentationList = documentationManager.search(query, Documentation.class);
+                    for (Documentation documentation : documentationList) {
+                        if (documentation.getCreater().getUsername().equalsIgnoreCase(request.getRemoteUser())) {
+                            resultList.add(documentation);
+                        }
+                    }
+                }
+                model.addAttribute(resultList);
+            }
+            else {
+                model.addAttribute(documentationManager.search(query, Documentation.class));
+            }
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(documentationManager.getAll());

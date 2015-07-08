@@ -28,6 +28,11 @@ public class DocumentationManagerImpl extends GenericManagerImpl<Documentation, 
     }
 
     @Override
+    public List<Documentation> myDocumentations(String userId) {
+        return documentationDao.myDocumentations(userId);
+    }
+
+    @Override
     public Documentation downloadDocumentation(String id) {
         return null;
     }

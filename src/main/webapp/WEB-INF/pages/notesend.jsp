@@ -44,7 +44,7 @@
                      itemValue="id"/>
     </div>
     <div class="form-group"  id="viewGroupdiv">
-        <appfuse:label key="messageSend.toGrout" styleClass="control-label"/>
+        <appfuse:label key="messageSend.toGroup" styleClass="control-label"/>
         <form:select cssClass="form-control" path="sendToUserGroupList" items="${userGroupList}" itemLabel="name"
                      itemValue="id"/>
     </div>

@@ -5,6 +5,7 @@ import com.huivip.holu.model.PostBar;
 import javax.jws.WebService;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import java.util.List;
 
 @WebService
@@ -12,7 +13,12 @@ import java.util.List;
 public interface PostBarManager extends GenericManager<PostBar, Long> {
 
     @GET
-    List<PostBar> postBarBySubject(String subjectId);
+    @Path("subject/{id}")
+    List<PostBar> postBarBySubject(@PathParam("id")String subjectId);
+
+    @GET
+    @Path("/user/{userId}")
+    List<PostBar> postBarByUser(@PathParam("userId")String userId);
 
 
 }

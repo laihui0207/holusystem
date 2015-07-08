@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - holusystem@localhost" uuid="b28cba8c-ec4a-4748-b87f-098063cc28b8">
+    <database-info product="MySQL" version="5.5.41-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="holusystem"/>
+    <table name="NoteReceiveUserGroups" schema="" catalog="holusystem" type="TABLE">
+      <column name="note_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="note_id,group_id"/>
+      <foreign-key name="FK_a9xewan96oqt38hb7fce0otds" columns="group_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_pc1agrekqcdolhhia415w24nt" columns="note_id" ref-table="R_Note" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_a9xewan96oqt38hb7fce0otds" unique="false" columns="group_id"/>
+    </table>
+    <table name="NoteReceiveUsers" schema="" catalog="holusystem" type="TABLE">
+      <column name="note_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="note_id,user_id"/>
+      <foreign-key name="FK_3uulqx6fj57p5ruplh3tw0y6o" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_lfllypyc84xj8df4wtnb3to" columns="note_id" ref-table="R_Note" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_3uulqx6fj57p5ruplh3tw0y6o" unique="false" columns="user_id"/>
+    </table>
+    <table name="R_ComponetStyle" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="processName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="processOrder" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="styleName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CompanyID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_e93qyhbmidjcuwgk76cfnxb5l" columns="CompanyID" ref-table="R_company" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_e93qyhbmidjcuwgk76cfnxb5l" unique="false" columns="CompanyID"/>
+    </table>
+    <table name="R_Documents" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="docSize" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fileName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="introduction" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="storePath" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="viewLimit" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="doctype_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3l3t542yaagqf2c0nsnnwaibw" columns="doctype_id" ref-table="R_doctype" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_5194nmilrmycno6h1lvoho8r5" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_e2oymsc5vtlb7oisr4d973hw3" columns="updater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_jwtonclmm3bsviwg4jp8hmt3b" table="docViewGroups" schema="" catalog="holusystem" columns="doc_id"/>
+      <exported-key name="FK_b0jdp9nwtl0aywjlyrvwu5rvf" table="docViewUsers" schema="" catalog="holusystem" columns="doc_id"/>
+      <index name="FK_3l3t542yaagqf2c0nsnnwaibw" unique="false" columns="doctype_id"/>
+      <index name="FK_5194nmilrmycno6h1lvoho8r5" unique="false" columns="creater_id"/>
+      <index name="FK_e2oymsc5vtlb7oisr4d973hw3" unique="false" columns="updater_id"/>
+    </table>
+    <table name="R_Note" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="content" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="receriveTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="createrID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="fromUserID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="receiveUserID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updateUserID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_4ok95fcy1dsgnxq2yg59vw49a" columns="createrID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_8ggabmo6hl8l2jcj7lviin12p" columns="receiveUserID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_r11ibfrwa7m06d33oy527dke" columns="fromUserID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_rhs5p1w1n3uefb64dcrxdkewo" columns="updateUserID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_pc1agrekqcdolhhia415w24nt" table="NoteReceiveUserGroups" schema="" catalog="holusystem" columns="note_id"/>
+      <exported-key name="FK_lfllypyc84xj8df4wtnb3to" table="NoteReceiveUsers" schema="" catalog="holusystem" columns="note_id"/>
+      <index name="FK_4ok95fcy1dsgnxq2yg59vw49a" unique="false" columns="createrID"/>
+      <index name="FK_8ggabmo6hl8l2jcj7lviin12p" unique="false" columns="receiveUserID"/>
+      <index name="FK_r11ibfrwa7m06d33oy527dke" unique="false" columns="fromUserID"/>
+      <index name="FK_rhs5p1w1n3uefb64dcrxdkewo" unique="false" columns="updateUserID"/>
+    </table>
+    <table name="R_Post" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="createDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="postID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postNote" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="processName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_lcrr52um98jg2qibgjkrrt98k" columns="companyID" ref-table="R_company" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_62tpcel38b2r87ho0fxo84rxy" table="R_UserPostMappingTable" schema="" catalog="holusystem" columns="PostID"/>
+      <index name="FK_lcrr52um98jg2qibgjkrrt98k" unique="false" columns="companyID"/>
+    </table>
+    <table name="R_PostBar" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="content" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ifAccessAllReply" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="ifAccessAllView" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="lastReplyTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="thumbnailUrl" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="createrID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="lastReplierID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="postSubjectID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_hcuom4pafr88ry7ud1iybod39" columns="postSubjectID" ref-table="R_PostSubject" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_odoxuy8ch3ixtx6nw8cgn1apt" columns="createrID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_rlf396wxnrmth9dqbr6a6662" columns="lastReplierID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_c4flh4jnjv11hiw7lnishqdea" table="R_Reply" schema="" catalog="holusystem" columns="postBarID"/>
+      <exported-key name="FK_f92wt6414rdttou1oe2hhcajs" table="postBarReplyGroups" schema="" catalog="holusystem" columns="postbar_id"/>
+      <exported-key name="FK_sufxnlot6as99etc4ijqowinv" table="postBarReplyUsers" schema="" catalog="holusystem" columns="postbar_id"/>
+      <exported-key name="FK_a7peknboqvm1tvsaidoximet8" table="postBarViewGroups" schema="" catalog="holusystem" columns="postbar_id"/>
+      <exported-key name="FK_hutlbo8cpta163flmbafyvdyt" table="postBarViewUsers" schema="" catalog="holusystem" columns="postbar_id"/>
+      <index name="FK_hcuom4pafr88ry7ud1iybod39" unique="false" columns="postSubjectID"/>
+      <index name="FK_odoxuy8ch3ixtx6nw8cgn1apt" unique="false" columns="createrID"/>
+      <index name="FK_rlf396wxnrmth9dqbr6a6662" unique="false" columns="lastReplierID"/>
+    </table>
+    <table name="R_PostSubject" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="createrID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updaterID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3oa8iee4oibg87tq09x5uijdw" columns="createrID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_measl6ah85vh8ihfqbqpjy1nj" columns="updaterID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_hcuom4pafr88ry7ud1iybod39" table="R_PostBar" schema="" catalog="holusystem" columns="postSubjectID"/>
+      <index name="FK_3oa8iee4oibg87tq09x5uijdw" unique="false" columns="createrID"/>
+      <index name="FK_measl6ah85vh8ihfqbqpjy1nj" unique="false" columns="updaterID"/>
+    </table>
+    <table name="R_Project" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="batchFullName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="batchShortName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="projectFullName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="projectID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="projectShortName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="unitFullName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="unitShortName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="ownerID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ic4k24puw1jm8abskdyji5cgg" columns="ownerID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_inhc9bin3d54iwouly82cakx9" columns="company_id" ref-table="R_company" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_i54bbc6e51q9lqqwvbkk0th3r" table="U_HOLU_ComponentList" schema="" catalog="holusystem" columns="Project_id"/>
+      <index name="FK_ic4k24puw1jm8abskdyji5cgg" unique="false" columns="ownerID"/>
+      <index name="FK_inhc9bin3d54iwouly82cakx9" unique="false" columns="company_id"/>
+    </table>
+    <table name="R_Reply" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="replyTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="postBarID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="replierID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_bfc7csje3ml1ipmun3eenxf0" columns="replierID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_c4flh4jnjv11hiw7lnishqdea" columns="postBarID" ref-table="R_PostBar" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_bfc7csje3ml1ipmun3eenxf0" unique="false" columns="replierID"/>
+      <index name="FK_c4flh4jnjv11hiw7lnishqdea" unique="false" columns="postBarID"/>
+    </table>
+    <table name="R_UserPostMappingTable" schema="" catalog="holusystem" type="TABLE">
+      <column name="UserID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="PostID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="UserID,PostID"/>
+      <foreign-key name="FK_62tpcel38b2r87ho0fxo84rxy" columns="PostID" ref-table="R_Post" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_fnqwjpqu5aexd3xorofbg7tmm" columns="UserID" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_62tpcel38b2r87ho0fxo84rxy" unique="false" columns="PostID"/>
+    </table>
+    <table name="R_company" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comapnyAddress" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyFax" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyFullName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyId" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyMaster" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyNature" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyNote" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyPositionGPS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyShortNameCN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyShortNameEN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyTel" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="companyWebSite" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_e93qyhbmidjcuwgk76cfnxb5l" table="R_ComponetStyle" schema="" catalog="holusystem" columns="CompanyID"/>
+      <exported-key name="FK_lcrr52um98jg2qibgjkrrt98k" table="R_Post" schema="" catalog="holusystem" columns="companyID"/>
+      <exported-key name="FK_inhc9bin3d54iwouly82cakx9" table="R_Project" schema="" catalog="holusystem" columns="company_id"/>
+      <exported-key name="FK_rk4q0m6fnqh0wld3ay5j5qnf" table="R_user" schema="" catalog="holusystem" columns="companyID"/>
+    </table>
+    <table name="R_doctype" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_sh2fpekjrvugpce35h29x91le" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_3l3t542yaagqf2c0nsnnwaibw" table="R_Documents" schema="" catalog="holusystem" columns="doctype_id"/>
+      <index name="FK_sh2fpekjrvugpce35h29x91le" unique="false" columns="creater_id"/>
+    </table>
+    <table name="R_groupMember" schema="" catalog="holusystem" type="TABLE">
+      <column name="group_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="group_id,user_id"/>
+      <foreign-key name="FK_8qe1taybdan95ly5884y4p6pi" columns="group_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_erl00brea7g2c9lmj8a7s7tdq" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_erl00brea7g2c9lmj8a7s7tdq" unique="false" columns="user_id"/>
+    </table>
+    <table name="R_messages" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="content" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="sendTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="owner_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="sender_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_8jkkk4vlfxj4wguqnou69kmva" columns="sender_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_fcrfg6ki6bkhqwt45uok9tnlv" columns="owner_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_fjn7rqepejl334r8wjilumdq2" columns="updater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_oy9dn821ecooys4oqc1g4emm4" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ex1o65in29vrul0tlfpont4ub" table="messagereceivegroups" schema="" catalog="holusystem" columns="message_id"/>
+      <exported-key name="FK_7vvf1c34l5aw5e3n8ad0gnot7" table="messagereceiveusers" schema="" catalog="holusystem" columns="message_id"/>
+      <index name="FK_8jkkk4vlfxj4wguqnou69kmva" unique="false" columns="sender_id"/>
+      <index name="FK_fcrfg6ki6bkhqwt45uok9tnlv" unique="false" columns="owner_id"/>
+      <index name="FK_fjn7rqepejl334r8wjilumdq2" unique="false" columns="updater_id"/>
+      <index name="FK_oy9dn821ecooys4oqc1g4emm4" unique="false" columns="creater_id"/>
+    </table>
+    <table name="R_news" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="content" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="expiredTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="thumbnailUrl" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="newsType_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_eqkeuufu32cp4obfwmislftv0" columns="newsType_id" ref-table="R_newsType" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_n7v03feqrig5e4b2tcn32j2le" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_eqkeuufu32cp4obfwmislftv0" unique="false" columns="newsType_id"/>
+      <index name="FK_n7v03feqrig5e4b2tcn32j2le" unique="false" columns="creater_id"/>
+    </table>
+    <table name="R_newsType" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_cgjhua6xesas9bxnywl3377am" columns="updater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_j22qolkdgbhpwovei218yf4yb" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_eqkeuufu32cp4obfwmislftv0" table="R_news" schema="" catalog="holusystem" columns="newsType_id"/>
+      <index name="FK_cgjhua6xesas9bxnywl3377am" unique="false" columns="updater_id"/>
+      <index name="FK_j22qolkdgbhpwovei218yf4yb" unique="false" columns="creater_id"/>
+    </table>
+    <table name="R_role" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_it77eq964jhfqtu54081ebtio" table="user_role" schema="" catalog="holusystem" columns="role_id"/>
+    </table>
+    <table name="R_user" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="QQ" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="acceptRegistration" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="account_expired" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="account_locked" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="allowCreateGroup" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="allowCreateProject" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="credentials_expired" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="account_enabled" sqlType="BIT" precision="1" scale="0" nullable="true" jdbcType="-7"/>
+      <column name="first_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lastLoginDte" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="lastLogoutDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="last_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="loginCount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="loginDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password_hint" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="registrationDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="totalHours" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="userState" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="version" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="companyID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_rk4q0m6fnqh0wld3ay5j5qnf" columns="companyID" ref-table="R_company" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_3uulqx6fj57p5ruplh3tw0y6o" table="NoteReceiveUsers" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_5194nmilrmycno6h1lvoho8r5" table="R_Documents" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_e2oymsc5vtlb7oisr4d973hw3" table="R_Documents" schema="" catalog="holusystem" columns="updater_id"/>
+      <exported-key name="FK_4ok95fcy1dsgnxq2yg59vw49a" table="R_Note" schema="" catalog="holusystem" columns="createrID"/>
+      <exported-key name="FK_8ggabmo6hl8l2jcj7lviin12p" table="R_Note" schema="" catalog="holusystem" columns="receiveUserID"/>
+      <exported-key name="FK_r11ibfrwa7m06d33oy527dke" table="R_Note" schema="" catalog="holusystem" columns="fromUserID"/>
+      <exported-key name="FK_rhs5p1w1n3uefb64dcrxdkewo" table="R_Note" schema="" catalog="holusystem" columns="updateUserID"/>
+      <exported-key name="FK_odoxuy8ch3ixtx6nw8cgn1apt" table="R_PostBar" schema="" catalog="holusystem" columns="createrID"/>
+      <exported-key name="FK_rlf396wxnrmth9dqbr6a6662" table="R_PostBar" schema="" catalog="holusystem" columns="lastReplierID"/>
+      <exported-key name="FK_3oa8iee4oibg87tq09x5uijdw" table="R_PostSubject" schema="" catalog="holusystem" columns="createrID"/>
+      <exported-key name="FK_measl6ah85vh8ihfqbqpjy1nj" table="R_PostSubject" schema="" catalog="holusystem" columns="updaterID"/>
+      <exported-key name="FK_ic4k24puw1jm8abskdyji5cgg" table="R_Project" schema="" catalog="holusystem" columns="ownerID"/>
+      <exported-key name="FK_bfc7csje3ml1ipmun3eenxf0" table="R_Reply" schema="" catalog="holusystem" columns="replierID"/>
+      <exported-key name="FK_fnqwjpqu5aexd3xorofbg7tmm" table="R_UserPostMappingTable" schema="" catalog="holusystem" columns="UserID"/>
+      <exported-key name="FK_sh2fpekjrvugpce35h29x91le" table="R_doctype" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_erl00brea7g2c9lmj8a7s7tdq" table="R_groupMember" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_8jkkk4vlfxj4wguqnou69kmva" table="R_messages" schema="" catalog="holusystem" columns="sender_id"/>
+      <exported-key name="FK_fcrfg6ki6bkhqwt45uok9tnlv" table="R_messages" schema="" catalog="holusystem" columns="owner_id"/>
+      <exported-key name="FK_fjn7rqepejl334r8wjilumdq2" table="R_messages" schema="" catalog="holusystem" columns="updater_id"/>
+      <exported-key name="FK_oy9dn821ecooys4oqc1g4emm4" table="R_messages" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_n7v03feqrig5e4b2tcn32j2le" table="R_news" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_cgjhua6xesas9bxnywl3377am" table="R_newsType" schema="" catalog="holusystem" columns="updater_id"/>
+      <exported-key name="FK_j22qolkdgbhpwovei218yf4yb" table="R_newsType" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_745k2yy8372quwdtu09wqdrkq" table="R_userGroup" schema="" catalog="holusystem" columns="updater_id"/>
+      <exported-key name="FK_9wl1uvd2gxmcdnr2c3atojn7j" table="R_userGroup" schema="" catalog="holusystem" columns="owner_id"/>
+      <exported-key name="FK_dvc1en6gcmamgg5fap7uybro9" table="R_userGroup" schema="" catalog="holusystem" columns="creater_id"/>
+      <exported-key name="FK_5tfxp1lhw1hykcd9pr6hbwbov" table="U_HOLU_ComponentList" schema="" catalog="holusystem" columns="creater"/>
+      <exported-key name="FK_qy1nxrhi4270rigpsgl6r0png" table="docViewUsers" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_j43cxfks6d1e49mkls59wkw4l" table="messagereceiveusers" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_lssyu03swvkc35nhp6g5c9j99" table="postBarReplyUsers" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_r8nsta9nmhw84cg6vlnktj4gy" table="postBarViewUsers" schema="" catalog="holusystem" columns="user_id"/>
+      <exported-key name="FK_apcc8lxk2xnug8377fatvbn04" table="user_role" schema="" catalog="holusystem" columns="user_id"/>
+      <index name="UK_1uaf33us60un7fa0qno7d00f7" unique="true" columns="username"/>
+      <index name="UK_3e6i69jk0e72s7ja3l83b1m32" unique="true" columns="email"/>
+      <index name="FK_rk4q0m6fnqh0wld3ay5j5qnf" unique="false" columns="companyID"/>
+    </table>
+    <table name="R_userGroup" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="updateTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="creater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="owner_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="updater_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_745k2yy8372quwdtu09wqdrkq" columns="updater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_9wl1uvd2gxmcdnr2c3atojn7j" columns="owner_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_dvc1en6gcmamgg5fap7uybro9" columns="creater_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_a9xewan96oqt38hb7fce0otds" table="NoteReceiveUserGroups" schema="" catalog="holusystem" columns="group_id"/>
+      <exported-key name="FK_8qe1taybdan95ly5884y4p6pi" table="R_groupMember" schema="" catalog="holusystem" columns="group_id"/>
+      <exported-key name="FK_5jdnx8k1apdfb4cf4n2b6njwi" table="docViewGroups" schema="" catalog="holusystem" columns="group_id"/>
+      <exported-key name="FK_l78ngyyiugpy9jmd2l8ed7sij" table="messagereceivegroups" schema="" catalog="holusystem" columns="usergroup_id"/>
+      <exported-key name="FK_cj3ws5p8b6h8rxp7064a3160j" table="postBarReplyGroups" schema="" catalog="holusystem" columns="group_id"/>
+      <exported-key name="FK_dmauq13o1kegvf44dyhrcfq3i" table="postBarViewGroups" schema="" catalog="holusystem" columns="group_id"/>
+      <index name="FK_745k2yy8372quwdtu09wqdrkq" unique="false" columns="updater_id"/>
+      <index name="FK_9wl1uvd2gxmcdnr2c3atojn7j" unique="false" columns="owner_id"/>
+      <index name="FK_dvc1en6gcmamgg5fap7uybro9" unique="false" columns="creater_id"/>
+    </table>
+    <table name="U_HOLU_ComponentList" schema="" catalog="holusystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="componentID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="componentName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="createDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="length" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="material" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pieceList" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="projectID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="quantity" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="size" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="styleName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="weight" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="creater" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="Project_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_5tfxp1lhw1hykcd9pr6hbwbov" columns="creater" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_i54bbc6e51q9lqqwvbkk0th3r" columns="Project_id" ref-table="R_Project" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_5tfxp1lhw1hykcd9pr6hbwbov" unique="false" columns="creater"/>
+      <index name="FK_i54bbc6e51q9lqqwvbkk0th3r" unique="false" columns="Project_id"/>
+    </table>
+    <table name="docViewGroups" schema="" catalog="holusystem" type="TABLE">
+      <column name="doc_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="doc_id,group_id"/>
+      <foreign-key name="FK_5jdnx8k1apdfb4cf4n2b6njwi" columns="group_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_jwtonclmm3bsviwg4jp8hmt3b" columns="doc_id" ref-table="R_Documents" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_5jdnx8k1apdfb4cf4n2b6njwi" unique="false" columns="group_id"/>
+    </table>
+    <table name="docViewUsers" schema="" catalog="holusystem" type="TABLE">
+      <column name="doc_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="doc_id,user_id"/>
+      <foreign-key name="FK_b0jdp9nwtl0aywjlyrvwu5rvf" columns="doc_id" ref-table="R_Documents" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_qy1nxrhi4270rigpsgl6r0png" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_qy1nxrhi4270rigpsgl6r0png" unique="false" columns="user_id"/>
+    </table>
+    <table name="messagereceivegroups" schema="" catalog="holusystem" type="TABLE">
+      <column name="message_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="usergroup_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="message_id,usergroup_id"/>
+      <foreign-key name="FK_ex1o65in29vrul0tlfpont4ub" columns="message_id" ref-table="R_messages" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_l78ngyyiugpy9jmd2l8ed7sij" columns="usergroup_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_l78ngyyiugpy9jmd2l8ed7sij" unique="false" columns="usergroup_id"/>
+    </table>
+    <table name="messagereceiveusers" schema="" catalog="holusystem" type="TABLE">
+      <column name="message_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="message_id,user_id"/>
+      <foreign-key name="FK_7vvf1c34l5aw5e3n8ad0gnot7" columns="message_id" ref-table="R_messages" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_j43cxfks6d1e49mkls59wkw4l" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_j43cxfks6d1e49mkls59wkw4l" unique="false" columns="user_id"/>
+    </table>
+    <table name="postBarReplyGroups" schema="" catalog="holusystem" type="TABLE">
+      <column name="postbar_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="postbar_id,group_id"/>
+      <foreign-key name="FK_cj3ws5p8b6h8rxp7064a3160j" columns="group_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_f92wt6414rdttou1oe2hhcajs" columns="postbar_id" ref-table="R_PostBar" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_cj3ws5p8b6h8rxp7064a3160j" unique="false" columns="group_id"/>
+    </table>
+    <table name="postBarReplyUsers" schema="" catalog="holusystem" type="TABLE">
+      <column name="postbar_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="postbar_id,user_id"/>
+      <foreign-key name="FK_lssyu03swvkc35nhp6g5c9j99" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_sufxnlot6as99etc4ijqowinv" columns="postbar_id" ref-table="R_PostBar" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_lssyu03swvkc35nhp6g5c9j99" unique="false" columns="user_id"/>
+    </table>
+    <table name="postBarViewGroups" schema="" catalog="holusystem" type="TABLE">
+      <column name="postbar_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="group_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="postbar_id,group_id"/>
+      <foreign-key name="FK_a7peknboqvm1tvsaidoximet8" columns="postbar_id" ref-table="R_PostBar" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_dmauq13o1kegvf44dyhrcfq3i" columns="group_id" ref-table="R_userGroup" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_dmauq13o1kegvf44dyhrcfq3i" unique="false" columns="group_id"/>
+    </table>
+    <table name="postBarViewUsers" schema="" catalog="holusystem" type="TABLE">
+      <column name="postbar_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="postbar_id,user_id"/>
+      <foreign-key name="FK_hutlbo8cpta163flmbafyvdyt" columns="postbar_id" ref-table="R_PostBar" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_r8nsta9nmhw84cg6vlnktj4gy" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_r8nsta9nmhw84cg6vlnktj4gy" unique="false" columns="user_id"/>
+    </table>
+    <table name="user_role" schema="" catalog="holusystem" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="role_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="user_id,role_id"/>
+      <foreign-key name="FK_apcc8lxk2xnug8377fatvbn04" columns="user_id" ref-table="R_user" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_it77eq964jhfqtu54081ebtio" columns="role_id" ref-table="R_role" ref-schema="" ref-catalog="holusystem" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_it77eq964jhfqtu54081ebtio" unique="false" columns="role_id"/>
+    </table>
+  </data-source>
+</component>

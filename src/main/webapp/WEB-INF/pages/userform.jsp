@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
             <appfuse:label key="companyList.title" styleClass="control-label"/>:
-            <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
+            <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyFullName" itemValue="id"/>
         </div>
         <div class="row">
             <spring:bind path="user.firstName">

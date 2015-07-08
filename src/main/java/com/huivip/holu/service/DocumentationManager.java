@@ -16,6 +16,10 @@ public interface DocumentationManager extends GenericManager<Documentation, Long
     List<Documentation> getDocumentations();
 
     @GET
+    @Path("user/{userId}")
+    List<Documentation> myDocumentations(@PathParam("userId")String userId);
+
+    @GET
     @Path("{id}/download")
     Documentation downloadDocumentation(@PathParam("id") String id);
     

@@ -41,7 +41,7 @@
     <display:column property="title" sortable="true" titleKey="message.title"/>
 <%--    <display:column property="content" sortable="true" titleKey="message.content"/>--%>
     <display:column property="createTime" sortable="true" titleKey="message.createTime"/>
-    <display:column property="status" sortable="true" titleKey="message.status"/>
+   <%-- <display:column property="status" sortable="true" titleKey="message.status"/>--%>
     <display:column property="owner.fullName" sortable="true" titleKey="message.owner"/>
     <display:column titleKey="list.action">
             <a href="messageform/${messageList.id}/Send"><fmt:message key="action.ReadAndSend"/> </a>

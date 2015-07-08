@@ -63,6 +63,7 @@ public final class Constants {
      * The name of the Administrator role, as specified in web.xml
      */
     public static final String ADMIN_ROLE = "ROLE_ADMIN";
+    public static final String MANAGER_ROLE= "ROLE_MANAGER";
 
     /**
      * The name of the User role, as specified in web.xml
