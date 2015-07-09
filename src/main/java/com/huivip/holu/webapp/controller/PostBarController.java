@@ -61,7 +61,7 @@ public class PostBarController {
     public ModelAndView repliesOfPost(@PathVariable("postBarID")String postID){
         ModelAndView view=new ModelAndView("replies");
         PostBar postBar=postBarManager.get(Long.parseLong(postID));
-        view.addObject("replyList",postBar.getReplies());
+        view.addObject("replyList",replyManager.getReplyByPostbar(postID));
         view.addObject("postBar",postBar);
         return view;
     }

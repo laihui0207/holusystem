@@ -35,7 +35,7 @@ public class PostBar extends BaseObject implements Serializable {
     private Set<User>  replyUsers=new HashSet<>();
     private Set<UserGroup> viewGroups=new HashSet<>();
     private Set<User>  viewUsers=new HashSet<>();
-    private List<Reply> replies=new ArrayList<>();
+    /*private List<Reply> replies=new ArrayList<>();*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -158,14 +158,14 @@ public class PostBar extends BaseObject implements Serializable {
     public void setReplyUsers(Set<User> replyUsers) {
         this.replyUsers = replyUsers;
     }
-    @OneToMany(mappedBy = "postBar")
+    /*@OneToMany(mappedBy = "postBar")
     public List<Reply> getReplies() {
         return replies;
     }
 
     public void setReplies(List<Reply> replies) {
         this.replies = replies;
-    }
+    }*/
 
     public boolean isIfAccessAllView() {
         return ifAccessAllView;
@@ -210,6 +210,7 @@ public class PostBar extends BaseObject implements Serializable {
         PostBar postBar = (PostBar) o;
 
         if (ifAccessAllReply != postBar.ifAccessAllReply) return false;
+        if (ifAccessAllView != postBar.ifAccessAllView) return false;
         if (id != null ? !id.equals(postBar.id) : postBar.id != null) return false;
         if (title != null ? !title.equals(postBar.title) : postBar.title != null) return false;
         if (content != null ? !content.equals(postBar.content) : postBar.content != null) return false;
@@ -225,7 +226,8 @@ public class PostBar extends BaseObject implements Serializable {
         if (postSubject != null ? !postSubject.equals(postBar.postSubject) : postBar.postSubject != null) return false;
         if (replyGroups != null ? !replyGroups.equals(postBar.replyGroups) : postBar.replyGroups != null) return false;
         if (replyUsers != null ? !replyUsers.equals(postBar.replyUsers) : postBar.replyUsers != null) return false;
-        return !(replies != null ? !replies.equals(postBar.replies) : postBar.replies != null);
+        if (viewGroups != null ? !viewGroups.equals(postBar.viewGroups) : postBar.viewGroups != null) return false;
+        return !(viewUsers != null ? !viewUsers.equals(postBar.viewUsers) : postBar.viewUsers != null);
 
     }
 
@@ -242,9 +244,11 @@ public class PostBar extends BaseObject implements Serializable {
         result = 31 * result + (thumbnailUrl != null ? thumbnailUrl.hashCode() : 0);
         result = 31 * result + (postSubject != null ? postSubject.hashCode() : 0);
         result = 31 * result + (ifAccessAllReply ? 1 : 0);
+        result = 31 * result + (ifAccessAllView ? 1 : 0);
         result = 31 * result + (replyGroups != null ? replyGroups.hashCode() : 0);
         result = 31 * result + (replyUsers != null ? replyUsers.hashCode() : 0);
-        result = 31 * result + (replies != null ? replies.hashCode() : 0);
+        result = 31 * result + (viewGroups != null ? viewGroups.hashCode() : 0);
+        result = 31 * result + (viewUsers != null ? viewUsers.hashCode() : 0);
         return result;
     }
 
@@ -264,7 +268,6 @@ public class PostBar extends BaseObject implements Serializable {
                 ", ifAccessAllReply=" + ifAccessAllReply +
                 ", replyGroups=" + replyGroups +
                 ", replyUsers=" + replyUsers +
-                ", replies=" + replies +
                 '}';
     }
 }

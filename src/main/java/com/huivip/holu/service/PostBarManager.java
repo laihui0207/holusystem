@@ -17,8 +17,10 @@ public interface PostBarManager extends GenericManager<PostBar, Long> {
     List<PostBar> postBarBySubject(@PathParam("id")String subjectId);
 
     @GET
-    @Path("/user/{userId}")
+    @Path("user/{userId}")
     List<PostBar> postBarByUser(@PathParam("userId")String userId);
 
-
+    @GET
+    @Path("{id}")
+    PostBar getPostBar(@PathParam("id")String postBarId);
 }

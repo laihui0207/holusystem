@@ -38,6 +38,7 @@
     <display:column property="id" sortable="true" href="postBarform" media="html"
         paramId="id" paramProperty="id" titleKey="postBar.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="postBar.id"/>
+    <display:column property="postSubject.name" sortable="true" titleKey="postBar.subject"/>
     <display:column property="title" sortable="true" titleKey="postBar.title"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="postBar.createTime">
          <fmt:formatDate value="${postBarList.createTime}" pattern="${datePattern}"/>

@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <appfuse:label key="postBar.subject" styleClass="control-label"/>
-            <form:select cssClass="form-control" path="postSubject" items="${postSubjectList}" itemLabel="name"
+            <form:select cssClass="form-control" path="postSubject.id" items="${postSubjectList}" itemLabel="name"
                          itemValue="id"/>
         </div>
         <spring:bind path="postBar.content">

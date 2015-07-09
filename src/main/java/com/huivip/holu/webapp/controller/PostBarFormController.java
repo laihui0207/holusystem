@@ -148,9 +148,9 @@ public class PostBarFormController extends BaseFormController {
             String key = (isNew) ? "postBar.added" : "postBar.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+            /*if (!isNew) {
                 success = "redirect:postBarform?id=" + postBar.getId();
-            }
+            }*/
         }
 
         return success;

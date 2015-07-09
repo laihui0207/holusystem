@@ -31,4 +31,9 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
     public List<PostBar> postBarByUser(String userId) {
         return postBarDao.postBarByUser(userId);
     }
+
+    @Override
+    public PostBar getPostBar(String postBarId) {
+        return postBarDao.get(Long.parseLong(postBarId));
+    }
 }
