@@ -32,6 +32,7 @@
             <ref bean="projectManager"/>
             <ref bean="componentManager"/>
             <ref bean="componentStyleManager"/>
+            <ref bean="userGroupManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

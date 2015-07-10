@@ -1,5 +1,6 @@
 package com.huivip.holu.service;
 
+import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
 
 import javax.jws.WebService;
@@ -38,6 +39,9 @@ public interface UserService {
     @GET
     List<User> getUsers();
 
+    @GET
+    @Path("slv")
+    List<SelectLabelValue> getUsersLabelValue();
     /**
      * Saves a user's information
      *

@@ -31,7 +31,7 @@
 <div id="actions" class="btn-group">
     <a href='<c:url value="/documentationform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
+<%--    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
 </div>
 
 <display:table name="documentationList" class="table table-condensed table-striped table-hover" requestURI="" id="documentationList" export="true" pagesize="25">

@@ -1,5 +1,6 @@
 package com.huivip.holu.service.impl;
 
+import com.huivip.holu.model.SelectLabelValue;
 import org.apache.commons.lang.StringUtils;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.User;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +105,21 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public List<User> getUsers() {
         return userDao.getAllDistinct();
+    }
+
+    @Override
+    public List<SelectLabelValue> getUsersLabelValue() {
+        List<User> list=userDao.getAllDistinct();
+        List<SelectLabelValue> result=new ArrayList<>();
+        for(User user:list){
+            SelectLabelValue slv=new SelectLabelValue();
+            slv.setId(user.getId().toString());
+            slv.setText(user.getFullName());
+            slv.setChecked(false);
+            slv.setIcon(null);
+            result.add(slv);
+        }
+        return result;
     }
 
     /**

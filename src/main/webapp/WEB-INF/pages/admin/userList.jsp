@@ -30,9 +30,9 @@
     <div id="actions" class="btn-group">
         <a class="btn btn-primary" href="<c:url value='/userform?method=Add&from=list'/>">
             <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-
+<%--
         <a class="btn btn-default" href="<c:url value='/home'/>">
-            <i class="icon-ok"></i> <fmt:message key="button.done"/></a>
+            <i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
     </div>
 
     <display:table name="userList" cellspacing="0" cellpadding="0" requestURI=""

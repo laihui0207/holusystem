@@ -1,5 +1,6 @@
 package com.huivip.holu.service;
 
+import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.UserGroup;
 
 import javax.jws.WebService;
@@ -14,5 +15,7 @@ public interface UserGroupManager extends GenericManager<UserGroup, Long> {
     @GET
     List<UserGroup> userGroups();
 
-    
+    @GET
+    @Path("slv")
+    List<SelectLabelValue> listUserGroupSLV();
 }
