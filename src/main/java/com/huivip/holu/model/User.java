@@ -142,13 +142,13 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return lastName;
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @Field
     public String getEmail() {
         return email;
     }
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", unique = true)
     @Field(analyze= Analyze.NO)
     public String getPhoneNumber() {
         return phoneNumber;

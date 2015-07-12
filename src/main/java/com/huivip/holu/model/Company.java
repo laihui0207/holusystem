@@ -1,14 +1,11 @@
 package com.huivip.holu.model;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by sunlaihui on 6/15/15.
@@ -24,7 +21,7 @@ public class Company extends BaseObject implements Serializable {
     String companyShortNameCN;
     String companyShortNameEN;
     String companyCode;
-    String comapnyAddress;
+    String companyAddress;
     String companyTel;
     String companyFax;
     String companyMaster;
@@ -38,6 +35,7 @@ public class Company extends BaseObject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @DocumentId
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }
@@ -45,7 +43,7 @@ public class Company extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(name = "CompanyID")
     public String getCompanyId() {
         return companyId;
     }
@@ -54,6 +52,7 @@ public class Company extends BaseObject implements Serializable {
         this.companyId = companyId;
     }
     @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+    @Column(name="CompanyFullName")
     public String getCompanyFullName() {
         return companyFullName;
     }
@@ -62,6 +61,7 @@ public class Company extends BaseObject implements Serializable {
         this.companyFullName = companyFullName;
     }
     @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+    @Column(name="CompanyShortNameCN")
     public String getCompanyShortNameCN() {
         return companyShortNameCN;
     }
@@ -70,6 +70,7 @@ public class Company extends BaseObject implements Serializable {
         this.companyShortNameCN = companyShortNameCN;
     }
     @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+    @Column(name="CompanyShortNameEN")
     public String getCompanyShortNameEN() {
         return companyShortNameEN;
     }
@@ -78,6 +79,7 @@ public class Company extends BaseObject implements Serializable {
         this.companyShortNameEN = companyShortNameEN;
     }
     @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+    @Column(name="CompanyCode")
     public String getCompanyCode() {
         return companyCode;
     }
@@ -85,15 +87,15 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
     }
-
-    public String getComapnyAddress() {
-        return comapnyAddress;
+    @Column(name="CompanyAddress")
+    public String getCompanyAddress() {
+        return companyAddress;
     }
 
-    public void setComapnyAddress(String comapnyAddress) {
-        this.comapnyAddress = comapnyAddress;
+    public void setCompanyAddress(String comapnyAddress) {
+        this.companyAddress = comapnyAddress;
     }
-
+    @Column(name="CompanyTel")
     public String getCompanyTel() {
         return companyTel;
     }
@@ -101,7 +103,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyTel(String companyTel) {
         this.companyTel = companyTel;
     }
-
+    @Column(name="CompanyFax")
     public String getCompanyFax() {
         return companyFax;
     }
@@ -109,7 +111,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyFax(String companyFax) {
         this.companyFax = companyFax;
     }
-
+    @Column(name="CompanyMaster")
     public String getCompanyMaster() {
         return companyMaster;
     }
@@ -118,14 +120,14 @@ public class Company extends BaseObject implements Serializable {
         this.companyMaster = companyMaster;
     }
 
+    @Column(name="CompanyNature")
     public String getCompanyNature() {
         return companyNature;
     }
-
     public void setCompanyNature(String companyNature) {
         this.companyNature = companyNature;
     }
-
+    @Column(name="CompanyPositionGPS")
     public String getCompanyPositionGPS() {
         return companyPositionGPS;
     }
@@ -133,7 +135,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyPositionGPS(String companyPositionGPS) {
         this.companyPositionGPS = companyPositionGPS;
     }
-
+    @Column(name="CompanyWebSite")
     public String getCompanyWebSite() {
         return companyWebSite;
     }
@@ -141,7 +143,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyWebSite(String companyWebSite) {
         this.companyWebSite = companyWebSite;
     }
-
+    @Column(name="CompanyNote")
     public String getCompanyNote() {
         return companyNote;
     }
@@ -175,7 +177,7 @@ public class Company extends BaseObject implements Serializable {
         if (companyShortNameEN != null ? !companyShortNameEN.equals(company.companyShortNameEN) : company.companyShortNameEN != null)
             return false;
         if (companyCode != null ? !companyCode.equals(company.companyCode) : company.companyCode != null) return false;
-        if (comapnyAddress != null ? !comapnyAddress.equals(company.comapnyAddress) : company.comapnyAddress != null)
+        if (companyAddress != null ? !companyAddress.equals(company.companyAddress) : company.companyAddress != null)
             return false;
         if (companyTel != null ? !companyTel.equals(company.companyTel) : company.companyTel != null) return false;
         if (companyFax != null ? !companyFax.equals(company.companyFax) : company.companyFax != null) return false;
@@ -199,7 +201,7 @@ public class Company extends BaseObject implements Serializable {
         result = 31 * result + (companyShortNameCN != null ? companyShortNameCN.hashCode() : 0);
         result = 31 * result + (companyShortNameEN != null ? companyShortNameEN.hashCode() : 0);
         result = 31 * result + (companyCode != null ? companyCode.hashCode() : 0);
-        result = 31 * result + (comapnyAddress != null ? comapnyAddress.hashCode() : 0);
+        result = 31 * result + (companyAddress != null ? companyAddress.hashCode() : 0);
         result = 31 * result + (companyTel != null ? companyTel.hashCode() : 0);
         result = 31 * result + (companyFax != null ? companyFax.hashCode() : 0);
         result = 31 * result + (companyMaster != null ? companyMaster.hashCode() : 0);
@@ -219,7 +221,7 @@ public class Company extends BaseObject implements Serializable {
                 ", companyShortNameCN='" + companyShortNameCN + '\'' +
                 ", companyShortNameEN='" + companyShortNameEN + '\'' +
                 ", companyCode='" + companyCode + '\'' +
-                ", comapnyAddress='" + comapnyAddress + '\'' +
+                ", comapnyAddress='" + companyAddress + '\'' +
                 ", companyTel='" + companyTel + '\'' +
                 ", companyFax='" + companyFax + '\'' +
                 ", companyMaster='" + companyMaster + '\'' +

@@ -51,6 +51,7 @@ public class Component extends BaseObject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @DocumentId
+    @Column(name="ID")
     public Long getId() {
         return id;
     }
@@ -58,7 +59,7 @@ public class Component extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(name="ComponentID")
     public String getComponentID() {
         return componentID;
     }
@@ -75,7 +76,7 @@ public class Component extends BaseObject implements Serializable {
     public void setProject(Project project) {
         this.project = project;
     }
-
+    @Column(name="ComponentName")
     public String getComponentName() {
         return componentName;
     }
@@ -83,7 +84,7 @@ public class Component extends BaseObject implements Serializable {
     public void setComponentName(String componetName) {
         this.componentName = componetName;
     }
-
+    @Column(name="Size")
     public float getSize() {
         return size;
     }
@@ -91,7 +92,7 @@ public class Component extends BaseObject implements Serializable {
     public void setSize(float size) {
         this.size = size;
     }
-
+    @Column(name="Material")
     public String getMaterial() {
         return material;
     }
@@ -99,7 +100,7 @@ public class Component extends BaseObject implements Serializable {
     public void setMaterial(String material) {
         this.material = material;
     }
-
+    @Column(name="Length")
     public float getLength() {
         return length;
     }
@@ -107,7 +108,7 @@ public class Component extends BaseObject implements Serializable {
     public void setLength(float length) {
         this.length = length;
     }
-
+    @Column(name="Quantity")
     public String getQuantity() {
         return quantity;
     }
@@ -115,7 +116,7 @@ public class Component extends BaseObject implements Serializable {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-
+    @Column(name="Weight")
     public float getWeight() {
         return weight;
     }
@@ -123,7 +124,7 @@ public class Component extends BaseObject implements Serializable {
     public void setWeight(float weight) {
         this.weight = weight;
     }
-
+    @Column(name="Price")
     public float getPrice() {
         return price;
     }
@@ -131,7 +132,7 @@ public class Component extends BaseObject implements Serializable {
     public void setPrice(float price) {
         this.price = price;
     }
-
+    @Column(name="StyleName")
     public String getStyleName() {
         return styleName;
     }
@@ -139,7 +140,7 @@ public class Component extends BaseObject implements Serializable {
     public void setStyleName(String styleName) {
         this.styleName = styleName;
     }
-
+    @Column(name="PieceList")
     public String getPieceList() {
         return pieceList;
     }
@@ -148,7 +149,7 @@ public class Component extends BaseObject implements Serializable {
         this.pieceList = pieceList;
     }
     @ManyToOne
-    @JoinColumn(name="creater")
+    @JoinColumn(name="UserID")
     public User getCreater() {
         return creater;
     }
@@ -156,7 +157,7 @@ public class Component extends BaseObject implements Serializable {
     public void setCreater(User user) {
         this.creater = user;
     }
-
+    @Column(name="CreateDate")
     public Timestamp getCreateDate() {
         return createDate;
     }

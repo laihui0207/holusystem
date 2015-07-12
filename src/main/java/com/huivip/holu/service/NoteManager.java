@@ -29,4 +29,9 @@ public interface NoteManager extends GenericManager<Note, Long> {
     Note saveNote(@FormParam("title") String title, @FormParam("content") String content,
                   @FormParam("userId") String userId,@FormParam("noteId") String noteId);
 
+    @POST
+    @Path("Send")
+    Note sendNote(@FormParam("noteId")String noteId,@FormParam("users")String users,
+                  @FormParam("groups")String groups,@FormParam("userId")String userId);
+
 }

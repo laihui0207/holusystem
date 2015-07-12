@@ -2,14 +2,18 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.NoteDao;
 import com.huivip.holu.dao.UserDao;
+import com.huivip.holu.dao.UserGroupDao;
 import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
+import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.NoteManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import javax.ws.rs.FormParam;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +23,8 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     NoteDao noteDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    UserGroupDao userGroupDao;
 
     @Autowired
     public NoteManagerImpl(NoteDao noteDao) {
@@ -60,6 +66,56 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         note.setUpdater(user);
         note.setUpdateTime(new Timestamp(new Date().getTime()));
         noteDao.save(note);
+        return note;
+    }
+
+    @Override
+    public Note sendNote( String noteId,String users,String groups,String userId) {
+        User user=userDao.get(Long.parseLong(userId));
+        Note note=noteDao.get(Long.parseLong(noteId));
+        List<User> receiverList=new ArrayList<>();
+        if(null!=users && users.length()>0 && !users.equalsIgnoreCase("undefined")){
+            if(note.getSendToUserList()!=null){
+                note.getSendToUserList().clear();
+            }
+            String[] usersArray=users.split(";");
+            for(String id:usersArray){
+              User user1=userDao.get(Long.parseLong(id));
+                if(!receiverList.contains(user1)){
+                    receiverList.add(user1);
+                }
+                note.getSendToUserList().add(user1);
+            }
+        }
+        if(null!=groups && groups.length()>0 && !groups.equalsIgnoreCase("undefined")){
+            if(note.getSendToUserGroupList()!=null){
+                note.getSendToUserGroupList().clear();
+            }
+            String[] groupArray=groups.split(";");
+            for(String id:groupArray){
+                UserGroup ug=userGroupDao.get(Long.parseLong(id));
+                note.getSendToUserGroupList().add(ug);
+                for(User u:ug.getMembers()){
+                    if(!receiverList.contains(u)){
+                        receiverList.add(u);
+                    }
+                }
+            }
+        }
+        noteDao.save(note);
+        Note copyNote=new Note();
+        copyNote.setTitle(note.getTitle());
+        copyNote.setContent(note.getContent());
+        copyNote.setCreater(note.getCreater());
+        copyNote.setCreateTime(note.getCreateTime());
+        copyNote.setFromUser(user);
+
+        for(User u:receiverList){
+            copyNote.setId(null);
+            copyNote.setReceiver(u);
+            noteDao.save(copyNote);
+        }
+
         return note;
     }
 }

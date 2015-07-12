@@ -1,13 +1,13 @@
 package com.huivip.holu.service.impl;
 
-import com.huivip.holu.model.SelectLabelValue;
-import org.apache.commons.lang.StringUtils;
 import com.huivip.holu.dao.UserDao;
+import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.MailEngine;
 import com.huivip.holu.service.UserExistsException;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.SimpleMailMessage;

@@ -27,6 +27,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     String styleName;
     String processName;
     int processOrder;
+    String companyID;
     Company company;
 
     @Id
@@ -64,6 +65,14 @@ public class ComponentStyle extends BaseObject implements Serializable {
 
     public void setProcessOrder(int processOrder) {
         this.processOrder = processOrder;
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
     @ManyToOne

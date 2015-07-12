@@ -42,6 +42,7 @@ public interface UserService {
     @GET
     @Path("slv")
     List<SelectLabelValue> getUsersLabelValue();
+
     /**
      * Saves a user's information
      *

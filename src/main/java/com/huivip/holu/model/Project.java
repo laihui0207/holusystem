@@ -39,6 +39,7 @@ public class Project extends BaseObject implements Serializable {
     private String companyID;
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @DocumentId
     public Long getId() {
@@ -48,7 +49,7 @@ public class Project extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(name = "ProjectID")
     public String getProjectID() {
         return projectID;
     }
@@ -56,7 +57,7 @@ public class Project extends BaseObject implements Serializable {
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
-
+    @Column(name = "ProjectFullName")
     public String getProjectFullName() {
         return projectFullName;
     }
@@ -64,7 +65,7 @@ public class Project extends BaseObject implements Serializable {
     public void setProjectFullName(String projectFullName) {
         this.projectFullName = projectFullName;
     }
-
+    @Column(name = "UnitFullName")
     public String getUnitFullName() {
         return unitFullName;
     }
@@ -72,7 +73,7 @@ public class Project extends BaseObject implements Serializable {
     public void setUnitFullName(String unitFullName) {
         this.unitFullName = unitFullName;
     }
-
+    @Column(name="BatchFullName")
     public String getBatchFullName() {
         return batchFullName;
     }
@@ -80,7 +81,7 @@ public class Project extends BaseObject implements Serializable {
     public void setBatchFullName(String batchFullName) {
         this.batchFullName = batchFullName;
     }
-
+    @Column(name="ProjectShortName")
     public String getProjectShortName() {
         return projectShortName;
     }
@@ -88,7 +89,7 @@ public class Project extends BaseObject implements Serializable {
     public void setProjectShortName(String projectShortName) {
         this.projectShortName = projectShortName;
     }
-
+    @Column(name="UnitShortName")
     public String getUnitShortName() {
         return unitShortName;
     }
@@ -96,7 +97,7 @@ public class Project extends BaseObject implements Serializable {
     public void setUnitShortName(String unitShortName) {
         this.unitShortName = unitShortName;
     }
-
+    @Column(name="BatchShortName")
     public String getBatchShortName() {
         return batchShortName;
     }
@@ -105,7 +106,7 @@ public class Project extends BaseObject implements Serializable {
         this.batchShortName = batchShortName;
     }
     @ManyToOne
-    @JoinColumn(name="ownerID")
+    @JoinColumn(name="OwnerID")
     public User getOwner() {
         return Owner;
     }
@@ -114,7 +115,7 @@ public class Project extends BaseObject implements Serializable {
         Owner = owner;
     }
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "CompanyID")
     public Company getCompany() {
         return company;
     }
