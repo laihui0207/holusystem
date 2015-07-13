@@ -1,5 +1,7 @@
 package com.huivip.holu.model;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -31,11 +33,13 @@ public class Post extends BaseObject implements Serializable {
     private String processName;
     private String postNote;
     private Company company;
+    private String CompanyID;
     private Date createDate=new Date();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @DocumentId
+    @Column(name="ID")
     public Long getId() {
         return id;
     }
@@ -43,7 +47,7 @@ public class Post extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(name="PostID")
     public String getPostID() {
         return postID;
     }
@@ -51,7 +55,7 @@ public class Post extends BaseObject implements Serializable {
     public void setPostID(String postID) {
         this.postID = postID;
     }
-
+    @Column(name="PostName")
     public String getPostName() {
         return postName;
     }
@@ -59,7 +63,7 @@ public class Post extends BaseObject implements Serializable {
     public void setPostName(String postName) {
         this.postName = postName;
     }
-
+    @Column(name="ProcessName")
     public String getProcessName() {
         return processName;
     }
@@ -67,7 +71,7 @@ public class Post extends BaseObject implements Serializable {
     public void setProcessName(String processName) {
         this.processName = processName;
     }
-
+    @Column(name="PostNote")
     public String getPostNote() {
         return postNote;
     }
@@ -76,7 +80,7 @@ public class Post extends BaseObject implements Serializable {
         this.postNote = postNote;
     }
     @ManyToOne
-    @JoinColumn(name="companyID")
+    @JoinColumn(name="company_id")
     public Company getCompany() {
         return company;
     }
@@ -84,13 +88,21 @@ public class Post extends BaseObject implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
-
+    @Column(name="CreateDate")
     public Date getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+    @Column(name="CompanyID")
+    public String getCompanyID() {
+        return CompanyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        CompanyID = companyID;
     }
 
     @Override
@@ -106,6 +118,7 @@ public class Post extends BaseObject implements Serializable {
         if (processName != null ? !processName.equals(post.processName) : post.processName != null) return false;
         if (postNote != null ? !postNote.equals(post.postNote) : post.postNote != null) return false;
         if (company != null ? !company.equals(post.company) : post.company != null) return false;
+        if (CompanyID != null ? !CompanyID.equals(post.CompanyID) : post.CompanyID != null) return false;
         return !(createDate != null ? !createDate.equals(post.createDate) : post.createDate != null);
 
     }
@@ -118,20 +131,15 @@ public class Post extends BaseObject implements Serializable {
         result = 31 * result + (processName != null ? processName.hashCode() : 0);
         result = 31 * result + (postNote != null ? postNote.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
+        result = 31 * result + (CompanyID != null ? CompanyID.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", postID='" + postID + '\'' +
-                ", postName='" + postName + '\'' +
-                ", processName='" + processName + '\'' +
-                ", postNote='" + postNote + '\'' +
-                ", company=" + company +
-                ", createDate=" + createDate +
-                '}';
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append(this.postName)
+                .toString();
     }
 }

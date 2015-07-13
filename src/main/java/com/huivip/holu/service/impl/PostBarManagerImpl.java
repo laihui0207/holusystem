@@ -166,6 +166,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
         postBar.setTitle(title);
 
         if(null!=viewUsers && viewUsers.length()>0 && !viewUsers.equalsIgnoreCase("undefined")){
+            postBar.setIfAccessAllView(false);
             if(postBar.getViewUsers()!=null){
                 postBar.getViewUsers().clear();
             }
@@ -175,6 +176,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
             }
         }
         if(null!=viewGroups && viewGroups.length()>0 && !viewGroups.equalsIgnoreCase("undefined")){
+            postBar.setIfAccessAllView(false);
             if(postBar.getViewGroups()!=null){
                 postBar.getViewGroups().clear();
             }
@@ -184,6 +186,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
             }
         }
         if(null!=replyUsers && replyUsers.length()>0 && !replyUsers.equalsIgnoreCase("undefined")){
+            postBar.setIfAccessAllReply(false);
             if(postBar.getReplyUsers()!=null){
                 postBar.getReplyUsers().clear();
             }
@@ -193,6 +196,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
             }
         }
         if(null!=replyGroups && replyGroups.length()>0 && !replyGroups.equalsIgnoreCase("undefined")){
+            postBar.setIfAccessAllReply(false);
             if(postBar.getReplyGroups()!=null){
                 postBar.getReplyGroups().clear();
             }

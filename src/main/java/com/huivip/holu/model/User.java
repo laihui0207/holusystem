@@ -148,7 +148,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return email;
     }
 
-    @Column(name = "phone_number", unique = true)
+    @Column(name = "phone_number",nullable = false)
     @Field(analyze= Analyze.NO)
     public String getPhoneNumber() {
         return phoneNumber;

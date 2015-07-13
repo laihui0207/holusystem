@@ -13,7 +13,7 @@
 </c:if>
 
 <div class="col-sm-10">
-    <h2><fmt:message key="userList.heading"/></h2>
+    <h2><fmt:message key="userList.title"/></h2>
 
     <form method="get" action="${ctx}/admin/users" id="searchForm" class="form-inline">
     <div id="search" class="text-right">

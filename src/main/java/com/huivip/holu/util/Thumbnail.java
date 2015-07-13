@@ -2,6 +2,7 @@ package com.huivip.holu.util;
 
 
 import javax.servlet.ServletContext;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +16,8 @@ public class Thumbnail {
         }
         String sourceFile=filePath+name;
         String thumbnailFile=filePath+name.substring(0,name.lastIndexOf("."))+"_smaller"+name.substring(name.lastIndexOf("."));
+        File file=new File(thumbnailFile);
+        if(file.exists()) return;
         ImageUtil.compressImage(sourceFile,thumbnailFile,90,120);
     }
     public static String handleThumbnail(String content,ServletContext context){

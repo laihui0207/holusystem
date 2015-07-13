@@ -28,11 +28,11 @@
 
 <p><fmt:message key="componentList.message"/></p>
 
-<%--<div id="actions" class="btn-group">
+<div id="actions" class="btn-group">
     <a href='<c:url value="/componentform/${project.id}"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
-</div>--%>
+   <%-- <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
+</div>
 
 <display:table name="componentList" class="table table-condensed table-striped table-hover" requestURI="" id="componentList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="/componentform/${project.id}" media="html"

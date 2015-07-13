@@ -133,6 +133,7 @@
                 <jdbc.password>pass</jdbc.password>
             </properties>
         </profile>
+
     </profiles>
 
     <reporting>

@@ -6,10 +6,8 @@ import com.huivip.holu.model.Post;
 import com.huivip.holu.model.Role;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.*;
-import com.huivip.holu.webapp.util.RequestUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -173,7 +171,7 @@ public class UserFormController extends BaseFormController {
                     saveMessage(request, getText("user.added", user.getFullName(), locale));
 
                     // Send an account information e-mail
-                    message.setSubject(getText("signup.email.subject", locale));
+                    /*message.setSubject(getText("signup.email.subject", locale));
 
                     try {
                         final String resetPasswordUrl = getUserManager().buildRecoveryPasswordUrl(user,
@@ -182,7 +180,7 @@ public class UserFormController extends BaseFormController {
                                 RequestUtil.getAppURL(request) + resetPasswordUrl);
                     } catch (final MailException me) {
                         saveError(request, me.getCause().getLocalizedMessage());
-                    }
+                    }*/
 
                     return getSuccessView();
                 } else {

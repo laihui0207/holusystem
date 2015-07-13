@@ -21,12 +21,12 @@
 <form:form commandName="company" method="post" action="companyform" cssClass="well"
            id="companyForm" onsubmit="return validateCompany(this)">
 <form:hidden path="id"/>
-    <spring:bind path="company.comapnyAddress">
+    <spring:bind path="company.companyAddress">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="company.comapnyAddress" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="comapnyAddress" id="comapnyAddress"  maxlength="255"/>
-        <form:errors path="comapnyAddress" cssClass="help-block"/>
+        <appfuse:label key="company.companyAddress" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="companyAddress" id="companyAddress"  maxlength="255"/>
+        <form:errors path="companyAddress" cssClass="help-block"/>
     </div>
     <spring:bind path="company.companyCode">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">

@@ -18,7 +18,7 @@
 
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="component" method="post" action="/componentform/${project.id}" cssClass="well"
+<form:form commandName="component" method="post" action="${pageContext.request.contextPath}/componentform/${project.id}" cssClass="well"
            id="componentForm" onsubmit="return validateComponent(this)">
 <form:hidden path="id"/>
     <spring:bind path="component.componentID">

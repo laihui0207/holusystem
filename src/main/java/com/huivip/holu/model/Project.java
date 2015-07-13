@@ -115,7 +115,7 @@ public class Project extends BaseObject implements Serializable {
         Owner = owner;
     }
     @ManyToOne
-    @JoinColumn(name = "CompanyID")
+    @JoinColumn(name = "Company_id")
     public Company getCompany() {
         return company;
     }

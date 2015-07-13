@@ -38,7 +38,7 @@
     <display:column property="id" sortable="true" href="companyform" media="html"
         paramId="id" paramProperty="id" titleKey="company.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="company.id"/>
-    <display:column property="comapnyAddress" sortable="true" titleKey="company.comapnyAddress"/>
+    <display:column property="companyAddress" sortable="true" titleKey="company.companyAddress"/>
     <display:column property="companyCode" sortable="true" titleKey="company.companyCode"/>
     <display:column property="companyFax" sortable="true" titleKey="company.companyFax"/>
     <display:column property="companyFullName" sortable="true" titleKey="company.companyFullName"/>
