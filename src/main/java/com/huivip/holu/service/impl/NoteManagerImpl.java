@@ -7,6 +7,7 @@ import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
 import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.NoteManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,9 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     }
 
     @Override
-    public List<Note> myNotes(String userId) {
+    public List<Note> myNotes(String userId,ExtendedPaginatedList list) {
 
-        return noteDao.myNotes(userId);
+        return noteDao.myNotes(userId,list);
     }
 
     @Override

@@ -40,6 +40,7 @@
     <display:column property="id" media="csv excel xml pdf" titleKey="userGroup.id"/>
     <display:column property="name" sortable="true" titleKey="userGroup.name"/>
     <display:column property="comment" sortable="true" titleKey="userGroup.comment"/>
+    <display:column property="creater.fullName" sortable="true" titleKey="userGroup.creater"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="userGroup.createTime">
          <fmt:formatDate value="${userGroupList.createTime}" pattern="${datePattern}"/>
     </display:column>

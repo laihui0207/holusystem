@@ -1,3 +1,4 @@
 target
 .DS_store
 src/main/webapp/attached
+src/main/webapp/Documents

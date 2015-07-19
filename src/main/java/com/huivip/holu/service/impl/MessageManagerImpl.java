@@ -9,6 +9,7 @@ import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.MessageManager;
 import com.huivip.holu.service.impl.GenericManagerImpl;
 
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +36,14 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public List<Message> messageByOwner(User user) {
-        return messageDao.messageByOwner(user);
+    public List<Message> messageByOwner(User user,ExtendedPaginatedList list) {
+        return messageDao.messageByOwner(user,list);
     }
 
     @Override
     public List<Message> myMessage(String userId) {
         User user=userDao.get(Long.parseLong(userId));
-        return messageByOwner(user);
+        return messageByOwner(user,null);
     }
 
     @Override

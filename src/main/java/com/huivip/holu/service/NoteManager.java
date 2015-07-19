@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.Note;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
@@ -15,7 +16,7 @@ public interface NoteManager extends GenericManager<Note, Long> {
 
     @GET
     @Path("mynote/{userid}")
-    List<Note> myNotes(@PathParam("userid")String userId);
+    List<Note> myNotes(@PathParam("userid")String userId,ExtendedPaginatedList list);
 
     @Path("{id}")
     @GET

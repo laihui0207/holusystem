@@ -2,7 +2,11 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.DocumentationDao;
 import com.huivip.holu.model.Documentation;
-import org.hibernate.Query;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.displaytag.properties.SortOrderEnum;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,9 +19,27 @@ public class DocumentationDaoHibernate extends GenericDaoHibernate<Documentation
     }
 
     @Override
-    public List<Documentation> myDocumentations(String userId) {
-        String queryString="From Documentation where creater.id="+userId;
-        Query query=getSession().createQuery(queryString);
-        return query.list();
+    public List<Documentation> myDocumentations(String userId,ExtendedPaginatedList list) {
+        Criteria criteria=getSession().createCriteria(Documentation.class);
+        criteria.add(Restrictions.eq("creater.id",Long.parseLong(userId)));
+        List<Documentation> dataList=criteria.list();
+        int totalCount=dataList.size();
+        if(list!=null){
+           criteria.setFirstResult(list.getFirstRecordIndex());
+            criteria.setMaxResults(list.getPageSize());
+            if (list.getSortCriterion() != null) {
+                if (list.getSortDirection().equals(SortOrderEnum.ASCENDING)) {
+                    criteria.addOrder(Order.asc(list.getSortCriterion()));
+                }
+                if (list.getSortDirection().equals(SortOrderEnum.DESCENDING)) {
+                    criteria.addOrder(Order.desc(list.getSortCriterion()));
+                }
+            }
+            dataList=criteria.list();
+            list.setList(dataList);
+            list.setTotalNumberOfRows(totalCount);
+        }
+
+        return dataList;
     }
 }

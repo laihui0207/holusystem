@@ -1,5 +1,7 @@
 package com.huivip.holu.dao;
 
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,8 @@ public interface GenericDao <T, PK extends Serializable> {
      * @return List of populated objects
      */
     List<T> getAll();
-
+    List<T> getAllPagable(ExtendedPaginatedList list);
+    int getAllRecordsCount();
     /**
      * Gets all records without duplicates.
      * <p>Note that if you use this method, it is imperative that your model
@@ -41,7 +44,7 @@ public interface GenericDao <T, PK extends Serializable> {
      * @throws SearchException
      */
     List<T> search(String searchTerm) throws SearchException;
-
+    List<T> search(String searchTerm,ExtendedPaginatedList list);
     /**
      * Generic method to get an object based on class and identifier. An
      * ObjectRetrievalFailureException Runtime Exception is thrown if

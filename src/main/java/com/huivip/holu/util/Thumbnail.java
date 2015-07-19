@@ -51,7 +51,7 @@ public class Thumbnail {
         return thumbnailURL;
     }
     public static void main(String[] args){
-        String fileUrl="/holusystem/attached/aa.jpg";
-        System.out.println(fileUrl.substring(fileUrl.indexOf("/attached"), fileUrl.lastIndexOf("/") + 1));
+        String fileUrl="https://login-ha1.qa.webex.com/cas/auth.do";
+        System.out.println(fileUrl.substring(0, fileUrl.lastIndexOf("/")));
     }
 }

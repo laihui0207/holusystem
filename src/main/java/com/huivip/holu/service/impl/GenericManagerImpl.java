@@ -1,13 +1,12 @@
 package com.huivip.holu.service.impl;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import com.huivip.holu.dao.GenericDao;
 import com.huivip.holu.service.GenericManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,6 +70,11 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
         return dao.getAll();
     }
 
+    @Override
+    public List<T> getAllPageable(ExtendedPaginatedList list) {
+        return dao.getAllPagable(list);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -118,6 +122,16 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
         }
 
         return dao.search(q);
+    }
+
+    @Override
+    public List<T> search(String searchTerm, Class clazz, ExtendedPaginatedList list) {
+        if(searchTerm==null || "".equals(searchTerm.trim())){
+            dao.getAllPagable(list);
+            return list.getList();
+        }
+        dao.search(searchTerm,list);
+        return list.getList();
     }
 
     /**

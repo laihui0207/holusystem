@@ -1,5 +1,7 @@
 package com.huivip.holu.service;
 
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public interface GenericManager<T, PK extends Serializable> {
      * @return List of populated objects
      */
     List<T> getAll();
+    List<T> getAllPageable(ExtendedPaginatedList list);
 
     /**
      * Generic method to get an object based on class and identifier. An
@@ -67,6 +70,7 @@ public interface GenericManager<T, PK extends Serializable> {
      * @return a list of matched objects
      */
     List<T> search(String searchTerm, Class clazz);
+    List<T> search(String searchTerm, Class clazz,ExtendedPaginatedList list);
     /**
      * Generic method to regenerate full text index of the persistent class T
      */

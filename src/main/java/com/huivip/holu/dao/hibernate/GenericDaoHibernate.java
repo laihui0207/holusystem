@@ -1,14 +1,21 @@
 package com.huivip.holu.dao.hibernate;
 
+import com.huivip.holu.dao.GenericDao;
+import com.huivip.holu.dao.SearchException;
+import com.huivip.holu.model.News;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.util.Version;
-import com.huivip.holu.dao.GenericDao;
-import com.huivip.holu.dao.SearchException;
+import org.displaytag.properties.SortOrderEnum;
 import org.hibernate.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,8 +100,41 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     public List<T> getAll() {
+        return getAllPagable(null);
+    }
+
+    @Override
+    public List<T> getAllPagable(ExtendedPaginatedList list) {
         Session sess = getSession();
-        return sess.createCriteria(persistentClass).list();
+        Criteria criteria=sess.createCriteria(persistentClass);
+        if(list!=null){
+            criteria.setFirstResult(list.getFirstRecordIndex());
+            criteria.setMaxResults(list.getPageSize());
+            if (list.getSortCriterion() != null) {
+                if (list.getSortDirection().equals(SortOrderEnum.ASCENDING)) {
+                    criteria.addOrder(Order.asc(list.getSortCriterion()));
+                }
+                if (list.getSortDirection().equals(SortOrderEnum.DESCENDING)) {
+                    criteria.addOrder(Order.desc(list.getSortCriterion()));
+                }
+            }
+        }
+
+        List<T> dataList=criteria.list();
+        if(null!=list){
+            list.setList(dataList);
+            list.setTotalNumberOfRows(getAllRecordsCount());
+        }
+        return dataList;
+    }
+
+    @Override
+    public int getAllRecordsCount() {
+        Criteria criteria=getSession().createCriteria(persistentClass);
+        criteria.setProjection(Projections.rowCount());
+        Long result= (Long) criteria.list().get(0);
+        Integer i = result != null ? result.intValue() : null;
+        return i.intValue();
     }
 
     /**
@@ -110,6 +150,24 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      * {@inheritDoc}
      */
     public List<T> search(String searchTerm) throws SearchException {
+       /* Session sess = getSession();
+        FullTextSession txtSession = Search.getFullTextSession(sess);
+
+        org.apache.lucene.search.Query qry;
+        try {
+            qry = HibernateSearchTools.generateQuery(searchTerm, this.persistentClass, sess, defaultAnalyzer);
+        } catch (ParseException ex) {
+            throw new SearchException(ex);
+        }
+        org.hibernate.search.FullTextQuery hibQuery = txtSession.createFullTextQuery(qry,
+                this.persistentClass);
+
+        return hibQuery.list();*/
+        return search(searchTerm,null);
+    }
+
+    @Override
+    public List<T> search(String searchTerm, ExtendedPaginatedList list) {
         Session sess = getSession();
         FullTextSession txtSession = Search.getFullTextSession(sess);
 
@@ -121,7 +179,25 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
         }
         org.hibernate.search.FullTextQuery hibQuery = txtSession.createFullTextQuery(qry,
                 this.persistentClass);
-        return hibQuery.list();
+        if(list!=null){
+            hibQuery.setFirstResult(list.getFirstRecordIndex());
+            hibQuery.setMaxResults(list.getPageSize());
+            if (list.getSortCriterion()!= null) {
+
+                //if (list.getSortCriterion().equals(SortOrderEnum.ASCENDING)) {
+                    org.apache.lucene.search.Sort sort = new Sort(new SortField(list.getSortCriterion(),SortField.STRING));
+                    hibQuery.setSort(sort);
+                /*}
+                if (list.getSortCriterion().equals(SortOrderEnum.DESCENDING)) {
+                }*/
+            }
+        }
+        List<T> dataList=hibQuery.list();
+        if(null!=list){
+            list.setList(dataList);
+            list.setTotalNumberOfRows(hibQuery.getResultSize());
+        }
+        return dataList;
     }
 
     /**

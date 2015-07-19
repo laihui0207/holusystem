@@ -111,7 +111,7 @@ public class DocumentationFormController extends BaseFormController {
                 }
             }
 
-            handleUploadFile(request,documentation);
+            handleUploadFile(request,documentation,isNew);
             final User cleanUser = getUserManager().getUserByUsername(
                     request.getRemoteUser());
             documentation.setCreater(cleanUser);
@@ -139,7 +139,7 @@ public class DocumentationFormController extends BaseFormController {
             file.delete();
         }
     }
-    private void handleUploadFile(HttpServletRequest request,Documentation documentation){
+    private void handleUploadFile(HttpServletRequest request,Documentation documentation,boolean isNew){
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         String configureUploadDir= SteelConfig.getConfigure(SteelConfig.DocumentManagerDirectory);
         String uploadDir=getServletContext().getRealPath("/");
@@ -147,10 +147,18 @@ public class DocumentationFormController extends BaseFormController {
             uploadDir=configureUploadDir;
         }
         uploadDir+="/Documents";
-        String saveUrl = request.getContextPath()+"/Documents";
+        String saveUrl = "/Documents";
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile("file");
-        if(null==file || file.getSize()==0 ) return;
+        if(null==file || file.getSize()==0 ){
+            if(!isNew){
+                Documentation origialDoc=documentationManager.get(documentation.getId());
+                documentation.setFileName(origialDoc.getFileName());
+                documentation.setStorePath(origialDoc.getStorePath());
+                documentation.setDocSize(origialDoc.getDocSize());
+            }
+            return;
+        }
         String fileName = file.getOriginalFilename();
         documentation.setFileName(fileName);
         documentation.setDocSize(Integer.parseInt(file.getSize()+""));

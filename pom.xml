@@ -68,6 +68,11 @@
             <artifactId>core</artifactId>
             <version>3.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>net.oschina.j2cache</groupId>
+            <artifactId>j2cache</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -78,7 +83,8 @@
         <web.framework>spring</web.framework>
         <jdbc.username>root</jdbc.username>
         <jdbc.password>root</jdbc.password>
-
+        <holu.attachement.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.attachement.directory>
+        <holu.document.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.document.directory>
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.0</appfuse.version>
         <java.version>1.7</java.version>
@@ -115,6 +121,9 @@
                  <jdbc.url>jdbc:jtds:sqlserver://127.0.0.1:1433/${db.name}</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
+
+                <holu.attachement.directory></holu.attachement.directory>
+                <holu.document.directory></holu.document.directory>
             </properties>
         </profile>
         <profile>

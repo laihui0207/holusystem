@@ -8,6 +8,8 @@ import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.DocumentationManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.util.SteelConfig;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginateListFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -33,6 +35,8 @@ public class DocumentationController {
     private DocumentationManager documentationManager;
     @Autowired
     private UserManager userManager;
+    @Autowired
+    PaginateListFactory paginateListFactory;
 
     @Autowired
     public void setDocumentationManager(DocumentationManager documentationManager) {
@@ -44,11 +48,13 @@ public class DocumentationController {
     throws Exception {
         Model model = new ExtendedModelMap();
         User user= userManager.getUserByUsername(request.getRemoteUser());
+        ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         try {
             if(!request.isUserInRole(Constants.ADMIN_ROLE)){
                 List<Documentation> resultList=new ArrayList<>();
                 if(null==query || query==""){
-                    resultList=documentationManager.myDocumentations(user.getId().toString());
+                    documentationManager.myDocumentations(user.getId().toString(),list);
+                    model.addAttribute("documentationList",list);
                 }
                 else {
                     List<Documentation> documentationList = documentationManager.search(query, Documentation.class);
@@ -57,23 +63,28 @@ public class DocumentationController {
                             resultList.add(documentation);
                         }
                     }
+                    model.addAttribute(resultList);
                 }
-                model.addAttribute(resultList);
             }
             else {
-                model.addAttribute(documentationManager.search(query, Documentation.class));
+                documentationManager.search(query, Documentation.class,list);
+                model.addAttribute("documentationList",list);
             }
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
-            model.addAttribute(documentationManager.getAll());
+            documentationManager.getAllPageable(list);
+            model.addAttribute("documentationList",list);
         }
         return model;
     }
     @RequestMapping(method = RequestMethod.GET,value = "{id}/Download")
     public String downloadDocumentation(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
-        final User cleanUser = userManager.getUserByUsername(
+        User cleanUser = userManager.getUserByUsername(
                 request.getRemoteUser());
-
+       /* String userId=request.getParameter("userId");
+        if(null!=userId && userId.length()>0 && !userId.equalsIgnoreCase("undefined")){
+            cleanUser=userManager.get(Long.parseLong(userId));
+        }*/
         Documentation documentation=documentationManager.get(Long.parseLong(id));
         boolean canDownload=true;
         if(null!=documentation && documentation.isViewLimit()){

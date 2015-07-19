@@ -6,6 +6,8 @@ import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.MessageManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginateListFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -24,6 +26,8 @@ public class MessageController {
     private MessageManager messageManager;
     @Autowired
     private UserManager userManager;
+    @Autowired
+    PaginateListFactory paginateListFactory;
 
     @Autowired
     public void setMessageManager(MessageManager messageManager) {
@@ -35,15 +39,18 @@ public class MessageController {
     throws Exception {
         final User cleanUser =userManager.getUserByUsername(
                 request.getRemoteUser());
+        ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         Model model = new ExtendedModelMap();
         try {
             if(request.isUserInRole(Constants.ADMIN_ROLE)){
-                model.addAttribute(messageManager.search(query, Message.class));
+                messageManager.search(query, Message.class,list);
+                model.addAttribute("messageList",list);
             }
             else {
                 List<Message> resultList=new ArrayList<>();
                 if(query==null || query.equals("")){
-                    resultList=messageManager.messageByOwner(cleanUser);
+                    messageManager.messageByOwner(cleanUser,list);
+                    model.addAttribute("messageList",list);
                 }
                 else {
                     List<Message> messageList = messageManager.search(query, Message.class);
@@ -52,12 +59,13 @@ public class MessageController {
                             resultList.add(message);
                         }
                     }
+                    model.addAttribute("messageList",resultList);
                 }
-                model.addAttribute(resultList);
             }
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
-            model.addAttribute(messageManager.messageByOwner(cleanUser));
+            messageManager.messageByOwner(cleanUser,list);
+            model.addAttribute("messageList",list);
         }
         return model;
     }

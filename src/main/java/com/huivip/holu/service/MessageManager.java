@@ -2,6 +2,7 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
@@ -10,7 +11,7 @@ import java.util.List;
 @WebService
 @Path("/msgs")
 public interface MessageManager extends GenericManager<Message, Long> {
-    List<Message> messageByOwner(User user);
+    List<Message> messageByOwner(User user,ExtendedPaginatedList list);
 
     @GET
     @Path("user/{userId}")

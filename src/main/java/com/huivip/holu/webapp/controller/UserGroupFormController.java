@@ -84,7 +84,9 @@ public class UserGroupFormController extends BaseFormController {
                     request.getRemoteUser());
             userGroup.setCreater(cleanUser);
             userGroup.setUpdater(cleanUser);
-            userGroup.setOwner(cleanUser);
+            if(isNew) {
+                userGroup.setOwner(cleanUser);
+            }
             userGroupManager.save(userGroup);
             String key = (isNew) ? "userGroup.added" : "userGroup.updated";
             saveMessage(request, getText(key, locale));

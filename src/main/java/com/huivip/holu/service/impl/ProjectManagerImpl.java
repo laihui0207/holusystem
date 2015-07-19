@@ -34,4 +34,9 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
         User user=userDao.get(Long.parseLong(userId));
         return projectDao.getProjectListByCompany(user.getCompany().getId().toString());
     }
+
+    @Override
+    public Project getProject(String id) {
+        return get(Long.parseLong(id));
+    }
 }

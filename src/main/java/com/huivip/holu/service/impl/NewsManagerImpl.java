@@ -5,6 +5,8 @@ import com.huivip.holu.model.News;
 import com.huivip.holu.service.NewsManager;
 import com.huivip.holu.service.impl.GenericManagerImpl;
 
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginateListFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import javax.jws.WebService;
 @WebService(serviceName = "NewsService", endpointInterface = "com.huivip.holu.service.NewsManager")
 public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements NewsManager {
     NewsDao newsDao;
+    @Autowired
+    PaginateListFactory paginateListFactory;
 
     @Autowired
     public NewsManagerImpl(NewsDao newsDao) {
@@ -41,4 +45,5 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
            return newsDao.getNewsByType(typeID);
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package com.huivip.holu.dao;
 
 import com.huivip.holu.model.Note;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import java.util.List;
 
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface NoteDao extends GenericDao<Note, Long> {
 
-    List<Note> myNotes(String userid);
+    List<Note> myNotes(String userid,ExtendedPaginatedList list);
 }

@@ -14,7 +14,8 @@
     <!-- Add new DAOs here -->
 
     <!-- Add new Managers here -->
-    
+    <bean id="applicationContextHolder" class="com.huivip.holu.webapp.util.ApplicationContextHolder"/>
+
     <!-- Configure and Alternative PasswordTokenManager -->
 	<!-- <bean id="passwordTokenManager" class="com.huivip.holu.service.impl.PersistentPasswordTokenManagerImpl" autowire="default" /> -->
 </beans>

@@ -7,6 +7,8 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.PostBarManager;
 import com.huivip.holu.service.ReplyManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginateListFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -27,6 +29,8 @@ public class PostBarController {
     private ReplyManager replyManager;
     @Autowired
     private UserManager userManager;
+    @Autowired
+    PaginateListFactory paginateListFactory;
 
     @Autowired
     public void setPostBarManager(PostBarManager postBarManager) {
@@ -37,14 +41,17 @@ public class PostBarController {
     public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
         Model model = new ExtendedModelMap();
+        ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         User user=userManager.getUserByUsername(request.getRemoteUser());
         try {
             if(request.isUserInRole(Constants.ADMIN_ROLE)) {
-                model.addAttribute(postBarManager.search(query, PostBar.class));
+                postBarManager.search(query, PostBar.class,list);
+                model.addAttribute("postBarList",list);
             }
             else {
                 if(null == query || query.equals("")){
-                    model.addAttribute(postBarManager.getAll());
+                    postBarManager.getAllPageable(list);
+                    model.addAttribute("postBarList",list);
                 }
                 else {
 
