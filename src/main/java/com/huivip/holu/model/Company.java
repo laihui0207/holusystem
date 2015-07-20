@@ -6,6 +6,7 @@ import org.hibernate.search.annotations.Index;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by sunlaihui on 6/15/15.
@@ -29,6 +30,12 @@ public class Company extends BaseObject implements Serializable {
     String companyPositionGPS;
     String companyWebSite;
     String companyNote;
+    String companyEmail;
+    boolean acceptCreate;
+    String createrName;
+    String createPassword;
+    Date createDate;
+
 
    /* Set<Project> projectSet=new HashSet<>();*/
 
@@ -151,16 +158,57 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyNote(String companyNote) {
         this.companyNote = companyNote;
     }
-    /*@OneToMany(mappedBy = "company")
-    @JsonIgnore
-    public Set<Project> getProjectSet() {
-        return projectSet;
+
+    public String getCompanyEmail() {
+        return companyEmail;
     }
 
-    public void setProjectSet(Set<Project> projectSet) {
-        this.projectSet = projectSet;
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
     }
-*/
+
+    public boolean isAcceptCreate() {
+        return acceptCreate;
+    }
+
+    public void setAcceptCreate(boolean acceptCreate) {
+        this.acceptCreate = acceptCreate;
+    }
+
+    public String getCreaterName() {
+        return createrName;
+    }
+
+    public void setCreaterName(String createrName) {
+        this.createrName = createrName;
+    }
+
+    public String getCreatePassword() {
+        return createPassword;
+    }
+
+    public void setCreatePassword(String createPassword) {
+        this.createPassword = createPassword;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    /*@OneToMany(mappedBy = "company")
+        @JsonIgnore
+        public Set<Project> getProjectSet() {
+            return projectSet;
+        }
+
+        public void setProjectSet(Set<Project> projectSet) {
+            this.projectSet = projectSet;
+        }
+    */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

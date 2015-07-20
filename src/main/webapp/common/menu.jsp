@@ -26,6 +26,12 @@
     <!--Component-START-->
 <%--    <menu:displayMenu name="ComponentMenu"/>--%>
     <!--Component-END-->
+    <!--Department-START-->
+    <menu:displayMenu name="DepartmentMenu"/>
+    <!--Department-END-->
+    <!--RGroup-START-->
+    <menu:displayMenu name="RGroupMenu"/>
+    <!--RGroup-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

@@ -138,5 +138,13 @@
             </field>
         </form>
         <!--Component-END-->
+        <!--Department-START-->
+        <form name="department">
+        </form>
+        <!--Department-END-->
+        <!--RGroup-START-->
+        <form name="rGroup">
+        </form>
+        <!--RGroup-END-->
     </formset>
 </form-validation>

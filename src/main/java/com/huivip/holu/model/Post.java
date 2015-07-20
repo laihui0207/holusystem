@@ -33,7 +33,6 @@ public class Post extends BaseObject implements Serializable {
     private String processName;
     private String postNote;
     private Company company;
-    private String CompanyID;
     private Date createDate=new Date();
 
     @Id
@@ -80,7 +79,7 @@ public class Post extends BaseObject implements Serializable {
         this.postNote = postNote;
     }
     @ManyToOne
-    @JoinColumn(name="company_id")
+    @JoinColumn(name="CompanyID",referencedColumnName = "companyId")
     public Company getCompany() {
         return company;
     }
@@ -96,14 +95,6 @@ public class Post extends BaseObject implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-    @Column(name="CompanyID")
-    public String getCompanyID() {
-        return CompanyID;
-    }
-
-    public void setCompanyID(String companyID) {
-        CompanyID = companyID;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -118,7 +109,6 @@ public class Post extends BaseObject implements Serializable {
         if (processName != null ? !processName.equals(post.processName) : post.processName != null) return false;
         if (postNote != null ? !postNote.equals(post.postNote) : post.postNote != null) return false;
         if (company != null ? !company.equals(post.company) : post.company != null) return false;
-        if (CompanyID != null ? !CompanyID.equals(post.CompanyID) : post.CompanyID != null) return false;
         return !(createDate != null ? !createDate.equals(post.createDate) : post.createDate != null);
 
     }
@@ -131,7 +121,6 @@ public class Post extends BaseObject implements Serializable {
         result = 31 * result + (processName != null ? processName.hashCode() : 0);
         result = 31 * result + (postNote != null ? postNote.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
-        result = 31 * result + (CompanyID != null ? CompanyID.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
     }

@@ -25,6 +25,8 @@ import java.io.Serializable;
 public class ComponentStyle extends BaseObject implements Serializable {
     Long id;
     String styleName;
+    String styleProcessID;
+    String processID;
     String styleID;
     String processName;
     int processOrder;
@@ -131,6 +133,22 @@ public class ComponentStyle extends BaseObject implements Serializable {
 
     public void setOperationer(boolean operationer) {
         this.operationer = operationer;
+    }
+
+    public String getStyleProcessID() {
+        return styleProcessID;
+    }
+
+    public void setStyleProcessID(String styleProcessID) {
+        this.styleProcessID = styleProcessID;
+    }
+
+    public String getProcessID() {
+        return processID;
+    }
+
+    public void setProcessID(String processID) {
+        this.processID = processID;
     }
 
     @Override

@@ -34,7 +34,15 @@
         <!--Component-START-->
 <!--        <Menu name="ComponentMenu" title="componentList.title" page="/components"/>-->
         <!--Component-END-->
+        <!--Department-START-->
+        <Menu name="DepartmentMenu" title="departmentList.title" page="/departments"/>
+        <!--Department-END-->
+        <!--RGroup-START-->
+        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>
+        <!--RGroup-END-->
     </Menus>
+
+
 
 
 

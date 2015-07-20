@@ -6,6 +6,8 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sunlaihui on 6/15/15.
@@ -37,6 +39,8 @@ public class Project extends BaseObject implements Serializable {
     private User Owner;
     private Company company;
     private String companyID;
+    private Set<Department> departments=new HashSet<>();
+
 
     @Id
     @Column(name = "ID")
@@ -130,6 +134,19 @@ public class Project extends BaseObject implements Serializable {
 
     public void setCompanyID(String companyID) {
         this.companyID = companyID;
+    }
+    @ManyToMany
+    @JoinTable(
+            name="R_DepartmentProjectMappingTable",
+            joinColumns = {@JoinColumn(name="ProjectID",referencedColumnName = "projectID")},
+            inverseJoinColumns = {@JoinColumn(name="DepartmentID",referencedColumnName = "departmentID")}
+    )
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
 
     @Override

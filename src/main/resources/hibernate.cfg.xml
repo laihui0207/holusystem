@@ -24,5 +24,7 @@
         <mapping class="com.huivip.holu.model.Note"/>
         <mapping class="com.huivip.holu.model.ComponentStyle"/>
         <mapping class="com.huivip.holu.model.Component"/>
+        <mapping class="com.huivip.holu.model.Department"/>
+        <mapping class="com.huivip.holu.model.RGroup"/>
     </session-factory>
 </hibernate-configuration>

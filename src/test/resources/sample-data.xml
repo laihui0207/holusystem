@@ -810,7 +810,117 @@
     </row>
     </table>
     <!--Component-END-->
+    <!--Department-START-->
+    <table name="R_Department">
+        <column>ID</column>
+        <column>DepartmentNote</column>
+        <column>CompanyID</column>
+        <column>CreateDate</column>
+        <column>DepartmentID</column>
+        <column>DepartmentLevel</column>
+        <column>DepartmentName</column>
+        <column>ParentID</column>
+        <column>PositionGPS</column>
+        <column>DepartmentID</column>
+        <column>DepartmentID</column>
+        <column>DepartmentID</column>
+    <row>
+        <value description="ID">-1</value>
+        <value description="DepartmentNote">UdGoEoIfGtYzJeLjJtDiCyBbMqEkPzIkXbBsUeQsMsZrSqHkAaGfTpCnRlSiMdNyFyHaGtSmUoVkKeZxQbKhOzQnPvIjYmNdVyQzKzPtSlHoBbMoXrPvRjToDrHgCxHkJsTyZzKwUlOhNcSmNkMeByEyPzHfXeQyMrYpUbErSeRdDiOyTuHiAoBhNnYwUxInKpQuXaPiIfGyBdOaAaZzJfFnEkPyCuRfVnJkSmHiDdLrZaKxZeYhPlEyYlLoXjQ</value>
+        <value description="CompanyID">-1</value>
+        <value description="CreateDate">2015-07-20</value>
+        <value description="DepartmentID">RzTsSgHcSyQzWeXdXwErPoBvTiCsNfNoSaFaQySwPvVvDpHeJrKqUyEcLsDlDcXvUrCnSkGgXgCrYmJwGeFsEoKdXaMaBmVgEyQvXsIxLmWaQuLiHwGoSoLoLwAmLvGbXnDkYpNyEiTfSnPdHaFmFtRvErDtIfFxKtNpRgUmObXbMnTtSjRiCrHgSoCdJvDeDqSoYfJsMnUkShPaMsSuBiMvYrVfShAsPjMwKjGvGnCbTlHrDcRwJrXsIuWwFuA</value>
+        <value description="DepartmentLevel">OiRsAzNtStPtBsUyPzSqSbYlOeYwQuUfCpBnFaYiIbAhBgNsTwStOpQhKfSxFcStIzKzRiFxVdRuAaPuXuTyWvHbUpIiIlJdPiYyYzLxPvUmFaOaCfCzCwYhUzJvTzQqHwFbKoRfQgKyGrIkWcSoErMhUzKoQdXhBuOeKsMvJcLrRoQhGuXuRlQaFrEwDeAxAyPxBtVaLnTnRyEeLnYzBqTnKpTzBhBfMqHlYvIuUfQuUcRnJvCnBbFbCtHxCpG</value>
+        <value description="DepartmentName">SuZuSlWnIhMkDkKmErLwEnCwHwEpZcOtDhGaQwJnAeXmGyXbKbJmKjKwXxLkCpWhUtPfSjXaPcZiIsEgCoGoHySrBcNjRoApTbCrAnFgGfHdAtKbDmSfGkBgVfAaPqUfJwTaAtIpOpNhMbNqBfPdNlYqYoNdOiMqEwBoCiFaFxGkAaUkBnMiIlCvTrFeNpPqUyTsEnIcBjNlMbToEySmVoFmOjRgMpUtMaQcJvPcQsVdIsZuQpDhZkEoAaGxNxC</value>
+        <value description="ParentID">-1</value>
+        <value description="PositionGPS">GkRvMfTxJrWnTpRsFqDsNsPgNxFeUfTfCrJgGzQeByKhWpEcMdWzOnXwIbHiTvLeLhSfZgSlXoOsQfZcMfIwBbKiIvOfCkKlYlDnEsPpLcHoFbYpTjBtAcDzOhOwGsFxUcQnQjUuIkUxLnNoQfKvBvPoGdOkKjQfUvApPrRtBhBnQfYsLnVqRgAuQtIrQoQuPuByJiPpWwYyZoCeVfJzHyLfXgDzFrUiIcFjJaEwStAeTsJqOyKtZxGjNcEjEkN</value>
+        <value description="DepartmentID">HjJnQzLzQxSkCbSwPmToQwYaYtXyZaBnBoNmUdUnApPyYxYwVrZyHoZhThGcQvZbVkVrYtFcZrIpDbQlJzIpKtWcCoCmRpIzJrEdDrSmFyNfDuZmHqPiUnIhJpDkIsFtGhShQxGjLnScUjAvFgZmMgBiZzRcUuWtHjPcIqZeUmQsXzIsUyHjPgJiGgOrBrFtBmBfJgZmRrBnXzJmKzBoWoUgEdIaTvQwBlSwDxYbQyGcWhRnHhWsYtAiJsYaGuA</value>
+        <value description="DepartmentID">NqVdKqSlRpOqRvBtKwNfNpJfCsAfIbZxVnJpQoEaXlTpQeNsKdEfYiGkCtTcWmXfCoAeAkRcJpPrNoIrCpFyPeJcFoFuCmDxTkTdIaMkZdHsGuVwJgMxPuSmHySdDuEyDyFhLeSnPwLwHdVrPwYoLtRmTsDoJiCuFnYzOsVwYzScPxKcAoTjFeJeQgKyFwPpUrNaHjCjSqSmJzFiNoSwDlMrWnWyDvJiNbKeQuPlYyFoEcVsNgAfGjFvSzHjAmO</value>
+        <value description="DepartmentID">OvQoKlOeYqKmXlXlWdLeWkOoUrAnZmIpTlZnAtUbLqAvBdRtCsZeKjTrEgRfPzRhYsCxMaSdBuKsNoUfBjLbTlYsWkFvDnQbJoEvVvTbZfKsIoYkPcGnTdGxZyNxHeBmOmYuGpPgWcRzLaLqXvWxPcGmFhGqBlEfOaVuUsRjYlWwVjMaCwNjXiToZnOnBfAvMaWnMaYtQeMvJoFnOtUjYtGnNqVlLpLhJuOdPcQlPrYnKhLmByUkZvIeOxYaNkE</value>
+    </row>
+    <row>
+        <value description="ID">-2</value>
+        <value description="DepartmentNote">LaWwYgNtCmEpHgHdEvGhXxNxCpWlZqMeUmNwOgOdPnWiTdBtUbAmLkQrUnDhYxSlNjGhEbVpNcXkRgSeSjCqGuEbUaRpQrUrXuRkDcRlZkSdBcGnSuNcVtBdJxKvVvToTjJhWiCzTrVkShWpUaXsZuFgYaUeDuJaGjNdVeXtSpOaSeOgBrThYkPeLvByPfYcZkDzZjYkIqFkKbEfYzFiXzViDfGqXkJmGdErFjToQeLrNrNcNsXeTlXoPeUbKwK</value>
+        <value description="CompanyID">-2</value>
+        <value description="CreateDate">2015-07-20</value>
+        <value description="DepartmentID">YpFiWgAmXgIyUlQsQgIhGxVbRuJhMuWgQrRpPtBvXuOfAdKwFzHyQmIbTxIlJvNeOfKrYpOnEnYtTsJaPwWjUbHsHrIlFkCtTiYtTnWtRaHlKuEgYcXwQzVlAsEgSsJzEcNtCvKfVoDdSuNfEkZrVoIlJlOoZuNxDjGlKqKeWhZpCrUoGyYnJfPtXwPrEkZlBsTdJbYoTxZmMqHcDqJgHyVtIcFvNwUgGxVmQvFyWmUxHnQtUkOuTaDaJmLpDnA</value>
+        <value description="DepartmentLevel">DzGpKfFfBlPqZpYiCgZsHiWhCfRoUrBpObPrRqYkCuTnPqEqYjShOoKnWcIjIsJeMhFuDvSvZdUcSoUrGkYrWqKuWaRdMrQlFkEkWxOmVpBgRjBxKeCbTqFdExMjMyMqWhXzYjWrDfGeTeCnLcToGqTmHwMfEgOiXeXzYoJdOoWaErTpTaFtIjQmKvSuEcFgTmXoMhMsIkWbCvFzDpXcRySrUhEwWzQrYpDkYrVaXnMvCxMtTqSbLxSyOmCyBzC</value>
+        <value description="DepartmentName">ZmYuNqMgSwChDsQlVsEpDoMfIqPvLvRkCdNxRaLrMwBqHkWsVnArHgHwRbLpBgFrWnLkZiWoBbShWpZmHgNhQnWvChDcQyNlAvUiNjPkMrUdKdEpVlPjFfYlFbJnYkJtTkWoJrHsRyTlOvMcYtZhIfPhXfMuCtOwPzKjZoPwFzWfJkLqViQoSwWgIdIaUuOzEtLpTzCqNlHqAoPoJzSfKqMcXbWjFfPdOeXaOgYsYuWeKjQzTgKcObXcYsGuYeL</value>
+        <value description="ParentID">-2</value>
+        <value description="PositionGPS">OwJzTzXhLpJgMlZpFxSfQnYrAcNhMaAzGvPmDoJmBwLmXjKiGkVnPiVyHqRxIrEpPwEhVhFvWrMoZgPdYoPiLiRgOfQzNvMjMiGmYiEoWtVnKvYxWxAgRcQmFrUkTcVvQbIiSdBxSbMmArWhWsGtMnNgNlNmDcQmYySpIqEnPvHgHnSaQvIsTfBnTrJlCtBkJdFlWxXfRjCyVtRyQxFeDiRdQhPeTeEbXbJaQtItQnOwIjOsGrThMdGdAkRmBmL</value>
+        <value description="DepartmentID">JwFnVuVoGnGyTqZaDeQfQrNoXyFnHbCoFmNlYbZwGxHcKbDsSyVvThDnRsPpFhFiVmSdStRgQzIwZcBfFbCvTaDbMlOiKrKaVgGwReSkNkItJeHoVwHpPxDvArPzRfTwEbDjPdMqIyWrCwWvFeAyBbFnBmHjQnWrRnGmZpYeGrIcWeRxDsKvKtLkWnIkNfNaMoUvPaLuYeOiIeAuBdKiEjOsEmSiWoHjXdEzKiFqIhLgWvLvGeVuBvRzAaBlOnK</value>
+        <value description="DepartmentID">QqTsOsTrHzVhYzFuLxXiChNqXeJjHeAfXaUfZmKkZgQvZoTrWrOaMaXhXpUyOpLkKsMeAbMxGeZaTsWwLkHtKgWfWkYqUxGxXmSwAzLhThCoWoXhWbIiQpDoZoReCfDpAhKvCfQjHtBkFqCbYzLgSwWgZnVuXfBwBtCrPkBsExVlBfDuGkMnQhSiPqLjLqXuAqMdDoLnRsNsDyNfMcKuRjUrEwMlBdFxWtScHyNaZyErOxRzTlGsQzHtSxEsZgZ</value>
+        <value description="DepartmentID">IaBkJbIoVfDjQlVxVePrOfMbAzMeQiXdRzAjFnBgYqAiTdJuUuYoCqHnBzWuLeUvVnDgKjDnNjIlWlZvZqXuSpSxKqSgJgIiNxZnMzPfMdOrCiUeEeVoTjWpKsYrXmRwEgBxHzDhOiHjCtVzByHrEjWwGaFuQbAyIkIrQjCtOhLmBpKnPiPeJnOvOwLgCoFuYwVrHpJtByZsRiVyNvIhKmAlXsMbYnPfGdIcIlBuWnXiMgKbEiOpDpVcUdFhNcZ</value>
+    </row>
+    <row>
+        <value description="ID">-3</value>
+        <value description="DepartmentNote">JoEqWmLxJkUjSlOqNsSyHdHaHrBxBhBcDoBwEaGiPqCcSqLoDfUfYkZyLoCrQaAaRuDaDqNiNxFaSlHpMnNxHjPsElGfCwWeYhEzAtXfEkZfNvJhSzCiNmBiPkXbTqMeWqWjFyKvGnLeVvSuVlXwNtOcEnCrJuTjOdRcAuVxWuAyQlDzVrFjRnFvMoTzCcThQeRxHuNrQtJcIoPmNaHxMtYvKjLjGzHnFeAfLpPsWiWlJlWjGbWuBfTvRxMkTxM</value>
+        <value description="CompanyID">-3</value>
+        <value description="CreateDate">2015-07-20</value>
+        <value description="DepartmentID">RrHdErOaGiIxJeDgKaWtRgGzIlJxNfYwVaSwErMeHuFbAcItPwGqFkOcWeQaDzYoChHbHeNuOfAuEsMkVpJfQfJnDyTaTxLrIiAeEdNuAcZbAqXzUkOsUvSsQrCaYrJeJvBoEuKqJvNqMbRoEeLiLjFwEaGfLbKsDlBgSmCyFsOgLaAwDtGgNmSeHeOfYzGxKkLaVeHeQxAdNpSqAqJqDeQbAaUyUxPwOcJrClXrJpSzZsGyFrGeJbGeWqZhXsN</value>
+        <value description="DepartmentLevel">TqEiIsBkYpWfWvSkImKmNnSfUfVoPiNlXrWuKsCrGpEdPjMzShFcIrJnOoHvXmAqBfEgOwZyJeOuKtAyYnBcGjPrInNnQdSwPiWgWfLyNtXyNvStCoGmLnTzJtKuTlVkQjMeKjRqVgMqMnGwNfSeBtDbTfVgPcEaPpHoXvBtRuUsFbWnAmCiFtUzYqQoQaJsUoBmWnSwRyNeUsMvWzRcCfEfUjSwAcHaPzSfTsPoNzZcEtIbUbZhInQxTgPuMeU</value>
+        <value description="DepartmentName">JjWfKmCwCjUnLgMuFnXzNoGlRcCyPqMpViSwCfDfYiHhQeToWaBnQkKsMrXnOhYoYtGyEhRuYhEoUvSvDuAvEoJdOxWlSgFfZmCcHpVeLyQqRyLzBnIkEdSeYvIoNgOeJuXsOxYoVzOtPtLhCwPeMjOlCnXcGzGmIaQwYuFjGuAqWoWfZoDtUjWjRtCoItXmVbHxSmYbSbSrDiElUuLgNiLcSyDaWaQmWvMfZgTxCxBeGhEtCsIvKwPnZhUlRkR</value>
+        <value description="ParentID">-3</value>
+        <value description="PositionGPS">IqTtFxUiQxGcWhFaRuMbCsUpWoEwHlWaNnBqMuBdNxCbVvPuOsBtIqSdDvTkSzDtEvSmJnGsPaOyKkGaAqUdCsKxEkBtIbIvSzBeRgZsFsSkOlGtKtZkEsBsPrXlBdBiLbLcQmYwTlBvKaSnSeOoNyXrMjLiNrLmMiIrCfLnSjWuBmJzPrLtWeFrSjXjZjRkDhGsEkQcXjDsPrAjStPaAqGcZvFdSxQuCxQjUpPxBiMpLvJoIaWdCpTuBrNwDxV</value>
+        <value description="DepartmentID">YjUeFvBwKlMmIuQcEeRrZfOqKaAfXsYrDeEaNdVgMdKeZpLcAkJgWgMoQxGzAwYtCzPzTjIwYwTzLmTfSbFsFdQnGqZjFzBsWgIwOkYfPbRlIaEuPpCbOyAtTgLeRzFcRxPjTjBtCeFwDiFzZrGqVvXsWeErGxQlLjHwOdEvOaBpNySaNhCmOoVsWvVlSzYxFtAvKkOkXqRvCrIrUbEnVyHhLsKgQoXwXlGcKwUnYkItDeFaIxPhAuRhMhJzIuL</value>
+        <value description="DepartmentID">VkMoSuUtPhErVwFfUtToPdAgTlQnIgBqPwYpZaOwLwTqCtOaJdQzVhClPuWuKhEeWhTvKjAoYjVdHdFtOtCyEdKqYsEhLtHySeKtLuEaRfXnQgLrGwSnGdIuGdYsEfLeRqMjCaIbAqMcDcMhRcYsYqJoEyAbEvFeWuVtXtDjGaUqIdGnKqDbKfGvGjNgLxSdKcNfBkFaJlHqSpMiIzZuQmYbFwQnLmPnGjLgDwXcGqXkEsZmDwBaWaBeDyUsDpQ</value>
+        <value description="DepartmentID">BxQzZnLbSkAdPxNdMnMoMlOiVhNzTlGjXuLzBpInHoCtYgMvXkUmBzLuMwIpQyEyAoPxIuFlVsZiHeAgBsEyEsHkFeQaQrMiVyRkFeYcWhJlUpJoLvNrUyZbJzGcKjQvAmGvZeQxDuNyJmVbBcEyEeUkUeTeWwToYxDjNmDmCmRhQkZfOsMrQvXmCpYcYtEpSmXcIfLjGiQnQlMrUpLoNxDeFeQwRhAyCpQrMpOoSiRdFaWoObPxRmTeKkNvSkM</value>
+    </row>
+    </table>
+    <!--Department-END-->
+    <!--RGroup-START-->
+    <table name="R_Group">
+        <column>ID</column>
+        <column>GroupNote</column>
+        <column>CompanyID</column>
+        <column>CreateDate</column>
+        <column>CreateUserID</column>
+        <column>DepartmentID</column>
+        <column>GroupID</column>
+        <column>GroupName</column>
+        <column>GroupID</column>
+        <column>GroupID</column>
+    <row>
+        <value description="ID">-1</value>
+        <value description="GroupNote">QrHrWfTxCeJjYiIoCuLpFuIwYsFiFeOpUmTyWeAjEtZhHoTyOaMqIaWmHlXmIpYeArUoBsCoPfRwKoDnRzLpPkThPqLcKdKvVjFgPoSmEiHiOcIdCkPgSaMyViPgJiWcSnBqAsLxUkCyGxOoIzUyRbYuBtSyPeCnQlBvSpTjMuEcKgJxPaTtOsHoMhCqNqNtLuVdHmJyAmHgMtVlDpSsSjSqHtFzRwQzVmUdJjWrJbTkHmUsQoYuBwViZaHtRxI</value>
+        <value description="CompanyID">-1</value>
+        <value description="CreateDate">2015-07-21</value>
+        <value description="CreateUserID">-1</value>
+        <value description="DepartmentID">-1</value>
+        <value description="GroupID">QkGuBpXkQtVtTnHrRxDfQvGzKzTgCzVaEzBrIaUzHsIsJdKgJzTsWjRbYiLwFhRcIiEeIhBqToXgNkDvPhVvKgKkOuVzUpByMxYiLsDaObRzBpDsZbBxFsIzObEhIlZrJxSmLePjSgRuUxPsHdBfFgQyQlJaCiMnVsRlAhNkWvHkQgUfWvVjPoLiSlUhWhCmFoKbOzBuReYzQvBdLiAvZnHuZyOdNzDvMdPnHhCtSmYhGoTlHbWqKtHeHmHnBwN</value>
+        <value description="GroupName">JcXpTkIjShFuTcYnUiIxPaEuSsRrWwOsPwLsFwLqPqRlEtEcKqLqLlTiTjDpIhNuGzVpRaYgApBcFxJwEmYmMcYtWoMmEhEaYqUtLtOxZaKaNuEcDbYaLwSoWcOvGiXoNmOkTvTpPbHtZqOiBzWkIfLrMxAwCyOhYoIsPhTzFcDpErZrHpOhYcQcTuEuUyFdAoWzLlFvTkOeDgOyCzKpHqEgKpVxMgYnFgHjNwTtHtAkHfSnWwWwLrOgQoVhZyG</value>
+        <value description="GroupID">YnVhQiRfIzKuSsKaVtXcSqSsRxWkOoMiCvGgJbCtIxMbIsSgVsFaNlFsHjLaTeDuWkCeIuIlAqChAkAqUoEnOkVzGdEkWqUqZsZfApOxItJcDwTmMkLwYwIqNeExHnBkQiJzKvFlMoGwNfKaLeEnLzIgNzHxOtFuHjJuJyQgMjWfEgIiPsScYaNlZfDqLvBzFxXhRjWvOsScTbBxYuEnQvGjAqAjHfJzOrDhWtQxWwTsOeLzVlPoBxAvRiIlKzD</value>
+        <value description="GroupID">OiHzZyHsJqVbHsOoNdUeNtCnZjEfAbOoUfIiBoKnKiIeJqKhCwVwGvEuHyPfSkWuSuYuMjVvEfDnYnOqLcOyHcGrOuKpUtVnIaQmJrNxMaSfMlUaUuLkMfQkJcCoGgUbQwGkYbIuWdYxPmVwYlAuOeWtQqHuPlNmIjElXwPxRrKdFbZqBkTdFcYxPoLlJpGgGtAqDfYtTdKrDtTrDwHlEcBgXpUcMuCxLvHiNuTbCbWfNaZyQuTyYpGtYkOeEmP</value>
+    </row>
+    <row>
+        <value description="ID">-2</value>
+        <value description="GroupNote">BjXkAyQfDxDzMyPyGbKkEfVlCmGlLtLrPhLzGuIiIvJiKmTyMjQqQbMvSqVhBlPrGzOkRjFrUlShNcZyLxAyLcUkKyKbJfNtJqFlMxEqUaRlQjXsKhRmPyRuVrIbMdVlTfBnDoGsRnMqAjQvRbTpAyFfNoMhUcArDpJsExBlTzGwKvXmJuZwCcLtEqIkThNrLqGlKgXaWsOtMnXxTjKaQlKeWkZjAmBnTsZhHvJtPjCbTaDnKsOpUjCkYdPxWgA</value>
+        <value description="CompanyID">-2</value>
+        <value description="CreateDate">2015-07-21</value>
+        <value description="CreateUserID">-2</value>
+        <value description="DepartmentID">-2</value>
+        <value description="GroupID">PcIxTsRlIlWvLiLsHzJsHgIiUvOyTqJmPxEfWrZiMpMeTiVpWzRoFyYdGhTkOqWaOiCfLoUzBmNnDbHjRxExRqFzZsFcSiTdFcYuArWpBzCaUbYdTqAwWcUuDbIfQnPwQlQaSoOnBsAnRwQrZeYbGjYrApWqEzWkEkXhSgMlArAzRhCwOgDiTeMkEbBxGjTfKiQjOgXqBvMuXvOlWqTmPwUqDgMiBiGjQnBuDxOnUjYsHlDsHnKjXhPwBpRgZqM</value>
+        <value description="GroupName">DlLxUmFyRoYfTjOyYpCzEiDlFaCpZhBbPpRsBfMnWiGrNlFfQgIrCwOuXzPpJqAbVdQqYaSiIiUrTxKpHlGjEzTgKsCnBeRaDrIlAjZuNqBkWsDzEuGeCfEzQfNbZtLdSeDnRoYzYdQtJjBgTqReZmTlIbOlUgIvGrJmEbVvApZsSwVrTtSrMhIkXpBiYkBpCkKuTxPtXiAuZePzGuNhAtOdKnFtStVaOgUtBoImPnKvUsRiElStNyWwRoJtQvA</value>
+        <value description="GroupID">AlHaQzXxEePrXbElBuQtMzQvPySzXdNlKtRuCnOwVqWzTiRuYzBzXxBnYmJrDkZmQvSpByGqVnOrBmAfLvSsNgGlLoCwWmKxZqIlJhUvSgWnKfLxOuHpSiGnAuDhOuImQhOvFbYxKdLzDeDoPqZfIgXiRmSbCqCgIvMwNeUgOkCuTiRlMyGbXqOsMlEqVeKtDhJcOeDbZtSsHiCdZtMmBbMmVySoSmPtNaYwZrJzTqIoCiPcLoXgSmBkXzXyOzN</value>
+        <value description="GroupID">VoEaRyAoPbJtSwYjQwJzYjLkRiScKuEeVmMoCpInMsDaKzPrBsFtCvQnGfFjHfHjTpJkNuNmEsLnSvZdKtUrDqSbQkLjEhRrXbHcUxZuTbMaPqYjThHoVqKbBvMwMkZsCmCaDgEbKvIeDpFtPlTvTvTlQiAcJmAlKeZtQgLfGrUgDyYoUbHzMjXxYsCtZzLcVcLsNjMfSgUvYoCjAeYkKyQaTtAtWwXwOxSxYxQsScEiOrHlUvJgEiSvBuTyRdR</value>
+    </row>
+    <row>
+        <value description="ID">-3</value>
+        <value description="GroupNote">KgEcFcGnElWhBtYrVzUgSnCyGkNeEdKxAmXxPgIeAeMiGvOhClUpRuXbBlVzQbTxOuJlYnFbEnVlRkApCfXjDkPgEpCpJaUzItEkMjFsAvSqAjPeCjHmNyWjUdSmAwGzGeNgNsYfEqSkHgLtAwZzSaDjFoQlArKwHsPcEgTiUxTwJtZoFwGkPxLqTxQoVbBqJyRvOtOqGwOhBsFqYfSkUxZzTuDbJmQlCdWfBaQzVqRkGwOvAbHvTmMtCgEoBwP</value>
+        <value description="CompanyID">-3</value>
+        <value description="CreateDate">2015-07-21</value>
+        <value description="CreateUserID">-3</value>
+        <value description="DepartmentID">-3</value>
+        <value description="GroupID">BzTlQeRxErUhPiLwQlVwTuCcXuApOpVzHeBpSaQjXcDvStOrPrPsXtXoZwFmFoMlEtZxOtMsBeFmPfCsQwIsMsBjMqXdFsFfWaAsVwCjZkHaQnUpAmSzWvWjJvJnDwCoDpVaKqYqJvHyShJyGbFyXwOqBmEfUbBlBvPkFgAcDfPsBnImIlBmHjDnFvUcCqWjTnCoFqQkPqGmYjQsIaYdHoOyJgJuYbQlPyOkQdWfWgHzBqVpCfPzQlXaGuUaNkO</value>
+        <value description="GroupName">XrBeJsVuFsFkKkYfMhMuNpTeSwYvKtUvQiWqAgOpUlCzZkMpMrJnRoSeEhFwJzGuDdEyPuAeOzIaLkZyYqTpLqPoUhPnKaSjLwOnKyFtJmZuWaWoDtMfJlWeXoTtOjMsWcPoTvTzPaUfXePiIeEyMoFtRyUcCrKiFsIrRwDfHjKbZgMhBoJbOrIvYaBeOmEzBvVpUzOvGkWvZfOjPsVvKkIsTbHpVfXjPwKjBtKfQmPkClSpQjCkRcAzTxFvXkX</value>
+        <value description="GroupID">RbCoSlXwOkAcLxMdIlDiSoFxBgKuNgEtMmDpMbItGoSmOpEbUzWjOeMxDzApEcWnDlWiRhWqFyMvEvBqWoBfIwTvEqNnRkIkYiPyJoVeWgAcGkVcIkRjMwVpKiElOnSnZoLiGwHwYbMaRjLdWuCwQdQlWoCvCwIyDiYlYcFsTjNkGlXtXhNgVtUgJzRmXuEaZkAzDyDlVhHsYmYzFfJaUaZkOcNyVzAvPkYoKxUyMyCvCnKhEmZbWlExEoOrUtM</value>
+        <value description="GroupID">DxYaPuOiSxSaXgSeSxLuNxIpGxAgScXtIvMwAfCjVlQwYaTgVwHmAkGgJdHfSdSdUkCoXlEaCaDhAeJhLtOoVbEnAzRcZzYzLfQsLcXzFwYjFbKvYlTcNnIeWwKoWkPgLcCwAyBhSrGgPhRoQlMqUfZlVyMtMiMnKzFyXrSzOpFeNrKdMhQqOsUlNcXrMfDdNgMnTqBgHzRlCgWsWmAxHbXzVbUfKwGzIzCoStHqNaZdZwElAkWiOpXgErBbVmY</value>
+    </row>
+    </table>
+    <!--RGroup-END-->
 </dataset>
+
+
 
 
 

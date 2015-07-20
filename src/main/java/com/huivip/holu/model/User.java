@@ -52,7 +52,9 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private static final long serialVersionUID = 3832626162173359411L;
 
     private Long id;
+    private String userID;
     private String username;                    // required
+    private String loginCode;
     private String password;                    // required
     private String confirmPassword;
     private String passwordHint;
@@ -77,6 +79,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private Set<Post> posts=new HashSet<>();
+    private Set<Department> departments=new HashSet<>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -276,6 +279,20 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setCompany(Company company) {
         this.company = company;
     }
+    @ManyToMany
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(
+            name="R_DepartmentUserMappingTable",
+            joinColumns = {@JoinColumn(name="UserID",referencedColumnName = "userID")},
+            inverseJoinColumns = {@JoinColumn(name = "DepartmentId",referencedColumnName = "departmentID")}
+    )
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
+    }
 
     /**
      * Convert user roles to LabelValue objects for convenience.
@@ -309,8 +326,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "R_UserPostMappingTable",
-            joinColumns = { @JoinColumn(name = "UserID") },
-            inverseJoinColumns = @JoinColumn(name = "PostID")
+            joinColumns = { @JoinColumn(name = "UserID",referencedColumnName = "userID") },
+            inverseJoinColumns = @JoinColumn(name = "PostID",referencedColumnName = "postID")
     )
     public Set<Post> getPosts() {
         return posts;
@@ -442,6 +459,22 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     public void setCredentialsExpired(boolean credentialsExpired) {
         this.credentialsExpired = credentialsExpired;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getLoginCode() {
+        return loginCode;
+    }
+
+    public void setLoginCode(String loginCode) {
+        this.loginCode = loginCode;
     }
 
     /**
