@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="R_ProjectIndex")
 @Indexed
-public class PorjectIndex extends  BaseObject implements Serializable {
+public class ProjectIndex extends  BaseObject implements Serializable {
     Long id;
     String projectID;
     String midTableName;
@@ -56,7 +56,7 @@ public class PorjectIndex extends  BaseObject implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PorjectIndex that = (PorjectIndex) o;
+        ProjectIndex that = (ProjectIndex) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (projectID != null ? !projectID.equals(that.projectID) : that.projectID != null) return false;

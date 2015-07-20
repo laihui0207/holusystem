@@ -33,7 +33,6 @@ public class ComponentStyle extends BaseObject implements Serializable {
     String processRight;
     String processProduction;
     String processNote;
-    String companyID;
     Company company;
     boolean operationer=false;
 
@@ -85,16 +84,8 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.processOrder = processOrder;
     }
 
-    public String getCompanyID() {
-        return companyID;
-    }
-
-    public void setCompanyID(String companyID) {
-        this.companyID = companyID;
-    }
-
     @ManyToOne
-    @JoinColumn(name = "Company_id")
+    @JoinColumn(name = "CompanyID",referencedColumnName = "companyID")
     public Company getCompany() {
         return company;
     }
@@ -134,7 +125,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setOperationer(boolean operationer) {
         this.operationer = operationer;
     }
-
+    @Column(name="StyleProcessID")
     public String getStyleProcessID() {
         return styleProcessID;
     }
@@ -142,7 +133,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setStyleProcessID(String styleProcessID) {
         this.styleProcessID = styleProcessID;
     }
-
+    @Column(name="ProcessID")
     public String getProcessID() {
         return processID;
     }
@@ -167,7 +158,6 @@ public class ComponentStyle extends BaseObject implements Serializable {
         if (processProduction != null ? !processProduction.equals(that.processProduction) : that.processProduction != null)
             return false;
         if (processNote != null ? !processNote.equals(that.processNote) : that.processNote != null) return false;
-        if (companyID != null ? !companyID.equals(that.companyID) : that.companyID != null) return false;
         return !(company != null ? !company.equals(that.company) : that.company != null);
 
     }
@@ -182,7 +172,6 @@ public class ComponentStyle extends BaseObject implements Serializable {
         result = 31 * result + (processRight != null ? processRight.hashCode() : 0);
         result = 31 * result + (processProduction != null ? processProduction.hashCode() : 0);
         result = 31 * result + (processNote != null ? processNote.hashCode() : 0);
-        result = 31 * result + (companyID != null ? companyID.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
     }
@@ -198,7 +187,6 @@ public class ComponentStyle extends BaseObject implements Serializable {
                 ", processRight='" + processRight + '\'' +
                 ", processProduction='" + processProduction + '\'' +
                 ", processNote='" + processNote + '\'' +
-                ", companyID='" + companyID + '\'' +
                 ", company=" + company +
                 '}';
     }

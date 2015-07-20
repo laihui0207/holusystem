@@ -146,5 +146,9 @@
         <form name="rGroup">
         </form>
         <!--RGroup-END-->
+        <!--ProjectIndex-START-->
+        <form name="projectIndex">
+        </form>
+        <!--ProjectIndex-END-->
     </formset>
 </form-validation>

@@ -40,7 +40,11 @@
         <!--RGroup-START-->
         <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>
         <!--RGroup-END-->
+        <!--ProjectIndex-START-->
+        <Menu name="ProjectIndexMenu" title="projectIndexList.title" page="/projectIndices"/>
+        <!--ProjectIndex-END-->
     </Menus>
+
 
 
 

@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -1746,7 +1746,100 @@
             </steps>
         </webtest>
     </target>    <!--RGroup-END-->
+    <!--ProjectIndex-START-->
+    <!-- runs projectIndex-related tests -->
+    <target name="ProjectIndexTests"
+            depends="SearchProjectIndices,EditProjectIndex,SaveProjectIndex,AddProjectIndex,DeleteProjectIndex"
+            description="Call and executes all projectIndex test cases (targets)">
+        <echo>Successfully ran all ProjectIndex UI tests!</echo>
+    </target>
+
+    <!-- Verify the projectIndices list screen displays without errors -->
+    <target name="SearchProjectIndices" description="Tests search for and displaying all projectIndices">
+        <webtest name="searchProjectIndices">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View ProjectIndex link" url="/projectIndices"/>
+                <verifytitle description="we should see the projectIndexList title"
+                    text=".*${projectIndexList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the projectIndexList title"
+                    text=".*${projectIndexList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit projectIndex screen displays without errors -->
+    <target name="EditProjectIndex" description="Tests editing an existing ProjectIndex's information">
+        <webtest name="editProjectIndex">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View ProjectIndex List" url="/projectIndices"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the projectIndexDetail title"
+                    text=".*${projectIndexDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a projectIndex and then save -->
+    <target name="SaveProjectIndex" description="Tests editing and saving a projectIndex">
+        <webtest name="saveProjectIndex">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ProjectIndex link" url="/projectIndexform?id=-1"/>
+                <verifytitle description="we should see the projectIndexDetail title"
+                    text=".*${projectIndexDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${projectIndexDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${projectIndex.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new ProjectIndex -->
+    <target name="AddProjectIndex" description="Adds a new ProjectIndex">
+        <webtest name="addProjectIndex">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/projectIndexform"/>
+                <verifytitle description="we should see the projectIndexDetail title"
+                    text=".*${projectIndexDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="ProjectIndex List appears if save successful"
+                    text=".*${projectIndexList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${projectIndex.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing projectIndex -->
+    <target name="DeleteProjectIndex" description="Deletes existing ProjectIndex">
+        <webtest name="deleteProjectIndex">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ProjectIndex link" url="/projectIndexform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display ProjectIndex List" text=".*${projectIndexList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${projectIndex.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--ProjectIndex-END-->
 </project>
+
 
 
 

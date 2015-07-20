@@ -270,7 +270,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.userState = userState;
     }
     @ManyToOne
-    @JoinColumn(name="companyID")
+    @JoinColumn(name="companyID",referencedColumnName = "companyID")
     @JsonIgnore
     public Company getCompany() {
         return company;

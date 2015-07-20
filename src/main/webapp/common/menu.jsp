@@ -32,6 +32,9 @@
     <!--RGroup-START-->
     <menu:displayMenu name="RGroupMenu"/>
     <!--RGroup-END-->
+    <!--ProjectIndex-START-->
+    <menu:displayMenu name="ProjectIndexMenu"/>
+    <!--ProjectIndex-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>
