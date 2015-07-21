@@ -78,7 +78,6 @@ public class ProjectFormController extends BaseFormController {
             projectManager.remove(project.getId());
             saveMessage(request, getText("project.deleted", locale));
         } else {
-            project.setOwner(userManager.get(project.getOwner().getId()));
             projectManager.save(project);
             String key = (isNew) ? "project.added" : "project.updated";
             saveMessage(request, getText(key, locale));

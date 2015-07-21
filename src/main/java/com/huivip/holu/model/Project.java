@@ -6,22 +6,28 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by sunlaihui on 6/15/15.
- * SELECT TOP 1000 [ID]
- ,[ProjectID]
- ,[ProjectFullName]
- ,[UnitFullName]
- ,[BatchFullName]
- ,[ProjectShortName]
- ,[UnitShortName]
- ,[BatchShortName]
- ,[OwnerID]
- ,[CompanyID]
- FROM [MidDatabase].[dbo].[R_Project]
+ * CREATE TABLE MidDatabase.dbo.R_Project (
+ ID int NOT NULL,
+ ProjectID nvarchar(50),
+ ProjectName nvarchar(50),
+ ProjectLevel nvarchar(50),
+ ParentID nvarchar(50),
+ FullName nvarchar(50),
+ TotalWeight float,
+ TotalCost float,
+ StartDate datetime,
+ EndDate datetime,
+ OwnerName nvarchar(50),
+ BrokerName nvarchar(50),
+ Note nvarchar(500),
+ CompanyID nvarchar(50),
+ CreateDate datetime
+ );
  */
 @Entity
 @Table(name="R_Project")
@@ -30,15 +36,18 @@ import java.util.Set;
 public class Project extends BaseObject implements Serializable {
     private Long id;
     private String projectID;
-    private String projectFullName;
-    private String unitFullName;
-    private String batchFullName;
-    private String projectShortName;
-    private String unitShortName;
-    private String batchShortName;
-    private User Owner;
+    private String projectName;
+    private String projectLevel;
+    private String fullName;
+    private Project parent;
+    private Long totalWeight;
+    private Long totalCost;
+    private Date startDate;
+    private Date endDate;
+    private String ownerName;
+    private String brokerName;
+    private String note;
     private Company company;
-    private String companyID;
     private Set<Department> departments=new HashSet<>();
 
 
@@ -61,65 +70,16 @@ public class Project extends BaseObject implements Serializable {
     public void setProjectID(String projectID) {
         this.projectID = projectID;
     }
-    @Column(name = "ProjectFullName")
-    public String getProjectFullName() {
-        return projectFullName;
+    @Column(name = "ProjectName")
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setProjectFullName(String projectFullName) {
-        this.projectFullName = projectFullName;
-    }
-    @Column(name = "UnitFullName")
-    public String getUnitFullName() {
-        return unitFullName;
-    }
-
-    public void setUnitFullName(String unitFullName) {
-        this.unitFullName = unitFullName;
-    }
-    @Column(name="BatchFullName")
-    public String getBatchFullName() {
-        return batchFullName;
-    }
-
-    public void setBatchFullName(String batchFullName) {
-        this.batchFullName = batchFullName;
-    }
-    @Column(name="ProjectShortName")
-    public String getProjectShortName() {
-        return projectShortName;
-    }
-
-    public void setProjectShortName(String projectShortName) {
-        this.projectShortName = projectShortName;
-    }
-    @Column(name="UnitShortName")
-    public String getUnitShortName() {
-        return unitShortName;
-    }
-
-    public void setUnitShortName(String unitShortName) {
-        this.unitShortName = unitShortName;
-    }
-    @Column(name="BatchShortName")
-    public String getBatchShortName() {
-        return batchShortName;
-    }
-
-    public void setBatchShortName(String batchShortName) {
-        this.batchShortName = batchShortName;
+    public void setProjectName(String projectFullName) {
+        this.projectName = projectFullName;
     }
     @ManyToOne
-    @JoinColumn(name="OwnerID")
-    public User getOwner() {
-        return Owner;
-    }
-
-    public void setOwner(User owner) {
-        Owner = owner;
-    }
-    @ManyToOne
-    @JoinColumn(name = "Company_id")
+    @JoinColumn(name = "CompanyID",referencedColumnName = "companyID")
     public Company getCompany() {
         return company;
     }
@@ -127,14 +87,88 @@ public class Project extends BaseObject implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
-
-    public String getCompanyID() {
-        return companyID;
+    @Column(name="ProjectLevel")
+    public String getProjectLevel() {
+        return projectLevel;
     }
 
-    public void setCompanyID(String companyID) {
-        this.companyID = companyID;
+    public void setProjectLevel(String projectLevel) {
+        this.projectLevel = projectLevel;
     }
+    @Column(name="FullName")
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    @Column(name="TotalWeight")
+    public Long getTotalWeight() {
+        return totalWeight;
+    }
+
+    public void setTotalWeight(Long totalWeight) {
+        this.totalWeight = totalWeight;
+    }
+    @Column(name="TotalCost")
+    public Long getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Long totalCost) {
+        this.totalCost = totalCost;
+    }
+    @Column(name="StartDate")
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    @Column(name="OwnerName")
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+    @Column(name="BrokerName")
+    public String getBrokerName() {
+        return brokerName;
+    }
+
+    public void setBrokerName(String brokerName) {
+        this.brokerName = brokerName;
+    }
+    @Column(name="Note")
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+    @Column(name="EndDate")
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+    @ManyToOne
+    @JoinColumn(name="ParentID",referencedColumnName = "projectID")
+    public Project getParent() {
+        return parent;
+    }
+
+    public void setParent(Project parent) {
+        this.parent = parent;
+    }
+
     @ManyToMany
     @JoinTable(
             name="R_DepartmentProjectMappingTable",
@@ -158,20 +192,18 @@ public class Project extends BaseObject implements Serializable {
 
         if (id != null ? !id.equals(project.id) : project.id != null) return false;
         if (projectID != null ? !projectID.equals(project.projectID) : project.projectID != null) return false;
-        if (projectFullName != null ? !projectFullName.equals(project.projectFullName) : project.projectFullName != null)
+        if (projectName != null ? !projectName.equals(project.projectName) : project.projectName != null) return false;
+        if (projectLevel != null ? !projectLevel.equals(project.projectLevel) : project.projectLevel != null)
             return false;
-        if (unitFullName != null ? !unitFullName.equals(project.unitFullName) : project.unitFullName != null)
-            return false;
-        if (batchFullName != null ? !batchFullName.equals(project.batchFullName) : project.batchFullName != null)
-            return false;
-        if (projectShortName != null ? !projectShortName.equals(project.projectShortName) : project.projectShortName != null)
-            return false;
-        if (unitShortName != null ? !unitShortName.equals(project.unitShortName) : project.unitShortName != null)
-            return false;
-        if (batchShortName != null ? !batchShortName.equals(project.batchShortName) : project.batchShortName != null)
-            return false;
-        if (Owner != null ? !Owner.equals(project.Owner) : project.Owner != null) return false;
-        return !(company != null ? !company.equals(project.company) : project.company != null);
+        if (fullName != null ? !fullName.equals(project.fullName) : project.fullName != null) return false;
+        if (totalWeight != null ? !totalWeight.equals(project.totalWeight) : project.totalWeight != null) return false;
+        if (totalCost != null ? !totalCost.equals(project.totalCost) : project.totalCost != null) return false;
+        if (startDate != null ? !startDate.equals(project.startDate) : project.startDate != null) return false;
+        if (ownerName != null ? !ownerName.equals(project.ownerName) : project.ownerName != null) return false;
+        if (brokerName != null ? !brokerName.equals(project.brokerName) : project.brokerName != null) return false;
+        if (note != null ? !note.equals(project.note) : project.note != null) return false;
+        if (company != null ? !company.equals(project.company) : project.company != null) return false;
+        return !(departments != null ? !departments.equals(project.departments) : project.departments != null);
 
     }
 
@@ -179,14 +211,17 @@ public class Project extends BaseObject implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (projectID != null ? projectID.hashCode() : 0);
-        result = 31 * result + (projectFullName != null ? projectFullName.hashCode() : 0);
-        result = 31 * result + (unitFullName != null ? unitFullName.hashCode() : 0);
-        result = 31 * result + (batchFullName != null ? batchFullName.hashCode() : 0);
-        result = 31 * result + (projectShortName != null ? projectShortName.hashCode() : 0);
-        result = 31 * result + (unitShortName != null ? unitShortName.hashCode() : 0);
-        result = 31 * result + (batchShortName != null ? batchShortName.hashCode() : 0);
-        result = 31 * result + (Owner != null ? Owner.hashCode() : 0);
+        result = 31 * result + (projectName != null ? projectName.hashCode() : 0);
+        result = 31 * result + (projectLevel != null ? projectLevel.hashCode() : 0);
+        result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+        result = 31 * result + (totalWeight != null ? totalWeight.hashCode() : 0);
+        result = 31 * result + (totalCost != null ? totalCost.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (ownerName != null ? ownerName.hashCode() : 0);
+        result = 31 * result + (brokerName != null ? brokerName.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
+        result = 31 * result + (departments != null ? departments.hashCode() : 0);
         return result;
     }
 
@@ -195,14 +230,17 @@ public class Project extends BaseObject implements Serializable {
         return "Project{" +
                 "id=" + id +
                 ", projectID='" + projectID + '\'' +
-                ", projectFullName='" + projectFullName + '\'' +
-                ", unitFullName='" + unitFullName + '\'' +
-                ", batchFullName='" + batchFullName + '\'' +
-                ", projectShortName='" + projectShortName + '\'' +
-                ", unitShortName='" + unitShortName + '\'' +
-                ", batchShortName='" + batchShortName + '\'' +
-                ", Owner=" + Owner +
+                ", projectName='" + projectName + '\'' +
+                ", projectLevel='" + projectLevel + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", totalWidght=" + totalWeight +
+                ", totalCost=" + totalCost +
+                ", startDate=" + startDate +
+                ", ownerName='" + ownerName + '\'' +
+                ", brokerName='" + brokerName + '\'' +
+                ", note='" + note + '\'' +
                 ", company=" + company +
+                ", departments=" + departments +
                 '}';
     }
 }
