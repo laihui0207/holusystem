@@ -10,31 +10,15 @@
     </c:if>
     <menu:displayMenu name="Home"/>
     <menu:displayMenu name="NewsMenu"/>
+    <menu:displayMenu name="NoteMenu"/>
     <menu:displayMenu name="PostBarMenu"/>
     <menu:displayMenu name="MessageMenu"/>
     <menu:displayMenu name="ProjectMenu"/>
     <menu:displayMenu name="DocumentationMenu"/>
-    <menu:displayMenu name="NoteMenu"/>
-    <menu:displayMenu name="UserGroupMenu"/>
+    <menu:displayMenu name="CustomGroupMenu"/>
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
-    
-    <!--ComponentStyle-START-->
-<%--    <menu:displayMenu name="ComponentStyleMenu"/>--%>
-    <!--ComponentStyle-END-->
-    <!--Component-START-->
-<%--    <menu:displayMenu name="ComponentMenu"/>--%>
-    <!--Component-END-->
-    <!--Department-START-->
-    <menu:displayMenu name="DepartmentMenu"/>
-    <!--Department-END-->
-    <!--RGroup-START-->
-    <menu:displayMenu name="RGroupMenu"/>
-    <!--RGroup-END-->
-    <!--ProjectIndex-START-->
-    <menu:displayMenu name="ProjectIndexMenu"/>
-    <!--ProjectIndex-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

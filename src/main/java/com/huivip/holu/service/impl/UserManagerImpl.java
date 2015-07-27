@@ -99,6 +99,16 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         return userDao.get(new Long(userId));
     }
 
+    @Override
+    public User getUserByLoginCode(String loginCode) {
+        return userDao.getUserByLoginCode(loginCode);
+    }
+
+    @Override
+    public User getUserByUserID(String userID) {
+        return userDao.getUserByUserID(userID);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -126,7 +136,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
      * {@inheritDoc}
      */
     @Override
-    public User saveUser(final User user) throws UserExistsException {
+    public User saveUser(User user) throws UserExistsException {
 
         if (user.getVersion() == null) {
             // if new user, lowercase userId
@@ -190,7 +200,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public User userLogin(String username, String password) {
         try {
-            User user = getUserByUsername(username);
+            User user = getUserByLoginCode(username);
             if (user == null) return null;
             if (!passwordEncoder.matches(password, user.getPassword())) {
                 return null;

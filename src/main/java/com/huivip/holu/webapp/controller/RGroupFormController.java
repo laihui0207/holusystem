@@ -2,11 +2,9 @@ package com.huivip.holu.webapp.controller;
 
 import org.apache.commons.lang.StringUtils;
 import com.huivip.holu.service.RGroupManager;
-import com.huivip.holu.model.RGroup;
-import com.huivip.holu.webapp.controller.BaseFormController;
+import com.huivip.holu.model.CustomGroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +32,7 @@ public class RGroupFormController extends BaseFormController {
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
-    protected RGroup showForm(HttpServletRequest request)
+    protected CustomGroup showForm(HttpServletRequest request)
     throws Exception {
         String id = request.getParameter("id");
 
@@ -42,11 +40,11 @@ public class RGroupFormController extends BaseFormController {
             return rGroupManager.get(new Long(id));
         }
 
-        return new RGroup();
+        return new CustomGroup();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String onSubmit(RGroup rGroup, BindingResult errors, HttpServletRequest request,
+    public String onSubmit(CustomGroup customGroup, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
     throws Exception {
         if (request.getParameter("cancel") != null) {
@@ -54,7 +52,7 @@ public class RGroupFormController extends BaseFormController {
         }
 
         if (validator != null) { // validator is null during testing
-            validator.validate(rGroup, errors);
+            validator.validate(customGroup, errors);
 
             if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
                 return "rGroupform";
@@ -63,20 +61,20 @@ public class RGroupFormController extends BaseFormController {
 
         log.debug("entering 'onSubmit' method...");
 
-        boolean isNew = (rGroup.getId() == null);
+        boolean isNew = (customGroup.getId() == null);
         String success = getSuccessView();
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
-            rGroupManager.remove(rGroup.getId());
+            rGroupManager.remove(customGroup.getId());
             saveMessage(request, getText("rGroup.deleted", locale));
         } else {
-            rGroupManager.save(rGroup);
+            rGroupManager.save(customGroup);
             String key = (isNew) ? "rGroup.added" : "rGroup.updated";
             saveMessage(request, getText(key, locale));
 
             if (!isNew) {
-                success = "redirect:rGroupform?id=" + rGroup.getId();
+                success = "redirect:rGroupform?id=" + customGroup.getId();
             }
         }
 

@@ -75,12 +75,36 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
      * {@inheritDoc}
      */
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List users = getSession().createCriteria(User.class).add(Restrictions.eq("username", username))
+        List users = getSession().createCriteria(User.class).add(Restrictions.eq("loginCode", username))
                 .add(Restrictions.eq("acceptRegistration",true)).list();
         if (users == null || users.isEmpty()) {
             throw new UsernameNotFoundException("user '" + username + "' not found...");
         } else {
-            return (UserDetails) users.get(0);
+            User user= (User) users.get(0);
+            UserDetails userDetails= new org.springframework.security.core.userdetails.User(
+                    user.getLoginCode(),user.getPassword(),true,true,true,true,user.getAuthorities());
+            return userDetails;
+
+        }
+    }
+
+    public User getUserByLoginCode(String loginCode) {
+        List users = getSession().createCriteria(User.class).add(Restrictions.eq("loginCode", loginCode))
+                .add(Restrictions.eq("acceptRegistration",true)).list();
+        if (users == null || users.isEmpty()) {
+            return null;
+        } else {
+            return (User) users.get(0);
+        }
+    }
+
+    @Override
+    public User getUserByUserID(String userID) {
+        List users = getSession().createCriteria(User.class).add(Restrictions.eq("userID", userID)).list();
+        if (users == null || users.isEmpty()) {
+            return null;
+        } else {
+            return (User) users.get(0);
         }
     }
 

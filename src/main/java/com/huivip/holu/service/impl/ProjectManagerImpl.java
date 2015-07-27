@@ -1,22 +1,21 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.ProjectDao;
-import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Project;
-import com.huivip.holu.model.User;
 import com.huivip.holu.service.ProjectManager;
+import com.huivip.holu.service.impl.GenericManagerImpl;
+
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.WebService;
 import java.util.List;
+import javax.jws.WebService;
 
 @Service("projectManager")
 @WebService(serviceName = "ProjectService", endpointInterface = "com.huivip.holu.service.ProjectManager")
 public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implements ProjectManager {
     ProjectDao projectDao;
-    @Autowired
-    UserDao userDao;
 
     @Autowired
     public ProjectManagerImpl(ProjectDao projectDao) {
@@ -25,18 +24,12 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
     }
 
     @Override
-    public List<Project> getProjectListByCompany(String CompanyID) {
-        return projectDao.getProjectListByCompany(CompanyID);
+    public List<Project> getProjectByUserID(String userID, String parentProject,ExtendedPaginatedList list) {
+        return projectDao.getProjectByUserID(userID,parentProject,list);
     }
 
     @Override
-    public List<Project> getProjectListByUser(String userId) {
-        User user=userDao.get(Long.parseLong(userId));
-        return projectDao.getProjectListByCompany(user.getCompany().getId().toString());
-    }
-
-    @Override
-    public Project getProject(String id) {
-        return get(Long.parseLong(id));
+    public Project getProjectByprojectID(String projectID) {
+        return projectDao.getProjectByprojectID(projectID);
     }
 }

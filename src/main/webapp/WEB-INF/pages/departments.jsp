@@ -31,24 +31,21 @@
 <div id="actions" class="btn-group">
     <a href='<c:url value="/departmentform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
+<%--    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
 </div>
 
 <display:table name="departmentList" class="table table-condensed table-striped table-hover" requestURI="" id="departmentList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="departmentform" media="html"
         paramId="id" paramProperty="id" titleKey="department.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="department.id"/>
+    <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
+    <display:column property="name" sortable="true" titleKey="department.name"/>
+    <display:column property="level" sortable="true" titleKey="department.level"/>
     <display:column property="comment" sortable="true" titleKey="department.comment"/>
     <display:column sortProperty="createDate" sortable="true" titleKey="department.createDate">
          <fmt:formatDate value="${departmentList.createDate}" pattern="${datePattern}"/>
     </display:column>
-    <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
-    <display:column property="level" sortable="true" titleKey="department.level"/>
-    <display:column property="name" sortable="true" titleKey="department.name"/>
     <display:column property="positionGPS" sortable="true" titleKey="department.positionGPS"/>
-    <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
-    <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
-    <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="departmentList.department"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="departmentList.departments"/></display:setProperty>

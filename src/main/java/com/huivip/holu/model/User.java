@@ -45,7 +45,7 @@ import java.util.*;
 FROM [MidDatabase].[dbo].[R_User]
  */
 @Entity
-@Table(name = "R_user")
+@Table(name = "R_User")
 @Indexed
 @XmlRootElement
 public class User extends BaseObject implements Serializable, UserDetails {
@@ -54,6 +54,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Long id;
     private String userID;
     private String username;                    // required
+    private String userNameEn;
     private String loginCode;
     private String password;                    // required
     private String confirmPassword;
@@ -64,7 +65,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String phoneNumber;
     private String QQ;
     private Date loginDate;
-    private Date lastLoginDte;
+    private Date lastLoginDate;
     private Date lastLogoutDate;
     private int loginCount;
     private int totalHours;
@@ -79,7 +80,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private Set<Post> posts=new HashSet<>();
-    private Set<Department> departments=new HashSet<>();
+/*    private Set<Department> departments=new HashSet<>();*/
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -133,25 +134,25 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return passwordHint;
     }
 
-    @Column(name = "first_name", nullable = false, length = 50)
+    @Column(name = "first_name", nullable = true, length = 50)
     @Field
     public String getFirstName() {
         return firstName;
     }
 
-    @Column(name = "last_name", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = true, length = 50)
     @Field
     public String getLastName() {
         return lastName;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = true,name="Email")
     @Field
     public String getEmail() {
         return email;
     }
 
-    @Column(name = "phone_number",nullable = false)
+    @Column(name = "MobileNumber",nullable = false)
     @Field(analyze= Analyze.NO)
     public String getPhoneNumber() {
         return phoneNumber;
@@ -164,7 +165,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Transient
     public String getFullName() {
-        return firstName + ' ' + lastName;
+        return username;
     }
 
     @ManyToMany
@@ -181,7 +182,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-
+    @Column(name="QQ")
     public String getQQ() {
         return QQ;
     }
@@ -189,7 +190,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setQQ(String QQ) {
         this.QQ = QQ;
     }
-
+    @Column(name="LoginDate")
     public Date getLoginDate() {
         return loginDate;
     }
@@ -197,15 +198,15 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setLoginDate(Date loginDate) {
         this.loginDate = loginDate;
     }
-
-    public Date getLastLoginDte() {
-        return lastLoginDte;
+    @Column(name="LastLoginDate")
+    public Date getLastLoginDate() {
+        return lastLoginDate;
     }
 
-    public void setLastLoginDte(Date lastLoginDte) {
-        this.lastLoginDte = lastLoginDte;
+    public void setLastLoginDate(Date lastLoginDte) {
+        this.lastLoginDate = lastLoginDte;
     }
-
+    @Column(name="LastLogoutDate")
     public Date getLastLogoutDate() {
         return lastLogoutDate;
     }
@@ -213,7 +214,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setLastLogoutDate(Date lastLogoutDate) {
         this.lastLogoutDate = lastLogoutDate;
     }
-
+    @Column(name="LoginCount",columnDefinition ="int default 0")
     public int getLoginCount() {
         return loginCount;
     }
@@ -221,7 +222,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setLoginCount(int loginCount) {
         this.loginCount = loginCount;
     }
-
+    @Column(name="TotalHours",columnDefinition ="int default 0")
     public int getTotalHours() {
         return totalHours;
     }
@@ -229,7 +230,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setTotalHours(int totalHours) {
         this.totalHours = totalHours;
     }
-
+    @Column(name="RegistrationDate")
     public Date getRegistrationDate() {
         return registrationDate;
     }
@@ -237,7 +238,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
-
+    @Column(name="AcceptRegistration",columnDefinition ="int default 0")
     public boolean isAcceptRegistration() {
         return acceptRegistration;
     }
@@ -245,7 +246,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setAcceptRegistration(boolean acceptRegistration) {
         this.acceptRegistration = acceptRegistration;
     }
-
+    @Column(name="AllowCreateGroup",nullable = true,columnDefinition ="int default 0")
     public boolean isAllowCreateGroup() {
         return allowCreateGroup;
     }
@@ -253,7 +254,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setAllowCreateGroup(boolean allowCreateGroup) {
         this.allowCreateGroup = allowCreateGroup;
     }
-
+    @Column(name="AllowCreateProject",nullable = true,columnDefinition ="int default 0")
     public boolean isAllowCreateProject() {
         return allowCreateProject;
     }
@@ -261,7 +262,15 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setAllowCreateProject(boolean allowCreateProject) {
         this.allowCreateProject = allowCreateProject;
     }
+    @Column(name="UserNameEn")
+    public String getUserNameEn() {
+        return userNameEn;
+    }
 
+    public void setUserNameEn(String userNameEn) {
+        this.userNameEn = userNameEn;
+    }
+    @Column(name="UserState")
     public String getUserState() {
         return userState;
     }
@@ -279,7 +288,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setCompany(Company company) {
         this.company = company;
     }
-    @ManyToMany
+    /*@ManyToMany
     @Fetch(FetchMode.SELECT)
     @JoinTable(
             name="R_DepartmentUserMappingTable",
@@ -293,7 +302,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setDepartments(Set<Department> departments) {
         this.departments = departments;
     }
-
+*/
     /**
      * Convert user roles to LabelValue objects for convenience.
      *
@@ -354,12 +363,12 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return version;
     }
 
-    @Column(name = "account_enabled")
+    @Column(name = "account_enabled",columnDefinition ="int default 1")
     public boolean isEnabled() {
         return enabled;
     }
 
-    @Column(name = "account_expired", nullable = false)
+    @Column(name = "account_expired", nullable = true,columnDefinition ="int default 0")
     public boolean isAccountExpired() {
         return accountExpired;
     }
@@ -373,7 +382,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return !isAccountExpired();
     }
 
-    @Column(name = "account_locked", nullable = false)
+    @Column(name = "account_locked", nullable = true,columnDefinition ="int default 0")
     public boolean isAccountLocked() {
         return accountLocked;
     }
@@ -387,7 +396,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return !isAccountLocked();
     }
 
-    @Column(name = "credentials_expired", nullable = false)
+    @Column(name = "credentials_expired", nullable = true,columnDefinition ="int default 0")
     public boolean isCredentialsExpired() {
         return credentialsExpired;
     }

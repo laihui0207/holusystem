@@ -69,7 +69,7 @@ public class PostSubjectFormController extends BaseFormController {
             postSubjectManager.remove(postSubject.getId());
             saveMessage(request, getText("postSubject.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             postSubject.setCreater(cleanUser);
             postSubject.setUpdater(cleanUser);

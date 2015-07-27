@@ -80,7 +80,7 @@ public class UserGroupFormController extends BaseFormController {
                     userGroup.getMembers().add(userManager.get(Long.parseLong(id)));
                 }
             }
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             userGroup.setCreater(cleanUser);
             userGroup.setUpdater(cleanUser);

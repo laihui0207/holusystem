@@ -29,14 +29,7 @@
         <form:errors path="comment" cssClass="help-block"/>
     </div>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="company" items="companyList" itemLabel="label" itemValue="value"/>
-    <spring:bind path="department.createDate">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="department.createDate" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="createDate" id="createDate" size="11" title="date" datepicker="true"/>
-        <form:errors path="createDate" cssClass="help-block"/>
-    </div>
+    <form:select cssClass="form-control" path="company.companyId" items="${companyList}" itemLabel="companyFullName" itemValue="id"/>
     <spring:bind path="department.departmentID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

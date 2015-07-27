@@ -1,13 +1,12 @@
 package com.huivip.holu.service.impl;
 
+import com.huivip.holu.dao.CustomGroupDao;
 import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.dao.UserGroupDao;
+import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.MessageManager;
-import com.huivip.holu.service.impl.GenericManagerImpl;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.jws.WebService;
-import javax.ws.rs.FormParam;
 
 @Service("messageManager")
 @WebService(serviceName = "MessageService", endpointInterface = "com.huivip.holu.service.MessageManager")
@@ -27,7 +25,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     @Autowired
     UserDao userDao;
     @Autowired
-    UserGroupDao userGroupDao;
+    CustomGroupDao customGroupDao;
 
     @Autowired
     public MessageManagerImpl(MessageDao messageDao) {
@@ -92,7 +90,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
             }
             String[] groupArray=groups.split(";");
             for(String id:groupArray){
-                UserGroup ug=userGroupDao.get(Long.parseLong(id));
+                CustomGroup ug=customGroupDao.get(Long.parseLong(id));
                 message.getReceiveGroups().add(ug);
                 for(User u:ug.getMembers()){
                     if(!receiverList.contains(u)){

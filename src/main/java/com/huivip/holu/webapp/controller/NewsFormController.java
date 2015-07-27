@@ -100,7 +100,7 @@ public class NewsFormController extends BaseFormController {
             newsManager.remove(news.getId());
             saveMessage(request, getText("news.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             news.setThumbnailUrl(Thumbnail.handleThumbnail(news.getContent(),getServletContext()));
             news.setCreater(cleanUser);
@@ -108,9 +108,9 @@ public class NewsFormController extends BaseFormController {
             String key = (isNew) ? "news.added" : "news.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+           /* if (!isNew) {
                 success = "redirect:newsform?id=" + news.getId();
-            }
+            }*/
         }
 
         return success;

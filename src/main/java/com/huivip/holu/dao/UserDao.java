@@ -3,8 +3,6 @@ package com.huivip.holu.dao;
 import com.huivip.holu.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,9 +20,10 @@ public interface UserDao extends GenericDao<User, Long> {
      * @throws org.springframework.security.core.userdetails.UsernameNotFoundException thrown when user not
      * found in database
      */
-    @Transactional
+/*    @Transactional*/
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-
+    User getUserByLoginCode(String loginCode);
+    User getUserByUserID(String userID);
     /**
      * Gets a list of users ordered by the uppercase version of their username.
      *
@@ -44,7 +43,7 @@ public interface UserDao extends GenericDao<User, Long> {
      * @param userId the user's id
      * @return the password in DB, if the user is already persisted
      */
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+/*    @Transactional(propagation = Propagation.NOT_SUPPORTED)*/
     String getUserPassword(Long userId);
     
 }

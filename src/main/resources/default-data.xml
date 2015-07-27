@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <table name="R_user">
+    <table name="R_User">
         <column>id</column>
         <column>userId</column>
         <column>logincode</column>
@@ -9,7 +9,7 @@
         <column>first_name</column>
         <column>last_name</column>
         <column>email</column>
-        <column>phone_number</column>
+        <column>MobileNumber</column>
         <column>password_hint</column>
         <column>version</column>
         <column>account_enabled</column>
@@ -30,7 +30,7 @@
             <value description="first_name">Tomcat</value>
             <value description="last_name">User</value>
             <value description="email">matt_raible@yahoo.com</value>
-            <value description="phone_number"></value>
+            <value description="MobileNumber"></value>
             <value description="password_hint"><![CDATA[The same as your username.]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
@@ -52,7 +52,7 @@
             <value description="first_name">Matt</value>
             <value description="last_name">Raible</value>
             <value description="email">matt@raibledesigns.com</value>
-            <value description="phone_number"></value>
+            <value description="MobileNumber"></value>
             <value description="password_hint"><![CDATA[The same as your username.]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>

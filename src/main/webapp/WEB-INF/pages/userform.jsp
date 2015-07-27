@@ -52,16 +52,23 @@
             </c:if>
         </div>
 
-        <spring:bind path="user.passwordHint">
+        <spring:bind path="user.loginCode">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="user.passwordHint"/>
-            <form:input cssClass="form-control" path="passwordHint" id="passwordHint"/>
-            <form:errors path="passwordHint" cssClass="help-block"/>
+            <appfuse:label styleClass="control-label" key="user.loginCode"/>
+            <form:input cssClass="form-control" path="loginCode" id="loginCode"/>
+            <form:errors path="loginCode" cssClass="help-block"/>
+        </div>
+        <spring:bind path="user.userID">
+            <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+        <appfuse:label styleClass="control-label" key="user.userID"/>
+        <form:input cssClass="form-control" path="userID" id="userID"/>
+        <form:errors path="userID" cssClass="help-block"/>
         </div>
         <div class="form-group">
             <appfuse:label key="companyList.title" styleClass="control-label"/>:
-            <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyFullName" itemValue="id"/>
+            <form:select cssClass="form-control" path="company.companyId" items="${companyList}" itemLabel="companyFullName" itemValue="companyId"/>
         </div>
         <div class="row">
             <spring:bind path="user.firstName">
@@ -115,6 +122,14 @@
             <label class="checkbox-inline">
                 <form:checkbox path="credentialsExpired" id="credentialsExpired"/>
                 <fmt:message key="user.credentialsExpired"/>
+            </label>
+            <label class="checkbox-inline">
+                <form:checkbox path="allowCreateGroup" id="allowCreateGroup"/>
+                <fmt:message key="user.allowCreateGroup"/>
+            </label>
+            <label class="checkbox-inline">
+                <form:checkbox path="allowCreateProject" id="allowCreateProject"/>
+                <fmt:message key="user.allowCreateProject"/>
             </label>
         </div>
         <div class="form-group">

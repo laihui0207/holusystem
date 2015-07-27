@@ -14,7 +14,7 @@
 
 <h2><fmt:message key="componentList.heading"/></h2>
 
-<form method="get" action="${ctx}/components" id="searchForm" class="form-inline">
+<%--<form method="get" action="${ctx}/components" id="searchForm" class="form-inline">
 <div id="search" class="text-right">
     <span class="col-sm-9">
         <input type="text" size="20" name="q" id="query" value="${param.q}"
@@ -24,15 +24,15 @@
         <i class="icon-search"></i> <fmt:message key="button.search"/>
     </button>
 </div>
-</form>
+</form>--%>
 
 <p><fmt:message key="componentList.message"/></p>
 
-<div id="actions" class="btn-group">
+<%--<div id="actions" class="btn-group">
     <a href='<c:url value="/componentform/${project.id}"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-   <%-- <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
-</div>
+   &lt;%&ndash; <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>&ndash;%&gt;
+</div>--%>
 
 <display:table name="componentList" class="table table-condensed table-striped table-hover" requestURI="" id="componentList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="/componentform/${project.id}" media="html"
@@ -59,7 +59,7 @@
             <c:param name="styleName"><c:out value="${componentList.styleName}"></c:out></c:param>
             <c:param name="companyId">${componentList.project.company.id}</c:param>
         </c:url>--%>
-        <a href="${pageContext.request.contextPath}/componentStyles/processlist?styleName=${componentList.styleName}&companyId=${componentList.project.company.id}"><fmt:message key="action.processList"/></a>
+        <a href='<c:url value="/componentStyles/processlist?styleName=${componentList.styleName}&companyId=${componentList.project.company.id}"/>'><fmt:message key="action.processList"/></a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentList.component"/></display:setProperty>

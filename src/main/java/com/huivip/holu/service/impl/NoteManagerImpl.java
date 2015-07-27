@@ -2,17 +2,16 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.NoteDao;
 import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.dao.UserGroupDao;
+import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
+import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.NoteManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
-import javax.ws.rs.FormParam;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +24,7 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     @Autowired
     UserDao userDao;
     @Autowired
-    UserGroupDao userGroupDao;
+    CustomGroupManager customGroupManager;
 
     @Autowired
     public NoteManagerImpl(NoteDao noteDao) {
@@ -94,7 +93,7 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
             }
             String[] groupArray=groups.split(";");
             for(String id:groupArray){
-                UserGroup ug=userGroupDao.get(Long.parseLong(id));
+                CustomGroup ug=customGroupManager.get(Long.parseLong(id));
                 note.getSendToUserGroupList().add(ug);
                 for(User u:ug.getMembers()){
                     if(!receiverList.contains(u)){

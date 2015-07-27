@@ -8,6 +8,6 @@ import java.util.List;
  * An interface that provides a data management interface to the Component table.
  */
 public interface ComponentDao extends GenericDao<Component, Long> {
-    public List<Component> listComponentByProject(String projectID);
+    public List<Component> listComponentByProject(String projectID,String tableName);
 
 }

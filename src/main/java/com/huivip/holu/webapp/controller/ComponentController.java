@@ -3,10 +3,7 @@ package com.huivip.holu.webapp.controller;
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.Component;
 import com.huivip.holu.model.Project;
-import com.huivip.holu.service.ComponentManager;
-import com.huivip.holu.service.ComponentStyleManager;
-import com.huivip.holu.service.ProjectManager;
-import com.huivip.holu.service.UserManager;
+import com.huivip.holu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -52,7 +49,7 @@ public class ComponentController {
     public ModelAndView showComponentByProject(@PathVariable("id") String projectID){
         ModelAndView view=new ModelAndView("components");
         List<Component> componentList=componentManager.listComponentByProject(projectID);
-        Project project=projectManager.get(Long.parseLong(projectID));
+        Project project=projectManager.getProjectByprojectID(projectID);
         view.addObject("componentList",componentList);
         view.addObject("project",project);
         return view;

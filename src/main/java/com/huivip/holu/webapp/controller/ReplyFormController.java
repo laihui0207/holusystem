@@ -1,9 +1,6 @@
 package com.huivip.holu.webapp.controller;
 
-import com.huivip.holu.model.PostBar;
-import com.huivip.holu.model.Reply;
-import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
+import com.huivip.holu.model.*;
 import com.huivip.holu.service.PostBarManager;
 import com.huivip.holu.service.ReplyManager;
 import org.apache.commons.lang.StringUtils;
@@ -58,11 +55,11 @@ public class ReplyFormController extends BaseFormController {
             return "redirect:/postbars";
         }
         if(!post.isIfAccessAllReply()){
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             boolean canReply=false;
             if(!post.getReplyUsers().contains(cleanUser)) {
-                for(UserGroup ug:post.getReplyGroups()){
+                for(CustomGroup ug:post.getReplyGroups()){
                     if(ug.getMembers().contains(cleanUser)){
                         canReply=true;
                         break;
@@ -109,7 +106,7 @@ public class ReplyFormController extends BaseFormController {
             saveMessage(request, getText("reply.deleted", locale));
         } else {
 
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             reply.setReplier(cleanUser);
             replyManager.save(reply);

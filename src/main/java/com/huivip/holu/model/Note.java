@@ -30,7 +30,7 @@ public class Note extends BaseObject implements Serializable {
     Timestamp receriveTime=new Timestamp(new Date().getTime());
     User receiver;
     Set<User> sendToUserList =new HashSet<>();
-    Set<UserGroup> sendToUserGroupList =new HashSet<>();
+    Set<CustomGroup> sendToUserGroupList =new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -138,11 +138,11 @@ public class Note extends BaseObject implements Serializable {
             joinColumns = {@JoinColumn(name = "note_id")},
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    public Set<UserGroup> getSendToUserGroupList() {
+    public Set<CustomGroup> getSendToUserGroupList() {
         return sendToUserGroupList;
     }
 
-    public void setSendToUserGroupList(Set<UserGroup> sendToUserGroupList) {
+    public void setSendToUserGroupList(Set<CustomGroup> sendToUserGroupList) {
         this.sendToUserGroupList = sendToUserGroupList;
     }
 

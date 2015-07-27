@@ -42,7 +42,7 @@ public class NoteController {
                 noteManager.search(query, Note.class, list);
                 model.addAttribute("noteList", list);
             } else {
-                User user = userManager.getUserByUsername(request.getRemoteUser());
+                User user = userManager.getUserByLoginCode(request.getRemoteUser());
                 if (null == query || "".equals(query)) {
                     noteManager.myNotes(user.getId().toString(), list);
                     model.addAttribute("noteList", list);

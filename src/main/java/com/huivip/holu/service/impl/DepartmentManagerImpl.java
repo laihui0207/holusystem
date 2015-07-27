@@ -21,4 +21,9 @@ public class DepartmentManagerImpl extends GenericManagerImpl<Department, Long> 
         super(departmentDao);
         this.departmentDao = departmentDao;
     }
+
+    @Override
+    public Department getDepartmentByDepartmentID(String departmentID) {
+        return departmentDao.getDepartmentByDepartmentID(departmentID);
+    }
 }

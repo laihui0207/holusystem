@@ -46,7 +46,7 @@ public class ComponentStyleController {
     public ModelAndView processListByStyleAndCompany(@RequestParam("styleName") String styleName,
                                                      @RequestParam("companyId") String companyId,HttpServletRequest request){
         ModelAndView view=new ModelAndView("processListOfStyleAndCompany");
-        final User cleanUser = userManager.getUserByUsername(
+        final User cleanUser = userManager.getUserByLoginCode(
                 request.getRemoteUser());
         List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleName,companyId,cleanUser.getId().toString());
         view.addObject("componentStyleList",componentStyleList);

@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name="R_Group")
 @Indexed
 @XmlRootElement
-public class RGroup extends BaseObject implements Serializable{
+public class CustomGroup extends BaseObject implements Serializable{
     private Long id;
     private String groupID;
     private String name;
@@ -26,7 +26,7 @@ public class RGroup extends BaseObject implements Serializable{
     private User creater;
     private Department department;
     private Company company;
-    private Date createDate;
+    private Date createDate=new Date();
     private Set<User> members=new HashSet<>();
     private Set<Project> projects=new HashSet<>();
     @Id
@@ -119,7 +119,7 @@ public class RGroup extends BaseObject implements Serializable{
     public void setCompany(Company company) {
         this.company = company;
     }
-    @Column(name="CreateDate")
+    @Column(name="CreateDate",updatable = false)
     public Date getCreateDate() {
         return createDate;
     }
@@ -133,16 +133,16 @@ public class RGroup extends BaseObject implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RGroup RGroup = (RGroup) o;
+        CustomGroup CustomGroup = (CustomGroup) o;
 
-        if (id != null ? !id.equals(RGroup.id) : RGroup.id != null) return false;
-        if (groupID != null ? !groupID.equals(RGroup.groupID) : RGroup.groupID != null) return false;
-        if (name != null ? !name.equals(RGroup.name) : RGroup.name != null) return false;
-        if (comment != null ? !comment.equals(RGroup.comment) : RGroup.comment != null) return false;
-        if (creater != null ? !creater.equals(RGroup.creater) : RGroup.creater != null) return false;
-        if (department != null ? !department.equals(RGroup.department) : RGroup.department != null) return false;
-        if (company != null ? !company.equals(RGroup.company) : RGroup.company != null) return false;
-        return !(createDate != null ? !createDate.equals(RGroup.createDate) : RGroup.createDate != null);
+        if (id != null ? !id.equals(CustomGroup.id) : CustomGroup.id != null) return false;
+        if (groupID != null ? !groupID.equals(CustomGroup.groupID) : CustomGroup.groupID != null) return false;
+        if (name != null ? !name.equals(CustomGroup.name) : CustomGroup.name != null) return false;
+        if (comment != null ? !comment.equals(CustomGroup.comment) : CustomGroup.comment != null) return false;
+        if (creater != null ? !creater.equals(CustomGroup.creater) : CustomGroup.creater != null) return false;
+        if (department != null ? !department.equals(CustomGroup.department) : CustomGroup.department != null) return false;
+        if (company != null ? !company.equals(CustomGroup.company) : CustomGroup.company != null) return false;
+        return !(createDate != null ? !createDate.equals(CustomGroup.createDate) : CustomGroup.createDate != null);
 
     }
 

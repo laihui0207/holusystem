@@ -81,8 +81,18 @@
         <dao.framework>hibernate</dao.framework>
         <db.name>holusystem</db.name>
         <web.framework>spring</web.framework>
-        <jdbc.username>root</jdbc.username>
-        <jdbc.password>root</jdbc.password>
+        <!--<jdbc.username>root</jdbc.username>
+        <jdbc.password>root</jdbc.password> -->
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.mssql.MsSqlDataTypeFactory</dbunit.dataTypeFactoryName>
+        <dbunit.operation.type>MSSQL_CLEAN_INSERT</dbunit.operation.type>
+        <hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
+        <jdbc.groupId>net.sourceforge.jtds</jdbc.groupId>
+        <jdbc.artifactId>jtds</jdbc.artifactId>
+        <jdbc.version>1.2</jdbc.version>
+        <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
+        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.141:1433/${db.name}</jdbc.url>
+        <jdbc.username>sa</jdbc.username>
+        <jdbc.password>pass</jdbc.password>
         <holu.attachement.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.attachement.directory>
         <holu.document.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.document.directory>
         <!-- Framework/Plugin versions -->
@@ -137,7 +147,7 @@
                 <jdbc.artifactId>jtds</jdbc.artifactId>
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.134:1433/${db.name}</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.141:1433/${db.name}</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>pass</jdbc.password>
             </properties>

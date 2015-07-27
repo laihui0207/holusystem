@@ -1,7 +1,9 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.ComponentDao;
+import com.huivip.holu.dao.ProjectIndexDao;
 import com.huivip.holu.model.Component;
+import com.huivip.holu.model.ProjectIndex;
 import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.impl.GenericManagerImpl;
 
@@ -15,6 +17,8 @@ import javax.jws.WebService;
 @WebService(serviceName = "ComponentService", endpointInterface = "com.huivip.holu.service.ComponentManager")
 public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> implements ComponentManager {
     ComponentDao componentDao;
+    @Autowired
+    ProjectIndexDao projectIndexDao;
 
     @Autowired
     public ComponentManagerImpl(ComponentDao componentDao) {
@@ -24,6 +28,11 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
 
     @Override
     public List<Component> listComponentByProject(String projectID) {
-        return componentDao.listComponentByProject(projectID);
+        String tableName="U_SYSTEM_ComponentList";
+        ProjectIndex projectIndex=projectIndexDao.getProjectIndexByProject(projectID);
+        if(null!=projectIndex){
+            tableName=projectIndex.getPartListTableName();
+        }
+        return componentDao.listComponentByProject(projectID,tableName);
     }
 }

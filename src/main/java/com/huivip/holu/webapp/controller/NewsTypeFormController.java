@@ -69,17 +69,17 @@ public class NewsTypeFormController extends BaseFormController {
             newsTypeManager.remove(newsType.getId());
             saveMessage(request, getText("newsType.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             newsType.setCreater(cleanUser);
             newsType.setUpdater(cleanUser);
             newsTypeManager.save(newsType);
             String key = (isNew) ? "newsType.added" : "newsType.updated";
             saveMessage(request, getText(key, locale));
-
+/*
             if (!isNew) {
                 success = "redirect:newsTypeform?id=" + newsType.getId();
-            }
+            }*/
         }
 
         return success;

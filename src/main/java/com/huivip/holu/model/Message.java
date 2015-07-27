@@ -28,7 +28,7 @@ public class Message extends BaseObject implements Serializable {
     User owner;
     Timestamp sendTime=new Timestamp(new Date().getTime());
     Set<User> receiveUsers;
-    Set<UserGroup> receiveGroups;
+    Set<CustomGroup> receiveGroups;
     int status;  // 0 create 1 sent to other, 2 receive and no read  3 received and have read
     User updater;
     Timestamp updateTime=new Timestamp(new Date().getTime());
@@ -112,11 +112,11 @@ public class Message extends BaseObject implements Serializable {
             joinColumns = {@JoinColumn(name = "message_id")},
             inverseJoinColumns = @JoinColumn(name = "usergroup_id")
     )
-    public Set<UserGroup> getReceiveGroups() {
+    public Set<CustomGroup> getReceiveGroups() {
         return receiveGroups;
     }
 
-    public void setReceiveGroups(Set<UserGroup> receriveGroups) {
+    public void setReceiveGroups(Set<CustomGroup> receriveGroups) {
         this.receiveGroups = receriveGroups;
     }
 

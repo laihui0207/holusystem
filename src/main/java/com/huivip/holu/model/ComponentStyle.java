@@ -10,12 +10,20 @@ import java.io.Serializable;
 /**
  * Created by sunlaihui on 6/22/15.
  * <p/>
- * SELECT TOP 1000 [ID]
- * ,[StyleName]
- * ,[ProcessName]
- * ,[ProcessOrder]
- * ,[CompanyID]
- * FROM [MidDatabase].[dbo].[R_ComponentStyle]
+ *CREATE TABLE MidDatabase.dbo.R_ComponentStyle (
+ ID int NOT NULL,
+ StyleProcessID nvarchar(50),
+ StyleID nvarchar(50),
+ StyleName nvarchar(50),
+ ProcessID nvarchar(50),
+ ProcessName nvarchar(50),
+ ProcessOrder int,
+ ProcessRight float,
+ ProcessProduction float,
+ ProcessStep float,
+ ProcessNote nvarchar(500),
+ CompanyID nvarchar(50)
+ );
  */
 
 @Entity
@@ -30,6 +38,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     String styleID;
     String processName;
     int processOrder;
+    int processStep;
     String processRight;
     String processProduction;
     String processNote;
@@ -78,6 +87,14 @@ public class ComponentStyle extends BaseObject implements Serializable {
     @Column(name="ProcessOrder")
     public int getProcessOrder() {
         return processOrder;
+    }
+    @Column(name="ProcessStep")
+    public int getProcessStep() {
+        return processStep;
+    }
+
+    public void setProcessStep(int processStep) {
+        this.processStep = processStep;
     }
 
     public void setProcessOrder(int processOrder) {

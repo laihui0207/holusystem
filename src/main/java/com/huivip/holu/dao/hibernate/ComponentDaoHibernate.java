@@ -2,7 +2,7 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.ComponentDao;
 import com.huivip.holu.model.Component;
-import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,9 +15,14 @@ public class ComponentDaoHibernate extends GenericDaoHibernate<Component, Long> 
     }
 
     @Override
-    public List<Component> listComponentByProject(String projectID) {
-        String queryString="From Component where project.id="+projectID;
+    public List<Component> listComponentByProject(String projectID,String tableName) {
+
+        /*String queryString="From Component where project.id="+projectID;
         Query query=getSession().createQuery(queryString);
+        return query.list();*/
+        String sql="select * from "+tableName;
+        SQLQuery query=getSession().createSQLQuery(sql);
+        query.addEntity(Component.class);
         return query.list();
     }
 }

@@ -69,7 +69,7 @@ public class DocTypeFormController extends BaseFormController {
             docTypeManager.remove(docType.getId());
             saveMessage(request, getText("docType.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             docType.setCreater(cleanUser);
             docTypeManager.save(docType);

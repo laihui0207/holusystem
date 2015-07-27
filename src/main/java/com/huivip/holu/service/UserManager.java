@@ -36,6 +36,8 @@ public interface UserManager extends GenericManager<User, Long> {
      * @return User
      */
     User getUser(String userId);
+    User getUserByLoginCode(String loginCode);
+    User getUserByUserID(String userID);
 
     /**
      * Finds a user by their username.

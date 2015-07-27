@@ -1,13 +1,7 @@
 package com.huivip.holu.webapp.controller;
 
-import com.huivip.holu.model.DocType;
-import com.huivip.holu.model.Documentation;
-import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
-import com.huivip.holu.service.DocTypeManager;
-import com.huivip.holu.service.DocumentationManager;
-import com.huivip.holu.service.UserGroupManager;
-import com.huivip.holu.service.UserManager;
+import com.huivip.holu.model.*;
+import com.huivip.holu.service.*;
 import com.huivip.holu.util.SteelConfig;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +31,7 @@ public class DocumentationFormController extends BaseFormController {
     @Autowired
     private UserManager userManager;
     @Autowired
-    private UserGroupManager userGroupManager;
-
+    CustomGroupManager customGroupManager;
     @Autowired
     public void setDocumentationManager(DocumentationManager documentationManager) {
         this.documentationManager = documentationManager;
@@ -106,13 +99,13 @@ public class DocumentationFormController extends BaseFormController {
                         documentation.getViewUserGroups().clear();
                     }
                     for(String userGroupId:viewUserGroups){
-                        documentation.getViewUserGroups().add(userGroupManager.get(Long.parseLong(userGroupId)));
+                        documentation.getViewUserGroups().add(customGroupManager.get(Long.parseLong(userGroupId)));
                     }
                 }
             }
 
             handleUploadFile(request,documentation,isNew);
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             documentation.setCreater(cleanUser);
             documentation.setUpdater(cleanUser);
@@ -210,7 +203,7 @@ public class DocumentationFormController extends BaseFormController {
         return userManager.getAll();
     }
     @ModelAttribute("userGroupList")
-    public List<UserGroup> userGroupList(){
-        return userGroupManager.getAll();
+    public List<CustomGroup> userGroupList(){
+        return customGroupManager.getAll();
     }
 }

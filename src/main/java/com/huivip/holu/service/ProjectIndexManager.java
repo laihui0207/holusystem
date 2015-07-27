@@ -1,12 +1,11 @@
 package com.huivip.holu.service;
 
-import com.huivip.holu.service.GenericManager;
 import com.huivip.holu.model.ProjectIndex;
 
-import java.util.List;
 import javax.jws.WebService;
 
 @WebService
 public interface ProjectIndexManager extends GenericManager<ProjectIndex, Long> {
+    ProjectIndex getProjectIndexByProject(String projectID);
     
 }

@@ -1,13 +1,7 @@
 package com.huivip.holu.service.impl;
 
-import com.huivip.holu.dao.PostBarDao;
-import com.huivip.holu.dao.PostSubjectDao;
-import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.dao.UserGroupDao;
-import com.huivip.holu.model.PostBar;
-import com.huivip.holu.model.SelectLabelValue;
-import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
+import com.huivip.holu.dao.*;
+import com.huivip.holu.model.*;
 import com.huivip.holu.service.PostBarManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +21,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
     @Autowired
     PostSubjectDao postSubjectDao;
     @Autowired
-    UserGroupDao userGroupDao;
+    CustomGroupDao customGroupDao;
 
     @Autowired
     public PostBarManagerImpl(PostBarDao postBarDao) {
@@ -104,9 +98,9 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
         if(null!=postBarId && postBarId.length()>0 && !postBarId.equalsIgnoreCase("undefined")){
             postBar=postBarDao.get(Long.parseLong(postBarId));
         }
-        List<UserGroup> list=userGroupDao.getAll();
+        List<CustomGroup> list=customGroupDao.getAll();
         List<SelectLabelValue> result=new ArrayList<>();
-        for(UserGroup ug:list){
+        for(CustomGroup ug:list){
             SelectLabelValue slv=new SelectLabelValue();
             slv.setIcon(null);
             slv.setId(ug.getId().toString());
@@ -128,9 +122,9 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
         if(null!=postBarId && postBarId.length()>0 && !postBarId.equalsIgnoreCase("undefined")){
             postBar=postBarDao.get(Long.parseLong(postBarId));
         }
-        List<UserGroup> list=userGroupDao.getAll();
+        List<CustomGroup> list=customGroupDao.getAll();
         List<SelectLabelValue> result=new ArrayList<>();
-        for(UserGroup ug:list){
+        for(CustomGroup ug:list){
             SelectLabelValue slv=new SelectLabelValue();
             slv.setIcon(null);
             slv.setId(ug.getId().toString());
@@ -182,7 +176,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
             }
             String[] viewGroupArray=viewGroups.split(";");
             for(String id:viewGroupArray){
-                postBar.getViewGroups().add(userGroupDao.get(Long.parseLong(id)));
+                postBar.getViewGroups().add(customGroupDao.get(Long.parseLong(id)));
             }
         }
         if(null!=replyUsers && replyUsers.length()>0 && !replyUsers.equalsIgnoreCase("undefined")){
@@ -202,7 +196,7 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
             }
             String[] replyGroupsArray=replyGroups.split(";");
             for(String id:replyGroupsArray){
-                postBar.getReplyGroups().add(userGroupDao.get(Long.parseLong(id)));
+                postBar.getReplyGroups().add(customGroupDao.get(Long.parseLong(id)));
             }
         }
         postBarDao.save(postBar);

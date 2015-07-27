@@ -21,4 +21,9 @@ public class ProjectIndexManagerImpl extends GenericManagerImpl<ProjectIndex, Lo
         super(projectIndexDao);
         this.projectIndexDao = projectIndexDao;
     }
+
+    @Override
+    public ProjectIndex getProjectIndexByProject(String projectID) {
+        return projectIndexDao.getProjectIndexByProject(projectID);
+    }
 }

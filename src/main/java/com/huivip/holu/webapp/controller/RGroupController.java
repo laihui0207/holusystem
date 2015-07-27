@@ -2,10 +2,9 @@ package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.service.RGroupManager;
-import com.huivip.holu.model.RGroup;
+import com.huivip.holu.model.CustomGroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
@@ -28,7 +27,7 @@ public class RGroupController {
     throws Exception {
         Model model = new ExtendedModelMap();
         try {
-            model.addAttribute(rGroupManager.search(query, RGroup.class));
+            model.addAttribute(rGroupManager.search(query, CustomGroup.class));
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(rGroupManager.getAll());

@@ -31,9 +31,9 @@ public class PostBar extends BaseObject implements Serializable {
     // if true, all user can reply the post, if false, just allow reply groups and reply user can reply the post
     private boolean ifAccessAllReply= true;
     private boolean ifAccessAllView= true;
-    private Set<UserGroup> replyGroups=new HashSet<>();
+    private Set<CustomGroup> replyGroups=new HashSet<>();
     private Set<User>  replyUsers=new HashSet<>();
-    private Set<UserGroup> viewGroups=new HashSet<>();
+    private Set<CustomGroup> viewGroups=new HashSet<>();
     private Set<User>  viewUsers=new HashSet<>();
     /*private List<Reply> replies=new ArrayList<>();*/
 
@@ -138,11 +138,11 @@ public class PostBar extends BaseObject implements Serializable {
             joinColumns = {@JoinColumn(name = "postbar_id")},
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    public Set<UserGroup> getReplyGroups() {
+    public Set<CustomGroup> getReplyGroups() {
         return replyGroups;
     }
 
-    public void setReplyGroups(Set<UserGroup> replyGroups) {
+    public void setReplyGroups(Set<CustomGroup> replyGroups) {
         this.replyGroups = replyGroups;
     }
     @ManyToMany
@@ -181,11 +181,11 @@ public class PostBar extends BaseObject implements Serializable {
             joinColumns = {@JoinColumn(name = "postbar_id")},
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    public Set<UserGroup> getViewGroups() {
+    public Set<CustomGroup> getViewGroups() {
         return viewGroups;
     }
 
-    public void setViewGroups(Set<UserGroup> viewGroups) {
+    public void setViewGroups(Set<CustomGroup> viewGroups) {
         this.viewGroups = viewGroups;
     }
     @ManyToMany

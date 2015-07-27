@@ -37,7 +37,7 @@ public class Documentation extends BaseObject implements Serializable {
     boolean viewLimit;
 
     Set<User> viewUsers=new HashSet<>();
-    Set<UserGroup> viewUserGroups=new HashSet<>();
+    Set<CustomGroup> viewUserGroups=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -168,11 +168,11 @@ public class Documentation extends BaseObject implements Serializable {
             joinColumns = {@JoinColumn(name = "doc_id")},
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    public Set<UserGroup> getViewUserGroups() {
+    public Set<CustomGroup> getViewUserGroups() {
         return viewUserGroups;
     }
 
-    public void setViewUserGroups(Set<UserGroup> viewUserGroups) {
+    public void setViewUserGroups(Set<CustomGroup> viewUserGroups) {
         this.viewUserGroups = viewUserGroups;
     }
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)

@@ -93,7 +93,7 @@ public class ComponentFormController extends BaseFormController {
             componentManager.remove(component.getId());
             saveMessage(request, getText("component.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             component.setCreater(cleanUser);
             component.setProject(project);

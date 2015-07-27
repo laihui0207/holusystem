@@ -7,5 +7,11 @@
       <schema-pattern>holusystem.*</schema-pattern>
       <default-schemas>holusystem.*</default-schemas>
     </data-source>
+    <data-source name="SQL Server - holusystem@172.16.182.141" uuid="f035e604-729e-4fd9-af70-a6a03f063d6f">
+      <secret-storage>master_key</secret-storage>
+      <user-name>sa</user-name>
+      <schema-pattern>holusystem.*</schema-pattern>
+      <default-schemas>holusystem.*</default-schemas>
+    </data-source>
   </component>
 </project>

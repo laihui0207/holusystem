@@ -9,58 +9,32 @@
         <Menu name="PostBarMenu" title="postBarList.title" page="/postBars" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="ProjectMenu" title="projectList.title" page="/projects" roles="ROLE_ADMIN,ROLE_USER" />
         <Menu name="DocumentationMenu" title="documentationList.title" page="/documentations" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>
+<!--        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>-->
+<!--        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>-->
+        <Menu name="CustomGroupMenu" title="customGroupList.title" page="/customGroups"/>
+        <Menu name="MessageMenu" title="messageList.title" page="/messages" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="NoteMenu" title="noteList.title" page="/notes" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
            <!-- <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>-->
-            <Item name="NewsTypeMenu" title="newsTypeList.title" page="/newsTypes"/>
             <Item name="CompanyMenu" title="companyList.title" page="/companies"/>
-            <Item name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
+            <Item name="DepartmentMenu" title="departmentList.title" page="/departments"/>
             <Item name="PostMenu" title="postList.title" page="/posts"/>
+            <Item name="NewsTypeMenu" title="newsTypeList.title" page="/newsTypes"/>
+            <Item name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
             <Item name="ReplyMenu" title="replyList.title" page="/replies"/>
             <Item name="DocTypeMenu" title="docTypeList.title" page="/docTypes"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="MessageMenu" title="messageList.title" page="/messages" roles="ROLE_ADMIN,ROLE_USER"/>
-        <!--Note-START-->
-        <Menu name="NoteMenu" title="noteList.title" page="/notes" roles="ROLE_ADMIN,ROLE_USER"/>
-        <!--Note-END-->
-        <!--ComponentStyle-START-->
-<!--        <Menu name="ComponentStyleMenu" title="componentStyleList.title" page="/componentStyles"/>-->
-        <!--ComponentStyle-END-->
-        <!--Component-START-->
-<!--        <Menu name="ComponentMenu" title="componentList.title" page="/components"/>-->
-        <!--Component-END-->
-        <!--Department-START-->
-        <Menu name="DepartmentMenu" title="departmentList.title" page="/departments"/>
-        <!--Department-END-->
-        <!--RGroup-START-->
-        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>
-        <!--RGroup-END-->
-        <!--ProjectIndex-START-->
-        <Menu name="ProjectIndexMenu" title="projectIndexList.title" page="/projectIndices"/>
-        <!--ProjectIndex-END-->
+        <!--Group-START-->
+        <Menu name="GroupMenu" title="groupList.title" page="/groups"/>
+        <!--Group-END-->
+        <!--CustomGroup-START-->
+        <!--CustomGroup-END-->
     </Menus>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </MenuConfig>

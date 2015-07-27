@@ -22,7 +22,7 @@
     <tx:annotation-driven/>
 
     <!-- Enable @AspectJ support -->
-    <aop:aspectj-autoproxy/>
+<!--    <aop:aspectj-autoproxy/>-->
 
     <!-- Activates scanning of @Autowired -->
     <context:annotation-config/>

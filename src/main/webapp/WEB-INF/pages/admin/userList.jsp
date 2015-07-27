@@ -39,9 +39,12 @@
                    defaultsort="1" id="users" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
         <display:column property="username" escapeXml="true" sortable="true" titleKey="user.username" style="width: 25%"
                         url="/userform?from=list" paramId="id" paramProperty="id"/>
-        <display:column property="fullName" escapeXml="true" sortable="true" titleKey="activeUsers.fullName"
-                        style="width: 34%"/>
-        <display:column property="email" sortable="true" titleKey="user.email" style="width: 25%" autolink="true"
+
+        <display:column property="loginCode" sortable="true" titleKey="user.loginCode"  autolink="true"
+                        media="html"/>
+        <display:column property="phoneNumber" sortable="true" titleKey="user.phoneNumber"  autolink="true"
+                        media="html"/>
+        <display:column property="email" sortable="true" titleKey="user.email"  autolink="true"
                         media="html"/>
         <display:column property="email" titleKey="user.email" media="csv xml excel pdf"/>
         <display:column sortProperty="enabled" sortable="true" titleKey="user.enabled"

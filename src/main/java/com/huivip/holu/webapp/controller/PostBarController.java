@@ -42,7 +42,7 @@ public class PostBarController {
     throws Exception {
         Model model = new ExtendedModelMap();
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
-        User user=userManager.getUserByUsername(request.getRemoteUser());
+        User user=userManager.getUserByLoginCode(request.getRemoteUser());
         try {
             if(request.isUserInRole(Constants.ADMIN_ROLE)) {
                 postBarManager.search(query, PostBar.class,list);

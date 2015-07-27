@@ -2,9 +2,9 @@ package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.Constants;
 import com.huivip.holu.dao.SearchException;
+import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Documentation;
 import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
 import com.huivip.holu.service.DocumentationManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.util.SteelConfig;
@@ -47,7 +47,7 @@ public class DocumentationController {
     public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
         Model model = new ExtendedModelMap();
-        User user= userManager.getUserByUsername(request.getRemoteUser());
+        User user= userManager.getUserByLoginCode(request.getRemoteUser());
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         try {
             if(!request.isUserInRole(Constants.ADMIN_ROLE)){
@@ -79,7 +79,7 @@ public class DocumentationController {
     }
     @RequestMapping(method = RequestMethod.GET,value = "{id}/Download")
     public String downloadDocumentation(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
-        User cleanUser = userManager.getUserByUsername(
+        User cleanUser = userManager.getUserByLoginCode(
                 request.getRemoteUser());
        /* String userId=request.getParameter("userId");
         if(null!=userId && userId.length()>0 && !userId.equalsIgnoreCase("undefined")){
@@ -90,8 +90,8 @@ public class DocumentationController {
         if(null!=documentation && documentation.isViewLimit()){
             canDownload=false;
             if(!documentation.getViewUsers().contains(cleanUser)){
-                for(UserGroup userGroup:documentation.getViewUserGroups()){
-                    if(userGroup.getMembers().contains(cleanUser)){
+                for(CustomGroup customGroup:documentation.getViewUserGroups()){
+                    if(customGroup.getMembers().contains(cleanUser)){
                         canDownload=true;
                         break;
                     }

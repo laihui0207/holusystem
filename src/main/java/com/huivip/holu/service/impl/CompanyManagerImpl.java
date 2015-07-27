@@ -21,4 +21,9 @@ public class CompanyManagerImpl extends GenericManagerImpl<Company, Long> implem
         super(companyDao);
         this.companyDao = companyDao;
     }
+
+    @Override
+    public Company getCompanyByCompanyID(String companyID) {
+        return companyDao.getCompanyByCompanyID(companyID);
+    }
 }

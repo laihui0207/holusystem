@@ -32,18 +32,18 @@
             <field property="username" depends="required">
                 <arg key="user.username"/>
             </field>
-            <field property="firstName" depends="required">
-                <arg key="user.firstName"/>
+            <field property="loginCode" depends="required">
+                <arg key="user.loginCode"/>
             </field>
-            <field property="lastName" depends="required">
-                <arg key="user.lastName"/>
+            <field property="userID" depends="required">
+                <arg key="user.userID"/>
             </field>
-            <field property="email" depends="required,email">
+           <!-- <field property="email" depends="required,email">
                 <arg key="user.email"/>
             </field>
             <field property="passwordHint" depends="required">
                 <arg key="user.passwordHint"/>
-            </field>
+            </field>-->
         </form>
         <form name="signup" extends="user">
             <field property="password" depends="required">
@@ -62,10 +62,7 @@
         <form name="company">
         </form>
         <!--Company-END-->
-        <!--Project-START-->
-        <form name="project">
-        </form>
-        <!--Project-END-->
+        
         <!--UserGroup-START-->
         <form name="userGroup">
         </form>
@@ -150,5 +147,17 @@
         <form name="projectIndex">
         </form>
         <!--ProjectIndex-END-->
+        <!--Project-START-->
+        <form name="project">
+        </form>
+        <!--Project-END-->
+        <!--Group-START-->
+        <form name="group">
+        </form>
+        <!--Group-END-->
+        <!--CustomGroup-START-->
+        <form name="customGroup">
+        </form>
+        <!--CustomGroup-END-->
     </formset>
 </form-validation>

@@ -1,10 +1,10 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
+import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.MessageManager;
-import com.huivip.holu.service.UserGroupManager;
 import com.huivip.holu.service.UserManager;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class MessageFormController extends BaseFormController {
     @Autowired
     private UserManager userManager;
     @Autowired
-    private UserGroupManager userGroupManager;
+    CustomGroupManager customGroupManager;
 
     @Autowired
     public void setMessageManager(MessageManager messageManager) {
@@ -87,8 +87,8 @@ public class MessageFormController extends BaseFormController {
 
         if(null!=receiveUserGroups){
             for(String groupId:receiveUserGroups){
-                receiveUserList.addAll(userGroupManager.get(Long.parseLong(groupId)).getMembers());
-                message.getReceiveGroups().add(userGroupManager.get(Long.parseLong(groupId)));
+                receiveUserList.addAll(customGroupManager.get(Long.parseLong(groupId)).getMembers());
+                message.getReceiveGroups().add(customGroupManager.get(Long.parseLong(groupId)));
             }
         }
         message.setStatus(1);
@@ -100,7 +100,7 @@ public class MessageFormController extends BaseFormController {
         copyMessage.setCreater(message.getCreater());
         copyMessage.setStatus(2);
         copyMessage.setCreateTime(message.getCreateTime());
-        final User cleanUser = getUserManager().getUserByUsername(
+        final User cleanUser = getUserManager().getUserByLoginCode(
                 request.getRemoteUser());
 
         copyMessage.setSender(cleanUser);
@@ -140,7 +140,7 @@ public class MessageFormController extends BaseFormController {
             messageManager.remove(message.getId());
             saveMessage(request, getText("message.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             message.setCreater(cleanUser);
             message.setOwner(cleanUser);
@@ -163,7 +163,7 @@ public class MessageFormController extends BaseFormController {
         return userManager.getAll();
     }
     @ModelAttribute("userGroupList")
-    public List<UserGroup> userGroupList(){
-        return userGroupManager.getAll();
+    public List<CustomGroup> userGroupList(){
+        return customGroupManager.getAll();
     }
 }

@@ -1,10 +1,10 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
+import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.NoteManager;
-import com.huivip.holu.service.UserGroupManager;
 import com.huivip.holu.service.UserManager;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class NoteFormController extends BaseFormController {
     @Autowired
     private UserManager userManager;
     @Autowired
-    private UserGroupManager userGroupManager;
+    private CustomGroupManager customGroupManager;
 
     @Autowired
     public void setNoteManager(NoteManager noteManager) {
@@ -81,7 +81,7 @@ public class NoteFormController extends BaseFormController {
             noteManager.remove(note.getId());
             saveMessage(request, getText("note.deleted", locale));
         } else {
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             note.setCreater(cleanUser);
             note.setUpdater(cleanUser);
@@ -90,9 +90,9 @@ public class NoteFormController extends BaseFormController {
             String key = (isNew) ? "note.added" : "note.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+            /*if (!isNew) {
                 success = "redirect:noteform?id=" + note.getId();
-            }
+            }*/
         }
 
         return success;
@@ -125,8 +125,8 @@ public class NoteFormController extends BaseFormController {
         }
         if(null!=sendToUserGroups){
             for(String groupId:sendToUserGroups){
-                SendUserList.addAll(userGroupManager.get(Long.parseLong(groupId)).getMembers());
-                note.getSendToUserGroupList().add(userGroupManager.get(Long.parseLong(groupId)));
+                SendUserList.addAll(customGroupManager.get(Long.parseLong(groupId)).getMembers());
+                note.getSendToUserGroupList().add(customGroupManager.get(Long.parseLong(groupId)));
             }
         }
         noteManager.save(note);
@@ -137,7 +137,7 @@ public class NoteFormController extends BaseFormController {
         copyNote.setCreater(note.getCreater());
         copyNote.setCreateTime(note.getCreateTime());
 
-        final User cleanUser = getUserManager().getUserByUsername(
+        final User cleanUser = getUserManager().getUserByLoginCode(
                 request.getRemoteUser());
 
         copyNote.setFromUser(cleanUser);
@@ -155,7 +155,7 @@ public class NoteFormController extends BaseFormController {
         return userManager.getAll();
     }
     @ModelAttribute("userGroupList")
-    public List<UserGroup> userGroupList(){
-        return userGroupManager.getAll();
+    public List<CustomGroup> userGroupList(){
+        return customGroupManager.getAll();
     }
 }

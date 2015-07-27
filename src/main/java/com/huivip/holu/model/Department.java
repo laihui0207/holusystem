@@ -1,5 +1,9 @@
 package com.huivip.holu.model;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -7,6 +11,8 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sunlaihui on 7/20/15.
@@ -30,12 +36,13 @@ public class Department extends BaseObject implements Serializable {
     private Long id;
     private String departmentID;
     private String name;
-    private Department parent;
+    private String parentID;
     private String level;
     private String comment;
     private String positionGPS;
     private Date createDate;
     private Company company;
+    private Set<User> users=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,15 +72,15 @@ public class Department extends BaseObject implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    @ManyToOne
-    @JoinColumn(name="ParentID",referencedColumnName = "departmentID")
-    public Department getParent() {
-        return parent;
+    @Column(name="ParentID")
+    public String getParentID() {
+        return parentID;
     }
 
-    public void setParent(Department parent) {
-        this.parent = parent;
+    public void setParentID(String parentID) {
+        this.parentID = parentID;
     }
+
     @Column(name="DepartmentLevel")
     public String getLevel() {
         return level;
@@ -115,6 +122,20 @@ public class Department extends BaseObject implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
+    @ManyToMany
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(
+            name="R_DepartmentUserMappingTable",
+            joinColumns = {@JoinColumn(name = "DepartmentId",referencedColumnName = "departmentID")},
+            inverseJoinColumns = {@JoinColumn(name="UserID",referencedColumnName = "userID")}
+    )
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -125,7 +146,6 @@ public class Department extends BaseObject implements Serializable {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (parent != null ? !parent.equals(that.parent) : that.parent != null) return false;
         if (level != null ? !level.equals(that.level) : that.level != null) return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
         if (positionGPS != null ? !positionGPS.equals(that.positionGPS) : that.positionGPS != null) return false;
@@ -137,7 +157,6 @@ public class Department extends BaseObject implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (parent != null ? parent.hashCode() : 0);
         result = 31 * result + (level != null ? level.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (positionGPS != null ? positionGPS.hashCode() : 0);
@@ -147,14 +166,8 @@ public class Department extends BaseObject implements Serializable {
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", parent=" + parent +
-                ", level='" + level + '\'' +
-                ", comment='" + comment + '\'' +
-                ", positionGPS='" + positionGPS + '\'' +
-                ", createDate='" + createDate + '\'' +
-                '}';
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append(this.departmentID)
+                .toString();
     }
 }

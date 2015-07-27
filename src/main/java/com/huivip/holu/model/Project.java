@@ -39,16 +39,20 @@ public class Project extends BaseObject implements Serializable {
     private String projectName;
     private String projectLevel;
     private String fullName;
-    private Project parent;
+/*    private String parentID;*/
     private Long totalWeight;
     private Long totalCost;
     private Date startDate;
+    private Date createDate;
     private Date endDate;
     private String ownerName;
     private String brokerName;
     private String note;
     private Company company;
     private Set<Department> departments=new HashSet<>();
+    private Set<User> extendUsers=new HashSet<>();
+    private Project parentProject;
+    private Set<Project> childProjects=new HashSet<>();
 
 
     @Id
@@ -159,15 +163,14 @@ public class Project extends BaseObject implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    @ManyToOne
-    @JoinColumn(name="ParentID",referencedColumnName = "projectID")
-    public Project getParent() {
-        return parent;
+   /* @Column(name="ParentID")
+    public String getParentID() {
+        return parentID;
     }
 
-    public void setParent(Project parent) {
-        this.parent = parent;
-    }
+    public void setParentID(String parentID) {
+        this.parentID = parentID;
+    }*/
 
     @ManyToMany
     @JoinTable(
@@ -181,6 +184,44 @@ public class Project extends BaseObject implements Serializable {
 
     public void setDepartments(Set<Department> departments) {
         this.departments = departments;
+    }
+    @ManyToMany
+    @JoinTable(
+            name="R_UserNonProjectMappingTable",
+            joinColumns = {@JoinColumn(name="ProjectID",referencedColumnName = "projectID")},
+            inverseJoinColumns = {@JoinColumn(name="UserID",referencedColumnName = "userID")}
+    )
+    public Set<User> getExtendUsers() {
+        return extendUsers;
+    }
+
+    public void setExtendUsers(Set<User> extendUsers) {
+        this.extendUsers = extendUsers;
+    }
+    @ManyToOne
+    @JoinColumn(name="ParentID",referencedColumnName = "projectID")
+    public Project getParentProject() {
+        return parentProject;
+    }
+
+    public void setParentProject(Project parentProject) {
+        this.parentProject = parentProject;
+    }
+    @OneToMany(mappedBy = "parentProject")
+    public Set<Project> getChildProjects() {
+        return childProjects;
+    }
+
+    public void setChildProjects(Set<Project> childProjects) {
+        this.childProjects = childProjects;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     @Override

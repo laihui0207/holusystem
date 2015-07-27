@@ -14,7 +14,7 @@
 
 <h2><fmt:message key="projectList.heading"/></h2>
 
-<form method="get" action="${ctx}/projects" id="searchForm" class="form-inline">
+<%--<form method="get" action="${ctx}/projects" id="searchForm" class="form-inline">
 <div id="search" class="text-right">
     <span class="col-sm-9">
         <input type="text" size="20" name="q" id="query" value="${param.q}"
@@ -24,14 +24,14 @@
         <i class="icon-search"></i> <fmt:message key="button.search"/>
     </button>
 </div>
-</form>
+</form>--%>
 
 <p><fmt:message key="projectList.message"/></p>
 
 <%--<div id="actions" class="btn-group">
     <a href='<c:url value="/projectform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
+&lt;%&ndash;    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>&ndash;%&gt;
 </div>--%>
 
 <display:table name="projectList" class="table table-condensed table-striped table-hover" requestURI="" id="projectList" export="true" pagesize="25">
@@ -39,16 +39,30 @@
         paramId="id" paramProperty="id" titleKey="project.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="project.id"/>
     <display:column property="projectID" sortable="true" titleKey="project.projectID"/>
-    <display:column property="projectShortName" sortable="true" titleKey="project.projectShortName"/>
-    <display:column property="projectFullName" sortable="true" titleKey="project.projectFullName"/>
-    <display:column property="batchFullName" sortable="true" titleKey="project.batchFullName"/>
-    <display:column property="batchShortName" sortable="true" titleKey="project.batchShortName"/>
-    <display:column property="unitFullName" sortable="true" titleKey="project.unitFullName"/>
-    <display:column property="unitShortName" sortable="true" titleKey="project.unitShortName"/>
-    <display:column property="company.companyShortNameCN" sortable="true" titleKey="company.title"/>
-    <display:column titleKey="list.action">
-        <a href="components/${projectList.id}/Component"><fmt:message key="action.components"/></a>
+    <display:column property="projectName" sortable="true" titleKey="project.projectName"/>
+    <display:column property="fullName" sortable="true" titleKey="project.fullName"/>
+    <display:column property="projectLevel" sortable="true" titleKey="project.projectLevel"/>
+    <display:column property="brokerName" sortable="true" titleKey="project.brokerName"/>
+    <display:column sortProperty="startDate" sortable="true" titleKey="project.startDate">
+        <fmt:formatDate value="${projectList.startDate}" pattern="${datePattern}"/>
     </display:column>
+    <display:column sortProperty="endDate" sortable="true" titleKey="project.endDate">
+         <fmt:formatDate value="${projectList.endDate}" pattern="${datePattern}"/>
+    </display:column>
+    <display:column property="note" sortable="true" titleKey="project.note"/>
+    <display:column property="ownerName" sortable="true" titleKey="project.ownerName"/>
+    <display:column property="totalCost" sortable="true" titleKey="project.totalCost"/>
+    <display:column property="totalWeight" sortable="true" titleKey="project.totalWeight"/>
+    <c:if test="${projectList.childProjects.size() > 0 }">
+        <display:column title="child">
+            <a href='<c:url value="/projects?parentID=${projectList.projectID}"/>'>Child Project</a>
+        </display:column>
+    </c:if>
+    <c:if test="${projectList.childProjects.size() == 0 }">
+        <display:column title="Process">
+            <a href='<c:url value="/components/${projectList.projectID}/Component"/>'>Process</a>
+        </display:column>
+    </c:if>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="projectList.project"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="projectList.projects"/></display:setProperty>

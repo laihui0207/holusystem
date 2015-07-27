@@ -1,13 +1,7 @@
 package com.huivip.holu.webapp.controller;
 
-import com.huivip.holu.model.PostBar;
-import com.huivip.holu.model.PostSubject;
-import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserGroup;
-import com.huivip.holu.service.PostBarManager;
-import com.huivip.holu.service.PostSubjectManager;
-import com.huivip.holu.service.UserGroupManager;
-import com.huivip.holu.service.UserManager;
+import com.huivip.holu.model.*;
+import com.huivip.holu.service.*;
 import com.huivip.holu.util.Thumbnail;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +25,7 @@ public class PostBarFormController extends BaseFormController {
     @Autowired
     private UserManager userManager;
     @Autowired
-    private UserGroupManager userGroupManager;
+    CustomGroupManager customGroupManager;
 
     @Autowired
     public void setPostBarManager(PostBarManager postBarManager) {
@@ -98,7 +92,7 @@ public class PostBarFormController extends BaseFormController {
                         postBar.getReplyGroups().clear();
                     }
                     for(String groupId:replyGroups){
-                        postBar.getReplyGroups().add(userGroupManager.get(Long.parseLong(groupId)));
+                        postBar.getReplyGroups().add(customGroupManager.get(Long.parseLong(groupId)));
                     }
                 }
             }
@@ -127,7 +121,7 @@ public class PostBarFormController extends BaseFormController {
                         postBar.getViewGroups().clear();
                     }
                     for(String groupId:viewGroups){
-                        postBar.getViewGroups().add(userGroupManager.get(Long.parseLong(groupId)));
+                        postBar.getViewGroups().add(customGroupManager.get(Long.parseLong(groupId)));
                     }
                 }
             }
@@ -140,7 +134,7 @@ public class PostBarFormController extends BaseFormController {
                 }
             }
 
-            final User cleanUser = getUserManager().getUserByUsername(
+            final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
             postBar.setCreater(cleanUser);
             postBar.setThumbnailUrl(Thumbnail.handleThumbnail(postBar.getContent(),getServletContext()));
@@ -160,8 +154,8 @@ public class PostBarFormController extends BaseFormController {
         return userManager.getAll();
     }
     @ModelAttribute("userGroupList")
-    public List<UserGroup> userGroupsList(){
-        return userGroupManager.getAll();
+    public List<CustomGroup> userGroupsList(){
+        return customGroupManager.getAll();
     }
     @ModelAttribute("postSubjectList")
     public List<PostSubject> postSubjectsList(){

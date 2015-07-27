@@ -37,7 +37,7 @@ public class MessageController {
     @RequestMapping(method = RequestMethod.GET)
     public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
-        final User cleanUser =userManager.getUserByUsername(
+        final User cleanUser =userManager.getUserByLoginCode(
                 request.getRemoteUser());
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         Model model = new ExtendedModelMap();

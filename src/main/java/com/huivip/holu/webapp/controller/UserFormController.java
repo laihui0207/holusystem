@@ -119,11 +119,13 @@ public class UserFormController extends BaseFormController {
                 // if user is not an admin then load roles from the database
                 // (or any other user properties that should not be editable
                 // by users without admin role)
-                final User cleanUser = getUserManager().getUserByUsername(
+                final User cleanUser = getUserManager().getUserByLoginCode(
                         request.getRemoteUser());
                 user.setRoles(cleanUser.getRoles());
             }
-
+            if(user.getCompany()!=null){
+                user.setCompany(companyManager.getCompanyByCompanyID(user.getCompany().getCompanyId()));
+            }
             final Integer originalVersion = user.getVersion();
 
             // set a random password if user is added by admin
@@ -212,7 +214,7 @@ public class UserFormController extends BaseFormController {
 
             User user;
             if (userId == null && !isAdd(request)) {
-                user = getUserManager().getUserByUsername(request.getRemoteUser());
+                user = getUserManager().getUserByLoginCode(request.getRemoteUser());
             } else if (!StringUtils.isBlank(userId) && !"".equals(request.getParameter("version"))) {
                 user = getUserManager().getUser(userId);
             } else {
