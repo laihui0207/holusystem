@@ -35,15 +35,14 @@ public class Component extends BaseObject implements Serializable {
     Long id;
     String componentID;
     Project project;
-    String projectID;
     String componentName;
-    float size;
+    String size;
     String material;
-    float length;
-    String quantity;
+    String length;
+    Integer quantity;
     float weight;
     float price;
-    String styleName;
+    String styleID;
     String pieceList;
     User creater;
     Timestamp createDate = new Timestamp(new Date().getTime());
@@ -68,7 +67,7 @@ public class Component extends BaseObject implements Serializable {
         this.componentID = componentID;
     }
     @ManyToOne
-    @JoinColumn(name="Project_id")
+    @JoinColumn(name="ProjectID",referencedColumnName = "projectID")
     public Project getProject() {
         return project;
     }
@@ -85,11 +84,11 @@ public class Component extends BaseObject implements Serializable {
         this.componentName = componetName;
     }
     @Column(name="Size")
-    public float getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(float size) {
+    public void setSize(String size) {
         this.size = size;
     }
     @Column(name="Material")
@@ -101,19 +100,19 @@ public class Component extends BaseObject implements Serializable {
         this.material = material;
     }
     @Column(name="Length")
-    public float getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(float length) {
+    public void setLength(String length) {
         this.length = length;
     }
     @Column(name="Quantity")
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
     @Column(name="Weight")
@@ -132,13 +131,13 @@ public class Component extends BaseObject implements Serializable {
     public void setPrice(float price) {
         this.price = price;
     }
-    @Column(name="StyleName")
-    public String getStyleName() {
-        return styleName;
+    @Column(name="StyleID")
+    public String getStyleID() {
+        return styleID;
     }
 
-    public void setStyleName(String styleName) {
-        this.styleName = styleName;
+    public void setStyleID(String styleName) {
+        this.styleID = styleName;
     }
     @Column(name="PieceList")
     public String getPieceList() {
@@ -149,7 +148,7 @@ public class Component extends BaseObject implements Serializable {
         this.pieceList = pieceList;
     }
     @ManyToOne
-    @JoinColumn(name="UserID")
+    @JoinColumn(name="UserID",referencedColumnName = "userID")
     public User getCreater() {
         return creater;
     }
@@ -166,13 +165,6 @@ public class Component extends BaseObject implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -181,8 +173,6 @@ public class Component extends BaseObject implements Serializable {
 
         Component component = (Component) o;
 
-        if (Float.compare(component.size, size) != 0) return false;
-        if (Float.compare(component.length, length) != 0) return false;
         if (Float.compare(component.weight, weight) != 0) return false;
         if (Float.compare(component.price, price) != 0) return false;
         if (id != null ? !id.equals(component.id) : component.id != null) return false;
@@ -193,7 +183,7 @@ public class Component extends BaseObject implements Serializable {
             return false;
         if (material != null ? !material.equals(component.material) : component.material != null) return false;
         if (quantity != null ? !quantity.equals(component.quantity) : component.quantity != null) return false;
-        if (styleName != null ? !styleName.equals(component.styleName) : component.styleName != null) return false;
+        if (styleID != null ? !styleID.equals(component.styleID) : component.styleID != null) return false;
         if (pieceList != null ? !pieceList.equals(component.pieceList) : component.pieceList != null) return false;
         if (creater != null ? !creater.equals(component.creater) : component.creater != null) return false;
         return !(createDate != null ? !createDate.equals(component.createDate) : component.createDate != null);
@@ -206,13 +196,11 @@ public class Component extends BaseObject implements Serializable {
         result = 31 * result + (componentID != null ? componentID.hashCode() : 0);
         result = 31 * result + (project != null ? project.hashCode() : 0);
         result = 31 * result + (componentName != null ? componentName.hashCode() : 0);
-        result = 31 * result + (size != +0.0f ? Float.floatToIntBits(size) : 0);
         result = 31 * result + (material != null ? material.hashCode() : 0);
-        result = 31 * result + (length != +0.0f ? Float.floatToIntBits(length) : 0);
         result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
         result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
-        result = 31 * result + (styleName != null ? styleName.hashCode() : 0);
+        result = 31 * result + (styleID != null ? styleID.hashCode() : 0);
         result = 31 * result + (pieceList != null ? pieceList.hashCode() : 0);
         result = 31 * result + (creater != null ? creater.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
@@ -232,7 +220,7 @@ public class Component extends BaseObject implements Serializable {
                 ", quantity='" + quantity + '\'' +
                 ", weight=" + weight +
                 ", price=" + price +
-                ", styleName='" + styleName + '\'' +
+                ", styleName='" + styleID + '\'' +
                 ", pieceList='" + pieceList + '\'' +
                 ", user=" + creater +
                 ", createDate=" + createDate +

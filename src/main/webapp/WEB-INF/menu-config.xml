@@ -34,7 +34,15 @@
         <!--Group-END-->
         <!--CustomGroup-START-->
         <!--CustomGroup-END-->
+        <!--CompanyDatabaseIndex-START-->
+        <Menu name="CompanyDatabaseIndexMenu" title="companyDatabaseIndexList.title" page="/companyDatabaseIndices"/>
+        <!--CompanyDatabaseIndex-END-->
+        <!--SubComponentList-START-->
+        <Menu name="SubComponentListMenu" title="subComponentListList.title" page="/subComponentLists"/>
+        <!--SubComponentList-END-->
     </Menus>
+
+
 
 
 </MenuConfig>

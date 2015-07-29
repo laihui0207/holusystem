@@ -90,7 +90,7 @@
         <jdbc.artifactId>jtds</jdbc.artifactId>
         <jdbc.version>1.2</jdbc.version>
         <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.141:1433/${db.name}</jdbc.url>
+        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.133:1433/${db.name}</jdbc.url>
         <jdbc.username>sa</jdbc.username>
         <jdbc.password>pass</jdbc.password>
         <holu.attachement.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.attachement.directory>
@@ -147,7 +147,7 @@
                 <jdbc.artifactId>jtds</jdbc.artifactId>
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.141:1433/${db.name}</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.133:1433/${db.name}</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>pass</jdbc.password>
             </properties>

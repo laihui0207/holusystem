@@ -27,5 +27,7 @@
         <mapping class="com.huivip.holu.model.Department"/>
         <mapping class="com.huivip.holu.model.CustomGroup"/>
         <mapping class="com.huivip.holu.model.ProjectIndex"/>
+        <mapping class="com.huivip.holu.model.CompanyDatabaseIndex"/>
+        <mapping class="com.huivip.holu.model.SubComponentList"/>
     </session-factory>
 </hibernate-configuration>

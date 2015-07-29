@@ -97,7 +97,6 @@ public class ComponentFormController extends BaseFormController {
                     request.getRemoteUser());
             component.setCreater(cleanUser);
             component.setProject(project);
-            component.setProjectID(project.getProjectID());
             component.setCreateDate(new Timestamp(new Date().getTime()));
             componentManager.save(component);
             String key = (isNew) ? "component.added" : "component.updated";

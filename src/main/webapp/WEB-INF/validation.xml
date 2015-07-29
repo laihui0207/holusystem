@@ -159,5 +159,13 @@
         <form name="customGroup">
         </form>
         <!--CustomGroup-END-->
+        <!--CompanyDatabaseIndex-START-->
+        <form name="companyDatabaseIndex">
+        </form>
+        <!--CompanyDatabaseIndex-END-->
+        <!--SubComponentList-START-->
+        <form name="subComponentList">
+        </form>
+        <!--SubComponentList-END-->
     </formset>
 </form-validation>

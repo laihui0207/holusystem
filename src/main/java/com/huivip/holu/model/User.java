@@ -114,7 +114,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return username;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @XmlTransient
     @JsonIgnore
     public String getPassword() {
