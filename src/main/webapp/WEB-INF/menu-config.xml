@@ -40,7 +40,11 @@
         <!--SubComponentList-START-->
         <Menu name="SubComponentListMenu" title="subComponentListList.title" page="/subComponentLists"/>
         <!--SubComponentList-END-->
+        <!--ProcessMid-START-->
+        <Menu name="ProcessMidMenu" title="processMidList.title" page="/processMids"/>
+        <!--ProcessMid-END-->
     </Menus>
+
 
 
 

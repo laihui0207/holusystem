@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<c:url value="/images/favicon.ico"/>"/>
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
+
     <t:assets type="css"/>
     <t:assets type="js"/>
     <decorator:head/>

@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.ComponentStyle;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
 import javax.ws.rs.GET;
@@ -16,6 +17,7 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     @Path("company/{companyId}/style/{styleName}/user/{userId}")
     List<ComponentStyle> getProcessListByCompanyAndStyleName(@PathParam("styleName")String styleName,
                                                              @PathParam("companyId")String companyId,
-                                                             @PathParam("userId")String userId);
+                                                             @PathParam("userId")String userId,ExtendedPaginatedList list);
+    ComponentStyle getComponentProcessByProcessID(String styleProcessID);
     
 }

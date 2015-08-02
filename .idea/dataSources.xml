@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3527750939">
+  <component name="DataSourceManagerImpl" format="xml" hash="3576116723">
     <data-source source="LOCAL" name="MySQL - holusystem@localhost" uuid="b28cba8c-ec4a-4748-b87f-098063cc28b8">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -15,10 +15,10 @@
       </driver-properties>
       <libraries />
     </data-source>
-    <data-source source="LOCAL" name="SQL Server - holusystem@172.16.182.141" uuid="f035e604-729e-4fd9-af70-a6a03f063d6f">
+    <data-source source="LOCAL" name="SQL Server - holusystem@172.16.182.147" uuid="f035e604-729e-4fd9-af70-a6a03f063d6f">
       <driver-ref>sqlserver.jtds</driver-ref>
       <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:jtds:sqlserver://172.16.182.141:1433/holusystem</jdbc-url>
+      <jdbc-url>jdbc:jtds:sqlserver://172.16.182.147:1433/holusystem</jdbc-url>
       <libraries />
     </data-source>
   </component>

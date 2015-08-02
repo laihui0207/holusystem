@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2022,7 +2022,100 @@
             </steps>
         </webtest>
     </target>    <!--SubComponentList-END-->
+    <!--ProcessMid-START-->
+    <!-- runs processMid-related tests -->
+    <target name="ProcessMidTests"
+            depends="SearchProcessMids,EditProcessMid,SaveProcessMid,AddProcessMid,DeleteProcessMid"
+            description="Call and executes all processMid test cases (targets)">
+        <echo>Successfully ran all ProcessMid UI tests!</echo>
+    </target>
+
+    <!-- Verify the processMids list screen displays without errors -->
+    <target name="SearchProcessMids" description="Tests search for and displaying all processMids">
+        <webtest name="searchProcessMids">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View ProcessMid link" url="/processMids"/>
+                <verifytitle description="we should see the processMidList title"
+                    text=".*${processMidList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the processMidList title"
+                    text=".*${processMidList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit processMid screen displays without errors -->
+    <target name="EditProcessMid" description="Tests editing an existing ProcessMid's information">
+        <webtest name="editProcessMid">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View ProcessMid List" url="/processMids"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the processMidDetail title"
+                    text=".*${processMidDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a processMid and then save -->
+    <target name="SaveProcessMid" description="Tests editing and saving a processMid">
+        <webtest name="saveProcessMid">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ProcessMid link" url="/processMidform?id=-1"/>
+                <verifytitle description="we should see the processMidDetail title"
+                    text=".*${processMidDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${processMidDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${processMid.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new ProcessMid -->
+    <target name="AddProcessMid" description="Adds a new ProcessMid">
+        <webtest name="addProcessMid">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/processMidform"/>
+                <verifytitle description="we should see the processMidDetail title"
+                    text=".*${processMidDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="ProcessMid List appears if save successful"
+                    text=".*${processMidList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${processMid.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing processMid -->
+    <target name="DeleteProcessMid" description="Deletes existing ProcessMid">
+        <webtest name="deleteProcessMid">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit ProcessMid link" url="/processMidform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display ProcessMid List" text=".*${processMidList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${processMid.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--ProcessMid-END-->
 </project>
+
 
 
 

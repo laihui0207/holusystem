@@ -1,10 +1,16 @@
 package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.dao.SearchException;
+import com.huivip.holu.model.Component;
 import com.huivip.holu.model.ComponentStyle;
+import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.ComponentStyleManager;
+import com.huivip.holu.service.SubComponentListManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginateListFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -23,6 +29,12 @@ public class ComponentStyleController {
     private ComponentStyleManager componentStyleManager;
     @Autowired
     private UserManager userManager;
+    @Autowired
+    private ComponentManager componentManager;
+    @Autowired
+    private SubComponentListManager subComponentListManager;
+    @Autowired
+    private PaginateListFactory paginateListFactory;
 
     @Autowired
     public void setComponentStyleManager(ComponentStyleManager componentStyleManager) {
@@ -43,15 +55,31 @@ public class ComponentStyleController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "processlist")
-    public ModelAndView processListByStyleAndCompany(@RequestParam("styleName") String styleName,
+    public ModelAndView processListByStyleAndCompany(@RequestParam("styleID") String styleId,
                                                      @RequestParam("companyId") String companyId,HttpServletRequest request){
         ModelAndView view=new ModelAndView("processListOfStyleAndCompany");
+        String componentID=request.getParameter("cid");
+        String componentType=request.getParameter("type");
+        ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         final User cleanUser = userManager.getUserByLoginCode(
                 request.getRemoteUser());
-        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleName,companyId,cleanUser.getId().toString());
+        Component parent=null;
+        SubComponentList subComponentList=null;
+        if(componentType.equalsIgnoreCase("parent")){
+            parent=componentManager.getComponentByComponentID(componentID,cleanUser.getUserID());
+        }
+        else  if(componentType.equalsIgnoreCase("sub")){
+            subComponentList=subComponentListManager.getSubComponentBySubComponentID(componentID,cleanUser.getUserID());
+            if(null!=subComponentList){
+                parent=subComponentList.getParentComponent();
+            }
+        }
+        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getId().toString(),list);
         view.addObject("componentStyleList",componentStyleList);
-
-
+        view.addObject("component",parent);
+        view.addObject("subComponent",subComponentList);
+        view.addObject("componentID",componentID);
+        view.addObject("componentType",componentType);
         view.addObject("user",cleanUser);
         return view;
     }

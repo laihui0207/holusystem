@@ -1,5 +1,7 @@
 package com.huivip.holu.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -8,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sunlaihui on 6/15/15.
@@ -46,6 +50,7 @@ public class Component extends BaseObject implements Serializable {
     String pieceList;
     User creater;
     Timestamp createDate = new Timestamp(new Date().getTime());
+    Set<SubComponentList> subComponentListSet=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,6 +73,7 @@ public class Component extends BaseObject implements Serializable {
     }
     @ManyToOne
     @JoinColumn(name="ProjectID",referencedColumnName = "projectID")
+    @Fetch(FetchMode.SELECT)
     public Project getProject() {
         return project;
     }
@@ -165,6 +171,14 @@ public class Component extends BaseObject implements Serializable {
         this.createDate = createDate;
     }
 
+    @OneToMany(mappedBy = "parentComponent")
+    public Set<SubComponentList> getSubComponentListSet() {
+        return subComponentListSet;
+    }
+
+    public void setSubComponentListSet(Set<SubComponentList> subComponentListSet) {
+        this.subComponentListSet = subComponentListSet;
+    }
 
     @Override
     public boolean equals(Object o) {

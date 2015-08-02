@@ -5,12 +5,12 @@
     <meta name="menu" content="ComponentMenu"/>
 </head>
 
-<c:if test="{'$'}{not empty searchError}">
+<%--<c:if test="{'$'}{not empty searchError}">
     <div class="alert alert-danger alert-dismissable">
         <a href="#" data-dismiss="alert" class="close">&times;</a>
         <c:out value="{'$'}{searchError}"/>
     </div>
-</c:if>
+</c:if>--%>
 
 <h2><fmt:message key="componentList.heading"/></h2>
 
@@ -35,9 +35,9 @@
 </div>--%>
 
 <display:table name="componentList" class="table table-condensed table-striped table-hover" requestURI="" id="componentList" export="true" pagesize="25">
-    <display:column property="id" sortable="true" href="/componentform/${project.id}" media="html"
-        paramId="id" paramProperty="id" titleKey="component.id"/>
-    <display:column property="id" media="csv excel xml pdf" titleKey="component.id"/>
+   <%-- <display:column property="id" sortable="true" href="/componentform/${project.id}" media="html"
+        paramId="id" paramProperty="id" titleKey="component.id"/>--%>
+<%--    <display:column property="id" media="csv excel xml pdf" titleKey="component.id"/>--%>
     <display:column property="componentID" sortable="true" titleKey="component.componentID"/>
     <display:column property="componentName" sortable="true" titleKey="component.componentName"/>
     <display:column property="createDate" sortable="true" titleKey="component.createDate"/>
@@ -47,20 +47,23 @@
     <display:column property="price" sortable="true" titleKey="component.price"/>
     <display:column property="quantity" sortable="true" titleKey="component.quantity"/>
     <display:column property="size" sortable="true" titleKey="component.size"/>
-    <display:column property="styleName" sortable="true" titleKey="component.styleName"/>
+    <display:column property="styleID" sortable="true" titleKey="component.styleName"/>
     <display:column property="creater.fullName" sortable="true" titleKey="component.user"/>
     <display:column property="weight" sortable="true" titleKey="component.weight"/>
+    <c:if test="${componentList.subComponentListSet.size()>0}">
+        <display:column titleKey="list.action">
+            <a href="<c:url value='/subComponentLists/${componentList.componentID}/subList'/> ">
+                <fmt:message key="component.detail"/>
+            </a>
+        </display:column>
+    </c:if>
+    <c:if test="${componentList.subComponentListSet.size() == 0}">
     <display:column titleKey="list.action">
-        <%--<spring:url value="componentStyles/processlist" var="url">
-            <spring:param name="styleName" value="${componentList.styleName}"></spring:param>
-            <spring:param name="companyId" value="${componentList.project.company.id}"></spring:param>
-        </spring:url>--%>
-        <%--<c:url value="/componentStyles/processlist" var="url">
-            <c:param name="styleName"><c:out value="${componentList.styleName}"></c:out></c:param>
-            <c:param name="companyId">${componentList.project.company.id}</c:param>
-        </c:url>--%>
-        <a href='<c:url value="/componentStyles/processlist?styleName=${componentList.styleName}&companyId=${componentList.project.company.id}"/>'><fmt:message key="action.processList"/></a>
+        <a href="<c:url value='/componentStyles/processlist?styleID=${componentList.styleID}&companyId=${componentList.project.company.id}&cid=${componentList.componentID}&type=parent'/>">
+            <fmt:message key="action.processList"/>
+        </a>
     </display:column>
+    </c:if>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentList.component"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="componentList.components"/></display:setProperty>

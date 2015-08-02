@@ -167,5 +167,9 @@
         <form name="subComponentList">
         </form>
         <!--SubComponentList-END-->
+        <!--ProcessMid-START-->
+        <form name="processMid">
+        </form>
+        <!--ProcessMid-END-->
     </formset>
 </form-validation>

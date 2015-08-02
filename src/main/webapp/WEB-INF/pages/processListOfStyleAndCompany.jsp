@@ -14,7 +14,7 @@
 
 <h2><fmt:message key="componentStyleList.heading"/></h2>
 
-<form method="get" action="${ctx}/componentStyles" id="searchForm" class="form-inline">
+<%--<form method="get" action="${ctx}/componentStyles" id="searchForm" class="form-inline">
 <div id="search" class="text-right">
     <span class="col-sm-9">
         <input type="text" size="20" name="q" id="query" value="${param.q}"
@@ -24,15 +24,15 @@
         <i class="icon-search"></i> <fmt:message key="button.search"/>
     </button>
 </div>
-</form>
+</form>--%>
 
 <p><fmt:message key="componentStyleList.message"/></p>
 
-<div id="actions" class="btn-group">
+<%--<div id="actions" class="btn-group">
     <a href='<c:url value="/componentStyleform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
     <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
-</div>
+</div>--%>
 
 <display:table name="componentStyleList" class="table table-condensed table-striped table-hover" requestURI="" id="componentStyleList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="componentStyleform" media="html"
@@ -42,7 +42,13 @@
     <display:column property="processName" sortable="true" titleKey="componentStyle.processName"/>
     <display:column property="processOrder" sortable="true" titleKey="componentStyle.processOrder"/>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>
-
+    <display:column title="">
+    <c:if test="${componentStyleList.operationer}">
+        <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&projectID=${component.project.projectID}'/> ">
+            <fmt:message key="processMidList.processMid"/>
+        </a>
+    </c:if>
+    </display:column>
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentStyleList.componentStyle"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="componentStyleList.componentStyles"/></display:setProperty>
 

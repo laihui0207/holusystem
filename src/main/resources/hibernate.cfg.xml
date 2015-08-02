@@ -29,5 +29,6 @@
         <mapping class="com.huivip.holu.model.ProjectIndex"/>
         <mapping class="com.huivip.holu.model.CompanyDatabaseIndex"/>
         <mapping class="com.huivip.holu.model.SubComponentList"/>
+        <mapping class="com.huivip.holu.model.ProcessMid"/>
     </session-factory>
 </hibernate-configuration>

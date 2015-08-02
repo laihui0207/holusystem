@@ -53,16 +53,14 @@
     <display:column property="ownerName" sortable="true" titleKey="project.ownerName"/>
     <display:column property="totalCost" sortable="true" titleKey="project.totalCost"/>
     <display:column property="totalWeight" sortable="true" titleKey="project.totalWeight"/>
+    <display:column title="">
     <c:if test="${projectList.childProjects.size() > 0 }">
-        <display:column title="child">
-            <a href='<c:url value="/projects?parentID=${projectList.projectID}"/>'>Child Project</a>
-        </display:column>
+            <a href='<c:url value="/projects?parentID=${projectList.projectID}"/>'><fmt:message key="project.childProject"></fmt:message></a>
     </c:if>
     <c:if test="${projectList.childProjects.size() == 0 }">
-        <display:column title="Process">
-            <a href='<c:url value="/components/${projectList.projectID}/Component"/>'>Process</a>
-        </display:column>
+            <a href='<c:url value="/components/${projectList.projectID}/Component"/>'><fmt:message key="componentList.components"/></a>
     </c:if>
+    </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="projectList.project"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="projectList.projects"/></display:setProperty>

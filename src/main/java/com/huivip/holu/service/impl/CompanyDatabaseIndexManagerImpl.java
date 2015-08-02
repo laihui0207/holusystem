@@ -21,4 +21,24 @@ public class CompanyDatabaseIndexManagerImpl extends GenericManagerImpl<CompanyD
         super(companyDatabaseIndexDao);
         this.companyDatabaseIndexDao = companyDatabaseIndexDao;
     }
+
+    @Override
+    public String getTableNameByCompanyAndTableStyle(String companyId, String tableStyle) {
+        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyId,tableStyle);
+    }
+
+    @Override
+    public String getComponentTableNameByCompany(String companyID) {
+        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ComponentList");
+    }
+
+    @Override
+    public String getSubComponentTableNameByCompany(String companyID) {
+        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"SubComponentList");
+    }
+
+    @Override
+    public String getProcessMidTableNameByCompany(String companyID) {
+        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ProcessMidTable");
+    }
 }

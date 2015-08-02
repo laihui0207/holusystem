@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -200,10 +201,10 @@ public class Project extends BaseObject implements Serializable {
     }
     @ManyToOne
     @JoinColumn(name="ParentID",referencedColumnName = "projectID")
+    @JsonIgnore
     public Project getParentProject() {
         return parentProject;
     }
-
     public void setParentProject(Project parentProject) {
         this.parentProject = parentProject;
     }
@@ -211,7 +212,6 @@ public class Project extends BaseObject implements Serializable {
     public Set<Project> getChildProjects() {
         return childProjects;
     }
-
     public void setChildProjects(Set<Project> childProjects) {
         this.childProjects = childProjects;
     }

@@ -36,7 +36,7 @@ public class ProcessMid extends BaseObject implements Serializable {
     Date startDate;
     Date endDate;
     User user;
-    Date createDate;
+    Date createDate=new Date();
     String positionGPS;
 
     @Id

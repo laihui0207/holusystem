@@ -6,6 +6,7 @@ import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.model.Post;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.ComponentStyleManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +33,16 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleName, String companyId,String userId) {
-        List<ComponentStyle> componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleName,companyId);
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId,String userId,ExtendedPaginatedList list) {
+        List<ComponentStyle> componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID,companyId,list);
         User user=userDao.get(Long.parseLong(userId));
         Set<Post> posts=user.getPosts();
         for(ComponentStyle style:componentStyles){
             if(!user.isAllowCreateProject()){
                 for(Post post:posts){
-                    if(post.getProcessName().equals(style.getProcessName()) && user.getCompany().getId()==style.getCompany().getId()){
+                    if(style.getProcessName().contains(post.getProcessName()) && user.getCompany().getId()==style.getCompany().getId()){
                         style.setOperationer(true);
+                        break;
                     }
                 }
 
@@ -50,5 +52,10 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
             }
         }
         return componentStyles;
+    }
+
+    @Override
+    public ComponentStyle getComponentProcessByProcessID(String styleProcessID) {
+        return componentStyleDao.getComponentProcessByProcessID(styleProcessID);
     }
 }

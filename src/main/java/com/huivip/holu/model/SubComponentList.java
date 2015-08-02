@@ -27,12 +27,13 @@ import java.util.Date;
 @XmlRootElement
 public class SubComponentList extends BaseObject implements Serializable {
     Long id;
-    String componentID;
+/*    String componentID;*/
     String subComponentID;
     String subComponentName;
     int subQuantity;
     User user;
     Date createDate;
+    Component parentComponent;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,14 +46,14 @@ public class SubComponentList extends BaseObject implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    @Column(name="ComponentID")
+  /*  @Column(name="ComponentID")
     public String getComponentID() {
         return componentID;
     }
 
     public void setComponentID(String componentID) {
         this.componentID = componentID;
-    }
+    }*/
     @Column(name="SubComponentID")
     public String getSubComponentID() {
         return subComponentID;
@@ -94,6 +95,15 @@ public class SubComponentList extends BaseObject implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+    @ManyToOne
+    @JoinColumn(name = "ComponentID",referencedColumnName = "componentID")
+    public Component getParentComponent() {
+        return parentComponent;
+    }
+
+    public void setParentComponent(Component parentComponent) {
+        this.parentComponent = parentComponent;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -104,7 +114,6 @@ public class SubComponentList extends BaseObject implements Serializable {
 
         if (subQuantity != that.subQuantity) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (componentID != null ? !componentID.equals(that.componentID) : that.componentID != null) return false;
         if (subComponentID != null ? !subComponentID.equals(that.subComponentID) : that.subComponentID != null)
             return false;
         if (subComponentName != null ? !subComponentName.equals(that.subComponentName) : that.subComponentName != null)
@@ -117,7 +126,6 @@ public class SubComponentList extends BaseObject implements Serializable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (componentID != null ? componentID.hashCode() : 0);
         result = 31 * result + (subComponentID != null ? subComponentID.hashCode() : 0);
         result = 31 * result + (subComponentName != null ? subComponentName.hashCode() : 0);
         result = 31 * result + subQuantity;
@@ -130,7 +138,6 @@ public class SubComponentList extends BaseObject implements Serializable {
     public String toString() {
         return "SubComponentList{" +
                 "id=" + id +
-                ", componentID='" + componentID + '\'' +
                 ", subComponentID='" + subComponentID + '\'' +
                 ", subComponentName='" + subComponentName + '\'' +
                 ", subQuantity=" + subQuantity +

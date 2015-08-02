@@ -19,12 +19,6 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
-    <!--CompanyDatabaseIndex-START-->
-    <menu:displayMenu name="CompanyDatabaseIndexMenu"/>
-    <!--CompanyDatabaseIndex-END-->
-    <!--SubComponentList-START-->
-    <menu:displayMenu name="SubComponentListMenu"/>
-    <!--SubComponentList-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

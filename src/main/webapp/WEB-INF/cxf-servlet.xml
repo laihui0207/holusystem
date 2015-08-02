@@ -42,7 +42,6 @@
             <entry key="json" value="application/json"/>
             <entry key="xml" value="application/xml"/>
             <entry key="feed" value="application/atom+xml"/>
-            <entry key="oct" value="application/octet-stream"/>
         </jaxrs:extensionMappings>
     </jaxrs:server>
 

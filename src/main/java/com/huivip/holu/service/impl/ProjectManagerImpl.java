@@ -24,6 +24,16 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
     }
 
     @Override
+    public List<Project> getMyProject(String userID) {
+        return getProjectByUserID(userID,null,null);
+    }
+
+    @Override
+    public List<Project> getMySubProject(String userID, String parentID) {
+        return getProjectByUserID(userID,parentID,null);
+    }
+
+    @Override
     public List<Project> getProjectByUserID(String userID, String parentProject,ExtendedPaginatedList list) {
         return projectDao.getProjectByUserID(userID,parentProject,list);
     }

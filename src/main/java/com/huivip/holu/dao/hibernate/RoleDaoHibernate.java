@@ -2,8 +2,8 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.RoleDao;
 import com.huivip.holu.model.Role;
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,7 +30,9 @@ public class RoleDaoHibernate extends GenericDaoHibernate<Role, Long> implements
      * {@inheritDoc}
      */
     public Role getRoleByName(String rolename) {
-        List roles = getSession().createCriteria(Role.class).add(Restrictions.eq("name", rolename)).list();
+        String hql="From Role where name='"+rolename+"'";
+        Query query=getSession().createQuery(hql);
+        List<Role> roles=query.list();
         if (roles.isEmpty()) {
             return null;
         } else {

@@ -42,7 +42,11 @@
     <display:column property="processName" sortable="true" titleKey="componentStyle.processName"/>
     <display:column property="processOrder" sortable="true" titleKey="componentStyle.processOrder"/>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>
-
+    <c:if test="${componentStyleList.operationer}">
+        <display:column title="Action">
+            Action
+        </display:column>
+    </c:if>
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentStyleList.componentStyle"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="componentStyleList.componentStyles"/></display:setProperty>
 
