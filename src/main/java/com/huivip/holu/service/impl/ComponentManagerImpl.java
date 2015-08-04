@@ -29,6 +29,11 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     }
 
     @Override
+    public List<Component> listComponentByProject(String projectID, String userId) {
+        return listComponentByProject(projectID,userId,null);
+    }
+
+    @Override
     public List<Component> listComponentByProject(String projectID,String userID,ExtendedPaginatedList list) {
         User user=userDao.getUserByUserID(userID);
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"ComponentList");

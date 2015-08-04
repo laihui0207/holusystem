@@ -90,7 +90,7 @@ public class Company extends BaseObject implements Serializable {
     public String getCompanyCode() {
         return companyCode;
     }
-
+    @Column(name="CompanyCode")
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
     }
@@ -158,7 +158,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyNote(String companyNote) {
         this.companyNote = companyNote;
     }
-
+    @Column(name="CompanyEmail")
     public String getCompanyEmail() {
         return companyEmail;
     }
@@ -166,7 +166,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCompanyEmail(String companyEmail) {
         this.companyEmail = companyEmail;
     }
-
+    @Column(name="AcceptCreate")
     public boolean isAcceptCreate() {
         return acceptCreate;
     }
@@ -174,7 +174,7 @@ public class Company extends BaseObject implements Serializable {
     public void setAcceptCreate(boolean acceptCreate) {
         this.acceptCreate = acceptCreate;
     }
-
+    @Column(name="CreaterName")
     public String getCreaterName() {
         return createrName;
     }
@@ -182,7 +182,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCreaterName(String createrName) {
         this.createrName = createrName;
     }
-
+    @Column(name="CreatePassword")
     public String getCreatePassword() {
         return createPassword;
     }
@@ -190,7 +190,7 @@ public class Company extends BaseObject implements Serializable {
     public void setCreatePassword(String createPassword) {
         this.createPassword = createPassword;
     }
-
+    @Column(name="CreateDate")
     public Date getCreateDate() {
         return createDate;
     }

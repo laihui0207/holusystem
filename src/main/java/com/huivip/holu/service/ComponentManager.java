@@ -13,8 +13,11 @@ import java.util.List;
 @Path("/components")
 public interface ComponentManager extends GenericManager<Component, Long> {
     @GET
-    @Path("project/{projectId}/u/${userID}")
-    List<Component> listComponentByProject(@PathParam("projectId")String projectID,@PathParam("userID")String userId,ExtendedPaginatedList list);
-    Component getComponentByComponentID(String componentID,String userID);
+    @Path("project/{projectId}/u/{userID}")
+    List<Component> listComponentByProject(@PathParam("projectId")String projectID,@PathParam("userID")String userId);
+    List<Component> listComponentByProject(String projectID,String userId,ExtendedPaginatedList list);
+    @GET
+    @Path("{componentID}/{userID}")
+    Component getComponentByComponentID(@PathParam("componentID")String componentID,@PathParam("userID")String userID);
     
 }

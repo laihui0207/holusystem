@@ -1,9 +1,12 @@
 package com.huivip.holu.service.impl;
 
+import com.huivip.holu.dao.CompanyDatabaseIndexDao;
 import com.huivip.holu.dao.ComponentStyleDao;
+import com.huivip.holu.dao.ProcessMidDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.model.Post;
+import com.huivip.holu.model.ProcessMid;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.ComponentStyleManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
@@ -20,6 +23,10 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     ComponentStyleDao componentStyleDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    ProcessMidDao processMidDao;
+    @Autowired
+    CompanyDatabaseIndexDao companyDatabaseIndexDao;
 
     @Autowired
     public ComponentStyleManagerImpl(ComponentStyleDao componentStyleDao) {
@@ -33,21 +40,27 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId,String userId,ExtendedPaginatedList list) {
-        List<ComponentStyle> componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID,companyId,list);
-        User user=userDao.get(Long.parseLong(userId));
-        Set<Post> posts=user.getPosts();
-        for(ComponentStyle style:componentStyles){
-            if(!user.isAllowCreateProject()){
-                for(Post post:posts){
-                    if(style.getProcessName().contains(post.getProcessName()) && user.getCompany().getId()==style.getCompany().getId()){
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId) {
+
+        return getProcessListByCompanyAndStyleName(styleID,companyId,userId,null);
+    }
+
+    @Override
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId, ExtendedPaginatedList list) {
+        List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, companyId, list);
+        User user = userDao.get(Long.parseLong(userId));
+        Set<Post> posts = user.getPosts();
+        for (ComponentStyle style : componentStyles) {
+            if (!user.isAllowCreateProject()) {
+                for (Post post : posts) {
+                    if (style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
+                            && user.getCompany().getCompanyId().equalsIgnoreCase(style.getCompany().getCompanyId())) {
                         style.setOperationer(true);
                         break;
                     }
                 }
 
-            }
-            else {
+            } else {
                 style.setOperationer(true);
             }
         }

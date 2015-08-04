@@ -68,11 +68,11 @@
             <artifactId>core</artifactId>
             <version>3.2.0</version>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>net.oschina.j2cache</groupId>
             <artifactId>j2cache</artifactId>
             <version>1.0.1</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <properties>

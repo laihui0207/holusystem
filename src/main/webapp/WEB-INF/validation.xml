@@ -52,10 +52,22 @@
         </form>
         <!--News-START-->
         <form name="news">
+            <field property="title" depends="required">
+                <arg key="news.title"/>
+            </field>
+            <field property="content" depends="required">
+                <arg key="news.content"/>
+            </field>
+            <field property="newsType" depends="required">
+                <arg key="news.newsType"/>
+            </field>
         </form>
         <!--News-END-->
         <!--NewsType-START-->
         <form name="newsType">
+            <field property="name" depends="required">
+                <arg key="newsType.name"/>
+            </field>
         </form>
         <!--NewsType-END-->
         <!--Company-START-->

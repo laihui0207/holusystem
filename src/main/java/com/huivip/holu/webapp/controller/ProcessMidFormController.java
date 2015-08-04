@@ -59,6 +59,7 @@ public class ProcessMidFormController extends BaseFormController {
                                        @RequestParam("type") String componentType,
                                 @RequestParam("projectID")String projectID,HttpServletRequest request){
         ModelAndView view=new ModelAndView("processconfirm");
+        Locale locale=request.getLocale();
         User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
         Project project=projectManager.getProjectByprojectID(projectID);
         Component parent=null;
@@ -74,7 +75,8 @@ public class ProcessMidFormController extends BaseFormController {
         }
         ProcessMid processMid=processMidManager.getProcessMid(componentID,styleProcessId,currentUser.getUserID());
         if(null!=processMid){
-            saveError(request,"The Process have Confirmed.");
+            view.addObject("confirmed",true);
+            saveError(request,getText("processMid.confirmed",locale));
         }
         else {
             processMid=new ProcessMid();

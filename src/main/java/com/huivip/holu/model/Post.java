@@ -30,7 +30,8 @@ public class Post extends BaseObject implements Serializable {
     private Long id;
     private String postID;
     private String postName;
-    private String processName;
+/*    private String processID;*/
+    ProcessDictionary processDictionary;
     private String postNote;
     private Company company;
     private Date createDate=new Date();
@@ -62,14 +63,24 @@ public class Post extends BaseObject implements Serializable {
     public void setPostName(String postName) {
         this.postName = postName;
     }
-    @Column(name="ProcessName")
-    public String getProcessName() {
-        return processName;
+   /* @Column(name="ProcessID")
+    public String getProcessID() {
+        return processID;
     }
 
-    public void setProcessName(String processName) {
-        this.processName = processName;
+    public void setProcessID(String processName) {
+        this.processID = processName;
+    }*/
+    @ManyToOne
+    @JoinColumn(name="ProcessID",referencedColumnName = "processID")
+    public ProcessDictionary getProcessDictionary() {
+        return processDictionary;
     }
+
+    public void setProcessDictionary(ProcessDictionary processDictionary) {
+        this.processDictionary = processDictionary;
+    }
+
     @Column(name="PostNote")
     public String getPostNote() {
         return postNote;
@@ -106,7 +117,6 @@ public class Post extends BaseObject implements Serializable {
         if (id != null ? !id.equals(post.id) : post.id != null) return false;
         if (postID != null ? !postID.equals(post.postID) : post.postID != null) return false;
         if (postName != null ? !postName.equals(post.postName) : post.postName != null) return false;
-        if (processName != null ? !processName.equals(post.processName) : post.processName != null) return false;
         if (postNote != null ? !postNote.equals(post.postNote) : post.postNote != null) return false;
         if (company != null ? !company.equals(post.company) : post.company != null) return false;
         return !(createDate != null ? !createDate.equals(post.createDate) : post.createDate != null);
@@ -118,7 +128,6 @@ public class Post extends BaseObject implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (postID != null ? postID.hashCode() : 0);
         result = 31 * result + (postName != null ? postName.hashCode() : 0);
-        result = 31 * result + (processName != null ? processName.hashCode() : 0);
         result = 31 * result + (postNote != null ? postNote.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

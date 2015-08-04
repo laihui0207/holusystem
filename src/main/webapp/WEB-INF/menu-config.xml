@@ -11,7 +11,7 @@
         <Menu name="DocumentationMenu" title="documentationList.title" page="/documentations" roles="ROLE_ADMIN,ROLE_USER"/>
 <!--        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>-->
 <!--        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>-->
-        <Menu name="CustomGroupMenu" title="customGroupList.title" page="/customGroups"/>
+        <Menu name="CustomGroupMenu" title="customGroupList.title" page="/customGroups" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="MessageMenu" title="messageList.title" page="/messages" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="NoteMenu" title="noteList.title" page="/notes" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
@@ -30,7 +30,7 @@
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--Group-START-->
-        <Menu name="GroupMenu" title="groupList.title" page="/groups"/>
+        <Menu name="GroupMenu" title="groupList.title" page="/groups" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--Group-END-->
         <!--CustomGroup-START-->
         <!--CustomGroup-END-->

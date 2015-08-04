@@ -31,6 +31,7 @@
             <ref bean="messageManager"/>
             <ref bean="projectManager"/>
             <ref bean="componentManager"/>
+            <ref bean="subComponentListManager"/>
             <ref bean="componentStyleManager"/>
             <ref bean="userGroupManager"/>
             <ref bean="replyManager"/>

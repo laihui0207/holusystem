@@ -39,8 +39,16 @@
         paramId="id" paramProperty="id" titleKey="componentStyle.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="componentStyle.id"/>
     <display:column property="company.companyShortNameCN" sortable="true" titleKey="companyList.title"/>
-    <display:column property="processName" sortable="true" titleKey="componentStyle.processName"/>
-    <display:column property="processOrder" sortable="true" titleKey="componentStyle.processOrder"/>
+    <c:if test="${language.equalsIgnoreCase('english')}">
+        <display:column  sortable="true" titleKey="componentStyle.processName">
+            ${componentStyleList.processDictionary.englishName}_${componentStyleList.processDictionary.processStyle}
+        </display:column>
+    </c:if>
+    <c:if test="${!language.equalsIgnoreCase('english')}">
+        <display:column  sortable="true" titleKey="componentStyle.processName">
+            ${componentStyleList.processDictionary.chineseName}_${componentStyleList.processDictionary.processStyle}
+        </display:column>
+            </c:if>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>
     <display:column title="">
     <c:if test="${componentStyleList.operationer}">

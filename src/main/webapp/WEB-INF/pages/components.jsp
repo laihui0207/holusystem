@@ -40,16 +40,16 @@
 <%--    <display:column property="id" media="csv excel xml pdf" titleKey="component.id"/>--%>
     <display:column property="componentID" sortable="true" titleKey="component.componentID"/>
     <display:column property="componentName" sortable="true" titleKey="component.componentName"/>
-    <display:column property="createDate" sortable="true" titleKey="component.createDate"/>
     <display:column property="length" sortable="true" titleKey="component.length"/>
     <display:column property="material" sortable="true" titleKey="component.material"/>
     <display:column property="pieceList" sortable="true" titleKey="component.pieceList"/>
     <display:column property="price" sortable="true" titleKey="component.price"/>
     <display:column property="quantity" sortable="true" titleKey="component.quantity"/>
     <display:column property="size" sortable="true" titleKey="component.size"/>
-    <display:column property="styleID" sortable="true" titleKey="component.styleName"/>
-    <display:column property="creater.fullName" sortable="true" titleKey="component.user"/>
     <display:column property="weight" sortable="true" titleKey="component.weight"/>
+<%--    <display:column property="styleID" sortable="true" titleKey="component.style"/>--%>
+    <display:column property="creater.fullName" sortable="true" titleKey="component.user"/>
+    <display:column property="createDate" sortable="true" titleKey="component.createDate"/>
     <c:if test="${componentList.subComponentListSet.size()>0}">
         <display:column titleKey="list.action">
             <a href="<c:url value='/subComponentLists/${componentList.componentID}/subList'/> ">

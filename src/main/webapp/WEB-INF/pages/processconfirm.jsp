@@ -107,15 +107,17 @@
         <div style="width:515px;height:300px" class="form-group" id="container"></div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
-                <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
-            </button>
-            <c:if test="${not empty processMid.id}">
+            <c:if test="${!confirmed}">
+                <button type="submit" class="btn btn-primary" id="save" name="save"  onclick="bCancel=false">
+                    <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
+                </button>
+            </c:if>
+           <%-- <c:if test="${not empty processMid.id}">
                 <button type="submit" class="btn btn-danger" id="delete" name="delete"
                         onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
                     <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
                 </button>
-            </c:if>
+            </c:if>--%>
 
             <button type="submit" class="btn btn-default" id="cancel" name="cancel" onclick="bCancel=true">
                 <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
@@ -200,7 +202,9 @@
                     complete: function (result) {
                         info.open();
                         info.setContent(result.detail.address)
+                        <c:if test="${!confirmed}">
                         $("#positionGPS").val(result.detail.address)
+                        </c:if>
                         info.setPosition(result.detail.location);
                     }
                 });
@@ -247,7 +251,7 @@
                     showError,
                     {
                         enableHighAcuracy: true,
-                        timeout: 100,
+                        timeout: 10000,
                         maximumAge: 0
                     });
         }

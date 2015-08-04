@@ -14,10 +14,13 @@ import java.util.List;
 public interface ComponentStyleManager extends GenericManager<ComponentStyle, Long> {
     List<ComponentStyle> getComponentStypeListByCompany(String companyId);
     @GET
-    @Path("company/{companyId}/style/{styleName}/user/{userId}")
-    List<ComponentStyle> getProcessListByCompanyAndStyleName(@PathParam("styleName")String styleName,
-                                                             @PathParam("companyId")String companyId,
-                                                             @PathParam("userId")String userId,ExtendedPaginatedList list);
+    @Path("processList/{companyID}/{styleID}/{userId}")
+    List<ComponentStyle> getProcessListByCompanyAndStyleName(@PathParam("styleID")String styleID,
+                                                             @PathParam("companyID")String companyId,
+                                                             @PathParam("userId")String userId);
+    List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID,
+                                                             String companyId,
+                                                             String userId,ExtendedPaginatedList list);
     ComponentStyle getComponentProcessByProcessID(String styleProcessID);
     
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/componentStyles*")
@@ -74,7 +75,9 @@ public class ComponentStyleController {
                 parent=subComponentList.getParentComponent();
             }
         }
-        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getId().toString(),list);
+        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getId().toString(),null);
+        Locale locale = request.getLocale();
+        view.addObject("language",locale.getDisplayLanguage());
         view.addObject("componentStyleList",componentStyleList);
         view.addObject("component",parent);
         view.addObject("subComponent",subComponentList);

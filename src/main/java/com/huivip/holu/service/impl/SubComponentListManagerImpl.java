@@ -36,6 +36,11 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     }
 
     @Override
+    public List<SubComponentList> getSubComponentListByComponentID(String componentID, String userID) {
+        return getSubComponentListByComponentID(componentID,userID,null);
+    }
+
+    @Override
     public SubComponentList getSubComponentBySubComponentID(String subComponentID, String userID) {
         User user=userDao.getUserByUserID(userID);
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");

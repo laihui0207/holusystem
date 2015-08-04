@@ -28,24 +28,37 @@
 
 <p><fmt:message key="postList.message"/></p>
 
-<div id="actions" class="btn-group">
+<%--<div id="actions" class="btn-group">
     <a href='<c:url value="/postform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-<%--    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
-</div>
+&lt;%&ndash;    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>&ndash;%&gt;
+</div>--%>
 
 <display:table name="postList" class="table table-condensed table-striped table-hover" requestURI="" id="postList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="postform" media="html"
         paramId="id" paramProperty="id" titleKey="post.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="post.id"/>
+    <display:column property="postID" sortable="true" titleKey="post.postID"/>
+    <display:column property="postName" sortable="true" titleKey="post.postName"/>
     <display:column property="company.companyShortNameCN" sortable="true" titleKey="post.company"/>
+    <c:if test="${pageContext.request.locale.language eq 'en'}">
+        <display:column  sortable="true" titleKey="componentStyle.processName">
+            <c:if test="${postList.processDictionary!=null}">
+                ${postList.processDictionary.englishName}_${postList.processDictionary.processStyle}
+            </c:if>
+        </display:column>
+    </c:if>
+    <c:if test="${pageContext.request.locale.language ne 'en'}">
+        <display:column  sortable="true" titleKey="componentStyle.processName">
+            <c:if test="${postList.processDictionary!=null}">
+                ${postList.processDictionary.chineseName}_${postList.processDictionary.processStyle}
+            </c:if>
+        </display:column>
+    </c:if>
+    <display:column property="postNote" sortable="true" titleKey="post.postNote"/>
     <display:column sortProperty="createDate" sortable="true" titleKey="post.createDate">
          <fmt:formatDate value="${postList.createDate}" pattern="${datePattern}"/>
     </display:column>
-    <display:column property="postID" sortable="true" titleKey="post.postID"/>
-    <display:column property="postName" sortable="true" titleKey="post.postName"/>
-    <display:column property="postNote" sortable="true" titleKey="post.postNote"/>
-    <display:column property="processName" sortable="true" titleKey="post.processName"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="postList.post"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="postList.posts"/></display:setProperty>

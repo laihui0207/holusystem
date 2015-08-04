@@ -4,9 +4,7 @@ import com.huivip.holu.model.Project;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
@@ -14,10 +12,10 @@ import java.util.List;
 public interface ProjectManager extends GenericManager<Project, Long> {
     @GET
     @Path("user/{userID}")
-    List<Project> getMyProject(@PathParam("userID")String userID);
-    @GET
+    List<Project> getMyProject(@PathParam("userID")String userID,@DefaultValue("") @QueryParam("parentID") String parentID);
+   /* @GET
     @Path("user/{userID}/{parentID}")
-    List<Project> getMySubProject(@PathParam("userID")String userID,@PathParam("parentID")String parentID);
+    List<Project> getMySubProject(@PathParam("userID")String userID,@PathParam("parentID")String parentID);*/
     List<Project> getProjectByUserID(String userID,String parentProject,ExtendedPaginatedList list);
     @GET
     @Path("{projectID}")

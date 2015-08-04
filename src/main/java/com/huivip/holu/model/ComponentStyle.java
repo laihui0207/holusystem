@@ -34,7 +34,8 @@ public class ComponentStyle extends BaseObject implements Serializable {
     Long id;
     String styleName;
     String styleProcessID;
-    String processID;
+/*    String processID;*/
+    ProcessDictionary processDictionary;
     String styleID;
     String processName;
     int processOrder;
@@ -89,6 +90,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         return processOrder;
     }
     @Column(name="ProcessStep")
+/*    @Transient*/
     public int getProcessStep() {
         return processStep;
     }
@@ -150,13 +152,22 @@ public class ComponentStyle extends BaseObject implements Serializable {
     public void setStyleProcessID(String styleProcessID) {
         this.styleProcessID = styleProcessID;
     }
-    @Column(name="ProcessID")
+    /*@Column(name="ProcessID")
     public String getProcessID() {
         return processID;
     }
 
     public void setProcessID(String processID) {
         this.processID = processID;
+    }*/
+    @ManyToOne
+    @JoinColumn(name="ProcessID",referencedColumnName = "processID")
+    public ProcessDictionary getProcessDictionary() {
+        return processDictionary;
+    }
+
+    public void setProcessDictionary(ProcessDictionary processDictionary) {
+        this.processDictionary = processDictionary;
     }
 
     @Override

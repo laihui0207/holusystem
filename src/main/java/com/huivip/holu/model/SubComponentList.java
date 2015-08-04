@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -97,6 +98,7 @@ public class SubComponentList extends BaseObject implements Serializable {
     }
     @ManyToOne
     @JoinColumn(name = "ComponentID",referencedColumnName = "componentID")
+    @JsonIgnore
     public Component getParentComponent() {
         return parentComponent;
     }

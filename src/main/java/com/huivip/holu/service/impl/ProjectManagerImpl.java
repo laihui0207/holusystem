@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import javax.jws.WebService;
+import javax.ws.rs.DefaultValue;
 
 @Service("projectManager")
 @WebService(serviceName = "ProjectService", endpointInterface = "com.huivip.holu.service.ProjectManager")
@@ -23,15 +24,20 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
         this.projectDao = projectDao;
     }
 
-    @Override
+    /*@Override
     public List<Project> getMyProject(String userID) {
         return getProjectByUserID(userID,null,null);
-    }
+    }*/
 
     @Override
-    public List<Project> getMySubProject(String userID, String parentID) {
+    public List<Project> getMyProject(String userID, @DefaultValue("") String parentID) {
         return getProjectByUserID(userID,parentID,null);
     }
+
+  /*  @Override
+    public List<Project> getMySubProject(String userID, String parentID) {
+        return getProjectByUserID(userID,parentID,null);
+    }*/
 
     @Override
     public List<Project> getProjectByUserID(String userID, String parentProject,ExtendedPaginatedList list) {

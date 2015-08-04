@@ -28,11 +28,11 @@
         </div>
 
         <%@ include file="/common/menu.jsp" %>
-        <c:if test="${pageContext.request.locale.language ne 'en'}">
+       <%-- <c:if test="${pageContext.request.locale.language ne 'en'}">
             <div id="switchLocale"><a href="<c:url value='/?locale=en'/>">
                 <fmt:message key="webapp.name"/> in English</a>
             </div>
-        </c:if>
+        </c:if>--%>
     </div>
 
     <div class="container" id="content">
