@@ -283,7 +283,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
     @ManyToOne
     @JoinColumn(name="companyID",referencedColumnName = "companyID")
-    @JsonIgnore
     public Company getCompany() {
         return company;
     }

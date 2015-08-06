@@ -48,7 +48,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     @Override
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId, ExtendedPaginatedList list) {
         List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, companyId, list);
-        User user = userDao.get(Long.parseLong(userId));
+        User user = userDao.getUserByUserID(userId);
         Set<Post> posts = user.getPosts();
         for (ComponentStyle style : componentStyles) {
             if (!user.isAllowCreateProject()) {

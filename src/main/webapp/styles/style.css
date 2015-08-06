@@ -134,7 +134,9 @@ ul.feedbackPanel {
 .login p {
     text-align: center
 }
-
+#gpsblocked {
+    color: red;
+}
 /* TABLES */
 
 th.sorted a, th.sortable a {

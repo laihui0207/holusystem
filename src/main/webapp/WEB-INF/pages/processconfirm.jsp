@@ -62,12 +62,14 @@
         <form:input cssClass="form-control" path="processNote" id="processNote" maxlength="255"/>
         <form:errors path="processNote" cssClass="help-block"/>
         </div>
+
         <div class="row">
             <spring:bind path="processMid.startDate">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
                 </spring:bind>
                 <appfuse:label key="processMid.startDate" styleClass="control-label"/>
-                <form:input cssClass="form-control" path="startDate" id="startDate" size="11" title="date" datepicker="true"/>
+                <form:input cssClass="form-control" path="startDate" id="startDate" size="11" title="date"
+                            datepicker="true"/>
                 <form:errors path="startDate" cssClass="help-block"/>
             </div>
 
@@ -75,7 +77,8 @@
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
                 </spring:bind>
                 <appfuse:label key="processMid.endDate" styleClass="control-label"/>
-                <form:input cssClass="form-control" path="endDate" id="endDate" size="11" title="date" datepicker="true"/>
+                <form:input cssClass="form-control" path="endDate" id="endDate" size="11" title="date"
+                            datepicker="true"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
         </div>
@@ -101,6 +104,7 @@
         </spring:bind>
         <appfuse:label key="processMid.positionGPS" styleClass="control-label"/>
         <form:input cssClass="form-control" path="positionGPS" id="positionGPS" maxlength="255" readonly="true"/>
+        <p class="help-block" id="gpsblocked"></p>
         <form:errors path="positionGPS" cssClass="help-block"/>
         </div>
 
@@ -108,16 +112,16 @@
 
         <div class="form-group">
             <c:if test="${!confirmed}">
-                <button type="submit" class="btn btn-primary" id="save" name="save"  onclick="bCancel=false">
+                <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
                     <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
                 </button>
             </c:if>
-           <%-- <c:if test="${not empty processMid.id}">
-                <button type="submit" class="btn btn-danger" id="delete" name="delete"
-                        onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
-                    <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
-                </button>
-            </c:if>--%>
+                <%-- <c:if test="${not empty processMid.id}">
+                     <button type="submit" class="btn btn-danger" id="delete" name="delete"
+                             onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
+                         <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
+                     </button>
+                 </c:if>--%>
 
             <button type="submit" class="btn btn-default" id="cancel" name="cancel" onclick="bCancel=true">
                 <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
@@ -156,7 +160,7 @@
                 center: new qq.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 zoom: 13
             });
-            var markersArray=[];
+            var markersArray = [];
             var info = new qq.maps.InfoWindow({map: map});
             var label = new qq.maps.Label({
                 offset: new qq.maps.Size(15, 0)
@@ -227,7 +231,9 @@
                     longitude: '117.226739'
                 }
             }
+            $("#gpsblocked").html("<fmt:message key='processMid.gpsBlocked'/>");
             showPosition(defaultPosition, false);
+
             /*switch(error.code) {
              case error.PERMISSION_DENIED:
              alert("location Refuse");

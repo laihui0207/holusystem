@@ -15,8 +15,10 @@ public interface SubComponentListManager extends GenericManager<SubComponentList
 
     List<SubComponentList> getSubComponentListByComponentID(String componentID,String userID,ExtendedPaginatedList list);
     @GET
-    @Path("{componentID}/{userID}")
+    @Path("list/{componentID}/{userID}")
     List<SubComponentList> getSubComponentListByComponentID(@PathParam("componentID")String componentID,@PathParam("userID")String userID);
-    SubComponentList getSubComponentBySubComponentID(String subComponentID,String userID);
+    @GET
+    @Path("{componentID}/{userID}")
+    SubComponentList getSubComponentBySubComponentID(@PathParam("componentID")String subComponentID,@PathParam("userID")String userID);
     
 }

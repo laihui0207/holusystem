@@ -26,7 +26,7 @@ public class ComponentStyleDaoHibernate extends GenericDaoHibernate<ComponentSty
 
     @Override
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId,ExtendedPaginatedList list) {
-        String queryString="From ComponentStyle where company.id="+companyId+" and styleID='"+styleID+"'";
+        String queryString="From ComponentStyle where company.companyId='"+companyId+"' and styleID='"+styleID+"'";
         queryString+=" order by processOrder";
         Query query=getSession().createQuery(queryString);
         if(null!=list){

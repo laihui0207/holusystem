@@ -59,7 +59,7 @@
     </c:if>
     <c:if test="${componentList.subComponentListSet.size() == 0}">
     <display:column titleKey="list.action">
-        <a href="<c:url value='/componentStyles/processlist?styleID=${componentList.styleID}&companyId=${componentList.project.company.id}&cid=${componentList.componentID}&type=parent'/>">
+        <a href="<c:url value='/componentStyles/processlist?styleID=${componentList.styleID}&companyId=${componentList.project.company.companyId}&cid=${componentList.componentID}&type=parent'/>">
             <fmt:message key="action.processList"/>
         </a>
     </display:column>
