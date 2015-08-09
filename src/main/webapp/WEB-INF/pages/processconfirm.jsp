@@ -63,7 +63,7 @@
         <form:errors path="processNote" cssClass="help-block"/>
         </div>
 
-        <div class="row">
+       <%-- <div class="row">
             <spring:bind path="processMid.startDate">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
                 </spring:bind>
@@ -81,7 +81,7 @@
                             datepicker="true"/>
                 <form:errors path="endDate" cssClass="help-block"/>
             </div>
-        </div>
+        </div>--%>
 
 
         <%--<spring:bind path="processMid.styleProcessID">

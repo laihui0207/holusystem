@@ -7,6 +7,8 @@ import com.huivip.holu.service.impl.GenericManagerImpl;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,19 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
     }
 
     @Override
-    public List<News> getNewss() {
-        return newsDao.getAll();
+    public List<News> getNewss(String pageIndex,String pageSize,String newsType) {
+        ExtendedPaginatedList list= new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(pageIndex));
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        if(newsType.equalsIgnoreCase("all")) {
+            newsDao.getAllPagable(list);
+        }
+        else {
+            newsDao.getNewsByType(newsType,list);
+        }
+        return list.getList();
     }
 
     @Override
@@ -42,7 +55,7 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
             return getAll();
         }
         else {
-           return newsDao.getNewsByType(typeID);
+           return newsDao.getNewsByType(typeID,null);
         }
     }
 

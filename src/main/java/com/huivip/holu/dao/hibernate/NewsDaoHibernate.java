@@ -18,10 +18,20 @@ public class NewsDaoHibernate extends GenericDaoHibernate<News, Long> implements
     }
 
     @Override
-    public List<News> getNewsByType(String typeID) {
+    public List<News> getNewsByType(String typeID,ExtendedPaginatedList list) {
         String queryString="From News where newsType.id="+typeID;
         Query query=getSession().createQuery(queryString);
-        return query.list();
+        if(null!=list){
+            List<News> totalList=query.list();
+            list.setTotalNumberOfRows(totalList.size());
+            query.setFirstResult(list.getFirstRecordIndex());
+            query.setMaxResults(list.getPageSize());
+        }
+        List<News> dataList=query.list();
+        if(null!=list){
+            list.setList(dataList);
+        }
+        return dataList;
     }
 
     @Override

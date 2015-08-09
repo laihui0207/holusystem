@@ -46,16 +46,16 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
 
     @Override
     public ProcessMid save(String subComponentID,String styleProcessID,String processNote,String startDate,String endDate,String positionGPS,String userID) {
-        ProcessMid processMid=new ProcessMid();
+        ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
         processMid.setStyleProcessID(styleProcessID);
         processMid.setProcessNote(processNote);
         processMid.setPositionGPS(positionGPS);
-            processMid.setStartDate(new Date(Long.parseLong(startDate)));
-            processMid.setEndDate(new Date(Long.parseLong(endDate)));
+      /*  processMid.setStartDate(new Date(Long.parseLong(startDate)));
+        processMid.setEndDate(new Date(Long.parseLong(endDate)));*/
         processMid.setUser(userManager.getUserByUserID(userID));
         // to do  check if confirm again
-        return save(processMid,userID);
+        return save(processMid, userID);
     }
 }

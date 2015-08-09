@@ -16,11 +16,17 @@ public interface MessageManager extends GenericManager<Message, Long> {
     @GET
     @Path("user/{userId}")
     List<Message> myMessage(@PathParam("userId")String userId);
+    @GET
+    @Path("user/{userId}/count")
+    int newMessageCount(@PathParam("userId")String userId);
 
     @GET
     @Path("{id}")
     Message getMessage(@PathParam("id")String id);
 
+    @GET
+    @Path("{id}/read")
+    Message readMessage(@PathParam("id") String id);
 
 
     @GET
@@ -33,6 +39,6 @@ public interface MessageManager extends GenericManager<Message, Long> {
 
     @POST
     @Path("Send")
-    Message sendNote(@FormParam("messageId")String messageId,@FormParam("users")String users,
-                  @FormParam("groups")String groups,@FormParam("userId")String userId);
+    Message sendMessage(@FormParam("messageId") String messageId, @FormParam("users") String users,
+                        @FormParam("groups") String groups, @FormParam("userId") String userId);
 }

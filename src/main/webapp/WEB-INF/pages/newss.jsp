@@ -34,7 +34,7 @@
 <%--    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
 </div>
 
-<display:table name="newsList" class="table table-condensed table-striped table-hover" requestURI="" id="newsList" export="true" pagesize="5">
+<display:table name="newsList" class="table table-condensed table-striped table-hover" requestURI="" id="newsList" export="true" pagesize="25">
     <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}">
     <display:column property="id" sortable="true" href="newsform" media="html"
         paramId="id" paramProperty="id" titleKey="news.id"/>

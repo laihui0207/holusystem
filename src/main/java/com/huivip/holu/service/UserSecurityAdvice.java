@@ -128,6 +128,7 @@ public class UserSecurityAdvice implements MethodBeforeAdvice, AfterReturningAdv
                 UserManager userManager = (UserManager) target;
                 User currentUser = getCurrentUser(auth, userManager);
                 if (currentUser.getId().equals(user.getId())) {
+                    user.setUsername(user.getLoginCode());
                     auth = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }

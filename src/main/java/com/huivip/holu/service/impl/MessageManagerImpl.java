@@ -45,8 +45,18 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
+    public int newMessageCount(String userId) {
+        return messageDao.newMessageCount(userId);
+    }
+
+    @Override
     public Message getMessage(String id) {
         return messageDao.get(Long.parseLong(id));
+    }
+
+    @Override
+    public Message readMessage(String id) {
+        return messageDao.updateMessageStatus(id,"3");
     }
 
     @Override
@@ -67,7 +77,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public Message sendNote(String messageId, String users, String groups,String userId) {
+    public Message sendMessage(String messageId, String users, String groups, String userId) {
         User user=userDao.get(Long.parseLong(userId));
         Message message=messageDao.get(Long.parseLong(messageId));
         List<User> receiverList=new ArrayList<>();

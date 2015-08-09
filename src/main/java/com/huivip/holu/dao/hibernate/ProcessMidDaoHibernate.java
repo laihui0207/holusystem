@@ -33,16 +33,17 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
         ProcessMid processMid=getProcessMid(object.getSubComponentID(),object.getStyleProcessID(),tableName);
         String sql="";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         if(null!=processMid){
             sql="UPDATE " + tableName+
-                    " SET EndDate='"+format.format(object.getCreateDate())+"', PostionGPS='"+object.getPositionGPS()+"', ProcessNote='"+
-                    object.getProcessNote()+"', StartDate='"+format.format(object.getStartDate())+"' " +
+                    " SET  PostionGPS='"+object.getPositionGPS()+"', ProcessNote='"+  //EndDate='"+format.format(object.getCreateDate())+"',
+                    object.getProcessNote()+"' " +  //, StartDate='"+format.format(object.getStartDate())+"'
                     "WHERE ID="+processMid.getId();
         }
         else {
-            sql = "insert into " + tableName + " (CreateDate, EndDate, PostionGPS, ProcessNote, StartDate, StyleProcessID, SubComponentID, UserID)" +
-                    " values ('" + format.format(object.getCreateDate()) + "','" + format.format(object.getEndDate()) + "','" + object.getPositionGPS() + "','" +
-                    object.getProcessNote() + "','" + format.format(object.getStartDate()) + "','" + object.getStyleProcessID() + "','" +
+            sql = "insert into " + tableName + " (CreateDate, PostionGPS, ProcessNote,  StyleProcessID, SubComponentID, UserID)" +  // EndDate,StartDate,
+                    " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() + "','" +  //+ format.format(object.getEndDate()) + "','"
+                    object.getProcessNote() + "','"  + object.getStyleProcessID() + "','" +  //+ format.format(object.getStartDate()) + "','"
                     object.getSubComponentID() + "','" + object.getUser().getUserID() + "')";
         }
         SQLQuery query = getSession().createSQLQuery(sql);

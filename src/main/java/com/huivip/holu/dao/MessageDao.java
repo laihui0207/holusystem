@@ -11,5 +11,7 @@ import java.util.List;
  */
 public interface MessageDao extends GenericDao<Message, Long> {
     List<Message> messageByOwner(User user,ExtendedPaginatedList list);
+    int newMessageCount(String userId);
+    Message updateMessageStatus(String messageId,String status);
 
 }

@@ -40,16 +40,17 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId) {
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId,String componentId) {
 
-        return getProcessListByCompanyAndStyleName(styleID,companyId,userId,null);
+        return getProcessListByCompanyAndStyleName(styleID,companyId,userId,componentId,null);
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId, ExtendedPaginatedList list) {
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId,String componentID, ExtendedPaginatedList list) {
         List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, companyId, list);
         User user = userDao.getUserByUserID(userId);
         Set<Post> posts = user.getPosts();
+        String processTableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyId,"ProcessMidTable");
         for (ComponentStyle style : componentStyles) {
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {
@@ -59,8 +60,22 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                         break;
                     }
                 }
+                ProcessMid processMid=processMidDao.getProcessMid(componentID,style.getStyleProcessID(),processTableName);
+                if(null!=processMid){
+                    style.setConfirmDate(processMid.getCreateDate());
+                    style.setConfirmer(processMid.getUser());
+                    style.setOperationer(false);
+                }
+                else {
+                    break;
+                }
 
             } else {
+                ProcessMid processMid=processMidDao.getProcessMid(componentID,style.getStyleProcessID(),processTableName);
+                if(null!=processMid){
+                    style.setConfirmDate(processMid.getCreateDate());
+                    style.setConfirmer(processMid.getUser());
+                }
                 style.setOperationer(true);
             }
         }

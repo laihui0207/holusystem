@@ -50,6 +50,8 @@
         </display:column>
             </c:if>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>
+    <display:column property="confirmDate" sortable="true" titleKey="processMid.confirmDate"/>
+    <display:column property="confirmer.username" sortable="true" titleKey="processMid.confirmer"/>
     <display:column title="">
     <c:if test="${componentStyleList.operationer}">
         <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&projectID=${component.project.projectID}'/> ">

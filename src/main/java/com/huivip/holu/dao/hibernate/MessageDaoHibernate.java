@@ -6,6 +6,7 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.displaytag.properties.SortOrderEnum;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -43,5 +44,32 @@ public class MessageDaoHibernate extends GenericDaoHibernate<Message, Long> impl
             list.setTotalNumberOfRows(totalCount);
         }
         return dataList;
+    }
+
+    @Override
+    public int newMessageCount(String userId) {
+        String hql="From Message where owner.id="+userId+" and status=2";
+        Query query=getSession().createQuery(hql);
+        List<Message> dataList=query.list();
+        if(null!=dataList){
+            return dataList.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public Message updateMessageStatus(String messageId, String status) {
+        String hql="update Message set status="+status+" where id="+messageId;
+        Query query=getSession().createQuery(hql);
+        int updatecount=query.executeUpdate();
+        if(updatecount>0){
+            String getHql="From Message where id="+messageId;
+            Query getQuery=getSession().createQuery(getHql);
+            List<Message> list=getQuery.list();
+            if(list!=null && list.size()>0){
+                return list.get(0);
+            }
+        }
+        return null;
     }
 }

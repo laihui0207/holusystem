@@ -3,9 +3,7 @@ package com.huivip.holu.service;
 import com.huivip.holu.model.News;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
@@ -13,7 +11,9 @@ import java.util.List;
 public interface NewsManager extends GenericManager<News, Long> {
 
     @GET
-    List<News> getNewss();
+    List<News> getNewss(@DefaultValue("0") @QueryParam("page") String pageIndex,
+                        @DefaultValue("5") @QueryParam("pageSize") String pageSize,
+                        @DefaultValue("all") @QueryParam("type") String newsType);
 
     @Path("{id}")
     @GET

@@ -6,6 +6,7 @@ import org.hibernate.search.annotations.Index;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by sunlaihui on 6/22/15.
@@ -45,6 +46,8 @@ public class ComponentStyle extends BaseObject implements Serializable {
     String processNote;
     Company company;
     boolean operationer=false;
+    Date confirmDate;
+    User confirmer;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -168,6 +171,22 @@ public class ComponentStyle extends BaseObject implements Serializable {
 
     public void setProcessDictionary(ProcessDictionary processDictionary) {
         this.processDictionary = processDictionary;
+    }
+    @Transient
+    public Date getConfirmDate() {
+        return confirmDate;
+    }
+
+    public void setConfirmDate(Date confirmDate) {
+        this.confirmDate = confirmDate;
+    }
+    @Transient
+    public User getConfirmer() {
+        return confirmer;
+    }
+
+    public void setConfirmer(User confirmer) {
+        this.confirmer = confirmer;
     }
 
     @Override
