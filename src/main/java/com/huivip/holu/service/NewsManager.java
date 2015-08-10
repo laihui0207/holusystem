@@ -12,7 +12,7 @@ public interface NewsManager extends GenericManager<News, Long> {
 
     @GET
     List<News> getNewss(@DefaultValue("0") @QueryParam("page") String pageIndex,
-                        @DefaultValue("5") @QueryParam("pageSize") String pageSize,
+                        @DefaultValue("10") @QueryParam("pageSize") String pageSize,
                         @DefaultValue("all") @QueryParam("type") String newsType);
 
     @Path("{id}")

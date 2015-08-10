@@ -15,7 +15,9 @@ public interface MessageManager extends GenericManager<Message, Long> {
 
     @GET
     @Path("user/{userId}")
-    List<Message> myMessage(@PathParam("userId")String userId);
+    List<Message> myMessage(@PathParam("userId") String userId,
+                            @DefaultValue("0") @QueryParam("page") String page,
+                            @DefaultValue("10") @QueryParam("pageSize")String pageSize);
     @GET
     @Path("user/{userId}/count")
     int newMessageCount(@PathParam("userId")String userId);

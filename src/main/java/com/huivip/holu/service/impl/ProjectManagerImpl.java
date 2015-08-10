@@ -6,6 +6,8 @@ import com.huivip.holu.service.ProjectManager;
 import com.huivip.holu.service.impl.GenericManagerImpl;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,14 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
     }*/
 
     @Override
-    public List<Project> getMyProject(String userID, @DefaultValue("") String parentID) {
-        return getProjectByUserID(userID,parentID,null);
+    public List<Project> getMyProject(String userID,String parentID,String page, String pageSize) {
+        ExtendedPaginatedList list =new PaginatedListImpl();
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setIndex(Integer.parseInt(page));
+        list.setSortCriterion("startDate");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        List<Project> dataList=getProjectByUserID(userID,parentID,list);
+        return list.getList();
     }
 
   /*  @Override

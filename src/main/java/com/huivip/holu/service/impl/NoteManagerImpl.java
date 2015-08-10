@@ -8,6 +8,8 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.NoteManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +35,14 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     }
 
     @Override
-    public List<Note> noteList() {
-        return noteDao.getAll();
+    public List<Note> noteList(String userId,String page,String pageSize) {
+        ExtendedPaginatedList list=new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(page));
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        List<Note> dataList=myNotes(userId,list);
+        return list.getList();
     }
 
     @Override

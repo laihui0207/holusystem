@@ -7,6 +7,8 @@ import com.huivip.holu.model.Component;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +31,12 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     }
 
     @Override
-    public List<Component> listComponentByProject(String projectID, String userId) {
-        return listComponentByProject(projectID,userId,null);
+    public List<Component> listComponentByProject(String projectID, String userId,String page, String pageSize) {
+        ExtendedPaginatedList list =new PaginatedListImpl();
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setIndex(Integer.parseInt(page));
+        List<Component> dataList=listComponentByProject(projectID,userId,list);
+        return list.getList();
     }
 
     @Override

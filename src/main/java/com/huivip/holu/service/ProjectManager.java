@@ -12,7 +12,10 @@ import java.util.List;
 public interface ProjectManager extends GenericManager<Project, Long> {
     @GET
     @Path("user/{userID}")
-    List<Project> getMyProject(@PathParam("userID")String userID,@DefaultValue("") @QueryParam("parentID") String parentID);
+    List<Project> getMyProject(@PathParam("userID")String userID,
+                               @DefaultValue("") @QueryParam("parentID") String parentID,
+                               @DefaultValue("0") @QueryParam("page") String page,
+                               @DefaultValue("10") @QueryParam("pageSize") String pageSize);
    /* @GET
     @Path("user/{userID}/{parentID}")
     List<Project> getMySubProject(@PathParam("userID")String userID,@PathParam("parentID")String parentID);*/

@@ -9,6 +9,8 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.MessageManager;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +41,15 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public List<Message> myMessage(String userId) {
+    public List<Message> myMessage(String userId, String page, String pageSize) {
         User user=userDao.get(Long.parseLong(userId));
-        return messageByOwner(user,null);
+        ExtendedPaginatedList list=new PaginatedListImpl();
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setIndex(Integer.parseInt(page));
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        List<Message> datalist=messageByOwner(user,list);
+        return list.getList();
     }
 
     @Override

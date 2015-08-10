@@ -12,7 +12,9 @@ import java.util.List;
 public interface NoteManager extends GenericManager<Note, Long> {
 
     @GET
-    List<Note> noteList();
+    @Path("user/{userID}")
+    List<Note> noteList(@PathParam("userID")String userId,@DefaultValue("0") @QueryParam("page") String pageIndex,
+                        @DefaultValue("10") @QueryParam("pageSize") String pageSize);
 
     @GET
     @Path("mynote/{userid}")
