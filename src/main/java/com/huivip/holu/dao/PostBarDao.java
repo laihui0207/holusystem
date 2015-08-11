@@ -1,6 +1,7 @@
 package com.huivip.holu.dao;
 
 import com.huivip.holu.model.PostBar;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface PostBarDao extends GenericDao<PostBar, Long> {
 
-    List<PostBar> getPostBarListBySubject(String subjectId);
+    List<PostBar> getPostBarListBySubject(String subjectId,ExtendedPaginatedList list);
     public List<PostBar> postBarByUser(String userId);
 
 }

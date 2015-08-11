@@ -2,6 +2,7 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.PostBarDao;
 import com.huivip.holu.model.PostBar;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +16,22 @@ public class PostBarDaoHibernate extends GenericDaoHibernate<PostBar, Long> impl
     }
 
     @Override
-    public List<PostBar> getPostBarListBySubject(String subjectId) {
+    public List<PostBar> getPostBarListBySubject(String subjectId,ExtendedPaginatedList list) {
         String queryString="From PostBar where postSubject.id="+subjectId;
         Query query=getSession().createQuery(queryString);
-        return query.list();
+        int totalNum=0;
+        if(list!=null){
+            List<PostBar> totalList=query.list();
+            query.setMaxResults(list.getPageSize());
+            query.setFirstResult(list.getFirstRecordIndex());
+            totalNum=totalList.size();
+        }
+        List<PostBar> dataList=query.list();
+        if(list!=null){
+            list.setTotalNumberOfRows(totalNum);
+            list.setList(dataList);
+        }
+        return dataList;
     }
 
     @Override

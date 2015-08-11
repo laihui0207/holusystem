@@ -3,6 +3,8 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.*;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.PostBarManager;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,12 @@ public class PostBarManagerImpl extends GenericManagerImpl<PostBar, Long> implem
     }
 
     @Override
-    public List<PostBar> postBarBySubject(String subjectId) {
-        return postBarDao.getPostBarListBySubject(subjectId);
+    public List<PostBar> postBarBySubject(String subjectId,String page,String pageSize) {
+        ExtendedPaginatedList list=new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(page));
+        list.setPageSize(Integer.parseInt(pageSize));
+        postBarDao.getPostBarListBySubject(subjectId,list);
+        return list.getList();
     }
 
     @Override

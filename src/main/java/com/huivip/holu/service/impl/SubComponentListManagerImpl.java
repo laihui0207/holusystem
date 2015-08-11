@@ -7,6 +7,7 @@ import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.SubComponentListManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,11 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     }
 
     @Override
-    public List<SubComponentList> getSubComponentListByComponentID(String componentID, String userID) {
-        return getSubComponentListByComponentID(componentID,userID,null);
+    public List<SubComponentList> getSubComponentListByComponentID(String componentID, String userID,String page,String pageSize) {
+        ExtendedPaginatedList list =new PaginatedListImpl();
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setIndex(Integer.parseInt(page));
+        return getSubComponentListByComponentID(componentID,userID,list);
     }
 
     @Override
