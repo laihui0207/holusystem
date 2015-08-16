@@ -17,6 +17,8 @@ import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -69,8 +71,13 @@ public class SignupController extends BaseFormController {
         }
 
         final Locale locale = request.getLocale();
-
+        SimpleDateFormat sdf=new SimpleDateFormat("ddssSSS");
+        String userID=sdf.format(System.currentTimeMillis());
+        user.setUserID(userID);
         user.setEnabled(true);
+        user.setAcceptRegistration(false);
+        user.setRegistrationDate(new Date());
+
 
         // Set the default user role on this new user
         user.addRole(roleManager.getRole(Constants.USER_ROLE));

@@ -35,6 +35,7 @@
             <ref bean="componentStyleManager"/>
             <ref bean="userGroupManager"/>
             <ref bean="replyManager"/>
+            <ref bean="companyManager"/>
             <ref bean="processMidManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>

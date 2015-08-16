@@ -35,9 +35,9 @@
             <field property="loginCode" depends="required">
                 <arg key="user.loginCode"/>
             </field>
-            <field property="userID" depends="required">
+         <!--   <field property="userID" depends="required">
                 <arg key="user.userID"/>
-            </field>
+            </field>-->
            <!-- <field property="email" depends="required,email">
                 <arg key="user.email"/>
             </field>

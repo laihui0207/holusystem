@@ -26,4 +26,9 @@ public class CompanyManagerImpl extends GenericManagerImpl<Company, Long> implem
     public Company getCompanyByCompanyID(String companyID) {
         return companyDao.getCompanyByCompanyID(companyID);
     }
+
+    @Override
+    public List<Company> companyList() {
+        return getAll();
+    }
 }

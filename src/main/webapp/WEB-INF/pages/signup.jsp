@@ -8,6 +8,7 @@
 
 <div class="col-sm-2">
     <h2><fmt:message key="signup.heading"/></h2>
+
     <p><fmt:message key="signup.message"/></p>
 </div>
 <div class="col-sm-7">
@@ -24,54 +25,84 @@
 
     <form:form commandName="user" method="post" action="signup" id="signupForm" autocomplete="off"
                cssClass="well" onsubmit="return validateSignup(this)">
-        <spring:bind path="user.username">
-        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        <spring:bind path="user.loginCode">
+            <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="user.username"/>
-            <form:input cssClass="form-control" path="username" id="username" autofocus="true"/>
-            <form:errors path="username" cssClass="help-block"/>
+        <appfuse:label styleClass="control-label" key="user.loginCode"/>
+        <form:input cssClass="form-control" path="loginCode" id="loginCode"/>
+        <form:errors path="loginCode" cssClass="help-block"/>
         </div>
-        <div class="row">
-            <spring:bind path="user.password">
-            <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-            </spring:bind>
-                <appfuse:label styleClass="control-label" key="user.password"/>
-                <form:password cssClass="form-control" path="password" id="password" showPassword="true"/>
-                <form:errors path="password" cssClass="help-block"/>
-            </div>
-            <spring:bind path="user.passwordHint">
-            <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-            </spring:bind>
-                <appfuse:label styleClass="control-label" key="user.passwordHint"/>
-                <form:input cssClass="form-control" path="passwordHint" id="passwordHint"/>
-                <form:errors path="passwordHint" cssClass="help-block"/>
-            </div>
+        <spring:bind path="user.password">
+            <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+        <appfuse:label styleClass="control-label" key="user.password"/>
+        <form:password cssClass="form-control" path="password" id="password" showPassword="true"/>
+        <form:errors path="password" cssClass="help-block"/>
         </div>
 
-        <div class="row">
-            <spring:bind path="user.firstName">
+        <%--<div class="row">
+            <spring:bind path="user.userID">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-            </spring:bind>
-                <appfuse:label styleClass="control-label" key="user.firstName"/>
-                <form:input cssClass="form-control" path="firstName" id="firstName" maxlength="50"/>
-                <form:errors path="firstName" cssClass="help-block"/>
+                </spring:bind>
+                <appfuse:label styleClass="control-label" key="user.userID"/>
+                <form:input cssClass="form-control" path="userID" id="userID"/>
+                <form:errors path="userID" cssClass="help-block"/>
+
+            </div>--%>
+
+            <spring:bind path="user.username">
+            <div class=" form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+                </spring:bind>
+                <appfuse:label styleClass="control-label" key="user.username"/>
+                <form:input cssClass="form-control" path="username" id="username"/>
+                <form:errors path="username" cssClass="help-block"/>
+
             </div>
-            <spring:bind path="user.lastName">
+
+      <%--  </div>--%>
+        <%--<div class="row">
+            <spring:bind path="user.username">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-            </spring:bind>
-                <appfuse:label styleClass="control-label" key="user.lastName"/>
-                <form:input cssClass="form-control" path="lastName" id="lastName" maxlength="50"/>
-                <form:errors path="lastName" cssClass="help-block"/>
+                </spring:bind>
+                <appfuse:label styleClass="control-label" key="user.username"/>
+                <form:input cssClass="form-control" path="username" id="username" autofocus="true"/>
+                <form:errors path="username" cssClass="help-block"/>
             </div>
-        </div>
+
+                &lt;%&ndash; <spring:bind path="user.passwordHint">
+                 <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+                 </spring:bind>
+                     <appfuse:label styleClass="control-label" key="user.passwordHint"/>
+                     <form:input cssClass="form-control" path="passwordHint" id="passwordHint"/>
+                     <form:errors path="passwordHint" cssClass="help-block"/>
+                 </div>&ndash;%&gt;
+        </div>--%>
+
+        <%-- <div class="row">
+             <spring:bind path="user.firstName">
+             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+             </spring:bind>
+                 <appfuse:label styleClass="control-label" key="user.firstName"/>
+                 <form:input cssClass="form-control" path="firstName" id="firstName" maxlength="50"/>
+                 <form:errors path="firstName" cssClass="help-block"/>
+             </div>
+             <spring:bind path="user.lastName">
+             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+             </spring:bind>
+                 <appfuse:label styleClass="control-label" key="user.lastName"/>
+                 <form:input cssClass="form-control" path="lastName" id="lastName" maxlength="50"/>
+                 <form:errors path="lastName" cssClass="help-block"/>
+             </div>
+         </div>--%>
         <div class="form-group">
             <appfuse:label key="companyList.title" styleClass="control-label"/>:
-            <form:select cssClass="form-control" path="company.id" items="${companyList}" itemLabel="companyShortNameCN" itemValue="id"/>
+            <form:select cssClass="form-control" path="company.companyId" items="${companyList}" itemLabel="companyShortNameCN"
+                         itemValue="companyId"/>
         </div>
         <div class="row">
             <spring:bind path="user.email">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-            </spring:bind>
+                </spring:bind>
                 <appfuse:label styleClass="control-label" key="user.email"/>
                 <form:input cssClass="form-control" path="email" id="email"/>
                 <form:errors path="email" cssClass="help-block"/>
@@ -126,6 +157,6 @@
 </div>
 
 <c:set var="scripts" scope="request">
-<v:javascript formName="signup" staticJavascript="false"/>
-<script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
+    <v:javascript formName="signup" staticJavascript="false"/>
+    <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 </c:set>

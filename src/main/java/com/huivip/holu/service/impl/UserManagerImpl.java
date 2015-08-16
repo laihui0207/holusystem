@@ -1,5 +1,6 @@
 package com.huivip.holu.service.impl;
 
+import com.huivip.holu.dao.CompanyDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
@@ -7,6 +8,7 @@ import com.huivip.holu.service.MailEngine;
 import com.huivip.holu.service.UserExistsException;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.service.UserService;
+import com.huivip.holu.util.AccessToken;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,10 +19,8 @@ import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -33,6 +33,8 @@ import java.util.Map;
 public class UserManagerImpl extends GenericManagerImpl<User, Long> implements UserManager, UserService {
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;
+    @Autowired
+    private CompanyDao companyDao;
 
     private MailEngine mailEngine;
     private SimpleMailMessage message;
@@ -201,14 +203,38 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     public User userLogin(String username, String password) {
         try {
             User user = getUserByLoginCode(username);
+            org.apache.commons.codec.binary.Base64 base64=new org.apache.commons.codec.binary.Base64();
             if (user == null) return null;
             if (!passwordEncoder.matches(password, user.getPassword())) {
                 return null;
             }
+            String token= "#2a$"+user.getUserID()+"%"+ AccessToken.createAccessToken(user.getUserID());
+            user.setAccess_token(base64.encodeToString(token.getBytes()));
             return user;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public User signup(String loginCode, String userName, String password, String companyId) {
+        User user=new User();
+        user.setUsername(userName);
+        user.setLoginCode(loginCode);
+        user.setPhoneNumber("");
+        user.setPassword(password);
+        SimpleDateFormat sdf=new SimpleDateFormat("ddssSSS");
+        String userID=sdf.format(System.currentTimeMillis());
+        user.setUserID(userID);
+        user.setCompany(companyDao.getCompanyByCompanyID(companyId));
+        user.setAcceptRegistration(false);
+        user.setRegistrationDate(new Date());
+        try {
+            this.saveUser(user);
+        } catch (UserExistsException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     /**
@@ -287,7 +313,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
      */
     @Override
     public User updatePassword(final String username, final String currentPassword, final String recoveryToken, final String newPassword, final String applicationUrl) throws UserExistsException {
-        User user = getUserByUsername(username);
+        User user = getUserByLoginCode(username);
         if (isRecoveryTokenValid(user, recoveryToken)) {
             log.debug("Updating password from recovery token for user: " + username);
             user.setPassword(newPassword);

@@ -88,6 +88,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    private String access_token;
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -323,6 +324,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
         return userRoles;
     }
+    @Transient
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
 
     /**
      * Adds a role for the user
@@ -480,7 +489,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
+    @Column(nullable = false,unique = true)
     public String getLoginCode() {
         return loginCode;
     }

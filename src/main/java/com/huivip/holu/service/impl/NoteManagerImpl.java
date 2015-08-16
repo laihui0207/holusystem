@@ -72,6 +72,7 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         note.setContent(content);
         note.setCreater(user);
         note.setUpdater(user);
+        note.setReceiver(user);
         note.setUpdateTime(new Timestamp(new Date().getTime()));
         noteDao.save(note);
         return note;

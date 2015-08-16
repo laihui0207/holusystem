@@ -65,5 +65,12 @@ public interface UserService {
     @Path("userLogin")
     User userLogin(@FormParam("username")String username,@FormParam("password") String password);
 
+    @POST
+    @Path("signup")
+    User signup(@FormParam("loginCode") String loginCode,
+                @FormParam("userName")String userName,
+                @FormParam("password")String password,
+                @FormParam("companyId")String companyId);
+
 
 }
