@@ -15,4 +15,6 @@ public interface ReplyManager extends GenericManager<Reply, Long> {
     @POST
     Reply saveReply(@FormParam("content")String content,@FormParam("postBarId")String postBarId,
                     @FormParam("userId") String userId,@FormParam("replyId")String replyId);
+
+    void deleteByPostBar(String postBarId);
 }

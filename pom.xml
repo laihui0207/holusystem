@@ -73,11 +73,11 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>net.oschina.j2cache</groupId>
             <artifactId>j2cache</artifactId>
             <version>1.0.1</version>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <properties>

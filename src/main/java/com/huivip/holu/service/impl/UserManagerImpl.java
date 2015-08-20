@@ -1,13 +1,11 @@
 package com.huivip.holu.service.impl;
 
+import com.huivip.holu.Constants;
 import com.huivip.holu.dao.CompanyDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
-import com.huivip.holu.service.MailEngine;
-import com.huivip.holu.service.UserExistsException;
-import com.huivip.holu.service.UserManager;
-import com.huivip.holu.service.UserService;
+import com.huivip.holu.service.*;
 import com.huivip.holu.util.AccessToken;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +33,8 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     private UserDao userDao;
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private RoleManager roleManager;
 
     private MailEngine mailEngine;
     private SimpleMailMessage message;
@@ -225,6 +225,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         user.setPassword(password);
         SimpleDateFormat sdf=new SimpleDateFormat("ddssSSS");
         String userID=sdf.format(System.currentTimeMillis());
+        user.addRole(roleManager.getRole(Constants.USER_ROLE));
         user.setUserID(userID);
         user.setCompany(companyDao.getCompanyByCompanyID(companyId));
         user.setAcceptRegistration(false);

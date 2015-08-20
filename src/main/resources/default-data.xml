@@ -26,7 +26,7 @@
             <value description="userId">YH001</value>
             <value description="logincode">136</value>
             <value description="username">user</value>
-            <value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
+            <value description="password">ISMvKXpXpadDiUoOSoAfww==</value>
             <value description="first_name">Tomcat</value>
             <value description="last_name">User</value>
             <value description="email">matt_raible@yahoo.com</value>
@@ -48,7 +48,7 @@
             <value description="userId">YH002</value>
             <value description="logincode">137</value>
             <value description="username">admin</value>
-            <value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
+            <value description="password">ISMvKXpXpadDiUoOSoAfww==O</value>
             <value description="first_name">Matt</value>
             <value description="last_name">Raible</value>
             <value description="email">matt@raibledesigns.com</value>

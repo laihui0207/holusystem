@@ -26,7 +26,8 @@ public class PostBarFormController extends BaseFormController {
     private UserManager userManager;
     @Autowired
     CustomGroupManager customGroupManager;
-
+    @Autowired
+    ReplyManager replyManager;
     @Autowired
     public void setPostBarManager(PostBarManager postBarManager) {
         this.postBarManager = postBarManager;
@@ -73,6 +74,7 @@ public class PostBarFormController extends BaseFormController {
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
+            replyManager.deleteByPostBar(postBar.getId().toString());
             postBarManager.remove(postBar.getId());
             saveMessage(request, getText("postBar.deleted", locale));
         } else {

@@ -21,4 +21,12 @@ public class ReplyDaoHibernate extends GenericDaoHibernate<Reply, Long> implemen
         query.setString("id",postBarid);
         return query.list();
     }
+
+    @Override
+    public void deleteByPostBar(String postBarId) {
+        String hqlStr="delete From Reply where postBar.id="+postBarId;
+        Query query=getSession().createQuery(hqlStr);
+        int count=query.executeUpdate();
+
+    }
 }

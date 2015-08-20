@@ -30,6 +30,13 @@
     <form:errors path="title" cssClass="help-block"/>
     </div>
     <div class="form-group">
+        <appfuse:label key="news.level"  styleClass="control-label"/>:
+        <label class="checkbox-inline">
+            <form:checkbox path="level" id="level"/>
+            <fmt:message key="news.levelName"/>
+        </label>
+    </div>
+    <div class="form-group">
         <appfuse:label key="news.newsType"  styleClass="control-label"/>
         <form:select cssClass="form-control" path="newsType.id" items="${newsTypeList}" itemLabel="name" itemValue="id"/>
     </div>

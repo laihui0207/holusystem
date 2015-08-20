@@ -7,9 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by sunlaihui on 8/12/15.
- */
+
 public class HLPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence charSequence) {
@@ -18,7 +16,8 @@ public class HLPasswordEncoder implements PasswordEncoder {
         try {
             MessageDigest md5=MessageDigest.getInstance("md5");
             byte[] md5encode=md5.digest(charSequence.toString().getBytes("utf-8"));
-            encodeString=base64.encodeToString(md5encode);
+            encodeString=convertToHexString(md5encode);
+            //encodeString=base64.encodeToString(md5encode);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -26,9 +25,20 @@ public class HLPasswordEncoder implements PasswordEncoder {
         }
         return encodeString;
     }
+    String convertToHexString(byte data[]) {
+        StringBuffer strBuffer = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            strBuffer.append(Integer.toHexString(0xff & data[i]));
+        }
+        return strBuffer.toString();
+    }
 
     @Override
     public boolean matches(CharSequence charSequence, String encodePassword) {
         return encodePassword.equals(encode(charSequence));
+    }
+    public static void main(String[] args){
+        HLPasswordEncoder encoder=new HLPasswordEncoder();
+        System.out.println(encoder.encode("admin"));
     }
 }

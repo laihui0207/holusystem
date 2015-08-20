@@ -1,7 +1,6 @@
 package com.huivip.holu.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
@@ -35,6 +34,8 @@ public class News extends BaseObject implements Serializable {
     private Set<User>  viewUsers=new HashSet<>();*/
 
     private String thumbnailUrl;
+    private String midImageUrl;
+    private boolean level;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,6 +86,15 @@ public class News extends BaseObject implements Serializable {
 
     public Timestamp getExpiredTime() {
         return expiredTime;
+    }
+
+    @Column(nullable = true,columnDefinition ="int default 0")
+    public boolean isLevel() {
+        return level;
+    }
+
+    public void setLevel(boolean level) {
+        this.level = level;
     }
 
     public void setExpiredTime(Timestamp expiredTime) {
@@ -147,6 +157,15 @@ public class News extends BaseObject implements Serializable {
         this.viewUsers = viewUsers;
     }
 */
+
+    public String getMidImageUrl() {
+        return midImageUrl;
+    }
+
+    public void setMidImageUrl(String midImageUrl) {
+        this.midImageUrl = midImageUrl;
+    }
+
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }

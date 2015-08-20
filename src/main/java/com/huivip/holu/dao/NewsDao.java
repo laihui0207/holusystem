@@ -11,6 +11,7 @@ import java.util.List;
 public interface NewsDao extends GenericDao<News, Long> {
 
     List<News> getNewsByType(String typeID,ExtendedPaginatedList list);
+    List<News> getNewsByLevel(ExtendedPaginatedList list);
     List<News> getNewsPageable(ExtendedPaginatedList list);
     int getNewsCount();
 

@@ -102,7 +102,11 @@ public class NewsFormController extends BaseFormController {
         } else {
             final User cleanUser = getUserManager().getUserByLoginCode(
                     request.getRemoteUser());
-            news.setThumbnailUrl(Thumbnail.handleThumbnail(news.getContent(),getServletContext()));
+            String imageUrl=Thumbnail.handleThumbnail(news.getContent(),getServletContext());
+            if(imageUrl!=null){
+                news.setThumbnailUrl(imageUrl);
+                news.setMidImageUrl(imageUrl.replace("_smaller","_mid"));
+            }
             news.setCreater(cleanUser);
             newsManager.save(news);
             String key = (isNew) ? "news.added" : "news.updated";

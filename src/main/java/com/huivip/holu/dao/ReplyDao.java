@@ -10,5 +10,6 @@ import java.util.List;
 public interface ReplyDao extends GenericDao<Reply, Long> {
 
     List<Reply> getReplyByPostbar(String postBarid);
+    void deleteByPostBar(String postBarId);
 
 }

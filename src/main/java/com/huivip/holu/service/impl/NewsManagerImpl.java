@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import javax.jws.WebService;
+import javax.ws.rs.DefaultValue;
 
 @Service("newsManager")
 @WebService(serviceName = "NewsService", endpointInterface = "com.huivip.holu.service.NewsManager")
@@ -41,6 +42,17 @@ public class NewsManagerImpl extends GenericManagerImpl<News, Long> implements N
         else {
             newsDao.getNewsByType(newsType,list);
         }
+        return list.getList();
+    }
+
+    @Override
+    public List<News> getImportantNewss(String pageIndex, String pageSize) {
+        ExtendedPaginatedList list= new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(pageIndex));
+        list.setPageSize(Integer.parseInt(pageSize));
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        newsDao.getNewsByLevel(list);
         return list.getList();
     }
 

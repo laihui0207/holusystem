@@ -53,4 +53,9 @@ public class ReplyManagerImpl extends GenericManagerImpl<Reply, Long> implements
         postBarDao.save(postBar);
         return reply;
     }
+
+    @Override
+    public void deleteByPostBar(String postBarId) {
+        replyDao.deleteByPostBar(postBarId);
+    }
 }
