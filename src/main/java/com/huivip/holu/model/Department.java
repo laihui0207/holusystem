@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.Fetch;
@@ -36,12 +37,14 @@ public class Department extends BaseObject implements Serializable {
     private Long id;
     private String departmentID;
     private String name;
-    private String parentID;
     private String level;
     private String comment;
     private String positionGPS;
     private Date createDate;
     private Company company;
+    private String pathName;
+    private Department parent;
+    private Set<Department> child=new HashSet<>();
     private Set<User> users=new HashSet<>();
 
     @Id
@@ -71,14 +74,6 @@ public class Department extends BaseObject implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-    @Column(name="ParentID")
-    public String getParentID() {
-        return parentID;
-    }
-
-    public void setParentID(String parentID) {
-        this.parentID = parentID;
     }
 
     @Column(name="DepartmentLevel")
@@ -118,6 +113,14 @@ public class Department extends BaseObject implements Serializable {
     public Company getCompany() {
         return company;
     }
+    @Column(name="DepartmentPathName")
+    public String getPathName() {
+        return pathName;
+    }
+
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
+    }
 
     public void setCompany(Company company) {
         this.company = company;
@@ -135,6 +138,24 @@ public class Department extends BaseObject implements Serializable {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+    @ManyToOne
+    @JoinColumn(name="ParentID",referencedColumnName = "departmentID")
+    @JsonIgnore
+    public Department getParent() {
+        return parent;
+    }
+
+    public void setParent(Department parent) {
+        this.parent = parent;
+    }
+    @OneToMany(mappedBy = "parent")
+    public Set<Department> getChild() {
+        return child;
+    }
+
+    public void setChild(Set<Department> child) {
+        this.child = child;
     }
 
     @Override

@@ -34,9 +34,11 @@
             <ref bean="subComponentListManager"/>
             <ref bean="componentStyleManager"/>
             <ref bean="userGroupManager"/>
+            <ref bean="customGroupManager"/>
             <ref bean="replyManager"/>
             <ref bean="companyManager"/>
             <ref bean="processMidManager"/>
+            <ref bean="departmentManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

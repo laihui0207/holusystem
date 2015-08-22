@@ -3,9 +3,11 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.NoteDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.CustomGroup;
+import com.huivip.holu.model.Department;
 import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.CustomGroupManager;
+import com.huivip.holu.service.DepartmentManager;
 import com.huivip.holu.service.NoteManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
@@ -27,6 +29,13 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     UserDao userDao;
     @Autowired
     CustomGroupManager customGroupManager;
+    @Autowired
+    DepartmentManager departmentManager;
+
+    @Override
+    public boolean exists(Long id) {
+        return super.exists(id);
+    }
 
     @Autowired
     public NoteManagerImpl(NoteDao noteDao) {
@@ -79,7 +88,7 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     }
 
     @Override
-    public Note sendNote( String noteId,String users,String groups,String userId) {
+    public Note sendNote( String noteId,String users,String groups,String departments,String userId) {
         User user=userDao.get(Long.parseLong(userId));
         Note note=noteDao.get(Long.parseLong(noteId));
         List<User> receiverList=new ArrayList<>();
@@ -105,6 +114,17 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
                 CustomGroup ug=customGroupManager.get(Long.parseLong(id));
                 note.getSendToUserGroupList().add(ug);
                 for(User u:ug.getMembers()){
+                    if(!receiverList.contains(u)){
+                        receiverList.add(u);
+                    }
+                }
+            }
+        }
+        if(null!=departments && departments.length()>0 && !departments.equalsIgnoreCase("undefined")){
+            String[] departmentArray=departments.split(";");
+            for(String id: departmentArray){
+                Department department=departmentManager.getDepartmentByDepartmentID(id);
+                for(User u:department.getUsers()){
                     if(!receiverList.contains(u)){
                         receiverList.add(u);
                     }

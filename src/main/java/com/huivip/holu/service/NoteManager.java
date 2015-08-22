@@ -35,6 +35,6 @@ public interface NoteManager extends GenericManager<Note, Long> {
     @POST
     @Path("Send")
     Note sendNote(@FormParam("noteId")String noteId,@FormParam("users")String users,
-                  @FormParam("groups")String groups,@FormParam("userId")String userId);
+                  @FormParam("groups")String groups,@FormParam("departments")String departments,@FormParam("userId")String userId);
 
 }

@@ -8,4 +8,5 @@ import com.huivip.holu.model.Department;
 public interface DepartmentDao extends GenericDao<Department, Long> {
     Department getDepartmentByDepartmentID(String departmentID);
 
+
 }

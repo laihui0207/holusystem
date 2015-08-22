@@ -35,9 +35,9 @@
 </div>
 
 <display:table name="departmentList" class="table table-condensed table-striped table-hover" requestURI="" id="departmentList" export="true" pagesize="25">
-    <display:column property="id" sortable="true" href="departmentform" media="html"
+   <%-- <display:column property="id" sortable="true" href="departmentform" media="html"
         paramId="id" paramProperty="id" titleKey="department.id"/>
-    <display:column property="id" media="csv excel xml pdf" titleKey="department.id"/>
+    <display:column property="id" media="csv excel xml pdf" titleKey="department.id"/>--%>
     <display:column property="departmentID" sortable="true" titleKey="department.departmentID"/>
     <display:column property="name" sortable="true" titleKey="department.name"/>
     <display:column property="level" sortable="true" titleKey="department.level"/>

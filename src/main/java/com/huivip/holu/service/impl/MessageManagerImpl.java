@@ -1,11 +1,14 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.CustomGroupDao;
+import com.huivip.holu.dao.DepartmentDao;
 import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.CustomGroup;
+import com.huivip.holu.model.Department;
 import com.huivip.holu.model.Message;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.DepartmentManager;
 import com.huivip.holu.service.MessageManager;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
@@ -28,6 +31,8 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     UserDao userDao;
     @Autowired
     CustomGroupDao customGroupDao;
+    @Autowired
+    DepartmentDao departmentDao;
 
     @Autowired
     public MessageManagerImpl(MessageDao messageDao) {
@@ -85,7 +90,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public Message sendMessage(String messageId, String users, String groups, String userId) {
+    public Message sendMessage(String messageId, String users, String groups,String departments, String userId) {
         User user=userDao.get(Long.parseLong(userId));
         Message message=messageDao.get(Long.parseLong(messageId));
         List<User> receiverList=new ArrayList<>();
@@ -111,6 +116,17 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
                 CustomGroup ug=customGroupDao.get(Long.parseLong(id));
                 message.getReceiveGroups().add(ug);
                 for(User u:ug.getMembers()){
+                    if(!receiverList.contains(u)){
+                        receiverList.add(u);
+                    }
+                }
+            }
+        }
+        if(null!=departments && departments.length()>0 && !departments.equalsIgnoreCase("undefined")){
+            String[] departmentArray=departments.split(";");
+            for(String id: departmentArray){
+                Department department=departmentDao.getDepartmentByDepartmentID(id);
+                for(User u:department.getUsers()){
                     if(!receiverList.contains(u)){
                         receiverList.add(u);
                     }

@@ -40,6 +40,15 @@
         <appfuse:label key="news.newsType"  styleClass="control-label"/>
         <form:select cssClass="form-control" path="newsType.id" items="${newsTypeList}" itemLabel="name" itemValue="id"/>
     </div>
+
+    <spring:bind path="news.summary">
+        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+    </spring:bind>
+    <appfuse:label key="news.summary" styleClass="control-label"/>
+    <form:input cssClass="form-control" path="summary"  maxlength="255"/>
+    <form:errors path="summary" cssClass="help-block"/>
+    </div>
+
     <spring:bind path="news.content">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>

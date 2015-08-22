@@ -35,6 +35,9 @@ public class Company extends BaseObject implements Serializable {
     String createrName;
     String createPassword;
     Date createDate;
+    String createMobile;
+    String createLoginCode;
+    String companyStockCode;
 
 
    /* Set<Project> projectSet=new HashSet<>();*/
@@ -209,6 +212,31 @@ public class Company extends BaseObject implements Serializable {
             this.projectSet = projectSet;
         }
     */
+    @Column(name="CreateMobile")
+    public String getCreateMobile() {
+        return createMobile;
+    }
+
+    public void setCreateMobile(String createMobile) {
+        this.createMobile = createMobile;
+    }
+    @Column(name="CreateLoginCode")
+    public String getCreateLoginCode() {
+        return createLoginCode;
+    }
+
+    public void setCreateLoginCode(String createLoginCode) {
+        this.createLoginCode = createLoginCode;
+    }
+    @Column(name="CompanyStockCode")
+    public String getCompanyStockCode() {
+        return companyStockCode;
+    }
+
+    public void setCompanyStockCode(String companyStockCode) {
+        this.companyStockCode = companyStockCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

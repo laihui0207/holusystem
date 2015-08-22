@@ -36,6 +36,7 @@ public class News extends BaseObject implements Serializable {
     private String thumbnailUrl;
     private String midImageUrl;
     private boolean level;
+    private String summary;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -157,6 +158,14 @@ public class News extends BaseObject implements Serializable {
         this.viewUsers = viewUsers;
     }
 */
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     public String getMidImageUrl() {
         return midImageUrl;

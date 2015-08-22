@@ -112,7 +112,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return id;
     }
 
-    @Column(nullable = false, length = 50, unique = true)
+    @Column( length = 50, unique = true)
     @Field
     public String getUsername() {
         return username;
@@ -481,7 +481,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setCredentialsExpired(boolean credentialsExpired) {
         this.credentialsExpired = credentialsExpired;
     }
-
+    @Column(nullable = false)
     public String getUserID() {
         return userID;
     }

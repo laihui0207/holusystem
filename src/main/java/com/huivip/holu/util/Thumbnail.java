@@ -52,6 +52,10 @@ public class Thumbnail {
             if(imgUrl==null || imgUrl.equals("")){
                 continue;
             }
+            File orignalImage=new File(imgUrl);
+            if(orignalImage.length()< 2000){
+                continue;
+            }
             String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached"));
             //to do  check if need create thumbnail
             thumbnail_create(fileUrl.substring(0, fileUrl.lastIndexOf("/") + 1),

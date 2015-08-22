@@ -42,5 +42,6 @@ public interface MessageManager extends GenericManager<Message, Long> {
     @POST
     @Path("Send")
     Message sendMessage(@FormParam("messageId") String messageId, @FormParam("users") String users,
-                        @FormParam("groups") String groups, @FormParam("userId") String userId);
+                        @FormParam("groups") String groups,@FormParam("departments") String departments ,
+                        @FormParam("userId") String userId);
 }

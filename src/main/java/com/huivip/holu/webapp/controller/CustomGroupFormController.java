@@ -49,6 +49,7 @@ public class CustomGroupFormController extends BaseFormController {
     throws Exception {
         String id = request.getParameter("id");
         User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
+        model.addAttribute("user",currentUser);
         if(!currentUser.isAllowCreateGroup()){
             saveMessage(request,"No Allow create Group");
            // return "redirect:/customGroups";
@@ -58,7 +59,6 @@ public class CustomGroupFormController extends BaseFormController {
             return "customGroupForm";
         }
         model.addAttribute(new CustomGroup());
-        model.addAttribute("user",currentUser);
         return "customGroupForm";
     }
 
