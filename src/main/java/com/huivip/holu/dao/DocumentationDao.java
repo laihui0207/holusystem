@@ -11,5 +11,6 @@ import java.util.List;
 public interface DocumentationDao extends GenericDao<Documentation, Long> {
 
     List<Documentation> myDocumentations(String userId,ExtendedPaginatedList list);
+    List<Documentation> listDocumentatonsByDocType(String docTypeId,ExtendedPaginatedList list);
 
 }

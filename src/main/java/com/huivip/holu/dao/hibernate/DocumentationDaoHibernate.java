@@ -5,6 +5,7 @@ import com.huivip.holu.model.Documentation;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.displaytag.properties.SortOrderEnum;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,23 @@ public class DocumentationDaoHibernate extends GenericDaoHibernate<Documentation
             list.setTotalNumberOfRows(totalCount);
         }
 
+        return dataList;
+    }
+
+    @Override
+    public List<Documentation> listDocumentatonsByDocType(String docTypeId, ExtendedPaginatedList list) {
+        String hql="From Documentation where docType.id="+docTypeId;
+        Query query=getSession().createQuery(hql);
+        if(list!=null){
+            List<Documentation> totalList=query.list();
+            query.setMaxResults(list.getPageSize());
+            query.setFirstResult(list.getFirstRecordIndex());
+            list.setTotalNumberOfRows(totalList.size());
+        }
+        List<Documentation> dataList=query.list();
+        if(list!=null){
+            list.setList(dataList);
+        }
         return dataList;
     }
 }

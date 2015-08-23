@@ -21,4 +21,9 @@ public class DocTypeManagerImpl extends GenericManagerImpl<DocType, Long> implem
         super(docTypeDao);
         this.docTypeDao = docTypeDao;
     }
+
+    @Override
+    public List<DocType> getDocTypes() {
+        return docTypeDao.getAll();
+    }
 }

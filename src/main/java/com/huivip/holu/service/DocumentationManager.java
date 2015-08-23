@@ -4,9 +4,7 @@ import com.huivip.holu.model.Documentation;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -14,7 +12,9 @@ import java.util.List;
 @Path("/Documentations")
 public interface DocumentationManager extends GenericManager<Documentation, Long> {
     @GET
-    List<Documentation> getDocumentations();
+    List<Documentation> getDocumentations(@DefaultValue("0") @QueryParam("page") String pageIndex,
+                                          @DefaultValue("10") @QueryParam("pageSize") String pageSize,
+                                          @DefaultValue("all") @QueryParam("type") String docType);
 
     @GET
     @Path("user/{userId}")

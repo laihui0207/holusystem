@@ -24,6 +24,7 @@
             <ref bean="userManager"/>
             <ref bean="newsManager"/>
             <ref bean="documentationManager"/>
+            <ref bean="docTypeManager"/>
             <ref bean="noteManager"/>
             <ref bean="postBarManager"/>
             <ref bean="postSubjectManager"/>

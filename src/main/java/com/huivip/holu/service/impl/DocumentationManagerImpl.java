@@ -5,6 +5,7 @@ import com.huivip.holu.model.Documentation;
 import com.huivip.holu.service.DocumentationManager;
 import com.huivip.holu.util.SteelConfig;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import com.huivip.holu.webapp.util.ApplicationContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,17 @@ public class DocumentationManagerImpl extends GenericManagerImpl<Documentation, 
     }
 
     @Override
-    public List<Documentation> getDocumentations() {
-        return documentationDao.getAll();
+    public List<Documentation> getDocumentations(String pageIndex,String pageSize,String docType) {
+        ExtendedPaginatedList list=new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(pageIndex));
+        list.setPageSize(Integer.parseInt(pageSize));
+        if(null!=docType && docType.equalsIgnoreCase("all")){
+            documentationDao.getAllPagable(list);
+        }
+        else {
+            documentationDao.listDocumentatonsByDocType(docType,list);
+        }
+        return list.getList();
     }
 
     @Override
