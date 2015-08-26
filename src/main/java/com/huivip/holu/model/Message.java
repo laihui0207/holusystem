@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -32,6 +33,8 @@ public class Message extends BaseObject implements Serializable {
     int status;  // 0 create 1 sent to other, 2 receive and no read  3 received and have read
     User updater;
     Timestamp updateTime=new Timestamp(new Date().getTime());
+
+    Set<MessageReply> replyList=new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -119,7 +122,14 @@ public class Message extends BaseObject implements Serializable {
     public void setReceiveGroups(Set<CustomGroup> receriveGroups) {
         this.receiveGroups = receriveGroups;
     }
+    @OneToMany(mappedBy = "message")
+    public Set<MessageReply> getReplyList() {
+        return replyList;
+    }
 
+    public void setReplyList(Set<MessageReply> replyList) {
+        this.replyList = replyList;
+    }
 
     @ManyToOne
     @JoinColumn(name = "updater_id")

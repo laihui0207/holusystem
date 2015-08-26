@@ -19,6 +19,12 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    <!--MessageReceiver-START-->
+<%--    <menu:displayMenu name="MessageReceiverMenu"/>--%>
+    <!--MessageReceiver-END-->
+    <!--MessageReply-START-->
+<%--    <menu:displayMenu name="MessageReplyMenu"/>--%>
+    <!--MessageReply-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

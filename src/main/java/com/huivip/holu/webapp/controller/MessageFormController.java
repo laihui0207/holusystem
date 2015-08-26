@@ -2,9 +2,11 @@ package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.model.CustomGroup;
 import com.huivip.holu.model.Message;
+import com.huivip.holu.model.MessageReceiver;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.MessageManager;
+import com.huivip.holu.service.MessageReceiverManager;
 import com.huivip.holu.service.UserManager;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Controller
 @RequestMapping("/messageform*")
@@ -31,6 +31,8 @@ public class MessageFormController extends BaseFormController {
     private UserManager userManager;
     @Autowired
     CustomGroupManager customGroupManager;
+    @Autowired
+    MessageReceiverManager messageReceiverManager;
 
     @Autowired
     public void setMessageManager(MessageManager messageManager) {
@@ -72,6 +74,7 @@ public class MessageFormController extends BaseFormController {
             return "redirect:/messages";
         }
         Message message=messageManager.get(Long.parseLong(messageId));
+        User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
 
         String[] receiveUsers=request.getParameterValues("receiveUsers");
         String[] receiveUserGroups=request.getParameterValues("receiveGroups");
@@ -94,21 +97,15 @@ public class MessageFormController extends BaseFormController {
         message.setStatus(1);
         messageManager.save(message);
 
-        Message copyMessage=new Message();
-        copyMessage.setTitle(message.getTitle());
-        copyMessage.setContent(message.getContent());
-        copyMessage.setCreater(message.getCreater());
-        copyMessage.setStatus(2);
-        copyMessage.setCreateTime(message.getCreateTime());
-        final User cleanUser = getUserManager().getUserByLoginCode(
-                request.getRemoteUser());
-
-        copyMessage.setSender(cleanUser);
+        MessageReceiver receiver=new MessageReceiver();
+        receiver.setMessage(message);
+        receiver.setCreateTime(new Timestamp(new Date().getTime()));
 
         for(User user:receiveUserList){
-            copyMessage.setId(null);
-            copyMessage.setOwner(user);
-            messageManager.save(copyMessage);
+            receiver.setId(null);
+            receiver.setReceiver(user);
+            receiver.setStatus(0);
+            messageReceiverManager.save(receiver);
         }
 
         saveMessage(request,"Send Success");
@@ -147,7 +144,13 @@ public class MessageFormController extends BaseFormController {
             message.setUpdater(cleanUser);
             message.setOwner(cleanUser);
             message.setStatus(0);
-            messageManager.save(message);
+            Message newMessage=messageManager.save(message);
+            MessageReceiver receiver=new MessageReceiver();
+            receiver.setStatus(1);
+            receiver.setMessage(newMessage);
+            receiver.setReceiver(cleanUser);
+            receiver.setCreateTime(new Timestamp(new Date().getTime()));
+            messageReceiverManager.save(receiver);
             String key = (isNew) ? "message.added" : "message.updated";
             saveMessage(request, getText(key, locale));
 

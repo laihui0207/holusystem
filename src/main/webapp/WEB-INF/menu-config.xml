@@ -35,15 +35,22 @@
         <!--CustomGroup-START-->
         <!--CustomGroup-END-->
         <!--CompanyDatabaseIndex-START-->
-        <Menu name="CompanyDatabaseIndexMenu" title="companyDatabaseIndexList.title" page="/companyDatabaseIndices"/>
         <!--CompanyDatabaseIndex-END-->
         <!--SubComponentList-START-->
-        <Menu name="SubComponentListMenu" title="subComponentListList.title" page="/subComponentLists"/>
+        <Menu name="SubComponentListMenu" title="subComponentListList.title" roles="ROLE_ADMIN,ROLE_USER" page="/subComponentLists"/>
         <!--SubComponentList-END-->
         <!--ProcessMid-START-->
-        <Menu name="ProcessMidMenu" title="processMidList.title" page="/processMids"/>
+        <Menu name="ProcessMidMenu" title="processMidList.title" roles="ROLE_ADMIN,ROLE_USER" page="/processMids"/>
         <!--ProcessMid-END-->
+        <!--MessageReceiver-START-->
+        <Menu name="MessageReceiverMenu" title="messageReceiverList.title" roles="ROLE_ADMIN,ROLE_USER" page="/messageReceivers"/>
+        <!--MessageReceiver-END-->
+        <!--MessageReply-START-->
+        <Menu name="MessageReplyMenu" title="messageReplyList.title" roles="ROLE_ADMIN,ROLE_USER" page="/messageReplies"/>
+        <!--MessageReply-END-->
     </Menus>
+
+
 
 
 

@@ -36,15 +36,16 @@
 
 <display:table name="messageList" class="table table-condensed table-striped table-hover" requestURI="" id="messageList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="messageform" media="html"
-        paramId="id" paramProperty="id" titleKey="message.id"/>
-    <display:column property="id" media="csv excel xml pdf" titleKey="message.id"/>
-    <display:column property="title" sortable="true" titleKey="message.title"/>
+        paramId="id" paramProperty="message.id" titleKey="message.id"/>
+    <display:column property="message.id" media="csv excel xml pdf" titleKey="message.id"/>
+    <display:column property="message.title" sortable="true" titleKey="message.title"/>
 <%--    <display:column property="content" sortable="true" titleKey="message.content"/>--%>
-    <display:column property="createTime" sortable="true" titleKey="message.createTime"/>
+    <display:column property="message.createTime" sortable="true" titleKey="message.createTime"/>
    <%-- <display:column property="status" sortable="true" titleKey="message.status"/>--%>
-    <display:column property="owner.fullName" sortable="true" titleKey="message.owner"/>
+    <display:column property="message.owner.fullName" sortable="true" titleKey="message.owner"/>
     <display:column titleKey="list.action">
-            <a href="messageform/${messageList.id}/Send"><fmt:message key="action.ReadAndSend"/> </a>
+            <a href="messageform/${messageList.message.id}/Send"><fmt:message key="action.ReadAndSend"/> </a> |
+            <a href="messageReplies/${messageList.message.id}"><fmt:message key="action.replies"/> </a>
     </display:column>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="messageList.message"/></display:setProperty>

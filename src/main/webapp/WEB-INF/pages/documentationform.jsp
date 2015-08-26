@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <appfuse:label key="documentation.docType" styleClass="control-label"/>:
-            <form:select cssClass="form-control" path="docType" items="${docTypeList}" itemLabel="name" itemValue="id"/>
+            <form:select cssClass="form-control" path="docType.id" items="${docTypeList}" itemLabel="name" itemValue="id"/>
         </div>
         <spring:bind path="documentation.introduction">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">

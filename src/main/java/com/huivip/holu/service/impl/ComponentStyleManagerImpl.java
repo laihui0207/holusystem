@@ -86,4 +86,9 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     public ComponentStyle getComponentProcessByProcessID(String styleProcessID) {
         return componentStyleDao.getComponentProcessByProcessID(styleProcessID);
     }
+
+    @Override
+    public List<ComponentStyle> myTask(String userId) {
+        return null;
+    }
 }

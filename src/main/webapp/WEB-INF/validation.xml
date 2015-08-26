@@ -183,5 +183,16 @@
         <form name="processMid">
         </form>
         <!--ProcessMid-END-->
+        <!--MessageReceiver-START-->
+        <form name="messageReceiver">
+            <field property="status" depends="required">
+                <arg key="messageReceiver.status"/>
+            </field>
+        </form>
+        <!--MessageReceiver-END-->
+        <!--MessageReply-START-->
+        <form name="messageReply">
+        </form>
+        <!--MessageReply-END-->
     </formset>
 </form-validation>

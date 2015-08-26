@@ -1093,7 +1093,73 @@
     </row>
     </table>
     <!--ProcessDictionary-END-->
+    <!--MessageReceiver-START-->
+    <table name="R_messagesReceriver">
+        <column>id</column>
+        <column>createTime</column>
+        <column>message_id</column>
+        <column>receiver_id</column>
+        <column>status</column>
+        <column>updateTime</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message_id">-1</value>
+        <value description="receiver_id">-1</value>
+        <value description="status">1380196729</value>
+        <value description="updateTime">2015-08-25</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message_id">-2</value>
+        <value description="receiver_id">-2</value>
+        <value description="status">1420926048</value>
+        <value description="updateTime">2015-08-25</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message_id">-3</value>
+        <value description="receiver_id">-3</value>
+        <value description="status">263574444</value>
+        <value description="updateTime">2015-08-25</value>
+    </row>
+    </table>
+    <!--MessageReceiver-END-->
+    <!--MessageReply-START-->
+    <table name="R_messagesReply">
+        <column>id</column>
+        <column>content</column>
+        <column>createTime</column>
+        <column>message</column>
+        <column>replyUser</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="content">JwWpCdVbHmEiXeHnZjHdQmGiWpRmXbZiHhKwNfQvOdLmWsWvIoVpXxIsDlVsRpFeOyEqUvGvJnBnDcMfXkMjGjGdCrYfHrKuCpLsDxRtZlZdErDiUpLiFtVjShLaYsZpKhVtYyQiDiYgAwMuBnVjOcEyRnRfRgJrEzMbWyQlTcRdRsLzGbYbMzZkJzGhMrHfEdTiJxUlVjPcLcQmPeFvFbHpSzVsFqSpJoSwDqIgQaPbRxIkFcTaUzJePfYuAcS</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message">JhOiCeOtLcXbOvLkJnKsSyGwNnJkYtFrRsNtDyZhAqTdBlJwGaUnLpVhUeNnTgBvAlJpWpMdOuLoJxNlUgSpAfIoDsEyYuVzZjOcVwQkVvKdKyHgTfKgGqGaOwEoXaGmLbFqZtXeJsKcEqAdBpGsBcQpLrGrBzZkAcOlDtXvLeOfZrVuIsGrQnScTfJnZqWbPgOtYjSjKjKoAtQoTlUtEaEcKpVwHeStJiVvBnTnWgOdXjJgZjTnLsIpWjCzGaV</value>
+        <value description="replyUser">TvQuVrSoMsWfBvRiBmMrNdPtKvBnZaZpMfRcBbXaKvDiXvVgFzTmTuCzKkXjAaImXfXfPmFvWjQrGcIaJgEaGtIwGmYiElTzOtYmXlGfRiYlIuTcLgBfYpZjLeKaIgTbFfWbXcHtXzBxMdVxWeJmWmJvFwDuJeFuFwWoHyHsDeYhAmLrVbSzLdRaCaNxQbHhZhBnZrHiCgOfFxHiYsDqGtMwStKwQqIsTnSlVjArJpBxUxOyBlJzTlMfLgNyZfN</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="content">TnDoVtYzKmKdFgKsYjNnRoRpYrPaBmVbEgMiSxXiDdQuFzXzDrQnUsAgEiBfZvQlTjNtFdAnTuZfTaEoOgTjSlLuZlEsLcOcJnQrOyUvCnSyUrRoUkXhEwHiBaKqZrAfJoSgBgShAwBkBvWsJsSdOjAvWiZhPpFtFqQuSvXtLiHmEaFwRjThJtAgXeCxAxIwLxXmSsFmVvYlSfVfVwJoAzNeIsZqVkFoPbLnNcEoZjGeTlAcZpRkXcBpThSzHmH</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message">IuIwNuBoAuKtRpCnYuHvNsFvTfMxFaMoIfWuFaEcVpRkOtAnPgBoMuCsSqVxJdZzVbAmAaUfImFtDdGfPnEyVdRcOgEyCrPgQpGuPxWkZdUgOlToZjZjEiXjMpTyCcXiAsXgUgWoCoDcEcLgGpTvYvYgOiHePdPzUhQlOoHnDmBeIzRaPuGlTlOxEuNjFyBrPhTtRsViAsHgEuSyHfJgVgUpMjSdBjUoNsAcXcLaVtZiAnLiNgRfVnQjElPlWrR</value>
+        <value description="replyUser">EaFoFiTfJqUuNoArSeVyLrYlIpJsLtEaOwKeAbNmHtZhWrGiZgEdSdKfMuWoQwPyPoZuFaBrYcSmQjDyZdRgItLbXkOnDoDeRwTcBaMuYsMnRvKqBmIzAiOjZaQoHoIzNsBqWiRmNxQuFaBdJbGbHcJsXnFmJsQhJhJbZaOkLfScUiKaUyGhXuCjMgKjYpViEhBkSbYpXuVlKjHkOeXnQiLxGmZfXsZaJpUbChEjQhJpZhQqAeWdGjQzRgDwDsL</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="content">FtBqQaXpCgKwFfEaOoXjKyMoRwJpDnZiSiOuDtYrUdJiEhQsPvDwVqFnScSyHsMxTaLoNjGuIfBnZhZaLiRdNxTtDfTcPtTuTcBgLxPgJcYuRmBnAaHmHxMtDoGhKlEmGyOuEfAeIqSxYgZxFjOiSqFhKvKxEhSjAkAfTqKdNmNhDtRzNqDtIpEcErAzXnLtOaTnTlJtYcMlCiUvMeFtKhTqEuBrXnXdWnZyPtNoSvEqUzXjLmDiTpXbHjMcPeE</value>
+        <value description="createTime">2015-08-25</value>
+        <value description="message">XgYmCyToEhKqWjXbXuUmAuPqNwJfKsBnDqMyXpCdSrPmAoPfGcSiSxOrVyOkDtDfRyCcEfKqNxCiIzYkXuJmLcIoAyLyQoJoMwXiXuJeXvUhCgUwLzIjAtOsOqNjZjDfHrEpQwQgNcCfLsPgLmPzDvXdNeZrDuDtJoJlAtKbNkOlVxHsEfSbJfMbEmLtAlMkQaOkTsCoKdAmEcSlAqKnBfVySyVwGkYeBmYoQbYmYxOoTzTcXtDgPmRrKfZkZgP</value>
+        <value description="replyUser">FfLxGcYoUeSzMbVkCaYiZzFjDtLzYvGsGbLvLoOyFxEpXxRjKsPjQlIjWaPyMgRpJeQtVpSjEkZxPaZnJtJeOpCzFdDeZdMgGzMtKyMfXfUcDsGhAwEbLoFiJqTmEpJsJjSyNsGzSjBeWrHhJkIlGoOuZxUoNbSwKpJoViWyTuKuZhGjDhQkJoViXwIyNmFuJiNhMfGnVbDcYcKrRhDxAjZhDnAaHbIuKaSvBwWgNaYzDiUjHiYsExEpDhWgGwJ</value>
+    </row>
+    </table>
+    <!--MessageReply-END-->
 </dataset>
+
+
 
 
 

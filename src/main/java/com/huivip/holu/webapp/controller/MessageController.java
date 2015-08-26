@@ -3,8 +3,10 @@ package com.huivip.holu.webapp.controller;
 import com.huivip.holu.Constants;
 import com.huivip.holu.dao.SearchException;
 import com.huivip.holu.model.Message;
+import com.huivip.holu.model.MessageReceiver;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.MessageManager;
+import com.huivip.holu.service.MessageReceiverManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
@@ -28,6 +30,8 @@ public class MessageController {
     private UserManager userManager;
     @Autowired
     PaginateListFactory paginateListFactory;
+    @Autowired
+    MessageReceiverManager messageReceiverManager;
 
     @Autowired
     public void setMessageManager(MessageManager messageManager) {
@@ -43,19 +47,20 @@ public class MessageController {
         Model model = new ExtendedModelMap();
         try {
             if(request.isUserInRole(Constants.ADMIN_ROLE)){
-                messageManager.search(query, Message.class,list);
+                messageReceiverManager.search(query, MessageReceiver.class, list);
                 model.addAttribute("messageList",list);
             }
             else {
-                List<Message> resultList=new ArrayList<>();
+                List<MessageReceiver> resultList=new ArrayList<>();
                 if(query==null || query.equals("")){
-                    messageManager.messageByOwner(cleanUser,list);
+                    //messageManager.messageByOwner(cleanUser,list);
+                    messageReceiverManager.listMyMessage(cleanUser.getId().toString(),list);
                     model.addAttribute("messageList",list);
                 }
                 else {
-                    List<Message> messageList = messageManager.search(query, Message.class);
-                    for (Message message : messageList) {
-                        if (message.getOwner().getUsername().equals(cleanUser.getUsername())) {
+                    List<MessageReceiver> messageList = messageReceiverManager.search(query, Message.class);
+                    for (MessageReceiver message : messageList) {
+                        if (message.getReceiver().getUsername().equals(cleanUser.getUsername())) {
                             resultList.add(message);
                         }
                     }

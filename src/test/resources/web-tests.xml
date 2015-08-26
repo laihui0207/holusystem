@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2114,7 +2114,195 @@
             </steps>
         </webtest>
     </target>    <!--ProcessMid-END-->
+    <!--MessageReceiver-START-->
+    <!-- runs messageReceiver-related tests -->
+    <target name="MessageReceiverTests"
+            depends="SearchMessageReceivers,EditMessageReceiver,SaveMessageReceiver,AddMessageReceiver,DeleteMessageReceiver"
+            description="Call and executes all messageReceiver test cases (targets)">
+        <echo>Successfully ran all MessageReceiver UI tests!</echo>
+    </target>
+
+    <!-- Verify the messageReceivers list screen displays without errors -->
+    <target name="SearchMessageReceivers" description="Tests search for and displaying all messageReceivers">
+        <webtest name="searchMessageReceivers">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View MessageReceiver link" url="/messageReceivers"/>
+                <verifytitle description="we should see the messageReceiverList title"
+                    text=".*${messageReceiverList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the messageReceiverList title"
+                    text=".*${messageReceiverList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit messageReceiver screen displays without errors -->
+    <target name="EditMessageReceiver" description="Tests editing an existing MessageReceiver's information">
+        <webtest name="editMessageReceiver">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View MessageReceiver List" url="/messageReceivers"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the messageReceiverDetail title"
+                    text=".*${messageReceiverDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a messageReceiver and then save -->
+    <target name="SaveMessageReceiver" description="Tests editing and saving a messageReceiver">
+        <webtest name="saveMessageReceiver">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit MessageReceiver link" url="/messageReceiverform?id=-1"/>
+                <verifytitle description="we should see the messageReceiverDetail title"
+                    text=".*${messageReceiverDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set status" name="status" value="407345257"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${messageReceiverDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReceiver.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new MessageReceiver -->
+    <target name="AddMessageReceiver" description="Adds a new MessageReceiver">
+        <webtest name="addMessageReceiver">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/messageReceiverform"/>
+                <verifytitle description="we should see the messageReceiverDetail title"
+                    text=".*${messageReceiverDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set status" name="status" value="224727218"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="MessageReceiver List appears if save successful"
+                    text=".*${messageReceiverList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReceiver.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing messageReceiver -->
+    <target name="DeleteMessageReceiver" description="Deletes existing MessageReceiver">
+        <webtest name="deleteMessageReceiver">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit MessageReceiver link" url="/messageReceiverform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display MessageReceiver List" text=".*${messageReceiverList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReceiver.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--MessageReceiver-END-->
+    <!--MessageReply-START-->
+    <!-- runs messageReply-related tests -->
+    <target name="MessageReplyTests"
+            depends="SearchMessageReplies,EditMessageReply,SaveMessageReply,AddMessageReply,DeleteMessageReply"
+            description="Call and executes all messageReply test cases (targets)">
+        <echo>Successfully ran all MessageReply UI tests!</echo>
+    </target>
+
+    <!-- Verify the messageReplies list screen displays without errors -->
+    <target name="SearchMessageReplies" description="Tests search for and displaying all messageReplies">
+        <webtest name="searchMessageReplies">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View MessageReply link" url="/messageReplies"/>
+                <verifytitle description="we should see the messageReplyList title"
+                    text=".*${messageReplyList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the messageReplyList title"
+                    text=".*${messageReplyList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit messageReply screen displays without errors -->
+    <target name="EditMessageReply" description="Tests editing an existing MessageReply's information">
+        <webtest name="editMessageReply">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View MessageReply List" url="/messageReplies"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the messageReplyDetail title"
+                    text=".*${messageReplyDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a messageReply and then save -->
+    <target name="SaveMessageReply" description="Tests editing and saving a messageReply">
+        <webtest name="saveMessageReply">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit MessageReply link" url="/messageReplyform?id=-1"/>
+                <verifytitle description="we should see the messageReplyDetail title"
+                    text=".*${messageReplyDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${messageReplyDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReply.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new MessageReply -->
+    <target name="AddMessageReply" description="Adds a new MessageReply">
+        <webtest name="addMessageReply">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/messageReplyform"/>
+                <verifytitle description="we should see the messageReplyDetail title"
+                    text=".*${messageReplyDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="MessageReply List appears if save successful"
+                    text=".*${messageReplyList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReply.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing messageReply -->
+    <target name="DeleteMessageReply" description="Deletes existing MessageReply">
+        <webtest name="deleteMessageReply">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit MessageReply link" url="/messageReplyform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display MessageReply List" text=".*${messageReplyList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${messageReply.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--MessageReply-END-->
 </project>
+
+
 
 
 

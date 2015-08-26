@@ -23,5 +23,7 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
                                                              String companyId,
                                                              String userId,String componentID,ExtendedPaginatedList list);
     ComponentStyle getComponentProcessByProcessID(String styleProcessID);
-    
+    @GET
+    @Path("user/{userId}")
+    List<ComponentStyle> myTask(@PathParam("userId") String userId);
 }
