@@ -1,19 +1,16 @@
 package com.huivip.holu.service.impl;
 
-import com.huivip.holu.dao.CompanyDatabaseIndexDao;
-import com.huivip.holu.dao.ComponentStyleDao;
-import com.huivip.holu.dao.ProcessMidDao;
-import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.model.ComponentStyle;
-import com.huivip.holu.model.Post;
-import com.huivip.holu.model.ProcessMid;
-import com.huivip.holu.model.User;
+import com.huivip.holu.dao.*;
+import com.huivip.holu.model.*;
+import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.ComponentStyleManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +24,11 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     ProcessMidDao processMidDao;
     @Autowired
     CompanyDatabaseIndexDao companyDatabaseIndexDao;
+    @Autowired
+    ProjectDao projectDao;
+    @Autowired
+    ComponentManager componentManager;
+
 
     @Autowired
     public ComponentStyleManagerImpl(ComponentStyleDao componentStyleDao) {
@@ -89,6 +91,48 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
     @Override
     public List<ComponentStyle> myTask(String userId) {
-        return null;
+        User user=userDao.getUserByUserID(userId);
+        List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
+        List<Project> myProject=new ArrayList<>();
+        for(Project project:projectList){
+            if(project.getChildProjects()==null || project.getChildProjects().size()==0){
+                myProject.add(project);
+            }
+            else {
+                myProject.addAll(getAllMyProject(project.getChildProjects()));
+            }
+        }
+        List<Component> components=new ArrayList<>();
+        for(Project p:myProject){
+            List<Component> list=componentManager.listComponentByProject(p.getProjectID(),userId,null);
+            if(list!=null){
+                components.addAll(list);
+            }
+        }
+
+        List<ComponentStyle> result=new ArrayList<>();
+        for(Component component: components){
+            List<ComponentStyle> list=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
+            for(ComponentStyle style:list){
+                if(style.isOperationer()){
+                    result.add(style);
+                }
+            }
+        }
+
+        return result;
+    }
+    private Set<Project> getAllMyProject(Set<Project> list){
+        Set<Project> result=new HashSet<>();
+        if(list==null || list.size()==0 ) return result;
+        for(Project p: list){
+            if(p.getChildProjects()==null || p.getChildProjects().size()==0){
+                result.add(p);
+            }
+            else {
+                result.addAll(getAllMyProject(p.getChildProjects()));
+            }
+        }
+        return result;
     }
 }
