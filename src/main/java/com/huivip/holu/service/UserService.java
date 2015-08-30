@@ -72,5 +72,9 @@ public interface UserService {
                 @FormParam("password")String password,
                 @FormParam("companyId")String companyId);
 
+   /* @GET
+    @Path("{userId}/task")
+    List<Task> myTask(@PathParam("userId") String userId);*/
+
 
 }

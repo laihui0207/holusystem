@@ -4,13 +4,11 @@ import com.huivip.holu.dao.CustomGroupDao;
 import com.huivip.holu.dao.DepartmentDao;
 import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.model.CustomGroup;
-import com.huivip.holu.model.Department;
-import com.huivip.holu.model.Message;
-import com.huivip.holu.model.User;
+import com.huivip.holu.model.*;
 import com.huivip.holu.service.DepartmentManager;
 import com.huivip.holu.service.MessageManager;
 
+import com.huivip.holu.service.MessageReceiverManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.displaytag.properties.SortOrderEnum;
@@ -33,6 +31,8 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     CustomGroupDao customGroupDao;
     @Autowired
     DepartmentDao departmentDao;
+    @Autowired
+    MessageReceiverManager messageReceiverManager;
 
     @Autowired
     public MessageManagerImpl(MessageDao messageDao) {
@@ -46,14 +46,14 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public List<Message> myMessage(String userId, String page, String pageSize) {
+    public List<MessageReceiver> myMessage(String userId, String page, String pageSize) {
         User user=userDao.get(Long.parseLong(userId));
         ExtendedPaginatedList list=new PaginatedListImpl();
         list.setPageSize(Integer.parseInt(pageSize));
         list.setIndex(Integer.parseInt(page));
         list.setSortCriterion("createTime");
         list.setSortDirection(SortOrderEnum.DESCENDING);
-        List<Message> datalist=messageByOwner(user,list);
+        List<MessageReceiver> datalist=messageReceiverManager.listMyMessage(userId,list);
         return list.getList();
     }
 
@@ -85,7 +85,15 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
         message.setUpdater(user);
         message.setUpdateTime(new Timestamp(new Date().getTime()));
         message.setOwner(user);
-        messageDao.save(message);
+        Message savedMessage=messageDao.save(message);
+
+        MessageReceiver receiver=new MessageReceiver();
+        receiver.setMessage(savedMessage);
+        receiver.setStatus(1);
+        receiver.setCreateTime(new Timestamp(new Date().getTime()));
+        receiver.setReceiver(user);
+        messageReceiverManager.save(receiver);
+
         return message;
     }
 
@@ -154,6 +162,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
 
     @Override
     public void deleteMessage(String messageId) {
+        messageReceiverManager.deleteReceiverOfMessage(messageId);
         messageDao.remove(Long.parseLong(messageId));
     }
 }

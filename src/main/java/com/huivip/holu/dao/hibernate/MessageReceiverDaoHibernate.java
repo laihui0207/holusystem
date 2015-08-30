@@ -17,7 +17,7 @@ public class MessageReceiverDaoHibernate extends GenericDaoHibernate<MessageRece
 
     @Override
     public List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list) {
-        String hql="From MessageReceiver where receiver.id="+userId;
+        String hql="From MessageReceiver mr where mr.receiver.id="+userId;
         Query query=getSession().createQuery(hql);
         if(list!=null){
             List<MessageReceiver> totalData=query.list();
@@ -30,5 +30,12 @@ public class MessageReceiverDaoHibernate extends GenericDaoHibernate<MessageRece
             list.setList(dataList);
         }
         return dataList;
+    }
+
+    @Override
+    public void deleteReceiverOfMessage(String messageId) {
+        String hql="delete From MessageReceiver where message.id="+messageId;
+        Query query=getSession().createQuery(hql);
+        query.executeUpdate();
     }
 }

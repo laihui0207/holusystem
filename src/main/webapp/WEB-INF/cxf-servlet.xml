@@ -40,6 +40,7 @@
             <ref bean="companyManager"/>
             <ref bean="processMidManager"/>
             <ref bean="departmentManager"/>
+            <ref bean="messageReplyManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

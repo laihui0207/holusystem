@@ -11,5 +11,6 @@ import java.util.List;
 public interface MessageReceiverDao extends GenericDao<MessageReceiver, Long> {
 
     List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list);
+    void deleteReceiverOfMessage(String messsageId);
 
 }

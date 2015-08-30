@@ -3,8 +3,10 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.CompanyDatabaseIndexDao;
 import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
+import com.huivip.holu.model.Component;
 import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.SubComponentListManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
@@ -22,6 +24,10 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     CompanyDatabaseIndexDao companyDatabaseIndexDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    ComponentManager componentManager;
+
+
 
     @Autowired
     public SubComponentListManagerImpl(SubComponentListDao subComponentListDao) {
@@ -37,6 +43,15 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     }
 
     @Override
+    public Component getParentComponent(String subComponentId, String userId) {
+        User user=userDao.getUserByUserID(userId);
+        String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
+        String parentComponentId=subComponentListDao.getParentComponentId(subComponentId,tableName);
+        Component component=componentManager.getComponentByComponentID(parentComponentId,userId);
+        return component;
+    }
+
+    @Override
     public List<SubComponentList> getSubComponentListByComponentID(String componentID, String userID,String page,String pageSize) {
         ExtendedPaginatedList list =new PaginatedListImpl();
         list.setPageSize(Integer.parseInt(pageSize));
@@ -48,6 +63,9 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     public SubComponentList getSubComponentBySubComponentID(String subComponentID, String userID) {
         User user=userDao.getUserByUserID(userID);
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
-        return subComponentListDao.getSubComponentBySubComponentID(subComponentID,tableName);
+/*        Component parent=getParentComponent(subComponentID,userID);*/
+        SubComponentList subComponentList=subComponentListDao.getSubComponentBySubComponentID(subComponentID,tableName);
+/*        subComponentList.setParentComponent(parent);*/
+        return subComponentList;
     }
 }

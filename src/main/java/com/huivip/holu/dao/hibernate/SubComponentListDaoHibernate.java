@@ -44,4 +44,15 @@ public class SubComponentListDaoHibernate extends GenericDaoHibernate<SubCompone
         }
         return null;
     }
+
+    @Override
+    public String getParentComponentId(String SubComponentId, String tableName) {
+        String sql="select ComponentID from "+tableName+" where SubComponentID='"+SubComponentId+"'";
+        SQLQuery query=getSession().createSQLQuery(sql);
+        List list=query.list();
+        if(list!=null && list.size()>0){
+            return (String) list.get(0);
+        }
+        return null;
+    }
 }

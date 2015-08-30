@@ -26,4 +26,9 @@ public class MessageReceiverManagerImpl extends GenericManagerImpl<MessageReceiv
     public List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list) {
         return messageReceiverDao.listMyMessage(userId,list);
     }
+
+    @Override
+    public void deleteReceiverOfMessage(String messageId) {
+        messageReceiverDao.deleteReceiverOfMessage(messageId);
+    }
 }

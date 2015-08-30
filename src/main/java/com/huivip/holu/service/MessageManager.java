@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.Message;
+import com.huivip.holu.model.MessageReceiver;
 import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
@@ -15,7 +16,7 @@ public interface MessageManager extends GenericManager<Message, Long> {
 
     @GET
     @Path("user/{userId}")
-    List<Message> myMessage(@PathParam("userId") String userId,
+    List<MessageReceiver> myMessage(@PathParam("userId") String userId,
                             @DefaultValue("0") @QueryParam("page") String page,
                             @DefaultValue("10") @QueryParam("pageSize")String pageSize);
     @GET

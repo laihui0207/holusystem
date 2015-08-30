@@ -72,10 +72,10 @@ public class ComponentStyleController {
         else  if(componentType.equalsIgnoreCase("sub")){
             subComponentList=subComponentListManager.getSubComponentBySubComponentID(componentID,cleanUser.getUserID());
             if(null!=subComponentList){
-                parent=subComponentList.getParentComponent();
+                parent=subComponentListManager.getParentComponent(componentID,cleanUser.getUserID());
             }
         }
-        List<ComponentStyle> componentStyleList=componentStyleManager.myTask(cleanUser.getUserID()); //componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getUserID(),componentID,null);
+        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getUserID(),parent.getComponentID(),null);
         Locale locale = request.getLocale();
         view.addObject("language",locale.getDisplayLanguage());
         view.addObject("componentStyleList",componentStyleList);

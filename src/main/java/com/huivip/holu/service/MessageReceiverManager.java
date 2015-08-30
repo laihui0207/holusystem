@@ -10,5 +10,6 @@ import java.util.List;
 public interface MessageReceiverManager extends GenericManager<MessageReceiver, Long> {
 
     List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list);
+    void deleteReceiverOfMessage(String messageId);
     
 }

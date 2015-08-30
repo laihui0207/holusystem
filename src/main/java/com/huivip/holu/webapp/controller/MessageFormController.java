@@ -134,6 +134,7 @@ public class MessageFormController extends BaseFormController {
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
+            messageReceiverManager.deleteReceiverOfMessage(message.getId().toString());
             messageManager.remove(message.getId());
             saveMessage(request, getText("message.deleted", locale));
         } else {

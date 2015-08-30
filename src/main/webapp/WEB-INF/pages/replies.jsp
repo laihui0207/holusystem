@@ -38,10 +38,11 @@
 </div>
 
 <display:table name="replyList" class="table table-condensed table-striped table-hover" requestURI="" id="replyList" export="true" pagesize="25">
-    <display:column property="id" sortable="true" href="replyform" media="html"
-        paramId="id" paramProperty="id" titleKey="reply.id"/>
+    <%--<display:column property="id" sortable="true" href="replyform" media="html"
+        paramId="id" paramProperty="id" titleKey="reply.id"/>--%>
     <display:column property="id" media="csv excel xml pdf" titleKey="reply.id"/>
     <display:column property="content" sortable="true" titleKey="reply.content"/>
+    <display:column property="replier.username" sortable="true" titleKey="reply.replier"/>
     <display:column sortProperty="replyTime" sortable="true" titleKey="reply.replyTime">
          <fmt:formatDate value="${replyList.replyTime}" pattern="${datePattern}"/>
     </display:column>

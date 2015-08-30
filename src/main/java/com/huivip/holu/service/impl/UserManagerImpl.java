@@ -39,6 +39,8 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     private MailEngine mailEngine;
     private SimpleMailMessage message;
     private PasswordTokenManager passwordTokenManager;
+    @Autowired
+    private ComponentStyleManager componentStyleManager;
 
     private String passwordRecoveryTemplate = "passwordRecovery.vm";
     private String passwordUpdatedTemplate = "passwordUpdated.vm";
@@ -237,6 +239,11 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         }
         return user;
     }
+
+   /* @Override
+    public List<Task> myTask(String userId) {
+        return componentStyleManager.getMyTask(userId);
+    }*/
 
     /**
      * {@inheritDoc}

@@ -2,17 +2,18 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.CompanyDatabaseIndexDao;
 import com.huivip.holu.dao.ComponentDao;
+import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Component;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
-import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import java.util.HashSet;
 import java.util.List;
 
 @Service("componentManager")
@@ -23,6 +24,8 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     CompanyDatabaseIndexDao companyDatabaseIndexDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    SubComponentListDao subComponentListDao;
 
     @Autowired
     public ComponentManagerImpl(ComponentDao componentDao) {
@@ -43,7 +46,15 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     public List<Component> listComponentByProject(String projectID,String userID,ExtendedPaginatedList list) {
         User user=userDao.getUserByUserID(userID);
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"ComponentList");
-        return componentDao.listComponentByProject(projectID,tableName,list);
+        String subtableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
+        List<Component> components=componentDao.listComponentByProject(projectID,tableName,list);
+        for(Component component:components){
+            component.setSubComponentListSet(new HashSet(subComponentListDao.getSubComponentListByComponentID(component.getComponentID(), subtableName, null)));
+        }
+        if(list!=null){
+            list.setList(components);
+        }
+        return components;
     }
 
     @Override
