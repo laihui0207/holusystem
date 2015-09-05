@@ -56,13 +56,13 @@
         <form:input cssClass="form-control" path="content" id="contentinput"  maxlength="255"/>
         <form:errors path="content" cssClass="help-block"/>
     </div>
-    <spring:bind path="news.expiredTime">
+   <%-- <spring:bind path="news.expiredTime">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
         <appfuse:label key="news.expiredTime" styleClass="control-label"/>
         <form:input cssClass="form-control" path="expiredTime" id="expiredTime"  maxlength="255"/>
         <form:errors path="expiredTime" cssClass="help-block"/>
-    </div>
+    </div>--%>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">

@@ -17,6 +17,7 @@ public interface MessageManager extends GenericManager<Message, Long> {
     @GET
     @Path("user/{userId}")
     List<MessageReceiver> myMessage(@PathParam("userId") String userId,
+                                    @DefaultValue("all") @QueryParam("type") String type,
                             @DefaultValue("0") @QueryParam("page") String page,
                             @DefaultValue("10") @QueryParam("pageSize")String pageSize);
     @GET
@@ -28,8 +29,8 @@ public interface MessageManager extends GenericManager<Message, Long> {
     Message getMessage(@PathParam("id")String id);
 
     @GET
-    @Path("{id}/read")
-    Message readMessage(@PathParam("id") String id);
+    @Path("{id}/{userId}/read")
+    Message readMessage(@PathParam("id") String id,@PathParam("userId")String userId);
 
 
     @GET

@@ -46,7 +46,7 @@
             </display:column>
     <display:column property="summary" sortable="true" titleKey="news.summary"/>
     <display:column property="createTime" sortable="true" titleKey="news.createTime"/>
-    <display:column property="expiredTime" sortable="true" titleKey="news.expiredTime"/>
+<%--    <display:column property="expiredTime" sortable="true" titleKey="news.expiredTime"/>--%>
    <%-- <display:column  sortable="false" titleKey="list.action">
         <a href="newss/view/${newsList.id}" target="_blank"><fmt:message key="newsList.view"/></a>
     </display:column>--%>

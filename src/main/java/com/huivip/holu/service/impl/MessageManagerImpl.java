@@ -5,7 +5,6 @@ import com.huivip.holu.dao.DepartmentDao;
 import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.*;
-import com.huivip.holu.service.DepartmentManager;
 import com.huivip.holu.service.MessageManager;
 
 import com.huivip.holu.service.MessageReceiverManager;
@@ -46,20 +45,20 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public List<MessageReceiver> myMessage(String userId, String page, String pageSize) {
+    public List<MessageReceiver> myMessage(String userId,String type, String page, String pageSize) {
         User user=userDao.get(Long.parseLong(userId));
         ExtendedPaginatedList list=new PaginatedListImpl();
         list.setPageSize(Integer.parseInt(pageSize));
         list.setIndex(Integer.parseInt(page));
         list.setSortCriterion("createTime");
         list.setSortDirection(SortOrderEnum.DESCENDING);
-        List<MessageReceiver> datalist=messageReceiverManager.listMyMessage(userId,list);
+        List<MessageReceiver> datalist=messageReceiverManager.listMyMessage(userId,type , list);
         return list.getList();
     }
 
     @Override
     public int newMessageCount(String userId) {
-        return messageDao.newMessageCount(userId);
+        return messageReceiverManager.newMessage(userId);
     }
 
     @Override
@@ -68,7 +67,8 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     }
 
     @Override
-    public Message readMessage(String id) {
+    public Message readMessage(String id,String userId) {
+        messageReceiverManager.messageRead(id,userId);
         return messageDao.updateMessageStatus(id,"3");
     }
 
@@ -94,7 +94,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
         receiver.setReceiver(user);
         messageReceiverManager.save(receiver);
 
-        return message;
+        return savedMessage;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
             }
             String[] groupArray=groups.split(";");
             for(String id:groupArray){
-                CustomGroup ug=customGroupDao.get(Long.parseLong(id));
+                CustomGroup ug=customGroupDao.getGroupByGroupID(id);
                 message.getReceiveGroups().add(ug);
                 for(User u:ug.getMembers()){
                     if(!receiverList.contains(u)){
@@ -142,9 +142,9 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
             }
         }
         message.setStatus(1);
-        messageDao.save(message);
+        Message savedMessage=messageDao.save(message);
 
-        Message copyMessage=new Message();
+       /* Message copyMessage=new Message();
         copyMessage.setTitle(message.getTitle());
         copyMessage.setContent(message.getContent());
         copyMessage.setCreater(message.getCreater());
@@ -156,8 +156,17 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
             copyMessage.setId(null);
             copyMessage.setOwner(u);
             messageDao.save(copyMessage);
+        }*/
+        MessageReceiver receiver=new MessageReceiver();
+        receiver.setMessage(savedMessage);
+        receiver.setStatus(0);
+        receiver.setCreateTime(new Timestamp(new Date().getTime()));
+        for(User u: receiverList){
+            receiver.setId(null);
+            receiver.setReceiver(u);
+            messageReceiverManager.save(receiver);
         }
-        return message;
+        return savedMessage;
     }
 
     @Override

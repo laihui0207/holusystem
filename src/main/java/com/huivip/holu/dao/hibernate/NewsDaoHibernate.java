@@ -36,13 +36,14 @@ public class NewsDaoHibernate extends GenericDaoHibernate<News, Long> implements
 
     @Override
     public List<News> getNewsByLevel(ExtendedPaginatedList list) {
-        String queryString="From News where level= true ";
+        String queryString="From News where level= true order by createTime DESC";
         Query query=getSession().createQuery(queryString);
         if(null!=list){
             List<News> totalList=query.list();
             list.setTotalNumberOfRows(totalList.size());
             query.setFirstResult(list.getFirstRecordIndex());
             query.setMaxResults(list.getPageSize());
+
         }
         List<News> dataList=query.list();
         if(null!=list){

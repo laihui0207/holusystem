@@ -33,5 +33,6 @@
         <mapping class="com.huivip.holu.model.ProcessDictionary"/>
         <mapping class="com.huivip.holu.model.MessageReceiver"/>
         <mapping class="com.huivip.holu.model.MessageReply"/>
+        <mapping class="com.huivip.holu.model.Summary"/>
     </session-factory>
 </hibernate-configuration>

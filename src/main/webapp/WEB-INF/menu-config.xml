@@ -48,7 +48,11 @@
         <!--MessageReply-START-->
         <Menu name="MessageReplyMenu" title="messageReplyList.title" roles="ROLE_ADMIN,ROLE_USER" page="/messageReplies"/>
         <!--MessageReply-END-->
+        <!--Summary-START-->
+        <Menu name="SummaryMenu" title="summaryList.title" page="/summaries"/>
+        <!--Summary-END-->
     </Menus>
+
 
 
 

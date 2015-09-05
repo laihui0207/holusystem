@@ -54,7 +54,7 @@ public class MessageController {
                 List<MessageReceiver> resultList=new ArrayList<>();
                 if(query==null || query.equals("")){
                     //messageManager.messageByOwner(cleanUser,list);
-                    messageReceiverManager.listMyMessage(cleanUser.getId().toString(),list);
+                    messageReceiverManager.listMyMessage(cleanUser.getId().toString(),"all" , list);
                     model.addAttribute("messageList",list);
                 }
                 else {

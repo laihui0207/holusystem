@@ -194,5 +194,9 @@
         <form name="messageReply">
         </form>
         <!--MessageReply-END-->
+        <!--Summary-START-->
+        <form name="summary">
+        </form>
+        <!--Summary-END-->
     </formset>
 </form-validation>

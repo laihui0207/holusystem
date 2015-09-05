@@ -50,14 +50,14 @@
 <%--    <display:column property="styleID" sortable="true" titleKey="component.style"/>--%>
     <display:column property="creater.fullName" sortable="true" titleKey="component.user"/>
     <display:column property="createDate" sortable="true" titleKey="component.createDate"/>
-    <c:if test="${componentList.subComponentListSet.size()>0}">
+    <c:if test="${componentList.getClass().name != ('com.huivip.holu.webapp.helper.PaginatedListImpl') && componentList.subComponentListSet!=null}">
         <display:column titleKey="list.action">
             <a href="<c:url value='/subComponentLists/${componentList.componentID}/subList'/> ">
                 <fmt:message key="component.detail"/>
             </a>
         </display:column>
     </c:if>
-    <c:if test="${componentList.subComponentListSet.size() == 0}">
+    <c:if test="${componentList.getClass().name != ('com.huivip.holu.webapp.helper.PaginatedListImpl') && componentList.subComponentListSet==null}">
     <display:column titleKey="list.action">
         <a href="<c:url value='/componentStyles/processlist?styleID=${componentList.styleID}&companyId=${componentList.project.company.companyId}&cid=${componentList.componentID}&type=parent'/>">
             <fmt:message key="action.processList"/>
@@ -65,6 +65,7 @@
     </display:column>
     </c:if>
 
+<%--    <display:setProperty name="basic.empty.showtable">NO</display:setProperty>--%>
     <display:setProperty name="paging.banner.item_name"><fmt:message key="componentList.component"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="componentList.components"/></display:setProperty>
 

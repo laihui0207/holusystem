@@ -1,8 +1,10 @@
 package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.dao.SearchException;
+import com.huivip.holu.model.Component;
 import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.SubComponentListManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/subComponentLists*")
@@ -25,6 +28,8 @@ public class SubComponentListController {
     private SubComponentListManager subComponentListManager;
     @Autowired
     private UserManager userManager;
+    @Autowired
+    private ComponentManager componentManager;
     @Autowired
     private PaginateListFactory paginateListFactory;
 
@@ -51,6 +56,12 @@ public class SubComponentListController {
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
         subComponentListManager.getSubComponentListByComponentID(componentID,currentUser.getUserID(),list);
+        Component parent=componentManager.getComponentByComponentID(componentID,currentUser.getUserID());
+        List<SubComponentList> subComponentListList=list.getList();
+        for(SubComponentList sub: subComponentListList){
+            sub.setParentComponent(parent);
+        }
+        list.setList(subComponentListList);
         view.addObject("subComponentListList",list);
         return view;
     }

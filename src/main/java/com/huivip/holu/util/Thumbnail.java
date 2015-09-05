@@ -29,7 +29,7 @@ public class Thumbnail {
         String MidFile=filePath+name.substring(0,name.lastIndexOf("."))+"_mid"+name.substring(name.lastIndexOf("."));
         File midFile=new File(MidFile);
         if(!midFile.exists())
-        ImageUtil.compressImage(sourceFile,MidFile,360,200);
+        ImageUtil.compressImage(sourceFile,MidFile,720,1280);
     }
     public static String handleThumbnail(String content,ServletContext context){
         String thumbnailURL=null;
@@ -52,11 +52,11 @@ public class Thumbnail {
             if(imgUrl==null || imgUrl.equals("")){
                 continue;
             }
-            File orignalImage=new File(imgUrl);
+            String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached"));
+            File orignalImage=new File(fileUrl);
             if(orignalImage.length()< 2000){
                 continue;
             }
-            String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached"));
             //to do  check if need create thumbnail
             thumbnail_create(fileUrl.substring(0, fileUrl.lastIndexOf("/") + 1),
                     fileUrl.substring(fileUrl.lastIndexOf("/") + 1));
@@ -83,7 +83,8 @@ public class Thumbnail {
             URL url=new URL(imageUrl);
             URLConnection conn = url.openConnection();
             InputStream inStream = conn.getInputStream();
-            String fileName=imageUrl.substring(imageUrl.lastIndexOf("/")+1);
+            //String fileName=imageUrl.substring(imageUrl.lastIndexOf("/")+1);
+            String fileName=imageUrl.hashCode()+".jpg";
             FileOutputStream fs = new FileOutputStream(storePath+fileName);
 
             byte[] buffer = new byte[1204];

@@ -9,7 +9,9 @@ import java.util.List;
 @WebService
 public interface MessageReceiverManager extends GenericManager<MessageReceiver, Long> {
 
-    List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list);
+    List<MessageReceiver> listMyMessage(String userId, String messageType, ExtendedPaginatedList list);
     void deleteReceiverOfMessage(String messageId);
+    void messageRead(String messsageId,String userId);
+    int newMessage(String userId);
     
 }

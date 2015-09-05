@@ -59,11 +59,7 @@ public class ComponentController {
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
         User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
         componentManager.listComponentByProject(projectID,currentUser.getUserID(),list);
-       /* if(list!=null && list.getList().size()==0){
-            list.setList(null);
-        }*/
         Project project=projectManager.getProjectByprojectID(projectID);
-        //view.addObject(componentList);
         view.addObject("componentList",list);
         view.addObject("project",project);
         return view;

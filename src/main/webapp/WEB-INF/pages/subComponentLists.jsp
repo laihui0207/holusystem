@@ -46,7 +46,7 @@
     <display:column property="subComponentName" sortable="true" titleKey="subComponentList.subComponentName"/>
     <display:column property="subQuantity" sortable="true" titleKey="subComponentList.subQuantity"/>
     <display:column titleKey="list.action">
-        <a href='<c:url value="/componentStyles/processlist?styleID=${subComponentListList.parentComponent.styleID}&companyId=${subComponentListList.parentComponent.project.company.id}&cid=${subComponentListList.subComponentID}&type=sub"/>'>
+        <a href='<c:url value="/componentStyles/processlist?styleID=${subComponentListList.parentComponent.styleID}&companyId=${subComponentListList.parentComponent.project.company.companyId}&cid=${subComponentListList.subComponentID}&type=sub"/>'>
             <fmt:message key="action.processList"/></a>
     </display:column>
 

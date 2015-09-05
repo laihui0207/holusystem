@@ -1157,7 +1157,106 @@
     </row>
     </table>
     <!--MessageReply-END-->
+    <!--Summary-START-->
+    <table name="U_SummaryTable">
+        <column>ID</column>
+        <column>actualEnd</column>
+        <column>ActualStart</column>
+        <column>CreateDate</column>
+        <column>CreateUserID</column>
+        <column>DepartmentID</column>
+        <column>PlanEnd</column>
+        <column>PlanStart</column>
+        <column>PredictEnd</column>
+        <column>predictStart</column>
+        <column>ProcessID</column>
+        <column>ProcessName</column>
+        <column>ProjectID</column>
+        <column>StyleID</column>
+        <column>StyleName</column>
+        <column>SumDate</column>
+        <column>SumMonth</column>
+        <column>SumQuantity</column>
+        <column>SumRight</column>
+        <column>SumWeek</column>
+        <column>SumWeight</column>
+        <column>SumYear</column>
+    <row>
+        <value description="ID">-1</value>
+        <value description="actualEnd">2015-08-31</value>
+        <value description="ActualStart">2015-08-31</value>
+        <value description="CreateDate">2015-08-31</value>
+        <value description="CreateUserID">-1</value>
+        <value description="DepartmentID">-1</value>
+        <value description="PlanEnd">2015-08-31</value>
+        <value description="PlanStart">2015-08-31</value>
+        <value description="PredictEnd">2015-08-31</value>
+        <value description="predictStart">2015-08-31</value>
+        <value description="ProcessID">NiNiAiTfCmXoDyOdUgHwRdKkSlNkDuMpJdXvZrDrXcOrKaZjEsVoWfUqEbUaXiYsSvEeMwQcYkGuDxQoGhFqGcYoUrPsAgQnQnBiYjPgSmImTtRyCzSpMgMeOiOiBiGfJbFtPpXvGiIpFhSvZqQaMgCbEmKhRzEgGqObErIhLjSmDuFwQtWfBjHfIgKwMsAcLdVqVaFtNrHeKmKsTrNzZnZgNgDqFjMwLaNvLpGkWcFeWeZwXzYxPkMxSnPbDdI</value>
+        <value description="ProcessName">FgAwAaYuCzEcAsAkTrAyQeYyOvRmRtEwUhXjHsYcCxLpQhPjGwXgPzVsFvHsZuCiLdKgCjLbZmAwJdKmCeNjVhPcVmTeGhIxGdLjKfIyFkMnXkFdTcAgDtPlKiBwWaXpGjSgTcXqNcUyTgFwTvJwPaPiAuBaPiGsWtLpAfGcRzTnPvUqTsFnAsHcNlWwPvRiHtGtYgCvQcNkNeEqJxBoWkGrTwOhYvPfGwQnKoZvUtJmOpTdYzQiPaDmAlDvJnL</value>
+        <value description="ProjectID">-1</value>
+        <value description="StyleID">UxQfLjPgTlQtHmEdVqImPuNzSsNsBbXnNhYqAtSuGvCtUbRdCvGwTyQzYfTxCcNfLqLpIyFvRxOnUfNeVtNwTjGiSeVnKsRnAaEyXvLwXtKbVsBtJhNvZgKlRwJpUbZvGrRjTfKzKeBlNwHlQdZyOaEeXtAmSfXrXwBzYgMiUlBxXtKaQcNaRfOtDqYjViTfBqOlWdKdIjSqAlDnDuEwNbInVrIuXaXmDjGeKgOjWnXmXrUeOlGiCvSbAtKwOhC</value>
+        <value description="StyleName">GtVxTuKiJzWaYtNaChZjGpEvRrKqFxEgYcMiWcEzCfOhQiRnHbLvCqSpCyKwLsHkWpXtDxAqFaZiToQcFqPgGgBvHjGiBqYsSpMpMxXmViZuXpHaEsSiItUsQkJgCvBbDnLkOhXgXuMnFxXkHhVxRyYhJbVdNoDtXeDyOvLaViHvMoXjMyXlLpRjDdKdNoIgBjJwCtIdDmCwBdNrAoQmSgCqDgOtIwYoJpIjQkOnPmUrHkFiVhDmQbJcAoApCwG</value>
+        <value description="SumDate">OaGmAwJpCjIaVwTkBoVgZiFfQkFhTbQhToVuClXbQrEzCzHuBpTsWpFoUpVtXaJcAiReAcMhRpAmSyTlBmFvAcRgDhDsIzHgCqQiCuSoRzMeGaIqShAlDsJkIbFwKgPoRrCrJgIeTsZfPkWjDuQvTfKrYlNaChVwJkNpZtPzEkEaGqDsOgUhQcRyHtMvDoImMwWwNzYjMdMeYdUaPzBqKrOeMyHhVxBlEnJmUnVzUiEzFzYmKvZzHoCpWvZvUpT</value>
+        <value description="SumMonth">IzAsPuEtEcEfUqApBjCaAgEwCqKkFgQyFnHkTtSrNdFwZwBxJrNdIkRwUpPbHiXvSgPcIyYqLlXgTmRxIsSpVkCwZlBrKwFuTvZsKbZpKmYfTjTkJaTqXmTsIbKiNzYqXnFgQgSlBcGoIeSeObZxIlTiEbQnDrIqPrOjMoNmVlTfNdViNbDwPyAgDuSwBuAlIzBrScHyRwYeBzTbUwRjThGjFjOwSzPmVkZuGvSyZbEbOnEkMkKsAzMzRaCrJmP</value>
+        <value description="SumQuantity">9.549194E37</value>
+        <value description="SumRight">6.831713E37</value>
+        <value description="SumWeek">RoGzRsMaSqNfQhPzFfWaAnXoVvRbGqOmCzAcOjTjFfLoSpJcEjTdEaYjLhShJzYaFpTnZoXqNyRjAxPjRrDcPlTyHeChTbQbGiYtQrVoQhXgMxHtXdKuOmRlYgJnXpLcLmUrMsEfXiSwXgShFvZnRtBySaUgJpGfRsRaUhVpThAyYzWfHzMeCpSbMeSjSyHzMcMoWoJhViUiWzBjUgQbHgNqXoHwMaCdDuSeMjDoEqTdFwUuAlElRdSeUkQzBpO</value>
+        <value description="SumWeight">5.856184E37</value>
+        <value description="SumYear">FrKpYyDpQmRkYyDjFgZbVpRzNrBySfEgDiJrLmLcTeRwNrWdNjOeUuWyEsKaAiOnGeAzHfXwQjXaPbJmXwUfQqEkOdAnOgFnWcYmUtUzGlJjRrKtRvUwJjCfKcQiWzSvTaAkDiDaYpCaFmIbUcExWcAhHoRmLjVdUyYrOwYoDmNnXiLjUkJrMrKcHzUfGqDiAfMgAtUzIyDuDmVxWsPsIwYqDjMzGaVaOwOaPeSkIbInVjBpDxMqGrCnQdJbNqS</value>
+    </row>
+    <row>
+        <value description="ID">-2</value>
+        <value description="actualEnd">2015-08-31</value>
+        <value description="ActualStart">2015-08-31</value>
+        <value description="CreateDate">2015-08-31</value>
+        <value description="CreateUserID">-2</value>
+        <value description="DepartmentID">-2</value>
+        <value description="PlanEnd">2015-08-31</value>
+        <value description="PlanStart">2015-08-31</value>
+        <value description="PredictEnd">2015-08-31</value>
+        <value description="predictStart">2015-08-31</value>
+        <value description="ProcessID">FkLeOsPhBwIpRiSnBfLlEaZqLfWcCfWoIsZuNgNcTbLvGySrMyPdNnLzTxSeBzOnHcCxDyOdPuUzMfXxDoVcAiPaIhJpJsXcBmQuWgNuBpSaYsQhXzFrBqFyWcItKiGaIwFtKeCxIjPxEhGvAgMhZiAoBnCxEaJqMqJeZnKfPaQfPcPuGnZwSiKvJlClCoXkTvOiTjGtBmHoHgFnFyZlCaUmYgHwJbXrRdYdPtDzUzSmOmNfWbNgBjRbRiQtHtA</value>
+        <value description="ProcessName">VyIsDcTxOdOqTjJpDmIxVkTqDqSfVyGmJeAkZtLkBbQfQdKrApZcMlLyUrWcSaWpRdOyUmRqGaHrLtPpUlBwYkErGjXcNfHmSiFeFjMtEaGhRyHsLkPnLjXiBeVeBmMyYpMmHoIvCtMvXwDwCyJpTmAfDsIkTsVsXbCxWrBlYgZwErIuRrQdSdOlIoKeOuOvLiNhGdOtYoSvWvInGrAxYsWyDzTqKoJlRcOsWxJrItVtIiHkFbEzTjKbPgYcIkI</value>
+        <value description="ProjectID">-2</value>
+        <value description="StyleID">NaQkHlPpLoGfVcDkCiTyTiDvYrVcKuWaKkVqBfQjJsKgRjCbSdTmTeKlMqFtNaQyVyLyGsSyWxZrKlXhSrDcHxKnOtRzOzPeYoOiVhNsNiPzIvNsIiCrUcBmIlOwUfIhAfErAmVaXhOxOfQjZcGeWkGrTfLwDcTmWyFhLcQjZoTyHxKeJwEnFhZyRjAxXnCyArWxHaQaKyCrUlQgDeMnCjEaVtVkLmCmQvVuTsCmOdUuGnAxQdJhVqHnDoMtQdF</value>
+        <value description="StyleName">PhLdHvQqReXmPeCqNbNqTuNsYpQaQaBqLgMaIeIqCbKtXvVvWoIrLiIyBuZoIqWxFyFhPkCqDbRyTfOeQdErQeZfMjNfMtRfAmGpMqSbZjQeZuJxEeNlOcAlKfZcOgNxOvJfRyShMxFpNbQiOpQaXrRgWbEaPvGyJsZaSrKuLiLwCxLqXfCxWlJjYoLsXtFbCjLrBkUrXsKzKlCaSgKgYeMfLeKdGuCtLzDbCnBkAaUfDdGyXdZoIoDtRrYhHgQ</value>
+        <value description="SumDate">VsUhYuXwVbMgMtVuTpReMpYoRmTmVaPhZgEiDdYpGkNoUxPiFoFvWfMlStXiOvVhVoCkIhSyEfLfZqFxZpGzByPrFwOnKnRvXhWgZoLsUzCnWpNtNnKnPwHgAmJsOrMtHuAeQzHvEtZkKmKlVyDsZeHlQvZoVhWaEnNiEaGwHxGzDvMjFqNgPrYjNwUyIsDcThEgUhKjTdPzCaWhJeIfKfQnTxEzGoMsLaJsQyIvIrPtWjFfPoFuDrLyVoStFkV</value>
+        <value description="SumMonth">YjPzSiDzTzPdHpXxQkGqQiRvDtQzTmAlMwYoTdKlWgYdOtVsShOcAlJvSpQiDpOnApPtKxZhVlAqGwQnDvCuTzLlBvHaRlMdDqCcDwRbXtIaKjKjWwMnYiOeFkHqPhCiGuFtHxLyGwMmQbFrIeMmFkSvCqQtUaXoVlVyHyDrAlIvPpXvUhGxBtDsBxRoKcUkAmLeMwFwAoKjJbBaWiViRyLwJwXkMfYjHfVbPaElOjUiJgGfQoXqRdUtIrRuYlE</value>
+        <value description="SumQuantity">3.876416E37</value>
+        <value description="SumRight">1.934766E38</value>
+        <value description="SumWeek">DwExAsKlCzGqUqHrUxXkVlBkUiEwWuViIvHpRsPlKaUxQmYhEeAfCtTsOpVxVfXgPpWgAxHsSdQkXjAkIrWgUzPrTdAbEeWxMlQnAfFpAiWrYiYgQlLiAuLyIfGpGbMuSyOjEcSxXiJoLjRrQaVcHqJrRdYkGsEnYzBgIiIaQxPtZfOgAjKkItRxZfKiYzSlQiMqDuInWfRfAfVgPqObMaChTqVyOdDkFdRvJtAdFqNdOuSgPuLsGmPbQeTnVaU</value>
+        <value description="SumWeight">2.006275E38</value>
+        <value description="SumYear">OzAcNgKqFoKaRsXlCsYxIqDcTgQjMtXyQwQsAxIgTuRzYzVyDkErHnRqSjScYsDrHsSvGpPeIxVkFtNjIrYcKoRqRoFpZlNwSaIyYwLmXzQuQoUxQqNgSzQzSjStCdOrOtHeEhGeXmTwXyHeMcTiIiVoHwPyWgTmWjHmXbOlLqMwTaFxUkLcCgOtNaGfKjDjTlOdPbGfRtQhVoZjCjTpIqMdSfViOhHaUdGpKzAdSbYnOhHhOuEzYvZjFdYnTmK</value>
+    </row>
+    <row>
+        <value description="ID">-3</value>
+        <value description="actualEnd">2015-08-31</value>
+        <value description="ActualStart">2015-08-31</value>
+        <value description="CreateDate">2015-08-31</value>
+        <value description="CreateUserID">-3</value>
+        <value description="DepartmentID">-3</value>
+        <value description="PlanEnd">2015-08-31</value>
+        <value description="PlanStart">2015-08-31</value>
+        <value description="PredictEnd">2015-08-31</value>
+        <value description="predictStart">2015-08-31</value>
+        <value description="ProcessID">PhDrMxSdMpOmEmHlAvPnQrEkLsXcToOtAbWfYdCiPkEjGxSvApAgVaAtBiHoIiGhMhWaDvVdGuMyYkWtGuFzDlLiMnLrJyOpIsIlAsPfVuDtGbMkGvBkJcVfHpPaCdZcVbFfLiOdAtAiHpCeFeZhYsIaTeFdWvGiQsDmKyCmKmHtLxUfKcMtBlRdBiKkQsErGoAhNvMvWzBsGzJeQuMyNjEaHeJdTdTjTjPgYoMjNwWtYrIgMoGsOdEvCzHaZjM</value>
+        <value description="ProcessName">LsAgOiWhPsPwVuEqNzLgVcOjDcYmQqWcGqEkBdOsGjPuXgKgJlDnDaXxEfUrLbZhElJrUeSqPoUsEuVeHsTgFzEeBjImVkUaMaBqOkAoWjGlDnLvBjJjFgNhNmEoOrHrKnZrBySvXxHtDnEhVpKuUwJoPsDhHuVwSlZgViIkGpSmDyCiVvPnOcGhXsImObRcEcWdYgZtIvCwUwPdYcVhQbGwToWrWfWdRoPeMzWaXvUnMyBsYdRhJrNcXnSeZyL</value>
+        <value description="ProjectID">-3</value>
+        <value description="StyleID">EeNpCpWvNsMtFdPgKrKsDlUeRnJwBsMwOgOoUpEnIpZuCrKwNqOmHgQiDxSqKsWpOsTlOnZjIqEcFcQjJqZmIjNlRfWgDnUwOmIiWsSgGqLyGyCsNaTlCjOyQuPuRcOdNwSfGvJaFvUrImJzIvSxIaEwDgLeZhFdIsUlKzSoIuDzKrXrQhWaFlDfQiErCwDtYkJrPfVyUvZiRbXlRsDoVtMcDjJlMoTvJlBdHeYzTgBsGbZjOmAhUuJiMyMhCiM</value>
+        <value description="StyleName">IaWeAdZjUdGoRbNkWmHwKnJfIxOzAhGwRkLyBcPzVyUjMfJgMrUiLiJbEvWwOhEiKzNgMrBnAmUrRlRhQiEvHzMkVxAeRqYoFfVbKxHoKjSuSqWnKvKmLnUzXjEfWdTuVzOtXvAoObEdCaHoCfLjOgFwJnKnJyStPgAdXcYxUkYtNgWuNzRtHbJbPoUkPvVkBvZcBxDwFuGrGvFcYcVuJvMcUsRpUwDnYnViZcWxHbAvCbUqYeYlUkBwOlLhTcX</value>
+        <value description="SumDate">RbQpHmRlEkDyFfQmYvYsOnIyXqBeGbUnLyKlNmEiLyRdZjEgIaDwFbMrTbMwHjUbBkXgDuAsWmYlGoOeMvHeLtHzOmIsYaWtVlHnOfFdScYcToOwGrEfCxQtCtFrLaWbLfZqOfBmGiBcZyZqWbDyYjXwZsHmYyOlZuNdMiMbKwLnOmToEhYyCmFrVhDnVnDhMkDlWhMdVyFlTlJhGcSmOvYnEvPgRaRxOpCvAbNqCsMsEkTkJwFiGvNpIsKyVhZ</value>
+        <value description="SumMonth">YpHaLcGrYnZwJdFyXzQgCaDkXlDmGyVvCuClTnZrHnBaUsHrUdVpVcKkRbEuPgAeXpEtIgOiAcEuYlAmKaWtUpLgVrFnHhXqXrVgOrWdKtQgRdNqJxJjIrLhWrIfFwZpYsWoZnOhKiXcQvScDdFtLjPmYpJmTgJbXoXfMiYrDoFmCjIoZoEjAdUsCiVrQnYdNyDnGrUiBiWvGqTdReQeVmSmXbIbPmGnOaYsKeOfUrXzRsJvZuSoKuDiHyBaSlF</value>
+        <value description="SumQuantity">1.3227348E38</value>
+        <value description="SumRight">1.2519971E37</value>
+        <value description="SumWeek">LiJgGtYzTlUzRwTaKjBnMnElKsSmJgMcMeWtSsYoDxQxCfEaGzZlMtLiNlTqNpMsQwKeXjZcGeKlMkYlTgKbQePdQkJsZbKvGhAvUoTrKzThHyIdZyLpVyAeKdRpQsTtQvBlQjSmOpKrSaAuDlTaAnUuUkFiMbIvBvSlQxIkWxYfHpBuObIqPoIuOlVeYnSfLhXrDaKeXlQfGbRgQwHuBuMcBbPbOuUeArJhLuSeWaTcMvRaLuKyWoTiYkFcAyQ</value>
+        <value description="SumWeight">7.6917256E37</value>
+        <value description="SumYear">GdEvYpAiFiVdOhQnYtIyPcZbJsPlJlPzEuDtHaDlGxOkAgYfHfOlIoSzNjOkIjNvTkVaYtIjLhLaBeKvLcGzHxUqHgAuDjMhRkQaTrXxKrIqCdVjCnQpRhCcYkDmKdQeJwDuIjIrVhLaFrDxRiHnWqPcQqAhHuDiCySfZrBjTrJiDyJbSlDkTgMiMyLbCcPlPoLzHtGaFsWyAmJdNtFiJdXxOlZyTdRgRgHfZfEwWbDfErHjXaCpWcOjMgEeZdX</value>
+    </row>
+    </table>
+    <!--Summary-END-->
 </dataset>
+
 
 
 

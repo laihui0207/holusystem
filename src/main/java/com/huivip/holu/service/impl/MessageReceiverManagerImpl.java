@@ -23,12 +23,22 @@ public class MessageReceiverManagerImpl extends GenericManagerImpl<MessageReceiv
     }
 
     @Override
-    public List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list) {
-        return messageReceiverDao.listMyMessage(userId,list);
+    public List<MessageReceiver> listMyMessage(String userId, String messageType, ExtendedPaginatedList list) {
+        return messageReceiverDao.listMyMessage(userId,messageType , list);
     }
 
     @Override
     public void deleteReceiverOfMessage(String messageId) {
         messageReceiverDao.deleteReceiverOfMessage(messageId);
+    }
+
+    @Override
+    public void messageRead(String messsageId, String userId) {
+        messageReceiverDao.messageRead(messsageId,userId);
+    }
+
+    @Override
+    public int newMessage(String userId) {
+        return messageReceiverDao.newMessage(userId);
     }
 }

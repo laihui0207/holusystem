@@ -25,6 +25,9 @@
     <!--MessageReply-START-->
 <%--    <menu:displayMenu name="MessageReplyMenu"/>--%>
     <!--MessageReply-END-->
+    <!--Summary-START-->
+<%--    <menu:displayMenu name="SummaryMenu"/>--%>
+    <!--Summary-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

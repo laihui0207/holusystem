@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,SummaryTests,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2300,7 +2300,100 @@
             </steps>
         </webtest>
     </target>    <!--MessageReply-END-->
+    <!--Summary-START-->
+    <!-- runs summary-related tests -->
+    <target name="SummaryTests"
+            depends="SearchSummaries,EditSummary,SaveSummary,AddSummary,DeleteSummary"
+            description="Call and executes all summary test cases (targets)">
+        <echo>Successfully ran all Summary UI tests!</echo>
+    </target>
+
+    <!-- Verify the summaries list screen displays without errors -->
+    <target name="SearchSummaries" description="Tests search for and displaying all summaries">
+        <webtest name="searchSummaries">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Summary link" url="/summaries"/>
+                <verifytitle description="we should see the summaryList title"
+                    text=".*${summaryList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the summaryList title"
+                    text=".*${summaryList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit summary screen displays without errors -->
+    <target name="EditSummary" description="Tests editing an existing Summary's information">
+        <webtest name="editSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Summary List" url="/summaries"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a summary and then save -->
+    <target name="SaveSummary" description="Tests editing and saving a summary">
+        <webtest name="saveSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Summary link" url="/summaryform?id=-1"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Summary -->
+    <target name="AddSummary" description="Adds a new Summary">
+        <webtest name="addSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/summaryform"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Summary List appears if save successful"
+                    text=".*${summaryList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing summary -->
+    <target name="DeleteSummary" description="Deletes existing Summary">
+        <webtest name="deleteSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Summary link" url="/summaryform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Summary List" text=".*${summaryList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Summary-END-->
 </project>
+
 
 
 

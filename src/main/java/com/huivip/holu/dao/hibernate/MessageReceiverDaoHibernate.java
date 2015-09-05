@@ -16,8 +16,17 @@ public class MessageReceiverDaoHibernate extends GenericDaoHibernate<MessageRece
     }
 
     @Override
-    public List<MessageReceiver> listMyMessage(String userId, ExtendedPaginatedList list) {
-        String hql="From MessageReceiver mr where mr.receiver.id="+userId;
+    public List<MessageReceiver> listMyMessage(String userId, String messageType, ExtendedPaginatedList list) {
+        String hql="";
+        if(messageType==null || messageType.equalsIgnoreCase("all")) {
+            hql = "From MessageReceiver mr where mr.receiver.id=" + userId + " order by status ASC, createTime DESC";
+        }
+        else if(messageType!=null && messageType.equalsIgnoreCase("UnRead")){
+            hql = "From MessageReceiver mr where mr.receiver.id=" + userId + " and status=0 order by status ASC, createTime DESC";
+        }
+        else if(messageType!=null && messageType.equalsIgnoreCase("My")){
+            hql = "From MessageReceiver mr where mr.receiver.id=" + userId + " and  mr.message.owner.id="+userId+" order by status ASC, createTime DESC";
+        }
         Query query=getSession().createQuery(hql);
         if(list!=null){
             List<MessageReceiver> totalData=query.list();
@@ -37,5 +46,23 @@ public class MessageReceiverDaoHibernate extends GenericDaoHibernate<MessageRece
         String hql="delete From MessageReceiver where message.id="+messageId;
         Query query=getSession().createQuery(hql);
         query.executeUpdate();
+    }
+
+    @Override
+    public void messageRead(String messsageId, String userId) {
+        String hql="update MessageReceiver set status=1 where message.id="+messsageId+" and receiver.id="+userId;
+        Query query=getSession().createQuery(hql);
+        query.executeUpdate();
+    }
+
+    @Override
+    public int newMessage(String userId) {
+        String hql="From MessageReceiver mr where mr.receiver.id="+userId +"and status=0 order by status ASC, createTime DESC";
+        Query query=getSession().createQuery(hql);
+        List<MessageReceiver> datalist=query.list();
+        if(null!=datalist && datalist.size()>0){
+            return datalist.size();
+        }
+        return 0;
     }
 }
