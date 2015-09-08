@@ -28,6 +28,12 @@
     <!--Summary-START-->
 <%--    <menu:displayMenu name="SummaryMenu"/>--%>
     <!--Summary-END-->
+    <!--UserTrack-START-->
+<%--    <menu:displayMenu name="UserTrackMenu"/>--%>
+    <!--UserTrack-END-->
+    <!--ClientVersion-START-->
+    <menu:displayMenu name="ClientVersionMenu"/>
+    <!--ClientVersion-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

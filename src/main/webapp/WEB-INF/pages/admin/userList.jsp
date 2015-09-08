@@ -46,12 +46,21 @@
                         media="html"/>
         <display:column property="email" sortable="true" titleKey="user.email"  autolink="true"
                         media="html"/>
+        <display:column property="QQ" sortable="true" titleKey="user.QQ"  autolink="true"
+                        media="html"/>
+        <display:column property="birthday" sortable="true" titleKey="user.birthday"  autolink="true"
+                        media="html"/>
         <display:column property="email" titleKey="user.email" media="csv xml excel pdf"/>
         <display:column sortProperty="enabled" sortable="true" titleKey="user.enabled"
-                        style="width: 16%; padding-left: 15px" media="html">
+                        media="html">
             <input type="checkbox" disabled="disabled" <c:if test="${users.enabled}">checked="checked"</c:if>/>
         </display:column>
+        <display:column sortProperty="acceptRegistration" sortable="true" titleKey="user.accept"
+                        media="html">
+            <input type="checkbox" disabled="disabled" <c:if test="${users.acceptRegistration==1}">checked="checked"</c:if>/>
+        </display:column>
         <display:column property="enabled" titleKey="user.enabled" media="csv xml excel pdf"/>
+        <display:column property="acceptRegistration" titleKey="user.accept" media="csv xml excel pdf"/>
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="userList.user"/></display:setProperty>
         <display:setProperty name="paging.banner.items_name"><fmt:message key="userList.users"/></display:setProperty>

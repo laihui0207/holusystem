@@ -34,5 +34,7 @@
         <mapping class="com.huivip.holu.model.MessageReceiver"/>
         <mapping class="com.huivip.holu.model.MessageReply"/>
         <mapping class="com.huivip.holu.model.Summary"/>
+        <mapping class="com.huivip.holu.model.UserTrack"/>
+        <mapping class="com.huivip.holu.model.ClientVersion"/>
     </session-factory>
 </hibernate-configuration>

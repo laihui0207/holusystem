@@ -51,7 +51,15 @@
         <!--Summary-START-->
         <Menu name="SummaryMenu" title="summaryList.title" page="/summaries"/>
         <!--Summary-END-->
+        <!--UserTrack-START-->
+        <Menu name="UserTrackMenu" title="userTrackList.title" page="/userTracks"/>
+        <!--UserTrack-END-->
+        <!--ClientVersion-START-->
+        <Menu name="ClientVersionMenu" title="clientVersionList.title" page="/clientVersions"/>
+        <!--ClientVersion-END-->
     </Menus>
+
+
 
 
 

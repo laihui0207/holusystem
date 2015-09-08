@@ -137,8 +137,8 @@
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
 
-                <holu.attachement.directory>d:\jwsystem\holu\</holu.attachement.directory>
-                <holu.document.directory>d:\jwsystem\holu</holu.document.directory>
+                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
+                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
             </properties>
         </profile>
         <profile>
@@ -157,8 +157,8 @@
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
 
-                <holu.attachement.directory></holu.attachement.directory>
-                <holu.document.directory></holu.document.directory>
+                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
+                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
             </properties>
         </profile>
         <profile>

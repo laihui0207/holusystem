@@ -58,6 +58,23 @@
                 <form:errors path="username" cssClass="help-block"/>
 
             </div>
+        <spring:bind path="user.phoneNumber">
+            <div class=" form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+        <appfuse:label styleClass="control-label" key="user.phoneNumber"/>
+        <form:input cssClass="form-control" path="phoneNumber" id="phoneNumber"/>
+        <form:errors path="phoneNumber" cssClass="help-block"/>
+
+        </div>
+        <spring:bind path="user.note">
+            <div class=" form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+        <appfuse:label styleClass="control-label" key="user.companyNote"/>
+        <form:input cssClass="form-control" path="note" id="note"/>
+        <p class="help-block"><fmt:message key="user.comapnyNoteComment"></fmt:message> </p>
+        <form:errors path="note" cssClass="help-block"/>
+
+        </div>
 
       <%--  </div>--%>
         <%--<div class="row">
@@ -94,11 +111,11 @@
                  <form:errors path="lastName" cssClass="help-block"/>
              </div>
          </div>--%>
-        <div class="form-group">
+        <%--<div class="form-group">
             <appfuse:label key="companyList.title" styleClass="control-label"/>:
             <form:select cssClass="form-control" path="company.companyId" items="${companyList}" itemLabel="companyShortNameCN"
                          itemValue="companyId"/>
-        </div>
+        </div>--%>
         <div class="row">
             <spring:bind path="user.email">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -108,8 +125,21 @@
                 <form:errors path="email" cssClass="help-block"/>
             </div>
             <div class="col-sm-6 form-group">
-                <appfuse:label styleClass="control-label" key="user.phoneNumber"/>
-                <form:input cssClass="form-control" path="phoneNumber" id="phoneNumber"/>
+                <appfuse:label styleClass="control-label" key="user.QQ" />
+                <form:input cssClass="form-control" path="QQ" id="QQ"/>
+            </div>
+        </div>
+        <div class="row">
+            <spring:bind path="user.birthday">
+            <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+                </spring:bind>
+                <appfuse:label styleClass="control-label" key="user.birthday"/>
+                <form:input cssClass="form-control" path="birthday" id="birthday"/>
+                <form:errors path="birthday" cssClass="help-block"/>
+            </div>
+            <div class="col-sm-6 form-group">
+                <appfuse:label styleClass="control-label" key="user.gender"/>
+                <form:input cssClass="form-control" path="gender" id="gender"/>
             </div>
         </div>
         <%--<div class="form-group">

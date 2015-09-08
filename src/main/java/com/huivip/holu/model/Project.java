@@ -49,6 +49,7 @@ public class Project extends BaseObject implements Serializable {
     private String ownerName;
     private String brokerName;
     private String note;
+    private String projectPathName;
     private Company company;
     private Set<Department> departments=new HashSet<>();
     private Set<User> extendUsers=new HashSet<>();
@@ -172,6 +173,14 @@ public class Project extends BaseObject implements Serializable {
     public void setParentID(String parentID) {
         this.parentID = parentID;
     }*/
+    @Column(name="ProjectPathName")
+    public String getProjectPathName() {
+        return projectPathName;
+    }
+
+    public void setProjectPathName(String projectPathName) {
+        this.projectPathName = projectPathName;
+    }
 
     @ManyToMany
     @JoinTable(

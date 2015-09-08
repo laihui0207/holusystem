@@ -75,7 +75,7 @@ public class SignupController extends BaseFormController {
         String userID=sdf.format(System.currentTimeMillis());
         user.setUserID(userID);
         user.setEnabled(true);
-        user.setAcceptRegistration(false);
+        user.setAcceptRegistration(0);
         user.setRegistrationDate(new Date());
 
 

@@ -26,11 +26,11 @@
             <value description="userId">YH001</value>
             <value description="logincode">136</value>
             <value description="username">user</value>
-            <value description="password">21232f297a57a5a743894ae4a801fc3=</value>
+            <value description="password">21232f297a57a5a743894a0e4a801fc3</value>
             <value description="first_name">Tomcat</value>
             <value description="last_name">User</value>
             <value description="email">matt_raible@yahoo.com</value>
-            <value description="MobileNumber"></value>
+            <value description="MobileNumber">136</value>
             <value description="password_hint"><![CDATA[The same as your username.]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
@@ -48,11 +48,11 @@
             <value description="userId">YH002</value>
             <value description="logincode">137</value>
             <value description="username">admin</value>
-            <value description="password">21232f297a57a5a743894ae4a801fc3</value>
+            <value description="password">21232f297a57a5a743894a0e4a801fc3</value>
             <value description="first_name">Matt</value>
             <value description="last_name">Raible</value>
             <value description="email">matt@raibledesigns.com</value>
-            <value description="MobileNumber"></value>
+            <value description="MobileNumber">137</value>
             <value description="password_hint"><![CDATA[The same as your username.]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>

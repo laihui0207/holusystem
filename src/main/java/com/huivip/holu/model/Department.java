@@ -43,6 +43,7 @@ public class Department extends BaseObject implements Serializable {
     private Date createDate;
     private Company company;
     private String pathName;
+    private String style;
     private Department parent;
     private Set<Department> child=new HashSet<>();
     private Set<User> users=new HashSet<>();
@@ -120,6 +121,14 @@ public class Department extends BaseObject implements Serializable {
 
     public void setPathName(String pathName) {
         this.pathName = pathName;
+    }
+    @Column(name = "DepartmentStyle")
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 
     public void setCompany(Company company) {

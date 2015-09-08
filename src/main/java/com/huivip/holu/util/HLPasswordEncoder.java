@@ -16,7 +16,7 @@ public class HLPasswordEncoder implements PasswordEncoder {
         try {
             MessageDigest md5=MessageDigest.getInstance("md5");
             byte[] md5encode=md5.digest(charSequence.toString().getBytes("utf-8"));
-            encodeString=convertToHexString(md5encode);
+            encodeString=covertToString(md5encode);
             //encodeString=base64.encodeToString(md5encode);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -25,12 +25,25 @@ public class HLPasswordEncoder implements PasswordEncoder {
         }
         return encodeString;
     }
-    String convertToHexString(byte data[]) {
+  /*  String convertToHexString(byte data[]) {
         StringBuffer strBuffer = new StringBuffer();
         for (int i = 0; i < data.length; i++) {
-            strBuffer.append(Integer.toHexString(0xff & data[i]));
+            if(data[i]<16)
+                strBuffer.append("0"+Integer.toHexString(0xff & data[i]));
+            else
+                strBuffer.append(Integer.toHexString(0xff & data[i]));
         }
         return strBuffer.toString();
+    }*/
+    private String covertToString(byte md5Bytes[]){
+        StringBuffer hexValue = new StringBuffer();
+        for (int i = 0; i < md5Bytes.length; i++) {
+            int val = ((int) md5Bytes[i]) & 0xff;
+            if (val < 16)
+                hexValue.append("0");
+            hexValue.append(Integer.toHexString(val));
+        }
+        return hexValue.toString();
     }
 
     @Override

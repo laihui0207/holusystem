@@ -35,6 +35,15 @@
             <field property="loginCode" depends="required">
                 <arg key="user.loginCode"/>
             </field>
+            <field property="note" depends="required">
+                <arg key="user.note"/>
+            </field>
+            <field property="password" depends="required">
+                <arg key="user.password"/>
+            </field>
+            <field property="phoneNumber" depends="required">
+                <arg key="user.phoneNumber"/>
+            </field>
          <!--   <field property="userID" depends="required">
                 <arg key="user.userID"/>
             </field>-->
@@ -198,5 +207,13 @@
         <form name="summary">
         </form>
         <!--Summary-END-->
+        <!--UserTrack-START-->
+        <form name="userTrack">
+        </form>
+        <!--UserTrack-END-->
+        <!--ClientVersion-START-->
+        <form name="clientVersion">
+        </form>
+        <!--ClientVersion-END-->
     </formset>
 </form-validation>

@@ -230,7 +230,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         user.addRole(roleManager.getRole(Constants.USER_ROLE));
         user.setUserID(userID);
         user.setCompany(companyDao.getCompanyByCompanyID(companyId));
-        user.setAcceptRegistration(false);
+        user.setAcceptRegistration(0);
         user.setRegistrationDate(new Date());
         try {
             this.saveUser(user);

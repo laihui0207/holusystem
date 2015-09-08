@@ -1255,7 +1255,85 @@
     </row>
     </table>
     <!--Summary-END-->
+    <!--UserTrack-START-->
+    <table name="R_UserTracking">
+        <column>id</column>
+        <column>inOrOut</column>
+        <column>ip</column>
+        <column>loginDate</column>
+        <column>optionTable</column>
+        <column>userId</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="inOrOut">FsZcVjGpUsFpWlYfXaOrPbSdWtGhEyQjOhUgSfQbViPySuTmByRlZyEcDvAqSiTiGqHpTnGkNyLxIdCfYcBkCdNoCmHxDnQrJlGcJbHgSwTsMcHhHxGsRfWiPmSzRdDcOuGnOmXpDjVtXjAbBdUbXjYhBwXmHaPjLlGlTiLzUrSfUiVjXfVrLpNbBuBjRaSqBmBoUlJeRxCaHfVqSaXcLeLqUtAfKvCnSzLiIlCcHrCvPzVjRtAqFhLjHhBhLpR</value>
+        <value description="ip">TxHdQkPeYdOpRrVlTfCuJqEtFmPnDzCyAsDjCbCuHrBsJcXsRrRdMiDmGpLeIhTqXgFkHsClDgQnMfFtTpWaNrFmKdOiOdPqGlEqFdQvHqEwMnRyXaNlGhUkJoEsScPzQaNoIeDfYgOzFeNaXiHvOtNcYpQxOkBnHyXjMqVqPoQoJzEqJuDmQmQcJuKzOzOeBsVlIcXtZpEqNlXcAeTlLyMkIcMgRnWeTgKlXmDuVsKsDeBlVpVkLbAsPvSoUeI</value>
+        <value description="loginDate">2015-09-08</value>
+        <value description="optionTable">YpBiGhLtTxUnSeMoRaVaEoYyRoBqLeDjPeEiQyFmSmPqRlGlFtMkBgRzHmVnUiTcOhZoUwQbRwHzJuBwSkWiUfTcBkBnSwQrMnXrDgOnNhDaHzNdAzScMvFnScIeSwJhHmIoTfHkCbZiYhYiNuLkXhPnVfJhXkYwPvAaPaLnRvDkGaEqNhNpCtRpDwEvShCvLgOyEiAoTiHtJlTpEkCnCsRePgYdQaGaArDkOtRmYbFgLyGaHvYgYvVaGuApNfF</value>
+        <value description="userId">CxZqTlRhLdPvVfKvOtUmNeVwOrFbDrWvBjQsOrMuAyUoJcUgGzUlXcTdRoFmNqMaYdXqRuRcGnLaQfDwKqAfUsHpQjZeIaSwYdZvSbPqPhFtZeSaXtSyAuPkKqHoRpVlSrQwCmFtMjQfRkFtNuQpIaFnXdWrTnGeTxAyRlEmMwOkYoPmMkGkRtHrClNrCeGbIjQfYcFtUqReAkZjOaUlWqZnLyIqMvYwNvUtAoQnRfMeOnPlDvPrQpEzSqGiWuR</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="inOrOut">RiOxJuWeLjYhYhUkJqFzWtKoDxRmRrViMkPnYzLeScPqHtSpHbCaGkYpZjTdYeRiGsMgDzWrYpXyUrGnXdTrZzBfRmDpRnYnIrZdXlQiRnPgOaSuXfWiCcTiZfNxNhFmPiLdRoKyUjNmQzAtMvSnUmGyWeOqOiKzPwAxPeLqJpDrZnEdJlRpMrRfNrHqQqGuFmHxZkEgTyFpGrAvSbCfWsWbOnXrDrKtBnGsFpHxWyUtQzDbSqDmOyGqHiAlAvH</value>
+        <value description="ip">YyJkOtDsSsZjHtXeXcKeVhEjPqWwTvFoFsMcZfZbZfEgNiXgUwPgViJfAvZwZkQuBzVfCeElNiUlMlMtLsDvKeBdBtGmAlVdNsYaUtNfEeXlTpNeAeDtHjLvLiRhXkBoLkKjGsWfRuBkOqApNgYqPsMpSdOgMySfDcFzTsFeTxRtGhVvJjDhTqKaDjVjMdKxXeOdUwKjKvCtVlWkKmDkWuKpIfKkOiFcJqAnHmXoPyHmTkNnYiNtXdMwYwBaCbF</value>
+        <value description="loginDate">2015-09-08</value>
+        <value description="optionTable">YkSoLfBxDwEtBeNeCeFmGmWuQoPgEmHePxMjEiPnOqUmBdXeLxUiQtXwRzOlMsWlXmXlMgEmYkOmEjVyWfDnApQnGoWmFyDoGkBrStPxCjXeGbNgUwFtDdQqLaEkIpCjNyQeSiOfOhMkLxLzUoKjKeYmElEiTnJxPwTuKzVuEnEmPoLzFpLbPiKzZfUuZpZoZgUtHfUfOgXjBgJcWuOuLeLpRwCaXiRbOjVyIkFdDiCqMnCqXnSvToScIlYwVwG</value>
+        <value description="userId">DrCxZgJiOjWcWfOiZhFhHpJnVuQnRxKoGoKbVsBaVzKdDpFcJaAcUxKaEyYiLpJzPzAaRzSjMvGiCqBkFyQfEdQyFtBiMnKfHzOqTzBoXpZxTdVwGvJpYjNoQaTkVoGfZaUiTgYsJfKvDqTyLlSpLlTrZaPdOeZhLiAwKjCfLbOpNcYjMeWuPqBgZuJmUyOtTnAfCqFiPsZiTlWlIpQfXgPtKxJeFkMoLmZyCyDwVxLaTpFcFpQpJrEjVrFeTcT</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="inOrOut">DaLtSrWpJxPqDoOfZoOoCfVaXaKsCsXgWrFiWtAtBoMhHfAtSqTaBgHqIcVdLtTcHjZuOpWoUcOoOdYcLxEfHyMcLmYqPnClXbBdAxJuMhCoNxOtVeNgGnHjPuCyHjKjEcAnWcHsGgWeAvLnYiHjSmQxAwIkIgDgTdBbBtNvVzLeUiDxUfKsVaVuFiQbMzOeWaLfUoSaUtWmQaUuTuXhWfHuMhDeQrKsZdQcTeCsRzSwTlBcNkWwAyRrWhWwInZ</value>
+        <value description="ip">TaTfQpPvPrGcQcXhDdOqNpLcCkKcGjUqAgYfZrSbEfSdWmPaVhPlIhYnKlSzJqVaHzNvOcBvCdRqOjVsGaBxEzMuSgAfWoUhHcFfSzUwHxFyKjSnSlVeWgFgOzUdQhHvOfHoHtBrKfKgLoBuQvZcOzRkKuKcSlHuUtGnBfMaXmRxGqGdCdKtMfNeOhIuLcHrIkUsJgZjXkFzFqXmIhFcShKrMcEhFxAxUxFsGeTbMpVlCkFsQhXzIfDiCwKxTpX</value>
+        <value description="loginDate">2015-09-08</value>
+        <value description="optionTable">HcZqYsGoFgReCbEvDkDbJxFdCmHmNjOfXuNaIhMjDfOvCjHdTpFfWaQzWsPnFcVdAlBdNpLxBtZyNbGjZiYaJfElJhGvYcIjUiPoDrPyZxGfNkFiRrMpBeBpDgQuRlDuGpGmOxYlTaGqEsGeFuYdRaUcRcMgNwIkUiXjMuMcLjUdCjHpAiQtZbZdDnBtNiWrPcGwJqLdDkBvChIcHzTrLnNaYrWiFdStMrVdLnJiQwKeZmMpWjAqGyTnTqRkTtG</value>
+        <value description="userId">MdCuHsQsHqOkTwRrFkEcKoHkHzAlDhWfFdUeGhUoBfWcPlQlOyMoUwVeKaWwNhLeZvCjScBoUjZoBvMxVmJtPyVyIbVcKoHeCxCvGqZgUuHqEfCgPaVnEoWhChSjHeOvVsKaCbSnXiPwDjBaNsUgYxCwSxAnMuBfIhPrPrPhZbGaIrSgNhMhGzYjVuXaQcCqVePdLjWpQzCjAeOeCsFnQiYtMdJwIvEaGeLfUqTwGbPoDfTuYiAeBbBlNqQlCnN</value>
+    </row>
+    </table>
+    <!--UserTrack-END-->
+    <!--ClientVersion-START-->
+    <table name="ClientVersion">
+        <column>id</column>
+        <column>QRCode</column>
+        <column>clientType</column>
+        <column>clientUrl</column>
+        <column>createTime</column>
+        <column>releaseNote</column>
+        <column>storePath</column>
+        <column>version</column>
+    <row>
+        <value description="id">-1</value>
+        <value description="QRCode">QpDwHnFnYkFqHuUgAdBoHsVbQgZnNaSzThUgTbFwPsIjTaQtGaNhZfJlBkHgMlEnGvWjZwXmDvZbMnKeLvBuXiSvXhViJmZvWiCrQpRoDvTxHoUpLrFpWjHjDtHsJuFyYcKaCiUeKhLwMdSiRrKxEkIwBjWbWdLoOyLlYoAgGeRuRpXkHjTaFhNpNiFzOjRtPrRyXqSqUaZbNrEiQoIpPgDtNwIkGpMtNcLmAnBmNlDaAmKcZhGpGvOyVuHpCeJ</value>
+        <value description="clientType">AcXoNtJkYhOnBtDmEhWjCxNrVcCoDjPpLjFyPsYdAiByRrKrEqPbSuJtGzEaCyBxGeEnZnWpRpKrBzNaLjHkVrEtMtCfVnUtLkNlEwFhJnAtPePjBaIiSyNlTxAkMvAwFeCoVuKjOuHiUpUaBdYgZfObXhApIeWqZmVdTiLlOlCnPxIoUkMyLxKfQgEeVdYhHvNsLhElVgEoSdAwSfKoYhMaNgVcIrNvHrQkLnWyHlPsIvWhIfZaSsMjRjAgTlW</value>
+        <value description="clientUrl">TbDlFoXhNzLfExHgKlIsKvZeMmPnDtFqIxEgYnJoPwYtOoKsPkXsCyDtYqWmUyQxUwWeWwIvKbMvYiLtGdDlLeKiRhPdUnLcNoAsEzBpChXlHwHgYtUrLnIrHtNySwKhEgTfGnWxKkFrUmSuZcAsDfKfRfOsVvHySiVwLzTdGhVlRdEgIvSwLmRhAoCjVyElBqVmZpGrQbUvFzOxMnTfFpQpRyNjCxUlJmSiGlMhEkMiYzLnVgVkPaOcQbZhBlT</value>
+        <value description="createTime">2015-09-08</value>
+        <value description="releaseNote">YkQpEdSmHeHmPiXnVfBiEsYxVdBfKuJxAfUyRsOvJtUrMiKdDqImNdYcHnNbYyVhOdWpYjPlDmFpVmNfKmLwOlDjWgPrEuXcJvErJrJsRwQbGfHnJnSzOcGbPkUnDsHzKqGeUgKvOpHaPgTxXtUhZhFbHcMdGuPlKoGaSbEgUnRuXnYcUyUgCqTnNnBoLrJtTuPkCqOuFlSgOxPlTwHzRhNtJxEtKtTaKcTkBcGmIjXnSwOfJmEsXhIqCzGgCmI</value>
+        <value description="storePath">GhHgSxUaYwBfYvOwWtLvWsCnUcMeKpBdAxScSrTfBfTwAuYvWfAnCaKvMfBmGbIwIbElToVxVoAkYyNoJcAgXvGgReJmLbWqKxHcWwUqHqEgAmTmOaDrDtGjXkJuPdKoEjTyGbWcAnOgUcOkYhKdBpItDaCfOlKxQrZeSbGnQyMpYzYrBsElKqJvDbHoNyZjUaErPxIrRiZwUyEnHhYgYlKtRyPcMoCqOyGcSrPxRvFoTtZtDsUeBsVpQiAzDwU</value>
+        <value description="version">EzHmYuHhMlWuSmVzTmNvZsPdAmZkAtRbHaZcPuGbHtKsSsFoOiYaBrFnWzFfSlFkKaUcGdXtRcIdLuRuJtViBvFfDdCwNpKhPxKpPdNxJwBsUdBtDvTtWzWmIlPwJuGiLlTaVaFwEoIaEjCaOjPcWtIoVkDpKqVxAsNyBwJtHlOhMeCkDfCtJsWdQaGyAzDhGxYzXvGfIlXmEvJaUjUoFvYqMbVqDpLnJjZwGxWuKcEjUrJkJbJfWfVmYaYkStX</value>
+    </row>
+    <row>
+        <value description="id">-2</value>
+        <value description="QRCode">UvVoYmOyEjZmCjDnFrGwXpZbSxRwSnHgJhBeVoVjCrHoXqUdWmCqXvLvQkWhOcUtBvJoGvQuCxRaCwRjOdZzSzOrDpHxQcFsTrZaJsKlWfIyFkZxNfPoKiQmVvZbNuKvMyAlYxUfQmHxQkWlPhLuAgDuQkJsMvKyGnEdHpSaVzBaElQpXfKmMpBbUbLwEeIhWpLkAaSjCfKeEzAdXqPuPoEoPcKyWlFoBbEtEnOhJaNzPoXiSkQjInWhCoYoSoN</value>
+        <value description="clientType">MuKiGsHyIoChJsLcRlVxZkFyEjUuMjEdTbQzWhZpWxHyTnPmScNkZxGwPlZiYuBvVsSdPwDpYhUuObVlGpDkHqVfAlMpFoCmLmAsEfCwTdZjSjAjRxTuSdRhAuSoByZzYmDuTcYcBaZwOdArVqYhGgEcOwTkEpUfEuZhDzBsIhDnAiIsPvBjVdZnIuFkApGfOjAoVbLdLcYqVfHjKyJuGaMtOlBxQfUtFeWnAhUlLnDnKpPmIaZdIrCzZzWjEqE</value>
+        <value description="clientUrl">CrObWvWjEuZdYmHuWyHqXmYdGzClZaFfUnWdPxXmGnBkRjTfJeZxJdKkTdDhGaOuGoIvWkHxMxIpIiGcDlFtGzOaGyZxCyPdYxGvZuXyYjOpJdXcLaFwEyZdQuMwAjUkHsJhOhAgVnHsQaFtKwCaTsAhYbZfMkYiQvJeFmXjPlKmSsYlCgFvMkNwOtBjTgWhMyZhFbXeFlAlXyWrAhPmMoTsQcVaQoQpXtYaQuLsPtWhIwCgQxWhTdVeSqXkBdW</value>
+        <value description="createTime">2015-09-08</value>
+        <value description="releaseNote">ZlMlCmDlLrQpDdGpZhWzOlGgGsGkUfZgKzVwNhLdHeXoGgHwRfOtXsPrBcXkCiRoZdWjAwAvMdErVbCxDdZeNjPvPiCeCtPqLlGjMlCcGhDqDoKnToLkZfJbPkAnKbYuHmAtVtFgWbHkYuIrWzAjAkJoUcQgFnQjApBkAsObDlLyXhQiXsOoXzZmIuGdVyMsUgJkIcDkVkIbTxWjKmSzPyLsOdGvSiWaVnFvBpOvNkLqBcHvKxNmTiBiXpXiUnF</value>
+        <value description="storePath">AxTuIzClNtFaBxZmKcIxDiOrBcNwJwEkIfStSvHzLhZmAgErCvEsEyChAoFiNjZoKdSpUgFuTuOdJzKyIaAuWfMbZhJyYiDxPvAqPmOuMmXuGwWaBuJiVmGmKpUtZpYiPlWsSgSwLkEzTaGaGlPtMtPtAnJlNlCnXfEyWoLcJoMhIlPrTkViWtVpWcDqZeIaUbZqYhPtKsJyAzZoAjNpRnHbYdUwFcOzJgWtYmDfQbKsMhPxPrZnKyOuUfIkZwY</value>
+        <value description="version">PxRoIoJjLfHuXmKgJlAjKaSyMaVaKnYkNnSgIpEoOgCpTnBrEsFnOnOvLwXpQeFkRwFnOcRsKnNbBxVrMtLrRcPzSmJpVsCtAnVzAgOlXuYaZyCzAfQuAjZhDdIcBmUxJyIaOxFkFeCuBeLsZsBrHvAnUrAtPbRnBlSuKeAtHuMgUiFvCkFvKrBtTmLtQbAaOvXjKhHzStUcYfKfDaBbQtDhYiBlWcEoUoCjFvCvXdVmQsYmIdIaDxMwLwOwMjO</value>
+    </row>
+    <row>
+        <value description="id">-3</value>
+        <value description="QRCode">KvEmPwZxReQrRhNrMlNdXnIrDuXiWmXhCcRqClGvYlBuFyQjWtAyWtOmBuNtCzRuOkRyKiIpZcKvHbJgWoLtFhFrChVxMcLbSpHoYhDkBxTjCdPkLrViZqLhEqJoAtEmVgObWdLpPkAyUyCwPkWzXuKxBuTkOdStZsZeBjFsUpKkOsImYrRjNjApGhGkDvKfWfOwHiTsGmHpUzJnOhTtMnVlNaYpGwGfMoRlTmOsBjObTeZaCqGfFnOfLmCbPnH</value>
+        <value description="clientType">YrVoGvWbPfBwCjYjZcRkOvLiGkEmBaLdJhGwKbXwEwLlGhGmZoVhWdWpPqJjLuKtOfOoRkMyKjJvSbFiFtMtZcHbNvYmMuVoYaNyWtFqAdOeHxTvJmTrOjHaFkRgUjRsJiRdIoYzIyDrLkVnCeAmChJtMwNnLjXvTjFoTzNoClAdMmRfSoLuKwUlGoNaNzToRlKtBzVbBbSyKxMvWqZmDfSbSkPuToPvLcZrUaFtJwOeMqFpUoGuXfRqCeTeNyR</value>
+        <value description="clientUrl">FhHxVpOuQjWwClSqSqDlZzFdTrVnMbRrIwTlBzEjDtRpVwLuTzGdWjKlMvFrUvAxSzVhGiXlArBcEqMlTwXaZrYcBmXdZjMcBrJeNcOlNnDdUvMcNuDjPsRxMuJgYcKkGfYqNoMjSmRkUuAyWbJwKyBxWdKbFpYrFxHwDgRmCuKvBmKfJmEwDqDdCcTcScHuNmEcDiYiOyAoPaFwKeXpNtDsBfBkWcZlQkBcNlKbNfDyGoTkIpUaOmVnUfWnSjS</value>
+        <value description="createTime">2015-09-08</value>
+        <value description="releaseNote">DbXqVtShBeLlXlGuXtDmLzVmMxJgCsDfKbMaQhBvMiGjMuVtLnLiWbOcWnJfNgOlGkSrEnNnMdDwQvVyOjMpFlFsCcXvVxMwWlHgIzKsNgBiGkSdJhPdAkSwJwGdWoFmOmZuNlThShIxPyWiHbUaJnTrHfFvWeXlDhMfDtFpUjPcTfUxSrMaUaYyRnJpBhAhEyWeLnAwZbEkMdYtKmGnZgRhUaKiNgVmVwSsHiHmMlNmHcIaLkYlCkUdUgUzLmP</value>
+        <value description="storePath">BwGhTrCkXuQdItDrWhGeTwIbFiNtErZqLtMdKbOxNpFoVaXuJcLsYpGcXjOlUeDvWfBoVfFnBvIpNsHbChDnXoMmPoPiWfTiNyTyYaKkXxSzRxVjJoEwArZfDlQvPiImJoQsWfRoYeYfMoYcIuQoOiPiZfYiCxRcEvZzIcLsOwKiRxQnUlOpCnVvZrUjRvPvMcWdJeRiVbWpFlPjTgXdMgZqAeOyWkYvEbIcEkDvAwStHvApRwRmZdDhNhUfTnB</value>
+        <value description="version">YfStEmZrDkEkWuJiNoEkMkFwJiHyOaGbPiRfWzJyMeEaOoLrEwMuExGtJtDaMyHwLnJpLzRaGsPfAkJyVvGuOrYnZbPmKbBcDeClAkWuMaWfWzMvUaTrVePeLbStZkXlZzTjQyVbHqTjRbLjQfIoRiAnDyInFzLbNtEpZpChMlZsCeUlIhRzUcRxLjFpPgGqRqPvWkIkWaMvIgRvZuLbZnAdAyXxOdYcQoGhLiRyFbNzLsDiQdAlYnBsBrMqAeG</value>
+    </row>
+    </table>
+    <!--ClientVersion-END-->
 </dataset>
+
+
 
 
 

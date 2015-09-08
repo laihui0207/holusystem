@@ -38,7 +38,7 @@ public class DepartmentManagerImpl extends GenericManagerImpl<Department, Long> 
             slv.setChecked(false);
             slv.setIcon(null);
             slv.setId(dp.getDepartmentID());
-            slv.setText(dp.getName());
+            slv.setText(dp.getPathName());
             result.add(slv);
         }
         return result;

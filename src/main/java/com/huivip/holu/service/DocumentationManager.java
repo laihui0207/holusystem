@@ -23,5 +23,5 @@ public interface DocumentationManager extends GenericManager<Documentation, Long
     @GET
     @Path("{id}/download/{userId}")
     Response downloadDocumentation(@PathParam("id") String id,@PathParam("userId")String userId);
-    
+
 }

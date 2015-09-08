@@ -16,6 +16,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -67,16 +68,20 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String email;                       // required; unique
     private String phoneNumber;
     private String QQ;
-    private Date loginDate;
+    /*private Date loginDate;
     private Date lastLoginDate;
     private Date lastLogoutDate;
     private int loginCount;
-    private int totalHours;
+    private int totalHours;*/
     private Date registrationDate;
-    private boolean acceptRegistration;
+    private int acceptRegistration;
     private boolean allowCreateGroup;
     private boolean allowCreateProject;
     private String userState;
+    private Date acceptRegistrationDate;
+    private String note;
+    private Date birthday;
+    private String gender;
 
     private Company company;
 
@@ -156,7 +161,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return email;
     }
 
-    @Column(name = "MobileNumber",nullable = false)
+    @Column(name = "MobileNumber",nullable = false,unique = true)
     @Field(analyze= Analyze.NO)
     public String getPhoneNumber() {
         return phoneNumber;
@@ -194,7 +199,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setQQ(String QQ) {
         this.QQ = QQ;
     }
-    @Column(name="LoginDate")
+    /*@Column(name="LoginDate")
     public Date getLoginDate() {
         return loginDate;
     }
@@ -233,7 +238,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     public void setTotalHours(int totalHours) {
         this.totalHours = totalHours;
-    }
+    }*/
     @Column(name="RegistrationDate")
     public Date getRegistrationDate() {
         return registrationDate;
@@ -242,12 +247,45 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+    @Column(name="AcceptRegistrationDate")
+    public Date getAcceptRegistrationDate() {
+        return acceptRegistrationDate;
+    }
+
+    public void setAcceptRegistrationDate(Date acceptRegistrationDate) {
+        this.acceptRegistrationDate = acceptRegistrationDate;
+    }
+    @Column(name="UserNote")
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+    @Column(name="Birthday")
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+    @Column(name="Gender")
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Column(name="AcceptRegistration",columnDefinition ="int default 0")
-    public boolean isAcceptRegistration() {
+    public int getAcceptRegistration() {
         return acceptRegistration;
     }
 
-    public void setAcceptRegistration(boolean acceptRegistration) {
+    public void setAcceptRegistration(int acceptRegistration) {
         this.acceptRegistration = acceptRegistration;
     }
     @Column(name="AllowCreateGroup",nullable = true,columnDefinition ="int default 0")
