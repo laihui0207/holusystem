@@ -68,7 +68,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String email;                       // required; unique
     private String phoneNumber;
     private String QQ;
-    /*private Date loginDate;
+   /* private Date loginDate;
     private Date lastLoginDate;
     private Date lastLogoutDate;
     private int loginCount;

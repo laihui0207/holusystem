@@ -111,13 +111,13 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         }
 
         List<ComponentStyle> result=new ArrayList<>();
-        List<Task> tasks=new ArrayList<>();
+        List<Mission> missions =new ArrayList<>();
         for(Component component: components){
             List<ComponentStyle> list=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
             for(ComponentStyle style:list){
                 if(style.isOperationer()){
-                    Task task=new Task();
-                    task.setComponent(component);
+                    Mission mission =new Mission();
+                    mission.setComponent(component);
 
                     result.add(style);
                 }
@@ -140,57 +140,57 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         return result;
     }
     @Override
-    public List<Task> getMyTask(String userId){
-        List<Task> tasks=new ArrayList<>();
+    public List<Mission> getMyTask(String userId){
+        List<Mission> missions =new ArrayList<>();
         List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
-        handleProject(new HashSet<>(projectList),userId,tasks);
-        return tasks;
+        handleProject(new HashSet<>(projectList),userId, missions);
+        return missions;
     }
 
-    private void handleProject(Set<Project> projects,String userId,List<Task> tasks){
+    private void handleProject(Set<Project> projects,String userId,List<Mission> missions){
         if(null==projects) return;
         for(Project project:projects){
             if(project.getChildProjects()==null || project.getChildProjects().size()==0){
-                handleComponents(project,userId,tasks);
+                handleComponents(project,userId, missions);
             }
             else {
-                handleProject(project.getChildProjects(), userId, tasks);
+                handleProject(project.getChildProjects(), userId, missions);
             }
         }
     }
 
-    private void handleComponents(Project project,String userId,List<Task> tasks){
+    private void handleComponents(Project project,String userId,List<Mission> missions){
         if(project==null) return;
         List<Component> components=componentManager.listComponentByProject(project.getProjectID(),userId,null);
         for(Component component:components){
             if(component.getSubComponentListSet()==null || component.getSubComponentListSet().size()==0){
-                Task task=new Task();
-                task.setComponent(component);
-                task.setComponentType("parent");
-                handleComponentStyle(component, userId, task);
-                tasks.add(task);
+                Mission mission =new Mission();
+                mission.setComponent(component);
+                mission.setComponentType("parent");
+                handleComponentStyle(component, userId, mission);
+                missions.add(mission);
             }
             else {
                 Set<SubComponentList> subComponentLists=component.getSubComponentListSet();
                 for(SubComponentList subComponentList:subComponentLists){
-                    Task task=new Task();
-                    task.setComponent(component);
-                    task.setSubComponent(subComponentList);
-                    task.setComponentType("sub");
-                    handleComponentStyle(component,userId,task);
-                    tasks.add(task);
+                    Mission mission =new Mission();
+                    mission.setComponent(component);
+                    mission.setSubComponent(subComponentList);
+                    mission.setComponentType("sub");
+                    handleComponentStyle(component,userId, mission);
+                    missions.add(mission);
                 }
             }
         }
     }
 
-    private void handleComponentStyle(Component component, String userId, Task task) {
+    private void handleComponentStyle(Component component, String userId, Mission mission) {
         if (null == component) return;
         User user=userDao.getUserByUserID(userId);
         List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
         for(ComponentStyle style: componentStyles){
             if(style.isOperationer()){
-                task.setComponentStyle(style);
+                mission.setComponentStyle(style);
             }
         }
     }

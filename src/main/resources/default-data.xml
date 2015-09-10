@@ -19,8 +19,8 @@
         <column>acceptRegistration</column>
         <column>allowCreateGroup</column>
         <column>allowCreateProject</column>
-        <column>logincount</column>
-        <column>totalHours</column>
+      <!--  <column>logincount</column>
+        <column>totalHours</column>-->
         <row>
             <value description="id">1</value>
             <value description="userId">YH001</value>
@@ -40,8 +40,8 @@
             <value description="acceptRegistration">1</value>
             <value description="allowCreateGroup">1</value>
             <value description="allowCreateProject">1</value>
-            <value description="logincount">0</value>
-            <value description="totalHours">0</value>
+           <!-- <value description="logincount">0</value>
+            <value description="totalHours">0</value>-->
         </row>
         <row>
             <value description="id">2</value>
@@ -62,8 +62,8 @@
             <value description="acceptRegistration">1</value>
             <value description="allowCreateGroup">1</value>
             <value description="allowCreateProject">1</value>
-            <value description="logincount">0</value>
-            <value description="totalHours">0</value>
+           <!-- <value description="logincount">0</value>
+            <value description="totalHours">0</value>-->
         </row>
     </table>
     <table name="R_role">

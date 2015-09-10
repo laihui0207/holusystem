@@ -5,6 +5,7 @@ import com.huivip.holu.dao.CompanyDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
+import com.huivip.holu.model.UserTrack;
 import com.huivip.holu.service.*;
 import com.huivip.holu.util.AccessToken;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +36,8 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     private CompanyDao companyDao;
     @Autowired
     private RoleManager roleManager;
+    @Autowired
+    private UserTrackManager userTrackManager;
 
     private MailEngine mailEngine;
     private SimpleMailMessage message;
@@ -212,12 +215,21 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
             }
             String token= "#2a$"+user.getUserID()+"%"+ AccessToken.createAccessToken(user.getUserID());
             user.setAccess_token(base64.encodeToString(token.getBytes()));
+            trackUserAction(user,"In","mobile" );
             return user;
         } catch (Exception e) {
             return null;
         }
     }
-
+    @Override
+    public void trackUserAction(User user, String action, String remoteIp){
+        UserTrack track=new UserTrack();
+        track.setUser(user);
+        track.setInOrOut(action);
+        track.setLoginDate(new Date());
+        track.setIp(remoteIp);
+        userTrackManager.save(track);
+    }
     @Override
     public User signup(String loginCode, String userName, String password, String companyId) {
         User user=new User();
@@ -342,4 +354,5 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         // or throw exception
         return null;
     }
+
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by sunlaihui on 8/28/15.
  */
-public class Task implements Serializable {
+public class Mission implements Serializable {
     private Component component;
     private String componentType;
     private String projectChain;

@@ -1,7 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.ComponentStyle;
-import com.huivip.holu.model.Task;
+import com.huivip.holu.model.Mission;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
@@ -29,6 +29,6 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     List<ComponentStyle> myTask(@PathParam("userId") String userId);
     @GET
     @Path("{userId}/Task")
-    List<Task> getMyTask(@PathParam("userId")String userId);
+    List<Mission> getMyTask(@PathParam("userId")String userId);
 
 }
