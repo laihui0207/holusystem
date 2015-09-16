@@ -21,7 +21,7 @@ public class ClientVersion {
     private String clientType;
     private String clientUrl;
     private String storePath;
-    private Date createTime;
+    private Date createTime=new Date();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class ClientVersion {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(unique = true)
     public String getVersion() {
         return version;
     }

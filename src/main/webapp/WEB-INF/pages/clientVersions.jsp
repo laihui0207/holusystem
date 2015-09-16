@@ -31,22 +31,28 @@
 <div id="actions" class="btn-group">
     <a href='<c:url value="/clientVersionform"/>' class="btn btn-primary">
         <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
-    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>
+<%--    <a href='<c:url value="/home"/>' class="btn btn-default"><i class="icon-ok"></i> <fmt:message key="button.done"/></a>--%>
 </div>
 
 <display:table name="clientVersionList" class="table table-condensed table-striped table-hover" requestURI="" id="clientVersionList" export="true" pagesize="25">
     <display:column property="id" sortable="true" href="clientVersionform" media="html"
         paramId="id" paramProperty="id" titleKey="clientVersion.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="clientVersion.id"/>
-    <display:column property="QRCode" sortable="true" titleKey="clientVersion.QRCode"/>
     <display:column property="clientType" sortable="true" titleKey="clientVersion.clientType"/>
-    <display:column property="clientUrl" sortable="true" titleKey="clientVersion.clientUrl"/>
+    <display:column property="version" sortable="true" titleKey="clientVersion.version"/>
+    <display:column property="releaseNote" sortable="true" titleKey="clientVersion.releaseNote"/>
     <display:column sortProperty="createTime" sortable="true" titleKey="clientVersion.createTime">
          <fmt:formatDate value="${clientVersionList.createTime}" pattern="${datePattern}"/>
     </display:column>
-    <display:column property="releaseNote" sortable="true" titleKey="clientVersion.releaseNote"/>
-    <display:column property="storePath" sortable="true" titleKey="clientVersion.storePath"/>
-    <display:column property="version" sortable="true" titleKey="clientVersion.version"/>
+    <display:column titleKey="list.action">
+            <a href="clientVersions/${clientVersionList.version}/download"><fmt:message key="action.download"/></a>
+    </display:column>
+   <%-- <display:column titleKey="list.action">
+        <img src="attached/client/${clientVersionList.version}.png">
+    </display:column>--%>
+<%--    <display:column property="QRCode" sortable="true" titleKey="clientVersion.QRCode"/>
+    <display:column property="clientUrl" sortable="true" titleKey="clientVersion.clientUrl"/>
+    <display:column property="storePath" sortable="true" titleKey="clientVersion.storePath"/>--%>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="clientVersionList.clientVersion"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="clientVersionList.clientVersions"/></display:setProperty>

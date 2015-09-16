@@ -19,21 +19,6 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
-    <!--MessageReceiver-START-->
-<%--    <menu:displayMenu name="MessageReceiverMenu"/>--%>
-    <!--MessageReceiver-END-->
-    <!--MessageReply-START-->
-<%--    <menu:displayMenu name="MessageReplyMenu"/>--%>
-    <!--MessageReply-END-->
-    <!--Summary-START-->
-<%--    <menu:displayMenu name="SummaryMenu"/>--%>
-    <!--Summary-END-->
-    <!--UserTrack-START-->
-<%--    <menu:displayMenu name="UserTrackMenu"/>--%>
-    <!--UserTrack-END-->
-    <!--ClientVersion-START-->
-    <menu:displayMenu name="ClientVersionMenu"/>
-    <!--ClientVersion-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

@@ -117,7 +117,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return id;
     }
 
-    @Column( length = 50, unique = true)
+    @Column( length = 50)
     @Field
     public String getUsername() {
         return username;

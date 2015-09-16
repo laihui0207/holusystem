@@ -35,6 +35,7 @@ public class SubComponentList extends BaseObject implements Serializable {
     User user;
     Date createDate;
     Component parentComponent;
+    int openFlag;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,6 +106,14 @@ public class SubComponentList extends BaseObject implements Serializable {
 
     public void setParentComponent(Component parentComponent) {
         this.parentComponent = parentComponent;
+    }
+    @Column(name="openflag",columnDefinition ="int default 0")
+    public int getOpenFlag() {
+        return openFlag;
+    }
+
+    public void setOpenFlag(int openFlag) {
+        this.openFlag = openFlag;
     }
 
     @Override

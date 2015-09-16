@@ -11,6 +11,7 @@ import java.util.Properties;
 public class SteelConfig {
    public static String EditorAttachedDirectory="editorAttachDirectory";
     public static String DocumentManagerDirectory="DocumentationDirectory";
+    public static String ClientDirectory="ClientDirectory";
     public static String getConfigure(String key){
         Properties prop = new Properties();
         try {

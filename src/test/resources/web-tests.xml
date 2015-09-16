@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ClientVersionTests,UserTrackTests,SummaryTests,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,TaskTests,ClientVersionTests,UserTrackTests,SummaryTests,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2576,7 +2576,100 @@
             </steps>
         </webtest>
     </target>    <!--ClientVersion-END-->
+    <!--Task-START-->
+    <!-- runs task-related tests -->
+    <target name="TaskTests"
+            depends="SearchTasks,EditTask,SaveTask,AddTask,DeleteTask"
+            description="Call and executes all task test cases (targets)">
+        <echo>Successfully ran all Task UI tests!</echo>
+    </target>
+
+    <!-- Verify the tasks list screen displays without errors -->
+    <target name="SearchTasks" description="Tests search for and displaying all tasks">
+        <webtest name="searchTasks">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Task link" url="/tasks"/>
+                <verifytitle description="we should see the taskList title"
+                    text=".*${taskList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the taskList title"
+                    text=".*${taskList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit task screen displays without errors -->
+    <target name="EditTask" description="Tests editing an existing Task's information">
+        <webtest name="editTask">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Task List" url="/tasks"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the taskDetail title"
+                    text=".*${taskDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a task and then save -->
+    <target name="SaveTask" description="Tests editing and saving a task">
+        <webtest name="saveTask">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Task link" url="/taskform?id=-1"/>
+                <verifytitle description="we should see the taskDetail title"
+                    text=".*${taskDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${taskDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${task.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Task -->
+    <target name="AddTask" description="Adds a new Task">
+        <webtest name="addTask">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/taskform"/>
+                <verifytitle description="we should see the taskDetail title"
+                    text=".*${taskDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Task List appears if save successful"
+                    text=".*${taskList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${task.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing task -->
+    <target name="DeleteTask" description="Deletes existing Task">
+        <webtest name="deleteTask">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Task link" url="/taskform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Task List" text=".*${taskList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${task.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Task-END-->
 </project>
+
 
 
 

@@ -1,7 +1,6 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.Constants;
-import com.huivip.holu.dao.CompanyDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
@@ -32,8 +31,6 @@ import java.util.*;
 public class UserManagerImpl extends GenericManagerImpl<User, Long> implements UserManager, UserService {
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;
-    @Autowired
-    private CompanyDao companyDao;
     @Autowired
     private RoleManager roleManager;
     @Autowired
@@ -221,6 +218,16 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
             return null;
         }
     }
+
+    @Override
+    public User userLogout(String userId) {
+        User user=getUserByUserID(userId);
+        if(user!=null){
+            trackUserAction(user,"Out","mobile");
+        }
+        return user;
+    }
+
     @Override
     public void trackUserAction(User user, String action, String remoteIp){
         UserTrack track=new UserTrack();
@@ -231,7 +238,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         userTrackManager.save(track);
     }
     @Override
-    public User signup(String loginCode, String userName, String password, String companyId) {
+    public User signup(String loginCode, String userName, String password, String userNote) {
         User user=new User();
         user.setUsername(userName);
         user.setLoginCode(loginCode);
@@ -241,7 +248,8 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         String userID=sdf.format(System.currentTimeMillis());
         user.addRole(roleManager.getRole(Constants.USER_ROLE));
         user.setUserID(userID);
-        user.setCompany(companyDao.getCompanyByCompanyID(companyId));
+        user.setNote(userNote);
+/*        user.setCompany(companyDao.getCompanyByCompanyID(companyId));*/
         user.setAcceptRegistration(0);
         user.setRegistrationDate(new Date());
         try {

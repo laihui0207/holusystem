@@ -7,10 +7,14 @@
         <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="NewsMenu" title="newsList.title" roles="ROLE_ADMIN,ROLE_USER" page="/newss"/>
         <Menu name="PostBarMenu" title="postBarList.title" page="/postBars" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="ProjectMenu" title="projectList.title" page="/projects" roles="ROLE_ADMIN,ROLE_USER" />
-        <Menu name="DocumentationMenu" title="documentationList.title" page="/documentations" roles="ROLE_ADMIN,ROLE_USER"/>
-<!--        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>-->
-<!--        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>-->
+        <Menu name="ProjectMenu" title="projectList.title" page="/projects" roles="ROLE_ADMIN,ROLE_USER">
+            <Item name="Project" title="projectList.title" page="/projects" roles="ROLE_ADMIN,ROLE_USER"/>
+            <Item name="TaskMenu" title="taskList.title" page="/tasks" roles="ROLE_ADMIN,ROLE_USER"/>
+        </Menu>
+        <Menu name="DocumentationMenu" title="documentationList.title" page="/documentations"
+              roles="ROLE_ADMIN,ROLE_USER"/>
+        <!--        <Menu name="UserGroupMenu" title="userGroupList.title" page="/userGroups" roles="ROLE_ADMIN,ROLE_USER"/>-->
+        <!--        <Menu name="RGroupMenu" title="rGroupList.title" page="/rGroups"/>-->
         <Menu name="CustomGroupMenu" title="customGroupList.title" page="/customGroups" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="MessageMenu" title="messageList.title" page="/messages" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="NoteMenu" title="noteList.title" page="/notes" roles="ROLE_ADMIN,ROLE_USER"/>
@@ -19,7 +23,7 @@
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
-           <!-- <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>-->
+            <!-- <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>-->
             <Item name="CompanyMenu" title="companyList.title" page="/companies"/>
             <Item name="DepartmentMenu" title="departmentList.title" page="/departments"/>
             <Item name="PostMenu" title="postList.title" page="/posts"/>
@@ -27,6 +31,7 @@
             <Item name="PostSubjectMenu" title="postSubjectList.title" page="/postSubjects"/>
             <Item name="ReplyMenu" title="replyList.title" page="/replies"/>
             <Item name="DocTypeMenu" title="docTypeList.title" page="/docTypes"/>
+            <Item name="ClientVersionMenu" title="clientVersionList.title" page="/clientVersions"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--Group-START-->
@@ -37,16 +42,19 @@
         <!--CompanyDatabaseIndex-START-->
         <!--CompanyDatabaseIndex-END-->
         <!--SubComponentList-START-->
-        <Menu name="SubComponentListMenu" title="subComponentListList.title" roles="ROLE_ADMIN,ROLE_USER" page="/subComponentLists"/>
+        <Menu name="SubComponentListMenu" title="subComponentListList.title" roles="ROLE_ADMIN,ROLE_USER"
+              page="/subComponentLists"/>
         <!--SubComponentList-END-->
         <!--ProcessMid-START-->
         <Menu name="ProcessMidMenu" title="processMidList.title" roles="ROLE_ADMIN,ROLE_USER" page="/processMids"/>
         <!--ProcessMid-END-->
         <!--MessageReceiver-START-->
-        <Menu name="MessageReceiverMenu" title="messageReceiverList.title" roles="ROLE_ADMIN,ROLE_USER" page="/messageReceivers"/>
+        <Menu name="MessageReceiverMenu" title="messageReceiverList.title" roles="ROLE_ADMIN,ROLE_USER"
+              page="/messageReceivers"/>
         <!--MessageReceiver-END-->
         <!--MessageReply-START-->
-        <Menu name="MessageReplyMenu" title="messageReplyList.title" roles="ROLE_ADMIN,ROLE_USER" page="/messageReplies"/>
+        <Menu name="MessageReplyMenu" title="messageReplyList.title" roles="ROLE_ADMIN,ROLE_USER"
+              page="/messageReplies"/>
         <!--MessageReply-END-->
         <!--Summary-START-->
         <Menu name="SummaryMenu" title="summaryList.title" page="/summaries"/>
@@ -55,17 +63,10 @@
         <Menu name="UserTrackMenu" title="userTrackList.title" page="/userTracks"/>
         <!--UserTrack-END-->
         <!--ClientVersion-START-->
-        <Menu name="ClientVersionMenu" title="clientVersionList.title" page="/clientVersions"/>
         <!--ClientVersion-END-->
+        <!--Task-START-->
+        <!--Task-END-->
     </Menus>
-
-
-
-
-
-
-
-
 
 
 </MenuConfig>

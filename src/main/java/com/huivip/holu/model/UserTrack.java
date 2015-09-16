@@ -31,6 +31,7 @@ public class UserTrack extends BaseObject implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     public Long getId() {
         return id;
     }

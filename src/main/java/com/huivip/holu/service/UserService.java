@@ -64,13 +64,15 @@ public interface UserService {
     @POST
     @Path("userLogin")
     User userLogin(@FormParam("username")String username,@FormParam("password") String password);
-
+    @GET
+    @Path("userLogout/{userId}")
+    User userLogout(@PathParam("userId") String userId);
     @POST
     @Path("signup")
     User signup(@FormParam("loginCode") String loginCode,
                 @FormParam("userName")String userName,
                 @FormParam("password")String password,
-                @FormParam("companyId")String companyId);
+                @FormParam("userNote")String userNote);
 
    /* @GET
     @Path("{userId}/task")

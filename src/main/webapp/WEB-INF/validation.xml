@@ -215,5 +215,9 @@
         <form name="clientVersion">
         </form>
         <!--ClientVersion-END-->
+        <!--Task-START-->
+        <form name="task">
+        </form>
+        <!--Task-END-->
     </formset>
 </form-validation>

@@ -41,6 +41,8 @@
             <ref bean="processMidManager"/>
             <ref bean="departmentManager"/>
             <ref bean="messageReplyManager"/>
+            <ref bean="taskManager"/>
+            <ref bean="clientVersionManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

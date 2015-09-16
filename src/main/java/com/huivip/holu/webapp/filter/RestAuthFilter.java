@@ -38,7 +38,7 @@ public class RestAuthFilter implements Filter{
             access_token=new String(base64.decode(access_token));
             String userID=access_token.substring(access_token.indexOf("$")+1,access_token.indexOf("%"));
             String token=access_token.substring(access_token.indexOf("%")+1);
-            if(AccessToken.matches(userID,token)){
+            if(AccessToken.matches(userID, token)){
                 filterChain.doFilter(request,response);
             }
             else {

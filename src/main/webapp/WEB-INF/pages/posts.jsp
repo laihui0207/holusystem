@@ -41,20 +41,20 @@
     <display:column property="postID" sortable="true" titleKey="post.postID"/>
     <display:column property="postName" sortable="true" titleKey="post.postName"/>
     <display:column property="company.companyShortNameCN" sortable="true" titleKey="post.company"/>
-    <c:if test="${pageContext.request.locale.language eq 'en'}">
+  <%--  <c:if test="${pageContext.request.locale.language eq 'en'}">
         <display:column  sortable="true" titleKey="componentStyle.processName">
             <c:if test="${postList.processDictionary!=null}">
                 ${postList.processDictionary.englishName}_${postList.processDictionary.processStyle}
             </c:if>
         </display:column>
     </c:if>
-    <c:if test="${pageContext.request.locale.language ne 'en'}">
+    <c:if test="${pageContext.request.locale.language ne 'en'}">--%>
         <display:column  sortable="true" titleKey="componentStyle.processName">
-            <c:if test="${postList.processDictionary!=null}">
+           <%-- <c:if test="${postList.processDictionary!=null}">--%>
                 ${postList.processDictionary.chineseName}_${postList.processDictionary.processStyle}
-            </c:if>
+            <%--</c:if>--%>
         </display:column>
-    </c:if>
+    <%--</c:if>--%>
     <display:column property="postNote" sortable="true" titleKey="post.postNote"/>
     <display:column sortProperty="createDate" sortable="true" titleKey="post.createDate">
          <fmt:formatDate value="${postList.createDate}" pattern="${datePattern}"/>
