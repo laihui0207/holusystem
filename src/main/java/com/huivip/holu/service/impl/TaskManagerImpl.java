@@ -62,7 +62,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
                 processes+=","+process;
             }
         }
-        /*projects="'XM0000007','XM0000013'";
+       /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
         List<Task> myTasks=taskDao.getTaskofUser(projects,processes,tableName);
         if(null==myTasks) return new ArrayList<Task>();

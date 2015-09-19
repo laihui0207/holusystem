@@ -8,6 +8,12 @@
             <param name="beanName" value="userManager"/>
             <include method="getUsers"/>
         </create>
+        <create creator="spring" javascript="clientVersionManager">
+            <param name="class" value="com.huivip.holu.service.ClientVersionManager"/>
+            <param name="beanName" value="clientVersionManager"/>
+            <include method="getLastQRFile"/>
+        </create>
         <convert converter="bean" match="com.huivip.holu.model.User"/>
+        <convert converter="bean" match="com.huivip.holu.model.ClientVersion"/>
     </allow>
 </dwr>

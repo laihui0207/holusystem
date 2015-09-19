@@ -57,4 +57,11 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
         response.header("Content-Disposition", "attachment; filename=\"ISCM2015.apk\"");
         return response.build();
     }
+
+    @Override
+    public String getLastQRFile() {
+        ClientVersion client=getLastedClient();
+        if(client!=null) return client.getQRCode();
+        return null;
+    }
 }

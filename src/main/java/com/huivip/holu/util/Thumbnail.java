@@ -30,6 +30,11 @@ public class Thumbnail {
         File midFile=new File(MidFile);
         if(!midFile.exists())
         ImageUtil.compressImage(sourceFile,MidFile,720,1280);
+
+       /* String bigFile=filePath+name.substring(0,name.lastIndexOf("."))+"_big"+name.substring(name.lastIndexOf("."));
+        File hugeFile=new File(bigFile);
+        if(!hugeFile.exists())
+            ImageUtil.compressImage(sourceFile,bigFile,720,1280);*/
     }
     public static String handleThumbnail(String content,ServletContext context){
         String thumbnailURL=null;

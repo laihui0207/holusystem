@@ -19,4 +19,6 @@ public interface ClientVersionManager extends GenericManager<ClientVersion, Long
     @Path("{version}/download")
     Response downloadClient(@PathParam("version") String version);
 
+    String getLastQRFile();
+
 }
