@@ -219,5 +219,13 @@
         <form name="task">
         </form>
         <!--Task-END-->
+        <!--SummaryTotal-START-->
+        <form name="summaryTotal">
+        </form>
+        <!--SummaryTotal-END-->
+        <!--Setting-START-->
+        <form name="setting">
+        </form>
+        <!--Setting-END-->
     </formset>
 </form-validation>

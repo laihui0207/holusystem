@@ -37,5 +37,7 @@
         <mapping class="com.huivip.holu.model.UserTrack"/>
         <mapping class="com.huivip.holu.model.ClientVersion"/>
         <mapping class="com.huivip.holu.model.Task"/>
+        <mapping class="com.huivip.holu.model.SummaryTotal"/>
+        <mapping class="com.huivip.holu.model.Setting"/>
     </session-factory>
 </hibernate-configuration>

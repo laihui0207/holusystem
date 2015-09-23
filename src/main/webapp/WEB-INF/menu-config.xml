@@ -66,7 +66,15 @@
         <!--ClientVersion-END-->
         <!--Task-START-->
         <!--Task-END-->
+        <!--SummaryTotal-START-->
+        <Menu name="SummaryTotalMenu" title="summaryTotalList.title" page="/summaryTotals"/>
+        <!--SummaryTotal-END-->
+        <!--Setting-START-->
+        <Menu name="SettingMenu" title="settingList.title" page="/settings"/>
+        <!--Setting-END-->
     </Menus>
+
+
 
 
 </MenuConfig>

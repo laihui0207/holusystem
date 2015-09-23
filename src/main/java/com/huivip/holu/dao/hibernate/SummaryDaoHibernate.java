@@ -22,4 +22,9 @@ public class SummaryDaoHibernate extends GenericDaoHibernate<Summary, Long> impl
         List<Summary> dataList=query.list();
         return dataList;
     }
+
+    @Override
+    public List<Object[]> getDetailByItem(String itemID, String sumDate, String processIds, String itemStyle, String startOrEnd, String tableName) {
+        return null;
+    }
 }

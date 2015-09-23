@@ -43,6 +43,7 @@
             <ref bean="messageReplyManager"/>
             <ref bean="taskManager"/>
             <ref bean="clientVersionManager"/>
+            <ref bean="summaryTotalManager"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>

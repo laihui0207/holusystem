@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,TaskTests,ClientVersionTests,UserTrackTests,SummaryTests,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,SettingTests,SummaryTotalTests,TaskTests,ClientVersionTests,UserTrackTests,SummaryTests,MessageReplyTests,MessageReceiverTests,ProcessMidTests,SubComponentListTests,CompanyDatabaseIndexTests,ProjectIndexTests,RGroupTests,DepartmentTests,ComponentTests,ComponentStyleTests,NoteTests,DocumentationTests,DocTypeTests,MessageTests,ReplyTests,PostBarTests,PostSubjectTests,UserGroupTests,ProjectTests,CompanyTests,NewsTypeTests,NewsTests"
         description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -2668,7 +2668,193 @@
             </steps>
         </webtest>
     </target>    <!--Task-END-->
+    <!--SummaryTotal-START-->
+    <!-- runs summaryTotal-related tests -->
+    <target name="SummaryTotalTests"
+            depends="SearchSummaryTotals,EditSummaryTotal,SaveSummaryTotal,AddSummaryTotal,DeleteSummaryTotal"
+            description="Call and executes all summaryTotal test cases (targets)">
+        <echo>Successfully ran all SummaryTotal UI tests!</echo>
+    </target>
+
+    <!-- Verify the summaryTotals list screen displays without errors -->
+    <target name="SearchSummaryTotals" description="Tests search for and displaying all summaryTotals">
+        <webtest name="searchSummaryTotals">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View SummaryTotal link" url="/summaryTotals"/>
+                <verifytitle description="we should see the summaryTotalList title"
+                    text=".*${summaryTotalList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the summaryTotalList title"
+                    text=".*${summaryTotalList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit summaryTotal screen displays without errors -->
+    <target name="EditSummaryTotal" description="Tests editing an existing SummaryTotal's information">
+        <webtest name="editSummaryTotal">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View SummaryTotal List" url="/summaryTotals"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the summaryTotalDetail title"
+                    text=".*${summaryTotalDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a summaryTotal and then save -->
+    <target name="SaveSummaryTotal" description="Tests editing and saving a summaryTotal">
+        <webtest name="saveSummaryTotal">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit SummaryTotal link" url="/summaryTotalform?id=-1"/>
+                <verifytitle description="we should see the summaryTotalDetail title"
+                    text=".*${summaryTotalDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${summaryTotalDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summaryTotal.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new SummaryTotal -->
+    <target name="AddSummaryTotal" description="Adds a new SummaryTotal">
+        <webtest name="addSummaryTotal">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/summaryTotalform"/>
+                <verifytitle description="we should see the summaryTotalDetail title"
+                    text=".*${summaryTotalDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="SummaryTotal List appears if save successful"
+                    text=".*${summaryTotalList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summaryTotal.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing summaryTotal -->
+    <target name="DeleteSummaryTotal" description="Deletes existing SummaryTotal">
+        <webtest name="deleteSummaryTotal">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit SummaryTotal link" url="/summaryTotalform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display SummaryTotal List" text=".*${summaryTotalList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summaryTotal.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--SummaryTotal-END-->
+    <!--Setting-START-->
+    <!-- runs setting-related tests -->
+    <target name="SettingTests"
+            depends="SearchSettings,EditSetting,SaveSetting,AddSetting,DeleteSetting"
+            description="Call and executes all setting test cases (targets)">
+        <echo>Successfully ran all Setting UI tests!</echo>
+    </target>
+
+    <!-- Verify the settings list screen displays without errors -->
+    <target name="SearchSettings" description="Tests search for and displaying all settings">
+        <webtest name="searchSettings">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Setting link" url="/settings"/>
+                <verifytitle description="we should see the settingList title"
+                    text=".*${settingList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the settingList title"
+                    text=".*${settingList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit setting screen displays without errors -->
+    <target name="EditSetting" description="Tests editing an existing Setting's information">
+        <webtest name="editSetting">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Setting List" url="/settings"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the settingDetail title"
+                    text=".*${settingDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a setting and then save -->
+    <target name="SaveSetting" description="Tests editing and saving a setting">
+        <webtest name="saveSetting">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Setting link" url="/settingform?id=-1"/>
+                <verifytitle description="we should see the settingDetail title"
+                    text=".*${settingDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${settingDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${setting.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Setting -->
+    <target name="AddSetting" description="Adds a new Setting">
+        <webtest name="addSetting">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/settingform"/>
+                <verifytitle description="we should see the settingDetail title"
+                    text=".*${settingDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Setting List appears if save successful"
+                    text=".*${settingList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${setting.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing setting -->
+    <target name="DeleteSetting" description="Deletes existing Setting">
+        <webtest name="deleteSetting">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Setting link" url="/settingform?id=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Setting List" text=".*${settingList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${setting.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Setting-END-->
 </project>
+
+
 
 
 

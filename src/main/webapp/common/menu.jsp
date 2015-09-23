@@ -19,6 +19,12 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    <!--SummaryTotal-START-->
+<%--    <menu:displayMenu name="SummaryTotalMenu"/>--%>
+    <!--SummaryTotal-END-->
+    <!--Setting-START-->
+    <menu:displayMenu name="SettingMenu"/>
+    <!--Setting-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>
