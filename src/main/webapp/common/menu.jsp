@@ -23,7 +23,7 @@
 <%--    <menu:displayMenu name="SummaryTotalMenu"/>--%>
     <!--SummaryTotal-END-->
     <!--Setting-START-->
-    <menu:displayMenu name="SettingMenu"/>
+<%--    <menu:displayMenu name="SettingMenu"/>--%>
     <!--Setting-END-->
 </ul>
 </div>

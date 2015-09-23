@@ -73,6 +73,9 @@ public class ClientVersionFormController extends BaseFormController {
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
+            clientVersion=clientVersionManager.get(clientVersion.getId());
+            removeClientFile(clientVersion);
+            removeQRFile(clientVersion);
             clientVersionManager.remove(clientVersion.getId());
             saveMessage(request, getText("clientVersion.deleted", locale));
         } else {
@@ -85,11 +88,11 @@ public class ClientVersionFormController extends BaseFormController {
             if (!isNew) {
                 success = "redirect:clientVersionform?id=" + clientVersion.getId();
             }
-
+            ClientVersion lastedClient=clientVersionManager.getLastedClient();
+            lastedClient.setVersion("lasted");
+            handleQRCode(request,lastedClient);
         }
-        ClientVersion lastedClient=clientVersionManager.getLastedClient();
-        lastedClient.setVersion("lasted");
-        handleQRCode(request,lastedClient);
+
         return success;
     }
     @ModelAttribute("clientTypes")
@@ -132,6 +135,30 @@ public class ClientVersionFormController extends BaseFormController {
         clientVersion.setQRCode("/attached/client/"+QRFileName);
 
 
+    }
+    private void removeClientFile(ClientVersion clientVersion){
+        String configureUploadDir= SteelConfig.getConfigure(SteelConfig.ClientDirectory);
+        String uploadDir=getServletContext().getRealPath("/");
+        if(null!=configureUploadDir && configureUploadDir.length()>0){
+            uploadDir=configureUploadDir;
+        }
+        String clientFile=uploadDir+clientVersion.getStorePath();
+        File file=new File(clientFile);
+        if(file.exists()){
+            file.delete();
+        }
+    }
+    private void removeQRFile(ClientVersion clientVersion){
+        String configQRcodeFilePath=SteelConfig.getConfigure(SteelConfig.EditorAttachedDirectory);
+        String QRCodeFilePath=getServletContext().getRealPath("/");
+        if(null!=configQRcodeFilePath && configQRcodeFilePath.length()>0){
+            QRCodeFilePath=configQRcodeFilePath;
+        }
+        String QRFile=QRCodeFilePath+clientVersion.getQRCode();
+        File file=new File(QRFile);
+        if(file.exists()){
+            file.delete();
+        }
     }
     private void handleUploadFile(HttpServletRequest request,ClientVersion clientVersion,boolean isNew){
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");

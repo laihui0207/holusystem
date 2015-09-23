@@ -55,7 +55,7 @@ public class ClientVersionController {
         File file=new File(uploadDir+client.getStorePath());
         //response.setContentType(file.getType());
         response.setContentLength(Integer.parseInt(file.length()+""));
-        response.setHeader("Content-Disposition", "attachment; filename=\"ISCM2015.apk\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"ICMS2015.apk\"");
 
         try {
             FileCopyUtils.copy(new FileInputStream(file), response.getOutputStream());

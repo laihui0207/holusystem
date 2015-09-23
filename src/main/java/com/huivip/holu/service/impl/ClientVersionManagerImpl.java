@@ -54,7 +54,7 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
         }
         File file=new File(uploadDir+clientVersion.getStorePath());
         Response.ResponseBuilder response = Response.ok(file, MediaType.APPLICATION_OCTET_STREAM);
-        response.header("Content-Disposition", "attachment; filename=\"ISCM2015.apk\"");
+        response.header("Content-Disposition", "attachment; filename=\"ICMS2015.apk\"");
         return response.build();
     }
 
