@@ -351,8 +351,8 @@ public class SummaryTotal extends  BaseObject implements Serializable {
                 ", itemStyle='" + itemStyle + '\'' +
                 ", startOrEnd='" + startOrEnd + '\'' +
                 ", actualPlanPredict='" + actualPlanPredict + '\'' +
-                ", projectID='" + projectID + '\'' +
-                ", projectPathName='" + projectPathName + '\'' +
+                ", itemID='" + projectID + '\'' +
+                ", itemName='" + projectPathName + '\'' +
                 ", projectRootID='" + projectRootID + '\'' +
                 ", projectLevel='" + projectLevel + '\'' +
                 ", departmentID='" + departmentID + '\'' +

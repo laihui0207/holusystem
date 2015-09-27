@@ -78,7 +78,7 @@ public class ProjectIndex extends  BaseObject implements Serializable {
     public String toString() {
         return "PorjectIndex{" +
                 "id=" + id +
-                ", projectID='" + projectID + '\'' +
+                ", itemID='" + projectID + '\'' +
                 ", midTableName='" + midTableName + '\'' +
                 ", partListTableName='" + partListTableName + '\'' +
                 '}';

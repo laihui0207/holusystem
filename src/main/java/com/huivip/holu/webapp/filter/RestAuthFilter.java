@@ -1,6 +1,5 @@
 package com.huivip.holu.webapp.filter;
 
-import com.huivip.holu.util.AccessToken;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.servlet.*;
@@ -26,7 +25,7 @@ public class RestAuthFilter implements Filter{
         Base64 base64=new Base64();
         String access_token=request.getHeader("authorization");
         String requestPath=request.getRequestURI();
-        if(requestPath.indexOf("userLogin.json")>0 || requestPath.indexOf("signup")>0 || requestPath.indexOf("/lasted/download.json")>0){
+       /* if(requestPath.indexOf("userLogin.json")>0 || requestPath.indexOf("signup")>0 || requestPath.indexOf("/lasted/download.json")>0){
             filterChain.doFilter(request,response);
             return;
         }
@@ -45,9 +44,9 @@ public class RestAuthFilter implements Filter{
                 response.setStatus(401);
             }
         }
-        else {
+        else {*/
             filterChain.doFilter(request,response);
-        }
+       /* }*/
     }
 
     @Override

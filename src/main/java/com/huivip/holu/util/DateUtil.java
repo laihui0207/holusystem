@@ -177,4 +177,7 @@ public final class DateUtil {
     public static Date convertStringToDate(final String strDate) throws ParseException {
         return convertStringToDate(getDatePattern(), strDate);
     }
+    public static int betweenofTwoDate(Date date1,Date date2){
+        return (int)( (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+    }
 }

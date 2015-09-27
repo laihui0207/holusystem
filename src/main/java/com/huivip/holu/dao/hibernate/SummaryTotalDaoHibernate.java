@@ -150,4 +150,143 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         return query.list();
     }
 
+    @Override
+    public List<Object[]> getProjectSummaryProcess(String tableName) {
+        String sql="select distinct a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+                "from  " +
+                "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_actual_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as a left join " +
+                "(SELECT ProjectRootID AS ItemName,Max(MaxDate) AS SumDate_actual_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
+                "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_plan_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
+                "(SELECT ProjectRootID AS ItemName,Min(MaxDate) AS SumDate_plan_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
+                "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_predict_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
+                "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_predict_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName, " +
+                "R_Project r where a.itemName=r.ProjectID ";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
+    @Override
+    public List<Object[]> getFactorySummaryProcess(String tableName) {
+        String sql="select distinct a.ItemName,a.departmentPathName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+                "from  " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_actual_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as a left join " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Max(MaxDate) AS SumDate_actual_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_plan_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MaxDate) AS SumDate_plan_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_predict_start " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_predict_end " +
+                "FROM "+tableName+" "+
+                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
+    @Override
+    public List<Object[]> getProjectSummaryProcessDetail(String tableName, String projectID) {
+        String sql="select distinct a.ItemName,a.processName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+                "from  " +
+                "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_actual_start " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "And StartOrEnd='End' AND ActualPlanPredict='Actual'  " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as a left join " +
+                "(SELECT processID AS ItemName,processName,Max(MaxDate) AS SumDate_actual_end " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "and StartOrEnd='End' AND ActualPlanPredict='Actual'  " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
+                "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_plan_start " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "And StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
+                "(SELECT processID AS ItemName,processName,Min(MaxDate) AS SumDate_plan_end " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "and StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
+                "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_predict_start " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "And StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
+                "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_predict_end " +
+                "FROM "+ tableName+ " "+
+                "WHERE ProjectRootID='"+projectID+"' " +
+                "and StartOrEnd='End' AND ActualPlanPredict='Predict'   " +
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
+    @Override
+    public List<Object[]> getFactorySummaryProcessDetail(String tableName, String departmentID) {
+        String sql="select a.projectID, a.ItemName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+                "from  " +
+                "(SELECT projectID, ProjectPathName AS ItemName,Min(MinDate) AS SumDate_actual_start " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY projectID, ProjectPathName,StartOrEnd,ActualPlanPredict) as a left join " +
+                "(SELECT projectID, ProjectPathName AS ItemName,Max(MaxDate) AS SumDate_actual_end " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "GROUP BY projectID, ProjectPathName,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
+                "(SELECT projectID, ProjectPathName AS ItemName,Min(MinDate) AS SumDate_plan_start " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
+                "(SELECT projectID,ProjectPathName AS ItemName,Min(MaxDate) AS SumDate_plan_end " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
+                "(SELECT projectID,ProjectPathName AS ItemName,Min(MinDate) AS SumDate_predict_start " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
+                "(SELECT projectID,ProjectPathName AS ItemName,Min(MinDate) AS SumDate_predict_end " +
+                "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
 }

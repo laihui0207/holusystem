@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.SummaryItem;
+import com.huivip.holu.model.SummaryProcess;
 import com.huivip.holu.model.SummaryTotal;
 
 import javax.jws.WebService;
@@ -30,4 +31,14 @@ public interface SummaryTotalManager extends GenericManager<SummaryTotal, Long> 
                                                         @QueryParam("itemStyle") String ItemStyle,
                                                         @DefaultValue("today") @QueryParam("sumDate") String sumDate,
                                                         @DefaultValue("start") @QueryParam("startorend") String startOrEnd);
+
+    @GET
+    @Path("{userID}/{itemStyle}/progress")
+    List<SummaryProcess> getSummaryProcess(@PathParam("userID") String userID,@PathParam("itemStyle") String itemStyle);
+
+    @GET
+    @Path("{userID}/{itemStyle}/progress/{itemId}")
+    HashMap<String,List<SummaryProcess>> getSummaryProcessDetail(@PathParam("userID") String userID,
+                                                 @PathParam("itemStyle") String itemStyle,
+                                                 @PathParam("itemId")String itemId);
 }

@@ -105,12 +105,12 @@
         <form:input cssClass="form-control" path="processName" id="processName"  maxlength="255"/>
         <form:errors path="processName" cssClass="help-block"/>
     </div>
-    <spring:bind path="summaryTotal.projectID">
+    <spring:bind path="summaryTotal.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="summaryTotal.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="summaryTotal.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
     <spring:bind path="summaryTotal.projectLevel">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -119,12 +119,12 @@
         <form:input cssClass="form-control" path="projectLevel" id="projectLevel"  maxlength="255"/>
         <form:errors path="projectLevel" cssClass="help-block"/>
     </div>
-    <spring:bind path="summaryTotal.projectPathName">
+    <spring:bind path="summaryTotal.itemName">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="summaryTotal.projectPathName" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectPathName" id="projectPathName"  maxlength="255"/>
-        <form:errors path="projectPathName" cssClass="help-block"/>
+        <appfuse:label key="summaryTotal.itemName" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemName" id="itemName"  maxlength="255"/>
+        <form:errors path="itemName" cssClass="help-block"/>
     </div>
     <spring:bind path="summaryTotal.projectRootID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">

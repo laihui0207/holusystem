@@ -60,12 +60,12 @@
     </div>
     <!-- todo: change this to read the identifier field from the other pojo -->
     <form:select cssClass="form-control" path="parent" items="parentList" itemLabel="label" itemValue="value"/>
-    <spring:bind path="project.projectID">
+    <spring:bind path="project.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="project.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="project.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
     <spring:bind path="project.projectLevel">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -102,26 +102,26 @@
         <form:input cssClass="form-control" path="totalWeight" id="totalWeight"  maxlength="255"/>
         <form:errors path="totalWeight" cssClass="help-block"/>
     </div>
-    <spring:bind path="project.projectID">
+    <spring:bind path="project.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="project.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="project.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
-    <spring:bind path="project.projectID">
+    <spring:bind path="project.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="project.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="project.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
-    <spring:bind path="project.projectID">
+    <spring:bind path="project.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="project.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="project.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
 
     <div class="form-group">

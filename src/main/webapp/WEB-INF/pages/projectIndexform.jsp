@@ -35,12 +35,12 @@
         <form:input cssClass="form-control" path="partListTableName" id="partListTableName"  maxlength="255"/>
         <form:errors path="partListTableName" cssClass="help-block"/>
     </div>
-    <spring:bind path="projectIndex.projectID">
+    <spring:bind path="projectIndex.itemID">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
-        <appfuse:label key="projectIndex.projectID" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="projectID" id="projectID"  maxlength="255"/>
-        <form:errors path="projectID" cssClass="help-block"/>
+        <appfuse:label key="projectIndex.itemID" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="itemID" id="itemID"  maxlength="255"/>
+        <form:errors path="itemID" cssClass="help-block"/>
     </div>
 
     <div class="form-group">

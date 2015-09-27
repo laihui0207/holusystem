@@ -54,9 +54,9 @@
     <display:column property="itemStyle" sortable="true" titleKey="summaryTotal.itemStyle"/>
     <display:column property="processID" sortable="true" titleKey="summaryTotal.processID"/>
     <display:column property="processName" sortable="true" titleKey="summaryTotal.processName"/>
-    <display:column property="projectID" sortable="true" titleKey="summaryTotal.projectID"/>
+    <display:column property="itemID" sortable="true" titleKey="summaryTotal.itemID"/>
     <display:column property="projectLevel" sortable="true" titleKey="summaryTotal.projectLevel"/>
-    <display:column property="projectPathName" sortable="true" titleKey="summaryTotal.projectPathName"/>
+    <display:column property="itemName" sortable="true" titleKey="summaryTotal.itemName"/>
     <display:column property="projectRootID" sortable="true" titleKey="summaryTotal.projectRootID"/>
     <display:column property="startOrEnd" sortable="true" titleKey="summaryTotal.startOrEnd"/>
     <display:column property="sumCount" sortable="true" titleKey="summaryTotal.sumCount"/>

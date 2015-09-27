@@ -279,7 +279,7 @@ public class Project extends BaseObject implements Serializable {
     public String toString() {
         return "Project{" +
                 "id=" + id +
-                ", projectID='" + projectID + '\'' +
+                ", itemID='" + projectID + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", projectLevel='" + projectLevel + '\'' +
                 ", fullName='" + fullName + '\'' +

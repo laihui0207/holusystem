@@ -1,14 +1,8 @@
 package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.SummaryTotalDao;
-import com.huivip.holu.model.Setting;
-import com.huivip.holu.model.SummaryItem;
-import com.huivip.holu.model.SummaryTotal;
-import com.huivip.holu.model.User;
-import com.huivip.holu.service.CompanyDatabaseIndexManager;
-import com.huivip.holu.service.SettingManager;
-import com.huivip.holu.service.SummaryTotalManager;
-import com.huivip.holu.service.UserManager;
+import com.huivip.holu.model.*;
+import com.huivip.holu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +20,11 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     CompanyDatabaseIndexManager companyDatabaseIndexManager;
     @Autowired
     SettingManager settingManager;
+    @Autowired
+    ProjectManager projectManager;
+    @Autowired
+    DepartmentManager departmentManager;
+
 
     @Autowired
     public SummaryTotalManagerImpl(SummaryTotalDao summaryTotalDao) {
@@ -124,6 +123,54 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         return result;
     }
 
+    @Override
+    public List<SummaryProcess> getSummaryProcess(String userID, String itemStyle) {
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
+        List<Object[]> list=new ArrayList<>();
+        if(itemStyle.equalsIgnoreCase("project")){
+             list=summaryTotalDao.getProjectSummaryProcess(tableName);
+        }
+        else if (itemStyle.equalsIgnoreCase("factory")){
+            list=summaryTotalDao.getFactorySummaryProcess(tableName);
+        }
+        List<SummaryProcess> result=new ArrayList<>();
+        for(Object[] objects:list){
+            result.add(convertSummaryProcess(objects));
+        }
+        return result;
+    }
+
+    @Override
+    public HashMap<String,List<SummaryProcess>> getSummaryProcessDetail(String userID, String itemStyle, String itemId) {
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
+        String itemName="";
+        HashMap<String,List<SummaryProcess>> result=new HashMap<>();
+        if(itemStyle.equalsIgnoreCase("project")){
+            Project project=projectManager.getProjectByprojectID(itemId);
+            itemName=project.getProjectPathName();
+            List<Object[]> list=summaryTotalDao.getProjectSummaryProcessDetail(tableName,itemId);
+            List<SummaryProcess> processes=new ArrayList<>();
+            for(Object[] objs:list){
+                processes.add(convertSummaryProcess(objs));
+            }
+            result.put(itemName,processes);
+        }
+        else if(itemStyle.equalsIgnoreCase("factory")){
+            Department department=departmentManager.getDepartmentByDepartmentID(itemId);
+            itemName=department.getName();
+            List<SummaryProcess> processes=new ArrayList<>();
+            List<Object[]> list=summaryTotalDao.getFactorySummaryProcessDetail(tableName,itemId);
+            for(Object[] objs:list){
+                processes.add(convertSummaryProcess(objs));
+            }
+            result.put(itemName,processes);
+        }
+
+        return result;
+    }
+
     private String getHomeProcessIds(String userID){
         User user=userManager.getUserByUserID(userID);
         Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessDisplayList");
@@ -171,5 +218,30 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
             item.setPlan((Double) objs[4]);
         }
         return item;
+    }
+    private SummaryProcess convertSummaryProcess(Object[] objs){
+        //a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end
+        SummaryProcess process=new SummaryProcess();
+        process.setItemID((String) objs[0]);
+        process.setItemName((String) objs[1]);
+        if(objs[2]!=null){
+            process.setSumDate_actual_start((Date) objs[2]);
+        }
+        if(objs[3]!=null){
+            process.setSumDate_actual_end((Date) objs[3]);
+        }
+        if(objs[4]!=null){
+            process.setSumDate_plan_start((Date) objs[4]);
+        }
+        if(objs[5]!=null){
+            process.setSumDate_plan_end((Date) objs[5]);
+        }
+        if(objs[6]!=null){
+            process.setSumDate_predict_start((Date) objs[6]);
+        }
+        if(objs[7]!=null){
+            process.setSumDate_predict_end((Date) objs[7]);
+        }
+        return process;
     }
 }

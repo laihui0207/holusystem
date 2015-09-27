@@ -40,7 +40,7 @@
     <display:column property="id" media="csv excel xml pdf" titleKey="projectIndex.id"/>
     <display:column property="midTableName" sortable="true" titleKey="projectIndex.midTableName"/>
     <display:column property="partListTableName" sortable="true" titleKey="projectIndex.partListTableName"/>
-    <display:column property="projectID" sortable="true" titleKey="projectIndex.projectID"/>
+    <display:column property="itemID" sortable="true" titleKey="projectIndex.itemID"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="projectIndexList.projectIndex"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="projectIndexList.projectIndices"/></display:setProperty>
