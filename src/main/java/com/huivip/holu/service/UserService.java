@@ -41,7 +41,7 @@ public interface UserService {
 
     @GET
     @Path("slv")
-    List<SelectLabelValue> getUsersLabelValue();
+    List<SelectLabelValue> getUsersLabelValue(@QueryParam("userID") @DefaultValue("") String userID);
 
     /**
      * Saves a user's information

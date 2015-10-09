@@ -122,8 +122,16 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     }
 
     @Override
-    public List<SelectLabelValue> getUsersLabelValue() {
-        List<User> list=userDao.getAllDistinct();
+    public List<SelectLabelValue> getUsersLabelValue(String userID) {
+        List<User> list;
+        if(userID==null || userID.equalsIgnoreCase("") || userID.equalsIgnoreCase("undefined"))
+        {
+            list=userDao.getAllDistinct();
+        }
+        else {
+            User user=getUserByUserID(userID);
+            list=userDao.getUserByCompany(user.getCompany().getCompanyId());
+        }
         List<SelectLabelValue> result=new ArrayList<>();
         for(User user:list){
             SelectLabelValue slv=new SelectLabelValue();

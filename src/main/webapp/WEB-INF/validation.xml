@@ -101,6 +101,9 @@
             <field property="ifAccessAllReply" depends="required">
                 <arg key="postBar.ifAccessAllReply"/>
             </field>
+            <field property="postSubject" depends="required">
+                <arg key="postBar.postSubject"/>
+            </field>
         </form>
         <!--PostBar-END-->
         <!--Reply-START-->

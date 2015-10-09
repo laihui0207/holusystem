@@ -63,4 +63,9 @@ public class DocumentationManagerImpl extends GenericManagerImpl<Documentation, 
         response.header("Content-Disposition", "attachment; filename=\"" + documentation.getFileName() + "\"");
         return response.build();
     }
+
+    @Override
+    public Documentation viewDocumentation(String id, String userId) {
+        return documentationDao.get(Long.parseLong(id));
+    }
 }

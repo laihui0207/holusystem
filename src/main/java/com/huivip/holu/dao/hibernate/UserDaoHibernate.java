@@ -108,6 +108,12 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
         }
     }
 
+    @Override
+    public List<User> getUserByCompany(String companyID) {
+        List users = getSession().createCriteria(User.class).add(Restrictions.eq("company.companyId", companyID)).list();
+        return users;
+    }
+
     /**
      * {@inheritDoc}
      */

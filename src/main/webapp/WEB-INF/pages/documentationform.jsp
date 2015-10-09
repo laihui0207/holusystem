@@ -40,13 +40,13 @@
         <form:input cssClass="form-control" path="introduction" id="introduction" maxlength="255"/>
         <form:errors path="introduction" cssClass="help-block"/>
         </div>
-        <%-- <spring:bind path="documentation.content">
+         <spring:bind path="documentation.content">
          <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
          </spring:bind>
              <appfuse:label key="documentation.content" styleClass="control-label"/>
-             <form:input cssClass="form-control" path="content" id="content"  maxlength="255"/>
+             <form:input cssClass="form-control" path="content" id="DocContent"  maxlength="255"/>
              <form:errors path="content" cssClass="help-block"/>
-         </div>--%>
+         </div>
         <div class="form-group">
             <appfuse:label key="uploadForm.file" styleClass="control-label"/>
             <input type="file" name="file" id="file"/>
@@ -124,6 +124,12 @@
                 fileManagerJson: "<c:url value='/editeruploadattachement'/>",
                 allowFileManager: true, filterMode: false
             });
+            window.editor = K.create('#DocContent', {
+                uploadJson: "<c:url value='/editeruploadattachement'/>",
+                fileManagerJson: "<c:url value='/editeruploadattachement'/>",
+                allowFileManager: true, filterMode: false
+            });
         });
+
     });
 </script>

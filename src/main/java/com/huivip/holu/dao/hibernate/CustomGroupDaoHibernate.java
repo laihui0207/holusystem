@@ -24,4 +24,12 @@ public class CustomGroupDaoHibernate extends GenericDaoHibernate<CustomGroup, Lo
         }
         return null;
     }
+
+    @Override
+    public List<CustomGroup> getGroupByCompany(String companyID) {
+        String hql="From CustomGroup where company.companyId='"+companyID+"'";
+        Query query=getSession().createQuery(hql);
+        List<CustomGroup> dataList=query.list();
+        return dataList;
+    }
 }

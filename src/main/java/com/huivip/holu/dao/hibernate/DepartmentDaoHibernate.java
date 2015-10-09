@@ -24,4 +24,12 @@ public class DepartmentDaoHibernate extends GenericDaoHibernate<Department, Long
         }
         return list.get(0);
     }
+
+    @Override
+    public List<Department> getDepartmentByCompany(String companyID) {
+        String hsqlString="From Department where company.companyId='"+companyID+"'";
+        Query query=getSession().createQuery(hsqlString);
+        List<Department> list=query.list();
+        return list;
+    }
 }

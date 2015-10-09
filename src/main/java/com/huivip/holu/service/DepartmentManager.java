@@ -6,6 +6,7 @@ import com.huivip.holu.model.SelectLabelValue;
 import javax.jws.WebService;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @WebService
@@ -15,5 +16,5 @@ public interface DepartmentManager extends GenericManager<Department, Long> {
     Department getDepartmentByDepartmentID(String departmentID);
     @Path("slv")
     @GET
-    List<SelectLabelValue> getDepartmentLabelValue();
+    List<SelectLabelValue> getDepartmentLabelValue(@QueryParam("userID") String userID);
 }

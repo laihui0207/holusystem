@@ -24,6 +24,7 @@ public interface UserDao extends GenericDao<User, Long> {
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
     User getUserByLoginCode(String loginCode);
     User getUserByUserID(String userID);
+    List<User> getUserByCompany(String companyID);
     /**
      * Gets a list of users ordered by the uppercase version of their username.
      *
