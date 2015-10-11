@@ -32,7 +32,7 @@ import java.util.Set;
  * FROM [MidDatabase].[dbo].[U_HOLU_ComponentList]
  */
 @Entity
-@Table(name = "U_HOLU_ComponentList")
+@Table(name = "U_ComponentList")
 @Indexed
 @XmlRootElement
 public class Component extends BaseObject implements Serializable {
@@ -47,7 +47,7 @@ public class Component extends BaseObject implements Serializable {
     float weight;
     float price;
     String styleID;
-    String pieceList;
+/*    String pieceList;*/
     User creater;
     Timestamp createDate = new Timestamp(new Date().getTime());
     Set<SubComponentList> subComponentListSet=new HashSet<>();
@@ -145,14 +145,14 @@ public class Component extends BaseObject implements Serializable {
     public void setStyleID(String styleName) {
         this.styleID = styleName;
     }
-    @Column(name="PieceList")
+    /*@Column(name="PieceList")
     public String getPieceList() {
         return pieceList;
     }
 
     public void setPieceList(String pieceList) {
         this.pieceList = pieceList;
-    }
+    }*/
     @ManyToOne
     @JoinColumn(name="UserID",referencedColumnName = "userID")
     public User getCreater() {
@@ -198,7 +198,6 @@ public class Component extends BaseObject implements Serializable {
         if (material != null ? !material.equals(component.material) : component.material != null) return false;
         if (quantity != null ? !quantity.equals(component.quantity) : component.quantity != null) return false;
         if (styleID != null ? !styleID.equals(component.styleID) : component.styleID != null) return false;
-        if (pieceList != null ? !pieceList.equals(component.pieceList) : component.pieceList != null) return false;
         if (creater != null ? !creater.equals(component.creater) : component.creater != null) return false;
         return !(createDate != null ? !createDate.equals(component.createDate) : component.createDate != null);
 
@@ -215,7 +214,6 @@ public class Component extends BaseObject implements Serializable {
         result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + (styleID != null ? styleID.hashCode() : 0);
-        result = 31 * result + (pieceList != null ? pieceList.hashCode() : 0);
         result = 31 * result + (creater != null ? creater.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;
@@ -235,7 +233,6 @@ public class Component extends BaseObject implements Serializable {
                 ", weight=" + weight +
                 ", price=" + price +
                 ", styleName='" + styleID + '\'' +
-                ", pieceList='" + pieceList + '\'' +
                 ", user=" + creater +
                 ", createDate=" + createDate +
                 '}';

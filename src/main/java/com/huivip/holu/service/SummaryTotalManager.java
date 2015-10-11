@@ -16,21 +16,21 @@ public interface SummaryTotalManager extends GenericManager<SummaryTotal, Long> 
     @GET
     @Path("{userID}")
     List<SummaryItem> getHomePageSummary(@PathParam("userID")String userID,
-                                         @QueryParam("itemStyle") String ItemStyle,
+                                         @DefaultValue("project") @QueryParam("itemStyle") String ItemStyle,
                                          @DefaultValue("today") @QueryParam("sumDate")String sumDate,
-                                         @DefaultValue("start") @QueryParam("startorend")String startOrEnd);
+                                         @DefaultValue("end") @QueryParam("startorend")String startOrEnd);
     @GET
     @Path("{userID}/item")
     HashMap<String, List<SummaryItem>> getHomePageDetailSummary(@PathParam("userID") String userID,
-                                                                @QueryParam("itemStyle") String ItemStyle,
+                                                                @DefaultValue("project") @QueryParam("itemStyle") String ItemStyle,
                                                                 @DefaultValue("today") @QueryParam("sumDate") String sumDate,
-                                                                @DefaultValue("start") @QueryParam("startorend") String startOrEnd);
+                                                                @DefaultValue("end") @QueryParam("startorend") String startOrEnd);
     @GET
-    @Path("{userID}/Detail/{itemID}")
-    HashMap<String, List<SummaryItem>> getSummaryDetail(@PathParam("userID") String userID, @PathParam("itemID") String itemID,
-                                                        @QueryParam("itemStyle") String ItemStyle,
+    @Path("{userID}/Detail/{itemName}")
+    HashMap<String, List<SummaryItem>> getSummaryDetail(@PathParam("userID") String userID, @PathParam("itemName") String itemName,
+                                                        @DefaultValue("project")@QueryParam("itemStyle") String ItemStyle,
                                                         @DefaultValue("today") @QueryParam("sumDate") String sumDate,
-                                                        @DefaultValue("start") @QueryParam("startorend") String startOrEnd);
+                                                        @DefaultValue("end") @QueryParam("startorend") String startOrEnd);
 
     @GET
     @Path("{userID}/{itemStyle}/progress")
@@ -41,4 +41,5 @@ public interface SummaryTotalManager extends GenericManager<SummaryTotal, Long> 
     HashMap<String,List<SummaryProcess>> getSummaryProcessDetail(@PathParam("userID") String userID,
                                                  @PathParam("itemStyle") String itemStyle,
                                                  @PathParam("itemId")String itemId);
+
 }

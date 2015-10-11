@@ -39,22 +39,22 @@
         paramId="id" paramProperty="id" titleKey="componentStyle.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="componentStyle.id"/>
     <display:column property="company.companyShortNameCN" sortable="true" titleKey="companyList.title"/>
-    <c:if test="${language.equalsIgnoreCase('english')}">
+    <%--<c:if test="${language.equalsIgnoreCase('english')}">
         <display:column  sortable="true" titleKey="componentStyle.processName">
             ${componentStyleList.processDictionary.englishName}_${componentStyleList.processDictionary.processStyle}
         </display:column>
-    </c:if>
-    <c:if test="${!language.equalsIgnoreCase('english')}">
+    </c:if>--%>
+<%--    <c:if test="${!language.equalsIgnoreCase('english')}">--%>
         <display:column  sortable="true" titleKey="componentStyle.processName">
             ${componentStyleList.processDictionary.chineseName}_${componentStyleList.processDictionary.processStyle}
         </display:column>
-            </c:if>
+<%--            </c:if>--%>
     <display:column property="styleName" sortable="true" titleKey="componentStyle.styleName"/>
     <display:column property="confirmDate" sortable="true" titleKey="processMid.confirmDate"/>
     <display:column property="confirmer.username" sortable="true" titleKey="processMid.confirmer"/>
     <display:column title="">
     <c:if test="${componentStyleList.operationer}">
-        <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&itemID=${component.project.itemID}'/> ">
+        <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&itemID=${component.project.projectID}'/> ">
             <fmt:message key="processMidList.processMid"/>
         </a>
     </c:if>

@@ -42,7 +42,7 @@
     <display:column property="componentName" sortable="true" titleKey="component.componentName"/>
     <display:column property="length" sortable="true" titleKey="component.length"/>
     <display:column property="material" sortable="true" titleKey="component.material"/>
-    <display:column property="pieceList" sortable="true" titleKey="component.pieceList"/>
+<%--    <display:column property="pieceList" sortable="true" titleKey="component.pieceList"/>--%>
     <display:column property="price" sortable="true" titleKey="component.price"/>
     <display:column property="quantity" sortable="true" titleKey="component.quantity"/>
     <display:column property="size" sortable="true" titleKey="component.size"/>

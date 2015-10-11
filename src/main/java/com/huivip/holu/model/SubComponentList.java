@@ -23,7 +23,7 @@ import java.util.Date;
  );
  */
 @Entity
-@Table(name = "U_HOLU_SubComponentList")
+@Table(name = "U_SubComponentList")
 @Indexed
 @XmlRootElement
 public class SubComponentList extends BaseObject implements Serializable {

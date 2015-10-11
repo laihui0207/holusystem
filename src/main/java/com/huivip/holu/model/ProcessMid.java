@@ -25,7 +25,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "U_HOLU_ProcessMidTable")
+@Table(name = "U_ProcessMidTable")
 @Indexed
 @XmlRootElement
 public class ProcessMid extends BaseObject implements Serializable {

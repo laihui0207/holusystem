@@ -26,7 +26,7 @@ public class RestAuthFilter implements Filter{
         Base64 base64=new Base64();
         String access_token=request.getHeader("authorization");
         String requestPath=request.getRequestURI();
-        if(requestPath.indexOf("userLogin.json")>0 || requestPath.indexOf("signup")>0 || requestPath.indexOf("/lasted/download.json")>0){
+        if(requestPath.indexOf("userLogin.json")>0 || requestPath.indexOf("signup")>0 || requestPath.indexOf("/client/")>0){
             filterChain.doFilter(request,response);
             return;
         }

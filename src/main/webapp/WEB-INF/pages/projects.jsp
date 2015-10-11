@@ -38,7 +38,7 @@
     <display:column property="id" sortable="true" href="projectform" media="html"
         paramId="id" paramProperty="id" titleKey="project.id"/>
     <display:column property="id" media="csv excel xml pdf" titleKey="project.id"/>
-    <display:column property="itemID" sortable="true" titleKey="project.itemID"/>
+    <display:column property="projectID" sortable="true" titleKey="project.projectID"/>
     <display:column property="projectName" sortable="true" titleKey="project.projectName"/>
     <display:column property="fullName" sortable="true" titleKey="project.fullName"/>
     <display:column property="projectLevel" sortable="true" titleKey="project.projectLevel"/>
@@ -55,10 +55,10 @@
     <display:column property="totalWeight" sortable="true" titleKey="project.totalWeight"/>
     <display:column title="">
     <c:if test="${projectList.childProjects.size() > 0 }">
-            <a href='<c:url value="/projects?parentID=${projectList.itemID}"/>'><fmt:message key="project.childProject"></fmt:message></a>
+            <a href='<c:url value="/projects?parentID=${projectList.projectID}"/>'><fmt:message key="project.childProject"></fmt:message></a>
     </c:if>
     <c:if test="${projectList.childProjects.size() == 0 }">
-            <a href='<c:url value="/components/${projectList.itemID}/Component"/>'><fmt:message key="componentList.components"/></a>
+            <a href='<c:url value="/components/${projectList.projectID}/Component"/>'><fmt:message key="componentList.components"/></a>
     </c:if>
     </display:column>
 

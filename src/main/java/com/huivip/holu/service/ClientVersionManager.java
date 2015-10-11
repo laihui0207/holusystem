@@ -21,4 +21,12 @@ public interface ClientVersionManager extends GenericManager<ClientVersion, Long
 
     String getLastQRFile();
 
+    @GET
+    @Path("version")
+    String getLastVersion();
+
+    @GET
+    @Path("downloadlink")
+    String getDownloadLink();
+
 }

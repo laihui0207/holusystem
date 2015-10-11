@@ -64,4 +64,15 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
         if(client!=null) return client.getQRCode();
         return null;
     }
+
+    @Override
+    public String getLastVersion() {
+        ClientVersion clientVersion=getLastedClient();
+        return clientVersion.getVersion();
+    }
+
+    @Override
+    public String getDownloadLink() {
+        return null;
+    }
 }

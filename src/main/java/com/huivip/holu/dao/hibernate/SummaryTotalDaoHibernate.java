@@ -15,58 +15,74 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
     }
 
     @Override
-    public List<Object[]> getSummaryItem(String sumDate, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select distinct a.processId,a.processName,a.itemID,b.SumWeight_actual,a.SumWeight_plan from  ( " +
-                "SELECT processID, processName,itemID,curDate,SUM(SumWeight)*0.001 AS SumWeight_plan " +
+    public List<Object[]> getSummaryItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
+        String sql = "select sum(b.SumWeight_actual) as actual,sum(a.SumWeight_plan) as planData from  ( " +
+                "SELECT processID, processName,itemID,SUM(SumWeight)*0.001 AS SumWeight_plan " +
                 "FROM " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' " +
-                "GROUP BY curDate,ProcessID,processName,itemID,StartOrEnd,ActualPlanPredict) as a left join  " +
-                "(SELECT processID, processName,itemID,curDate, SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "GROUP BY ProcessID,processName,itemID,StartOrEnd,ActualPlanPredict) as a left join  " +
+                "(SELECT processID, processName,itemID, SUM(SumWeight)*0.001 AS SumWeight_actual " +
                 "FROM " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual' AND ItemStyle='" + itemStyle + "' " +
-                "GROUP BY curDate,ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID ";
+                "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID ";
         Query query = getSession().createSQLQuery(sql);
         List list = query.list();
         return list;
     }
 
     @Override
-    public List<String> getSummaryValidItem(String sumDate, String processIds, String itemStyle, String startOrEnd, String tableName) {
+    public List<String> getSummaryValidItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
         String sql = "select distinct a.ItemName from  (" +
-                "SELECT ItemName,processID,ProcessName,curDate,SUM(SumWeight)*0.001 AS SumWeight_plan " +
+                "SELECT ItemName,processID,ProcessName,SUM(SumWeight)*0.001 AS SumWeight_plan " +
                 "FROM  " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and  ProcessID in (" + processIds + ")  AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ")  AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' " +
-                "GROUP BY curDate,ItemName,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as a ," +
+                "GROUP BY ItemName,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as a ," +
                 "(SELECT ItemName,processID,ProcessName,SUM(SumWeight)*0.001 AS SumWeight_actual " +
                 "FROM " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual' AND ItemStyle='" + itemStyle + "' " +
-                "GROUP BY curDate,ItemName,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as b";
+                "GROUP BY ItemName,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as b";
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
 
     @Override
-    public List<Object[]> getSummaryDetailByItem(String itemName, String sumDate, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select distinct a.processId,a.processName,a.itemID,b.SumWeight_actual,a.SumWeight_plan from  (" +
-                "SELECT processID, processName,itemID,curDate,SUM(SumWeight)*0.001 AS SumWeight_plan " +
+    public List<Object[]> getSummaryDetailByItem(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
+        String sql = "select b.SumWeight_actual,a.SumWeight_plan,a.processID,a.processName,a.itemID from  (" +
+                "SELECT distinct processID, processName,itemID,SUM(SumWeight)*0.001 AS SumWeight_plan " +
                 "FROM " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
-                "GROUP BY curDate,ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as a left Join " +
-                "(SELECT processID, processName,curDate,itemID, SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as a left Join " +
+                "(SELECT distinct processID, processName,itemID, SUM(SumWeight)*0.001 AS SumWeight_actual " +
                 "FROM " + tableName + " " +
-                "WHERE curDate='" + sumDate + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual'  AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
-                "GROUP BY curDate,ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";
+                "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";
 
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
+    @Override
+    public List<Object[]> getSummaryDetail(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
+        String sql = "select sum(b.SumWeight_actual) as actualData,sum(a.SumWeight_plan) as planData from  (" +
+                "SELECT distinct processID, processName,itemID,SUM(SumWeight)*0.001 AS SumWeight_plan " +
+                "FROM " + tableName + " " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
+                "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as a left Join " +
+                "(SELECT distinct processID, processName,itemID, SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "FROM " + tableName + " " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "AND ActualPlanPredict='Actual'  AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
+                "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";
 
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
     @Override
     public List<String> getDetailValidProjectItem(String itemID, String sumDate, String processIds, String startOrEnd, String tableName) {
         String sql = "select distinct a.ItemName from (" +

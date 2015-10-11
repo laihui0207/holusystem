@@ -41,14 +41,16 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        Date searchDate=getSumDate(sumDate);
-        String searchDateString=simpleDateFormat.format(searchDate);
+        String searchDateEnd=simpleDateFormat.format(new Date());
+        SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
+        String searchDateStart=simpleDateFormat1.format(new Date())+"01";
+
 /*        searchDateString="2015-09-08";*/
         //a.processId,a.processName,b.SumWeight_actual,a.SumWeight_plan f
-        List<Object[]> items=summaryTotalDao.getSummaryItem(searchDateString,processes,ItemStyle,startOrEnd,tableName );
+        List<Object[]> items=summaryTotalDao.getSummaryItem(searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, tableName);
         for(Object[] objs:items){
             SummaryItem item=convertSummaryItem(objs,ItemStyle);
-            item.setSumDate(searchDate);
+            item.setSumDate(new Date());
             result.add(item);
         }
         return result;
@@ -63,17 +65,17 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        Date searchDate=getSumDate(sumDate);
-        String searchDateString=simpleDateFormat.format(searchDate);
-/*        searchDateString="2015-09-08";*/
-        List<String> validItem=summaryTotalDao.getSummaryValidItem(searchDateString, processes, ItemStyle, startOrEnd, tableName);
+        String searchDateEnd=simpleDateFormat.format(new Date());
+        SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
+        String searchDateStart=simpleDateFormat1.format(new Date())+"01";
+        List<String> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart,searchDateEnd , processes, ItemStyle, startOrEnd, tableName);
         if(null==validItem || validItem.size()==0) return result;
         for(String item:validItem){
-            List<Object[]> itemSummary=summaryTotalDao.getSummaryDetailByItem(item, searchDateString, processes, ItemStyle, startOrEnd, tableName);
+            List<Object[]> itemSummary=summaryTotalDao.getSummaryDetail(item, searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, tableName);
             List<SummaryItem> list=new ArrayList<>();
             for(Object[] objs:itemSummary){
              SummaryItem summaryItem=convertSummaryItem(objs,ItemStyle);
-                summaryItem.setSumDate(searchDate);
+                summaryItem.setSumDate(new Date());
                 list.add(summaryItem);
             }
             result.put(item,list);
@@ -82,31 +84,34 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     }
 
     @Override
-    public HashMap<String, List<SummaryItem>> getSummaryDetail(String userID, String itemID, String ItemStyle, String sumDate, String startOrEnd) {
+    public HashMap<String, List<SummaryItem>> getSummaryDetail(String userID, String itemName, String ItemStyle, String sumDate, String startOrEnd) {
         HashMap<String,List<SummaryItem>> result=new HashMap<>();
         User user=userManager.getUserByUserID(userID);
-        String summaryTableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
+        String summaryTableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String searchDateEnd=simpleDateFormat.format(new Date());
+        SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
+        String searchDateStart=simpleDateFormat1.format(new Date())+"01";
         Date searchDate=getSumDate(sumDate);
         String searchDateString=simpleDateFormat.format(searchDate);
 /*        searchDateString="2015-09-08";*/
         if(ItemStyle.equalsIgnoreCase("project")){
-            List<String> validItem=summaryTotalDao.getDetailValidProjectItem(itemID,searchDateString,processes,startOrEnd,summaryTableName);
-            if(null==validItem || validItem.size()==0) return result;
-            for(String item:validItem){
-                List<Object[]> itemDetail=summaryTotalDao.getDetailProjectDataByItem(itemID,item,searchDateString,processes,startOrEnd,summaryTableName);
+/*            List<String> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, summaryTableName);*/
+/*            if(null==validItem || validItem.size()==0) return result;*/
+/*            for(String item:validItem){*/
+                List<Object[]> itemDetail=summaryTotalDao.getSummaryDetailByItem(itemName, searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd,summaryTableName);
                 List<SummaryItem> list=new ArrayList<>();
                 for(Object[] objs:itemDetail){
-                    SummaryItem summaryItem=convertSummaryItem(objs,ItemStyle);
+                    SummaryItem summaryItem=convertSummaryItem(objs, ItemStyle);
                     summaryItem.setSumDate(searchDate);
                     list.add(summaryItem);
                 }
-                result.put(item,list);
-            }
+                result.put(itemName,list);
+            /*}*/
         }
-        else if(ItemStyle.equalsIgnoreCase("factory")){
+        /*else if(ItemStyle.equalsIgnoreCase("factory")){
             List<String> validItem=summaryTotalDao.getDetailValidFactoryItem(itemID, searchDateString, processes, startOrEnd, summaryTableName);
             if(null==validItem || validItem.size()==0) return result;
             for(String item:validItem){
@@ -119,7 +124,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
                 }
                 result.put(item,list);
             }
-        }
+        }*/
         return result;
     }
 
@@ -201,22 +206,29 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     }
     private SummaryItem convertSummaryItem(Object[] objs,String style){
         SummaryItem item=new SummaryItem();
-        item.setProcessID((String) objs[0]);
-        item.setItemName((String) objs[1]);
-        item.setItemID((String) objs[2]);
-        item.setItemStyle(style);
-        if(objs[3]==null){
+
+        if(objs[0]==null){
             item.setActual(0);
         }
         else {
-            item.setActual((Double) objs[3]);
+            item.setActual((Double) objs[0]);
         }
-        if(objs[4]==null){
+        if(objs[1]==null){
             item.setPlan(0);
         }
         else {
-            item.setPlan((Double) objs[4]);
+            item.setPlan((Double) objs[1]);
         }
+        if(objs.length >2 && objs[2]!=null) {
+            item.setProcessID((String) objs[2]);
+        }
+        if (objs.length >3 && objs[3] !=null) {
+            item.setItemName((String) objs[3]);
+        }
+        if (objs.length >4 &&objs[4] !=null) {
+            item.setItemID((String) objs[4]);
+        }
+        item.setItemStyle(style);
         return item;
     }
     private SummaryProcess convertSummaryProcess(Object[] objs){
