@@ -305,4 +305,63 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         return query.list();
     }
 
+    @Override
+    public List<Object[]> SearchProjectBetweenDate(String startDate, String endDate, String processIds, String tableName) {
+        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.curDate from " +
+                "(" +
+                "SELECT curDate,processID,SUM(SumWeight)*0.001 AS  SumWeight_plan " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND ItemStyle='Project' " +
+                "GROUP BY curDate,ProcessID,StartOrEnd,ActualPlanPredict ) as a join  " +
+                "(" +
+                "SELECT curDate,processID,SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' AND ItemStyle='Project' " +
+                "GROUP BY curDate,ProcessID,StartOrEnd,ActualPlanPredict ) as b on a.processID=b.processID " +
+                "ORDER BY curDate DESC";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+    @Override
+    public List<Object[]> SearchFactoryBetweenDate(String startDate, String endDate, String processIds, String tableName) {
+        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.itemID, a.itemName from " +
+                "(" +
+                "SELECT itemName,itemID,SUM(SumWeight)*0.001 AS  SumWeight_plan " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND ItemStyle='Factory' " +
+                "GROUP BY itemName,itemID,ProcessID,StartOrEnd,ActualPlanPredict ) as a join  " +
+                "(" +
+                "SELECT itemName,itemID,SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' AND ItemStyle='Factory' " +
+                "GROUP BY itemName,itemID,ProcessID,StartOrEnd,ActualPlanPredict ) as b on a.itemID=b.itemID ";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
+    @Override
+    public List<Object[]> SearchFactoryItemBetweenDate(String itemID,String startDate, String endDate, String processIds, String tableName) {
+        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.itemID, a.itemName from " +
+                "(" +
+                "SELECT projectPathName as itemName,projectID as itemID,SUM(SumWeight)*0.001 AS  SumWeight_plan " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND DepartmentID='"+itemID+"' "+
+                "GROUP BY projectID,projectPathName,ProcessID,StartOrEnd,ActualPlanPredict ) as a join  " +
+                "(" +
+                "SELECT projectPathName as itemName,projectID as itemID,SUM(SumWeight)*0.001 AS SumWeight_actual " +
+                "FROM " +tableName+" "+
+                "WHERE curDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
+                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND DepartmentID='"+itemID+"' "+
+                "GROUP BY projectID,projectPathName,ProcessID,StartOrEnd,ActualPlanPredict ) as b on a.itemID=b.itemID ";
+
+        Query query = getSession().createSQLQuery(sql);
+        return query.list();
+    }
 }

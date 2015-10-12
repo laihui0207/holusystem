@@ -22,4 +22,8 @@ public interface SummaryTotalDao extends GenericDao<SummaryTotal, Long> {
     List<Object[]> getProjectSummaryProcessDetail(String tableName,String projectID);
     List<Object[]> getFactorySummaryProcessDetail(String tableName,String departmentID);
 
+    List<Object[]> SearchProjectBetweenDate(String startDate, String endDate, String processIds, String tableName);
+    List<Object[]> SearchFactoryBetweenDate(String startDate, String endDate, String processIds, String tableName);
+    List<Object[]> SearchFactoryItemBetweenDate(String itemID,String startDate, String endDate, String processIds, String tableName);
+
 }

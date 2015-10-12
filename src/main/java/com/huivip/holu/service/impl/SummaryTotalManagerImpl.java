@@ -3,10 +3,13 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.SummaryTotalDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
+import com.huivip.holu.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -176,6 +179,44 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         return result;
     }
 
+    @Override
+    public List<SummaryItem> searchBetweenDate(String userID, String start, String end,String itemStyle) {
+        List<SummaryItem> result=new ArrayList<>();
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String processes=getHomeProcessIds(userID);
+        List<Object[]> list=null;
+        if(itemStyle.equalsIgnoreCase("project")){
+           list=summaryTotalDao.SearchProjectBetweenDate(start,end,processes,tableName);
+        }
+        else {
+            list=summaryTotalDao.SearchFactoryBetweenDate(start,end,processes,tableName);
+        }
+        for(Object[] objects:list){
+            result.add(convertSummaryItem(objects,"project"));
+        }
+
+        return result;
+    }
+    @Override
+    public List<SummaryItem> searchItemBetweenDate(String userID,String itemID, String start, String end,String itemStyle) {
+        List<SummaryItem> result=new ArrayList<>();
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String processes=getHomeProcessIds(userID);
+        List<Object[]> list=null;
+        if(itemStyle.equalsIgnoreCase("project")){
+            list=summaryTotalDao.SearchProjectBetweenDate(start,end,processes,tableName);
+        }
+        else {
+            list=summaryTotalDao.SearchFactoryItemBetweenDate(itemID,start,end,processes,tableName);
+        }
+        for(Object[] objects:list){
+            result.add(convertSummaryItem(objects,"project"));
+        }
+
+        return result;
+    }
     private String getHomeProcessIds(String userID){
         User user=userManager.getUserByUserID(userID);
         Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessDisplayList");
@@ -220,7 +261,14 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
             item.setPlan((Double) objs[1]);
         }
         if(objs.length >2 && objs[2]!=null) {
-            item.setProcessID((String) objs[2]);
+            if(objs[2] instanceof Timestamp){
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                Timestamp curdate= (Timestamp) objs[2];
+                item.setItemName(simpleDateFormat.format(new Date(curdate.getTime())));
+            }
+            else {
+                item.setProcessID((String) objs[2]);
+            }
         }
         if (objs.length >3 && objs[3] !=null) {
             item.setItemName((String) objs[3]);

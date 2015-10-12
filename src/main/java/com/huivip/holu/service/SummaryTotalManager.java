@@ -41,5 +41,18 @@ public interface SummaryTotalManager extends GenericManager<SummaryTotal, Long> 
     HashMap<String,List<SummaryProcess>> getSummaryProcessDetail(@PathParam("userID") String userID,
                                                  @PathParam("itemStyle") String itemStyle,
                                                  @PathParam("itemId")String itemId);
+    @GET
+    @Path("{userID}/search")
+    List<SummaryItem> searchBetweenDate(@PathParam("userID") String userID,
+                                        @QueryParam("start")String start,
+                                        @QueryParam("end")String end,
+                                        @DefaultValue("project") @QueryParam("itemStyle") String itemStyle);
 
+    @GET
+    @Path("{userID}/searchDetail/{itemID}")
+    List<SummaryItem> searchItemBetweenDate(@PathParam("userID") String userID,
+                                            @PathParam("itemID") String itemID,
+                                        @QueryParam("start")String start,
+                                        @QueryParam("end")String end,
+                                        @DefaultValue("project") @QueryParam("itemStyle") String itemStyle);
 }
