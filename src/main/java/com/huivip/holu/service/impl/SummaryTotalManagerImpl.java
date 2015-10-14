@@ -71,17 +71,18 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         String searchDateEnd=simpleDateFormat.format(new Date());
         SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
         String searchDateStart=simpleDateFormat1.format(new Date())+"01";
-        List<String> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart,searchDateEnd , processes, ItemStyle, startOrEnd, tableName);
+        List<Object[]> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart,searchDateEnd , processes, ItemStyle, startOrEnd, tableName);
         if(null==validItem || validItem.size()==0) return result;
-        for(String item:validItem){
-            List<Object[]> itemSummary=summaryTotalDao.getSummaryDetail(item, searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, tableName);
+        for(Object[] item:validItem){
+            List<Object[]> itemSummary=summaryTotalDao.getSummaryDetail((String) item[0], searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, tableName);
             List<SummaryItem> list=new ArrayList<>();
             for(Object[] objs:itemSummary){
              SummaryItem summaryItem=convertSummaryItem(objs,ItemStyle);
                 summaryItem.setSumDate(new Date());
+                summaryItem.setItemID((String) item[1]);
                 list.add(summaryItem);
             }
-            result.put(item,list);
+            result.put((String) item[0],list);
         }
         return result;
     }
@@ -90,7 +91,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public HashMap<String, List<SummaryItem>> getSummaryDetail(String userID, String itemName, String ItemStyle, String sumDate, String startOrEnd) {
         HashMap<String,List<SummaryItem>> result=new HashMap<>();
         User user=userManager.getUserByUserID(userID);
-        String summaryTableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String summaryTableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
@@ -202,14 +203,14 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public List<SummaryItem> searchItemBetweenDate(String userID,String itemID, String start, String end,String itemStyle) {
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
         String processes=getHomeProcessIds(userID);
         List<Object[]> list=null;
         if(itemStyle.equalsIgnoreCase("project")){
             list=summaryTotalDao.SearchProjectBetweenDate(start,end,processes,tableName);
         }
         else {
-            list=summaryTotalDao.SearchFactoryItemBetweenDate(itemID,start,end,processes,tableName);
+            list=summaryTotalDao.SearchFactoryItemBetweenDate(itemID, start, end, processes, tableName);
         }
         for(Object[] objects:list){
             result.add(convertSummaryItem(objects,"project"));

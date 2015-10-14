@@ -10,7 +10,7 @@ import java.util.List;
 public interface SummaryTotalDao extends GenericDao<SummaryTotal, Long> {
 
     List<Object[]> getSummaryItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName);
-    List<String> getSummaryValidItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName);
+    List<Object[]> getSummaryValidItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName);
     List<Object[]> getSummaryDetail(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName);
     List<Object[]> getSummaryDetailByItem(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName);
     List<String> getDetailValidProjectItem(String itemID, String sumDate, String processIds,  String startOrEnd, String tableName);

@@ -47,19 +47,19 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         String projects="";
         for(String project:myProjects){
             if(projects.length()==0){
-                projects=project;
+                projects="'"+project+"'";
             }
             else {
-                projects+=","+project;
+                projects+=",'"+project+"'";
             }
         }
         String processes="";
         for(String process:myProcesses){
             if(processes.length()==0){
-                processes=process;
+                processes="'"+process+"'";
             }
             else {
-                processes+=","+process;
+                processes+=",'"+process+"'";
             }
         }
        /* projects="'XM0000007','XM0000013'";
@@ -71,9 +71,11 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
             String[] subs=subComponents.split(",");
             for(String subId:subs){
                 SubComponentList subComponentList=subComponentListManager.getSubComponentBySubComponentID(subId,userId);
+
                 task.getSubComponents().add(subComponentList);
             }
         }
+
         return myTasks;
     }
 

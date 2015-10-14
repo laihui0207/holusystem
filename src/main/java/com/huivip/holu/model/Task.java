@@ -5,7 +5,6 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,15 +37,19 @@ public class Task extends BaseObject implements Serializable {
     private String taskId;
     private String taskStyle;
     private String taskName;
-    private Date startDate;
-    private Date endDate;
+    /*private Date startDate;
+    private Date endDate;*/
+    private Date taskDate;
     private Project project;
     private ProcessDictionary processDictionary;
     private String subComponentIdList;
     private String subComponentNameList;
     private List<SubComponentList> subComponents=new ArrayList<>();
-    Long startCount;
-    Long endCount;
+    /*Long startCount;
+    Long endCount;*/
+    Long taskCount;
+    Long taskWeight;
+    Long taskPercent;
     int acceptPush;
     User createUser;
     Date createDate;
@@ -84,22 +87,39 @@ public class Task extends BaseObject implements Serializable {
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
-    @Column(name="StartDate")
-    public Date getStartDate() {
-        return startDate;
+    @Column(name="TaskDate")
+    public Date getTaskDate() {
+        return taskDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setTaskDate(Date taskDate) {
+        this.taskDate = taskDate;
     }
-    @Column(name="EndDate")
-    public Date getEndDate() {
-        return endDate;
+    @Column(name="TaskPercent")
+    public Long getTaskPercent() {
+        return taskPercent;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setTaskPercent(Long taskPrecent) {
+        this.taskPercent = taskPrecent;
     }
+
+    /*  @Column(name="StartDate")
+            public Date getStartDate() {
+                return startDate;
+            }
+
+            public void setStartDate(Date startDate) {
+                this.startDate = startDate;
+            }
+            @Column(name="EndDate")
+            public Date getEndDate() {
+                return endDate;
+            }
+
+            public void setEndDate(Date endDate) {
+                this.endDate = endDate;
+            }*/
     @ManyToOne
     @JoinColumn(name="ProjectID",referencedColumnName = "projectID")
     public Project getProject() {
@@ -135,7 +155,7 @@ public class Task extends BaseObject implements Serializable {
     public void setRecordId(String recordId) {
         this.recordId = recordId;
     }*/
-    @Column(name="StartCount")
+    /*@Column(name="StartCount")
     public Long getStartCount() {
         return startCount;
     }
@@ -150,7 +170,7 @@ public class Task extends BaseObject implements Serializable {
 
     public void setEndCount(Long endCount) {
         this.endCount = endCount;
-    }
+    }*/
     @Column(name="AcceptPush")
     public int getAcceptPush() {
         return acceptPush;
@@ -192,6 +212,22 @@ public class Task extends BaseObject implements Serializable {
     public void setSubComponentNameList(String subComponentNameList) {
         this.subComponentNameList = subComponentNameList;
     }
+    @Column(name="TaskCount")
+    public Long getTaskCount() {
+        return taskCount;
+    }
+
+    public void setTaskCount(Long taskCount) {
+        this.taskCount = taskCount;
+    }
+    @Column(name="TaskWeight")
+    public Long getTaskWeight() {
+        return taskWeight;
+    }
+
+    public void setTaskWeight(Long taskWeight) {
+        this.taskWeight = taskWeight;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -205,13 +241,9 @@ public class Task extends BaseObject implements Serializable {
         if (taskId != null ? !taskId.equals(task.taskId) : task.taskId != null) return false;
         if (taskStyle != null ? !taskStyle.equals(task.taskStyle) : task.taskStyle != null) return false;
         if (taskName != null ? !taskName.equals(task.taskName) : task.taskName != null) return false;
-        if (startDate != null ? !startDate.equals(task.startDate) : task.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(task.endDate) : task.endDate != null) return false;
         if (project != null ? !project.equals(task.project) : task.project != null) return false;
         if (processDictionary != null ? !processDictionary.equals(task.processDictionary) : task.processDictionary != null)
             return false;
-        if (startCount != null ? !startCount.equals(task.startCount) : task.startCount != null) return false;
-        if (endCount != null ? !endCount.equals(task.endCount) : task.endCount != null) return false;
         if (createUser != null ? !createUser.equals(task.createUser) : task.createUser != null) return false;
         return !(createDate != null ? !createDate.equals(task.createDate) : task.createDate != null);
 
@@ -223,12 +255,8 @@ public class Task extends BaseObject implements Serializable {
         result = 31 * result + (taskId != null ? taskId.hashCode() : 0);
         result = 31 * result + (taskStyle != null ? taskStyle.hashCode() : 0);
         result = 31 * result + (taskName != null ? taskName.hashCode() : 0);
-        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
-        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (project != null ? project.hashCode() : 0);
         result = 31 * result + (processDictionary != null ? processDictionary.hashCode() : 0);
-        result = 31 * result + (startCount != null ? startCount.hashCode() : 0);
-        result = 31 * result + (endCount != null ? endCount.hashCode() : 0);
         result = 31 * result + acceptPush;
         result = 31 * result + (createUser != null ? createUser.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
@@ -242,12 +270,8 @@ public class Task extends BaseObject implements Serializable {
                 ", taskId='" + taskId + '\'' +
                 ", taskStyle='" + taskStyle + '\'' +
                 ", taskName='" + taskName + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
                 ", project=" + project +
                 ", processDictionary=" + processDictionary +
-                ", startCount=" + startCount +
-                ", endCount=" + endCount +
                 ", acceptPush=" + acceptPush +
                 ", createUser=" + createUser +
                 ", createDate=" + createDate +

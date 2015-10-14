@@ -23,7 +23,7 @@ public interface ClientVersionManager extends GenericManager<ClientVersion, Long
 
     @GET
     @Path("version")
-    String getLastVersion();
+    ClientVersion getLastVersion();
 
     @GET
     @Path("downloadlink")

@@ -2,16 +2,13 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.ClientVersionDao;
 import com.huivip.holu.model.ClientVersion;
-import com.huivip.holu.model.Documentation;
 import com.huivip.holu.service.ClientVersionManager;
-import com.huivip.holu.service.impl.GenericManagerImpl;
 
 import com.huivip.holu.util.SteelConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.util.List;
 import javax.jws.WebService;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -66,9 +63,9 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
     }
 
     @Override
-    public String getLastVersion() {
+    public ClientVersion getLastVersion() {
         ClientVersion clientVersion=getLastedClient();
-        return clientVersion.getVersion();
+        return clientVersion;
     }
 
     @Override
