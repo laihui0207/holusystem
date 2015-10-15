@@ -3,10 +3,7 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.TaskDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.*;
-import com.huivip.holu.service.CompanyDatabaseIndexManager;
-import com.huivip.holu.service.ProjectManager;
-import com.huivip.holu.service.SubComponentListManager;
-import com.huivip.holu.service.TaskManager;
+import com.huivip.holu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +24,8 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
     ProjectManager projectManager;
     @Autowired
     SubComponentListManager subComponentListManager;
+    @Autowired
+    ComponentStyleManager componentStyleManager;
 
     @Autowired
     public TaskManagerImpl(TaskDao taskDao) {
@@ -35,7 +34,8 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
     }
 
     @Override
-    public List<Task> getTaskOfUser(String userId) {
+    public List<Mission> getTaskOfUser(String userId) {
+        List<Mission> missions=new ArrayList<>();
         User user=userDao.getUserByUserID(userId);
         String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"TaskTable");
         Set<Post> posts=user.getPosts();
@@ -65,18 +65,29 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
        /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
         List<Task> myTasks=taskDao.getTaskofUser(projects,processes,tableName);
-        if(null==myTasks) return new ArrayList<Task>();
+        if(null==myTasks) return missions;
         for(Task task:myTasks){
             String subComponents=task.getSubComponentIdList();
             String[] subs=subComponents.split(",");
             for(String subId:subs){
                 SubComponentList subComponentList=subComponentListManager.getSubComponentBySubComponentID(subId,userId);
-
-                task.getSubComponents().add(subComponentList);
+                Component component=subComponentListManager.getParentComponent(subComponentList.getSubComponentID(),userId);
+                Mission mission=new Mission();
+                mission.setComponent(component);
+                mission.setSubComponent(subComponentList);
+                mission.setComponentType("sub");
+                mission.setUser(user);
+                List<ComponentStyle> componentStyles=componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user.getCompany().getCompanyId(), userId, component.getComponentID());
+                for(ComponentStyle style: componentStyles){
+                    if(style.isOperationer()){
+                        mission.setComponentStyle(style);
+                    }
+                }
+                missions.add(mission);
             }
         }
 
-        return myTasks;
+        return missions;
     }
 
     private List<String> collectProject(String userId,String parent){

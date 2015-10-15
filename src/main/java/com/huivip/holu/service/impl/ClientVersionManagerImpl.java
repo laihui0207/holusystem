@@ -33,7 +33,7 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
     public ClientVersion getLastedClient() {
         return clientVersionDao.getLastedClient();
     }
-
+t
     @Override
     public Response downloadClient(String version) {
         ClientVersion clientVersion=null;

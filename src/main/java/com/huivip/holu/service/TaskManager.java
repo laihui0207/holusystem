@@ -1,5 +1,6 @@
 package com.huivip.holu.service;
 
+import com.huivip.holu.model.Mission;
 import com.huivip.holu.model.Task;
 
 import javax.jws.WebService;
@@ -13,5 +14,5 @@ import java.util.List;
 public interface TaskManager extends GenericManager<Task, Long> {
     @GET
     @Path("{userId}")
-    List<Task> getTaskOfUser(@PathParam("userId") String userId);
+    List<Mission> getTaskOfUser(@PathParam("userId") String userId);
 }

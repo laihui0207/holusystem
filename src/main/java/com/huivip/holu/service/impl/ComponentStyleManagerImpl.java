@@ -168,7 +168,9 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                 mission.setComponent(component);
                 mission.setComponentType("parent");
                 handleComponentStyle(component, userId, mission);
-                missions.add(mission);
+                if(mission.getComponentStyle()!=null){
+                    missions.add(mission);
+                }
             }
             else {
                 Set<SubComponentList> subComponentLists=component.getSubComponentListSet();
@@ -178,7 +180,9 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                     mission.setSubComponent(subComponentList);
                     mission.setComponentType("sub");
                     handleComponentStyle(component,userId, mission);
-                    missions.add(mission);
+                    if(mission.getComponentStyle()!=null){
+                        missions.add(mission);
+                    }
                 }
             }
         }
