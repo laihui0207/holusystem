@@ -17,19 +17,19 @@ public interface SummaryTotalManager extends GenericManager<SummaryTotal, Long> 
     @Path("{userID}")
     List<SummaryItem> getHomePageSummary(@PathParam("userID")String userID,
                                          @DefaultValue("project") @QueryParam("itemStyle") String ItemStyle,
-                                         @DefaultValue("today") @QueryParam("sumDate")String sumDate,
+                                         @DefaultValue("month") @QueryParam("sumDate")String sumDate,
                                          @DefaultValue("end") @QueryParam("startorend")String startOrEnd);
     @GET
     @Path("{userID}/item")
     HashMap<String, List<SummaryItem>> getHomePageDetailSummary(@PathParam("userID") String userID,
                                                                 @DefaultValue("project") @QueryParam("itemStyle") String ItemStyle,
-                                                                @DefaultValue("today") @QueryParam("sumDate") String sumDate,
+                                                                @DefaultValue("month") @QueryParam("sumDate") String sumDate,
                                                                 @DefaultValue("end") @QueryParam("startorend") String startOrEnd);
     @GET
     @Path("{userID}/Detail/{itemName}")
     HashMap<String, List<SummaryItem>> getSummaryDetail(@PathParam("userID") String userID, @PathParam("itemName") String itemName,
                                                         @DefaultValue("project")@QueryParam("itemStyle") String ItemStyle,
-                                                        @DefaultValue("today") @QueryParam("sumDate") String sumDate,
+                                                        @DefaultValue("month") @QueryParam("sumDate") String sumDate,
                                                         @DefaultValue("end") @QueryParam("startorend") String startOrEnd);
 
     @GET

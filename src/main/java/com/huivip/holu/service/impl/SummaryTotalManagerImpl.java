@@ -47,6 +47,9 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         String searchDateEnd=simpleDateFormat.format(new Date());
         SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
         String searchDateStart=simpleDateFormat1.format(new Date())+"01";
+        if(sumDate!=null && !sumDate.equalsIgnoreCase("month")){
+            searchDateStart=null;
+        }
 
 /*        searchDateString="2015-09-08";*/
         //a.processId,a.processName,b.SumWeight_actual,a.SumWeight_plan f
@@ -99,8 +102,10 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
         String searchDateStart=simpleDateFormat1.format(new Date())+"01";
         Date searchDate=getSumDate(sumDate);
-        String searchDateString=simpleDateFormat.format(searchDate);
-/*        searchDateString="2015-09-08";*/
+        if(sumDate!=null && !"month".equalsIgnoreCase(sumDate)){
+            searchDateStart=null;
+        }
+
         if(ItemStyle.equalsIgnoreCase("project")){
 /*            List<String> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, summaryTableName);*/
 /*            if(null==validItem || validItem.size()==0) return result;*/
