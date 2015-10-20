@@ -77,6 +77,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
                 mission.setSubComponent(subComponentList);
                 mission.setComponentType("sub");
                 mission.setUser(user);
+                mission.setType(task.getTaskStyle());
                 List<ComponentStyle> componentStyles=componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user.getCompany().getCompanyId(), userId, component.getComponentID());
                 for(ComponentStyle style: componentStyles){
                     if(style.isOperationer()){

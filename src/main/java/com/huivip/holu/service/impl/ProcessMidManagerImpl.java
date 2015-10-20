@@ -45,15 +45,65 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
-    public ProcessMid save(String subComponentID,String styleProcessID,String processNote,String startDate,String endDate,String positionGPS,String userID) {
+    public ProcessMid save(String subComponentID,String styleProcessID,String processNote,String startDate,String endDate,String positionGPS,String positionName,String userID) {
         ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
         processMid.setStyleProcessID(styleProcessID);
         processMid.setProcessNote(processNote);
         processMid.setPositionGPS(positionGPS);
-      /*  processMid.setStartDate(new Date(Long.parseLong(startDate)));
-        processMid.setEndDate(new Date(Long.parseLong(endDate)));*/
+        processMid.setPositionName(positionName);
+       /* try {
+            processMid.setStartDate(DateUtil.convertStringToDate("yyyy-MM-dd",startDate));
+            processMid.setEndDate(DateUtil.convertStringToDate("yyyy-MM-dd",endDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+/*        processMid.setEndDate(new Date(Long.parseLong(endDate)));*/
+        processMid.setUser(userManager.getUserByUserID(userID));
+        // to do  check if confirm again
+        return save(processMid, userID);
+    }
+
+    @Override
+    public ProcessMid startConfirm( String subComponentID, String styleProcessID, String processNote, String startDate, String endDate, String positionGPS,String positionName, String userID) {
+        ProcessMid processMid = new ProcessMid();
+        processMid.setCreateDate(new Date());
+        processMid.setSubComponentID(subComponentID);
+        processMid.setStyleProcessID(styleProcessID);
+        processMid.setProcessNote(processNote);
+        processMid.setPositionGPS(positionGPS);
+        processMid.setStartDate(new Date());
+        processMid.setPositionName(positionName);
+        processMid.setUser(userManager.getUserByUserID(userID));
+        // to do  check if confirm again
+        return save(processMid, userID);
+    }
+
+    @Override
+    public ProcessMid stopConfirm( String subComponentID,  String styleProcessID,  String processNote, String startDate, String endDate,  String positionGPS,String positionName, String userID) {
+        ProcessMid processMid = new ProcessMid();
+        processMid.setCreateDate(new Date());
+        processMid.setSubComponentID(subComponentID);
+        processMid.setStyleProcessID(styleProcessID);
+        processMid.setProcessNote(processNote);
+        processMid.setPositionGPS(positionGPS);
+        processMid.setPositionName(positionName);
+        processMid.setEndDate(new Date());
+        processMid.setUser(userManager.getUserByUserID(userID));
+        // to do  check if confirm again
+        return save(processMid, userID);
+    }
+
+    @Override
+    public ProcessMid ConfirmQuestion( String subComponentID,  String styleProcessID,  String processNote,  String startDate,  String endDate,  String positionGPS,String positionName,  String userID) {
+        ProcessMid processMid = new ProcessMid();
+        processMid.setCreateDate(new Date());
+        processMid.setSubComponentID(subComponentID);
+        processMid.setStyleProcessID(styleProcessID);
+        processMid.setProcessNote(processNote);
+        processMid.setPositionGPS(positionGPS);
+        processMid.setPositionName(positionName);
         processMid.setUser(userManager.getUserByUserID(userID));
         // to do  check if confirm again
         return save(processMid, userID);

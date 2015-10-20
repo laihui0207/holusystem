@@ -9,10 +9,12 @@ public class Mission implements Serializable {
     private Component component;
     private String componentType;
     private String projectChain;
+    private String type;
     private SubComponentList subComponent;
     private ComponentStyle componentStyle;
     private String componentId;
     private User user;
+    private ProcessMid processMid;
 
     public Component getComponent() {
         return component;
@@ -38,6 +40,13 @@ public class Mission implements Serializable {
         this.subComponent = subComponent;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getComponentId() {
         return componentId;
@@ -69,5 +78,13 @@ public class Mission implements Serializable {
 
     public void setProjectChain(String projectChain) {
         this.projectChain = projectChain;
+    }
+
+    public ProcessMid getProcessMid() {
+        return processMid;
+    }
+
+    public void setProcessMid(ProcessMid processMid) {
+        this.processMid = processMid;
     }
 }

@@ -32,24 +32,35 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
     public ProcessMid save(ProcessMid object, String tableName) {
         ProcessMid processMid=getProcessMid(object.getSubComponentID(),object.getStyleProcessID(),tableName);
         String sql="";
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String setString="";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         if(null!=processMid){
-            sql="UPDATE " + tableName+
-                    " SET  PostionGPS='"+object.getPositionGPS()+"', ProcessNote='"+  //EndDate='"+format.format(object.getCreateDate())+"',
-                    object.getProcessNote()+"' " +  //, StartDate='"+format.format(object.getStartDate())+"'
-                    "WHERE ID="+processMid.getId();
+            if(object.getProcessNote()!=null){
+                setString+=",ProcessNote='"+ object.getProcessNote()+"' ";
+            }
+            if(object.getStartDate()!=null){
+                setString=",StartDate='"+format.format(object.getStartDate())+"' ";
+            }
+            if(object.getEndDate()!=null){
+                setString+=",EndDate='"+format.format(object.getCreateDate())+"' ";
+            }
+            if(!setString.equalsIgnoreCase("")){
+                sql="UPDATE " + tableName+ " SET  PostionGPS='"+object.getPositionGPS()+"',PositionName='"+object.getPositionName()+"' ";
+                sql+=setString+" WHERE ID="+processMid.getId();
+            }
         }
         else {
-            sql = "insert into " + tableName + " (CreateDate, PostionGPS, ProcessNote,  StyleProcessID, SubComponentID, UserID)" +  // EndDate,StartDate,
-                    " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() + "','" +  //+ format.format(object.getEndDate()) + "','"
-                    object.getProcessNote() + "','"  + object.getStyleProcessID() + "','" +  //+ format.format(object.getStartDate()) + "','"
+            sql = "insert into " + tableName + " (CreateDate, PostionGPS, ProcessNote,  StyleProcessID,EndDate,StartDate, SubComponentID, UserID)" +  // EndDate,StartDate,
+                    " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() +
+                    object.getProcessNote() + "','"  + object.getStyleProcessID() + "','" + "','" + format.format(object.getStartDate())
+                    + "','" + format.format(object.getEndDate()) + "','"+ //+ format.format(object.getStartDate()) + "','"
                     object.getSubComponentID() + "','" + object.getUser().getUserID() + "')";
         }
         SQLQuery query = getSession().createSQLQuery(sql);
         query.addEntity(ProcessMid.class);
-        query.executeUpdate();
-        processMid=getProcessMid(object.getSubComponentID(),object.getStyleProcessID(),tableName);
-        return processMid;
+        int updated=query.executeUpdate();
+        ProcessMid processMid2=getProcessMid(object.getSubComponentID(),object.getStyleProcessID(),tableName);
+        return processMid2;
     }
 }

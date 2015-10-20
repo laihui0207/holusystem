@@ -38,6 +38,7 @@ public class ProcessMid extends BaseObject implements Serializable {
     User user;
     Date createDate=new Date();
     String positionGPS;
+    String positionName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,6 +114,14 @@ public class ProcessMid extends BaseObject implements Serializable {
 
     public void setPositionGPS(String positionGPS) {
         this.positionGPS = positionGPS;
+    }
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 
     @Override

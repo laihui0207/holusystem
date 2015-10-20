@@ -4,6 +4,7 @@ import com.huivip.holu.dao.*;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.ComponentStyleManager;
+import com.huivip.holu.service.ProcessMidManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,8 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     ProjectDao projectDao;
     @Autowired
     ComponentManager componentManager;
+    @Autowired
+    ProcessMidManager processMidManager;
 
 
     @Autowired
@@ -167,7 +170,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                 Mission mission =new Mission();
                 mission.setComponent(component);
                 mission.setComponentType("parent");
-                handleComponentStyle(component, userId, mission);
+                handleComponentStyle(component,component.getComponentID(), userId, mission);
                 if(mission.getComponentStyle()!=null){
                     missions.add(mission);
                 }
@@ -179,7 +182,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                     mission.setComponent(component);
                     mission.setSubComponent(subComponentList);
                     mission.setComponentType("sub");
-                    handleComponentStyle(component,userId, mission);
+                    handleComponentStyle(component,subComponentList.getSubComponentID(),userId, mission);
                     if(mission.getComponentStyle()!=null){
                         missions.add(mission);
                     }
@@ -188,13 +191,15 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         }
     }
 
-    private void handleComponentStyle(Component component, String userId, Mission mission) {
+    private void handleComponentStyle(Component component, String subcomponentID,String userId, Mission mission) {
         if (null == component) return;
         User user=userDao.getUserByUserID(userId);
         List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
         for(ComponentStyle style: componentStyles){
             if(style.isOperationer()){
                 mission.setComponentStyle(style);
+                ProcessMid processMid=processMidManager.getProcessMid(subcomponentID, style.getStyleProcessID(), userId);
+                mission.setProcessMid(processMid);
             }
         }
     }
