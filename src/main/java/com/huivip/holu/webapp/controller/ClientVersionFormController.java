@@ -217,6 +217,7 @@ public class ClientVersionFormController extends BaseFormController {
             e.printStackTrace();
         }
         clientVersion.setStorePath(saveUrl+newFileName);
+        clientVersion.setClientSize(new File(uploadDir + newFileName).length());
 
 
 

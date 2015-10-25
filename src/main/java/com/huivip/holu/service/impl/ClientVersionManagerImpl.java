@@ -3,15 +3,16 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.ClientVersionDao;
 import com.huivip.holu.model.ClientVersion;
 import com.huivip.holu.service.ClientVersionManager;
-
 import com.huivip.holu.util.SteelConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import javax.jws.WebService;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import java.io.File;
+import java.util.Date;
 
 @Service("clientVersionManager")
 @WebService(serviceName = "ClientVersionService", endpointInterface = "com.huivip.holu.service.ClientVersionManager")
@@ -44,14 +45,16 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
             clientVersion=getClientByVersion(version);
         }
         String configureUploadDir= SteelConfig.getConfigure(SteelConfig.ClientDirectory);
-
+        clientVersion.setDownloadTimes(clientVersion.getDownloadTimes()+1);
+        clientVersion.setLastDownloadTime(new Date());
+        clientVersionDao.save(clientVersion);
         String uploadDir="";
         if(null!=configureUploadDir && configureUploadDir.length()>0){
             uploadDir=configureUploadDir;
         }
         File file=new File(uploadDir+clientVersion.getStorePath());
-        Response.ResponseBuilder response = Response.ok(file, MediaType.APPLICATION_OCTET_STREAM);
-        response.header("Content-Disposition", "attachment; filename=\"ICMS2015.apk\"");
+        ResponseBuilder response = Response.ok((Object)file, MediaType.APPLICATION_OCTET_STREAM);
+        response.header("Content-Disposition", "attachment; filename=ICMS2015.apk");
         return response.build();
     }
 
@@ -65,6 +68,13 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
     @Override
     public ClientVersion getLastVersion() {
         ClientVersion clientVersion=getLastedClient();
+        /*String configureUploadDir= SteelConfig.getConfigure(SteelConfig.ClientDirectory);
+        String uploadDir="";
+        if(null!=configureUploadDir && configureUploadDir.length()>0){
+            uploadDir=configureUploadDir;
+        }
+        File file=new File(uploadDir+clientVersion.getStorePath());
+        clientVersion.setClientSize(file.length());*/
         return clientVersion;
     }
 

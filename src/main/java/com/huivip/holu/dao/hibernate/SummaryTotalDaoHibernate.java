@@ -45,12 +45,20 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         String sql = "select distinct a.ItemName,a.itemID from  (" +
                 "SELECT ItemName,itemID,processID,ProcessName,SUM(SumWeight)*0.001 AS SumWeight_plan " +
                 "FROM  " + tableName + " " +
-                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ")  AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' ";
+        if (sumDateStart != null) {
+            sql += " and curDate >='" + sumDateStart + " 00:00:00.000' ";
+        }
+        sql+=" and  ProcessID in (" + processIds + ")  AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' " +
                 "GROUP BY ItemName,itemID,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as a ," +
                 "(SELECT ItemName,itemID,processID,ProcessName,SUM(SumWeight)*0.001 AS SumWeight_actual " +
                 "FROM " + tableName + " " +
-                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' ";
+        if (sumDateStart != null) {
+            sql += " and curDate >='" + sumDateStart + " 00:00:00.000' ";
+        }
+        sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual' AND ItemStyle='" + itemStyle + "' " +
                 "GROUP BY ItemName,itemID,ProcessName,ProcessID,StartOrEnd,ActualPlanPredict) as b";
         Query query = getSession().createSQLQuery(sql);
@@ -87,12 +95,20 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         String sql = "select sum(b.SumWeight_actual) as actualData,sum(a.SumWeight_plan) as planData from  (" +
                 "SELECT distinct processID, processName,itemID,SUM(SumWeight)*0.001 AS SumWeight_plan " +
                 "FROM " + tableName + " " +
-                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' ";
+        if(sumDateStart!=null){
+            sql+=" and curDate >='" + sumDateStart + " 00:00:00.000' ";
+        }
+        sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Plan' AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
                 "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as a left Join " +
                 "(SELECT distinct processID, processName,itemID, SUM(SumWeight)*0.001 AS SumWeight_actual " +
                 "FROM " + tableName + " " +
-                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' and curDate >='" + sumDateStart + " 00:00:00.000' and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
+                "WHERE curDate<='" + sumDateEnd + " 00:00:00.000' ";
+        if(sumDateStart!=null){
+            sql+=" and curDate >='" + sumDateStart + " 00:00:00.000' ";
+        }
+        sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual'  AND ItemStyle='" + itemStyle + "' and ItemName='" + itemName + "' " +
                 "GROUP BY ProcessID,itemID,processName,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";
 

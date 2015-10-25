@@ -22,7 +22,9 @@ public class ClientVersion {
     private String clientUrl;
     private String storePath;
     private Date createTime=new Date();
-
+    private int downloadTimes;
+    private Date lastDownloadTime;
+    private long clientSize;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -83,6 +85,29 @@ public class ClientVersion {
 
     public String getClientUrl() {
         return clientUrl;
+    }
+
+    public int getDownloadTimes() {
+        return downloadTimes;
+    }
+
+    public void setDownloadTimes(int downloadTimes) {
+        this.downloadTimes = downloadTimes;
+    }
+
+    public Date getLastDownloadTime() {
+        return lastDownloadTime;
+    }
+
+    public void setLastDownloadTime(Date lastDownloadTime) {
+        this.lastDownloadTime = lastDownloadTime;
+    }
+    public long getClientSize() {
+        return clientSize;
+    }
+
+    public void setClientSize(long clientSize) {
+        this.clientSize = clientSize;
     }
 
     public void setClientUrl(String clientUrl) {

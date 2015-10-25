@@ -16,7 +16,7 @@
     <fmt:message key="clientVersionDetail.message"/>
 </div>
 
-<div class="col-sm-6">
+<div class="col-sm-8">
     <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:form commandName="clientVersion" method="post" action="clientVersionform" cssClass="well" enctype="multipart/form-data"
                id="clientVersionForm" onsubmit="return validateClientVersion(this)">
@@ -39,7 +39,7 @@
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
         <appfuse:label key="clientVersion.releaseNote" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="releaseNote" id="releaseNote" maxlength="255"/>
+        <form:textarea cssClass="form-control" path="releaseNote" id="releaseNote" maxlength="255"/>
         <form:errors path="releaseNote" cssClass="help-block"/>
         </div>
 
@@ -73,6 +73,7 @@
       href="<c:url value='/webjars/bootstrap-datepicker/1.3.1/css/datepicker.css'/>"/>
 <script type="text/javascript"
         src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.js'/>"></script>
+<script type="text/javascript" charset="utf-8" src="<c:url value='/scripts/editor/kindeditor.js'/>"></script>
 <c:if test="${pageContext.request.locale.language != 'en'}">
     <script type="text/javascript"
             src="<c:url value='/webjars/bootstrap-datepicker/1.3.1/js/locales/bootstrap-datepicker.${pageContext.request.locale.language}.js'/>"></script>
@@ -84,6 +85,13 @@
             format: "<fmt:message key='calendar.format'/>",
             weekStart: "<fmt:message key='calendar.weekstart'/>",
             language: '${pageContext.request.locale.language}'
+        });
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#releaseNote', {
+                uploadJson: "<c:url value='/editeruploadattachement'/>",
+                fileManagerJson: "<c:url value='/editeruploadattachement'/>",
+                allowFileManager: true, filterMode: false
+            });
         });
     });
 </script>

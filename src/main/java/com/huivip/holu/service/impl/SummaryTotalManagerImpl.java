@@ -74,6 +74,9 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         String searchDateEnd=simpleDateFormat.format(new Date());
         SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-");
         String searchDateStart=simpleDateFormat1.format(new Date())+"01";
+        if(sumDate!=null && !sumDate.equalsIgnoreCase("month")){
+            searchDateStart=null;
+        }
         List<Object[]> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart,searchDateEnd , processes, ItemStyle, startOrEnd, tableName);
         if(null==validItem || validItem.size()==0) return result;
         for(Object[] item:validItem){

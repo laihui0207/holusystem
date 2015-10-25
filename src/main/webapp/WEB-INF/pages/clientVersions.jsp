@@ -40,7 +40,7 @@
     <display:column property="id" media="csv excel xml pdf" titleKey="clientVersion.id"/>
     <display:column property="clientType" sortable="true" titleKey="clientVersion.clientType"/>
     <display:column property="version" sortable="true" titleKey="clientVersion.version"/>
-    <display:column property="releaseNote" sortable="true" titleKey="clientVersion.releaseNote"/>
+<%--    <display:column property="releaseNote" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" sortable="true" titleKey="clientVersion.releaseNote"/>--%>
     <display:column sortProperty="createTime" sortable="true" titleKey="clientVersion.createTime">
          <fmt:formatDate value="${clientVersionList.createTime}" pattern="${datePattern}"/>
     </display:column>
