@@ -52,6 +52,7 @@ public class HLPasswordEncoder implements PasswordEncoder {
     }
     public static void main(String[] args){
         HLPasswordEncoder encoder=new HLPasswordEncoder();
-        System.out.println(encoder.encode("admin"));
+        System.out.println(encoder.encode("123456"));
+        System.out.println(encoder.matches("123456","E10ADC3949BA59ABBE56E057F20F883E"));
     }
 }

@@ -252,6 +252,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         user.setLoginCode(loginCode);
         user.setPhoneNumber("");
         user.setPassword(password);
+/*        user.setBirthday(null);*/
         SimpleDateFormat sdf=new SimpleDateFormat("ddssSSS");
         String userID=sdf.format(System.currentTimeMillis());
         user.addRole(roleManager.getRole(Constants.USER_ROLE));

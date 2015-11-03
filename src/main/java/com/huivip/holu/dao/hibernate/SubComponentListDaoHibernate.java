@@ -19,6 +19,7 @@ public class SubComponentListDaoHibernate extends GenericDaoHibernate<SubCompone
     public List<SubComponentList> getSubComponentListByComponentID(String componentID, String tableName,ExtendedPaginatedList list) {
         String sql="select * from "+tableName+" where ComponentID='"+componentID+"'";
         SQLQuery query=getSession().createSQLQuery(sql);
+/*        query.addEntity(SubComponentList.class);*/
         query.addEntity(tableName,SubComponentList.class);
         if(list!=null){
             List<SubComponentList> totalList=query.list();
