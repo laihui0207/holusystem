@@ -41,7 +41,9 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         Set<Post> posts=user.getPosts();
         List<String> myProcesses=new ArrayList<>();
         for(Post post: posts){
-            myProcesses.add(post.getProcessDictionary().getProcessID());
+            if(post.getProcessDictionary()!=null){
+                myProcesses.add(post.getProcessDictionary().getProcessID());
+            }
         }
         List<String> myProjects=collectProject(user.getUserID(),null);
         String projects="";

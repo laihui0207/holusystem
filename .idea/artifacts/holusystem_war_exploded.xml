@@ -22,13 +22,15 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.34" />
           <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
-          <element id="library" level="project" name="Maven: net.oschina.j2cache:j2cache:1.0.1" />
           <element id="library" level="project" name="Maven: com.google.zxing:core:3.2.1" />
           <element id="library" level="project" name="Maven: net.glxn.qrgen:javase:2.0" />
           <element id="library" level="project" name="Maven: com.google.zxing:javase:3.1.0" />
           <element id="library" level="project" name="Maven: net.glxn.qrgen:core:2.0" />
           <element id="library" level="project" name="Maven: org.jfree:jfreesvg:2.1" />
           <element id="library" level="project" name="Maven: joda-time:joda-time:2.8.2" />
+          <element id="library" level="project" name="Maven: org.cache2k:cache2k-api:0.21.1" />
+          <element id="library" level="project" name="Maven: org.cache2k:cache2k-core:0.21.1" />
+          <element id="library" level="project" name="Maven: org.cache2k:cache2k-jmx-api:0.21.1" />
           <element id="library" level="project" name="Maven: org.appfuse:appfuse-service:3.5.0" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.1" />

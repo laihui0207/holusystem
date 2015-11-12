@@ -16,7 +16,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -58,7 +57,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Long id;
     private String userID;
     private String username;                    // required
-    private String userNameEn;
+    private String userEnName;
     private String loginCode;
     private String password;                    // required
     private String confirmPassword;
@@ -80,7 +79,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String userState;
     private Date acceptRegistrationDate;
     private String note;
-    private Date birthday;
+    private String birthday;
     private String gender;
 
     private Company company;
@@ -264,11 +263,11 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.note = note;
     }
     @Column(name="Birthday")
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
     @Column(name="Gender")
@@ -304,13 +303,13 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setAllowCreateProject(boolean allowCreateProject) {
         this.allowCreateProject = allowCreateProject;
     }
-    @Column(name="UserNameEn")
-    public String getUserNameEn() {
-        return userNameEn;
+    @Column(name="UserEnName")
+    public String getUserEnName() {
+        return userEnName;
     }
 
-    public void setUserNameEn(String userNameEn) {
-        this.userNameEn = userNameEn;
+    public void setUserEnName(String userNameEn) {
+        this.userEnName = userNameEn;
     }
     @Column(name="UserState")
     public String getUserState() {

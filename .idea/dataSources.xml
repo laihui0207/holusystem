@@ -13,13 +13,11 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="SQL Server - holusystem@172.16.182.147" uuid="f035e604-729e-4fd9-af70-a6a03f063d6f">
       <driver-ref>sqlserver.jtds</driver-ref>
       <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:jtds:sqlserver://172.16.182.147:1433/holusystem</jdbc-url>
-      <libraries />
     </data-source>
   </component>
 </project>

@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
+    <properties>
+        <property name="catalina.base">${catalina.home}</property>
+    </properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%p [%t] %c{1}.%M(%L) | %m%n"/>
         </Console>
+        <!--<File name="Holu" fileName="logs/HoluSystem.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>-->
+        <RollingFile name="RollingFile" fileName="${catalina.base}/logs/HoluSystem.log" filePattern="${catalina.base}/logs/HoluSystem-%d{MM-dd-yyyy}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n</Pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <!--<RollingFile name="RollingFile" filename="${catalina.base}/logs/HoluSystem.log"
+                     filepattern="${catalina.base}/logs/HoluSystem-%d{MM-dd-yyyy}.log">
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>-->
     </Appenders>
 
     <Loggers>
@@ -28,6 +51,7 @@
 
         <Root level="warn">
             <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
 </Configuration>

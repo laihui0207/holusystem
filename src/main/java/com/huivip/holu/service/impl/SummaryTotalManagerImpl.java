@@ -3,13 +3,11 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.SummaryTotalDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
-import com.huivip.holu.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -193,7 +191,9 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
         String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        if(tableName==null) return result;
         String processes=getHomeProcessIds(userID);
+        if(processes==null || processes.length()==0) return result;
         List<Object[]> list=null;
         if(itemStyle.equalsIgnoreCase("project")){
            list=summaryTotalDao.SearchProjectBetweenDate(start,end,processes,tableName);
@@ -212,7 +212,9 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
         String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
+        if(tableName==null) return result;
         String processes=getHomeProcessIds(userID);
+        if(processes==null || processes.length()==0) return result;
         List<Object[]> list=null;
         if(itemStyle.equalsIgnoreCase("project")){
             list=summaryTotalDao.SearchProjectBetweenDate(start,end,processes,tableName);
@@ -229,6 +231,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     private String getHomeProcessIds(String userID){
         User user=userManager.getUserByUserID(userID);
         Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessDisplayList");
+        if(setting==null) return "";
         String processIds=setting.getKeyValue();
         if(null==processIds || processIds.length()==0) return "";
         String[] processIdArray=processIds.split(",");

@@ -46,16 +46,27 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
                 setString+=",EndDate='"+format.format(object.getCreateDate())+"' ";
             }
             if(!setString.equalsIgnoreCase("")){
-                sql="UPDATE " + tableName+ " SET  PostionGPS='"+object.getPositionGPS()+"',PositionName='"+object.getPositionName()+"' ";
+                sql="UPDATE " + tableName+ " SET  PositionGPS='"+object.getPositionGPS()+"',PositionName='"+object.getPositionName()+"' ";
                 sql+=setString+" WHERE ID="+processMid.getId();
             }
         }
         else {
-            sql = "insert into " + tableName + " (CreateDate, PostionGPS, ProcessNote,  StyleProcessID,EndDate,StartDate, SubComponentID, UserID)" +  // EndDate,StartDate,
-                    " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() +
-                    object.getProcessNote() + "','"  + object.getStyleProcessID() + "','" + "','" + format.format(object.getStartDate())
-                    + "','" + format.format(object.getEndDate()) + "','"+ //+ format.format(object.getStartDate()) + "','"
-                    object.getSubComponentID() + "','" + object.getUser().getUserID() + "')";
+
+            sql = "insert into " + tableName + " (CreateDate, PositionGPS, ProcessNote,  StyleProcessID,StartDate,EndDate, SubComponentID, UserID)" +  // EndDate,StartDate,
+                    " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() +"','"+
+                    object.getProcessNote() + "','" + object.getStyleProcessID() + "',";
+            if (object.getStartDate() != null) {
+                sql += "'" + format.format(object.getStartDate()) + "',";
+            } else {
+                sql += "'',";
+            }
+            if (object.getEndDate() != null) {
+
+                sql += "'" + format.format(object.getEndDate()) + "',";
+            } else {
+                sql += "'',";
+            }
+            sql += "'" + object.getSubComponentID() + "','" + object.getUser().getUserID() + "')";
         }
         SQLQuery query = getSession().createSQLQuery(sql);
         query.addEntity(ProcessMid.class);

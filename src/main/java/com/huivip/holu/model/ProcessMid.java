@@ -20,7 +20,7 @@ import java.util.Date;
  EndDate datetime,
  UserID nvarchar(50),
  CreateDate datetime,
- PostionGPS nvarchar(50)
+ PositionGPS nvarchar(50)
  );
  */
 
@@ -107,7 +107,7 @@ public class ProcessMid extends BaseObject implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-    @Column(name="PostionGPS")
+    @Column(name="PositionGPS")
     public String getPositionGPS() {
         return positionGPS;
     }
@@ -115,7 +115,7 @@ public class ProcessMid extends BaseObject implements Serializable {
     public void setPositionGPS(String positionGPS) {
         this.positionGPS = positionGPS;
     }
-
+    @Column(name="PositionName")
     public String getPositionName() {
         return positionName;
     }
@@ -170,7 +170,7 @@ public class ProcessMid extends BaseObject implements Serializable {
                 ", endDate=" + endDate +
                 ", user=" + user +
                 ", createDate=" + createDate +
-                ", postionGPS='" + positionGPS + '\'' +
+                ", positionGPS='" + positionGPS + '\'' +
                 '}';
     }
 }

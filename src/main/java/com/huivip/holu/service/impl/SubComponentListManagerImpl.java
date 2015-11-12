@@ -48,6 +48,7 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
         String parentComponentId=subComponentListDao.getParentComponentId(subComponentId,tableName);
         Component component=componentManager.getComponentByComponentID(parentComponentId,userId);
+        component.setSubComponentListSet(null);
         return component;
     }
 

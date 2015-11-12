@@ -1,11 +1,10 @@
 package com.huivip.holu.util;
 
-import net.glxn.qrgen.core.image.ImageType;
-import net.glxn.qrgen.javase.QRCode;
+import com.huivip.holu.model.DocType;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by sunlaihui on 7/15/15.
@@ -30,7 +29,7 @@ public class MyDemo {
         String imaurl=m.group(1);
         System.out.println(imaurl);
       }*/
-        File file = QRCode.from("Hello World").file("QRcode");
+      /*  File file = QRCode.from("Hello World").file("QRcode");
         File outfile=new File("/Users/sunlaihui/Downloads/qrcode.png");
         try {
             if(!outfile.exists()){
@@ -41,6 +40,14 @@ public class MyDemo {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        Cache<String,DocType> cache= CacheBuilder.newCache(String.class,DocType.class).build();
+        DocType value=cache.peek("got");
+        assertNull(value);
+        DocType docType=new DocType();
+        docType.setComment("good");
+        cache.put("got",docType);
+        value=cache.peek("got");
+        System.out.println(value.getComment());
     }
 }

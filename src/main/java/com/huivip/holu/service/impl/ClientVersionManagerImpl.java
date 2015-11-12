@@ -4,10 +4,13 @@ import com.huivip.holu.dao.ClientVersionDao;
 import com.huivip.holu.model.ClientVersion;
 import com.huivip.holu.service.ClientVersionManager;
 import com.huivip.holu.util.SteelConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -17,6 +20,7 @@ import java.util.Date;
 @Service("clientVersionManager")
 @WebService(serviceName = "ClientVersionService", endpointInterface = "com.huivip.holu.service.ClientVersionManager")
 public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, Long> implements ClientVersionManager {
+    private static final Log log = LogFactory.getLog(ClientVersionManagerImpl.class);
     ClientVersionDao clientVersionDao;
 
     @Autowired
@@ -75,11 +79,12 @@ public class ClientVersionManagerImpl extends GenericManagerImpl<ClientVersion, 
         }
         File file=new File(uploadDir+clientVersion.getStorePath());
         clientVersion.setClientSize(file.length());*/
+        log.info("Get last Client Version:"+clientVersion.getVersion());
         return clientVersion;
     }
 
     @Override
     public String getDownloadLink() {
-        return null;
+        throw new WebApplicationException("error");
     }
 }

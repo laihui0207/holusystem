@@ -61,6 +61,10 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     public Component getComponentByComponentID(String componentID,String userID) {
         User user=userDao.getUserByUserID(userID);
         String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"ComponentList");
-        return componentDao.getComponentByComponentID(componentID,tableName);
+        Component component=componentDao.getComponentByComponentID(componentID,tableName);
+        if(component!=null){
+            component.setSubComponentListSet(null);
+        }
+        return component;
     }
 }

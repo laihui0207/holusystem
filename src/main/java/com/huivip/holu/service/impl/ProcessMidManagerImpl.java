@@ -7,6 +7,8 @@ import com.huivip.holu.service.CompanyDatabaseIndexManager;
 import com.huivip.holu.service.ProcessMidManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.util.DateUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.Date;
 @Service("processMidManager")
 @WebService(serviceName = "ProcessMidService", endpointInterface = "com.huivip.holu.service.ProcessMidManager")
 public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> implements ProcessMidManager {
+    private static final Log log = LogFactory.getLog(ProcessMidManagerImpl.class);
     ProcessMidDao processMidDao;
     @Autowired
     UserManager userManager;
@@ -45,7 +48,8 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
-    public ProcessMid save(String subComponentID,String styleProcessID,String processNote,String startDate,String endDate,String positionGPS,String positionName,String userID) {
+    public ProcessMid save(String subComponentID,String styleProcessID,String processNote,
+                           String startDate,String endDate,String positionGPS,String positionName,String userID) {
         ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
@@ -53,20 +57,14 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setProcessNote(processNote);
         processMid.setPositionGPS(positionGPS);
         processMid.setPositionName(positionName);
-       /* try {
-            processMid.setStartDate(DateUtil.convertStringToDate("yyyy-MM-dd",startDate));
-            processMid.setEndDate(DateUtil.convertStringToDate("yyyy-MM-dd",endDate));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
-/*        processMid.setEndDate(new Date(Long.parseLong(endDate)));*/
         processMid.setUser(userManager.getUserByUserID(userID));
         // to do  check if confirm again
         return save(processMid, userID);
     }
 
     @Override
-    public ProcessMid startConfirm( String subComponentID, String styleProcessID, String processNote, String startDate, String endDate, String positionGPS,String positionName, String userID) {
+    public ProcessMid startConfirm( String subComponentID, String styleProcessID, String processNote,
+                                    String startDate, String endDate, String positionGPS,String positionName, String userID) {
         ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
@@ -77,11 +75,14 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setPositionName(positionName);
         processMid.setUser(userManager.getUserByUserID(userID));
         // to do  check if confirm again
+        log.info("User confirm start:"+subComponentID+","+styleProcessID+
+                " on "+processMid.getStartDate()+" at "+processMid.getPositionName());
         return save(processMid, userID);
     }
 
     @Override
-    public ProcessMid stopConfirm( String subComponentID,  String styleProcessID,  String processNote, String startDate, String endDate,  String positionGPS,String positionName, String userID) {
+    public ProcessMid stopConfirm( String subComponentID,  String styleProcessID,  String processNote,
+                                   String startDate, String endDate,  String positionGPS,String positionName, String userID) {
         ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
@@ -91,12 +92,15 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setPositionName(positionName);
         processMid.setEndDate(new Date());
         processMid.setUser(userManager.getUserByUserID(userID));
+        log.info("User confirm end:"+subComponentID+","+styleProcessID+
+                " on "+processMid.getEndDate()+" at "+processMid.getPositionName());
         // to do  check if confirm again
         return save(processMid, userID);
     }
 
     @Override
-    public ProcessMid ConfirmQuestion( String subComponentID,  String styleProcessID,  String processNote,  String startDate,  String endDate,  String positionGPS,String positionName,  String userID) {
+    public ProcessMid ConfirmQuestion( String subComponentID,  String styleProcessID,  String processNote,
+                                       String startDate,  String endDate,  String positionGPS,String positionName,  String userID) {
         ProcessMid processMid = new ProcessMid();
         processMid.setCreateDate(new Date());
         processMid.setSubComponentID(subComponentID);
@@ -105,6 +109,8 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setPositionGPS(positionGPS);
         processMid.setPositionName(positionName);
         processMid.setUser(userManager.getUserByUserID(userID));
+        log.info("User send question:"+subComponentID+","+styleProcessID+
+                " : "+processMid.getProcessNote()+" at "+processMid.getPositionName());
         // to do  check if confirm again
         return save(processMid, userID);
     }

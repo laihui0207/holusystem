@@ -59,7 +59,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         for (ComponentStyle style : componentStyles) {
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {
-                    if (style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
+                    if (post.getProcessDictionary()!=null && style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
                             && user.getCompany().getCompanyId().equalsIgnoreCase(style.getCompany().getCompanyId())) {
                         style.setOperationer(true);
                         break;

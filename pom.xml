@@ -68,11 +68,11 @@
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-        <dependency>
+      <!--  <dependency>
             <groupId>net.oschina.j2cache</groupId>
             <artifactId>j2cache</artifactId>
-            <version>1.0.1</version>
-        </dependency>
+            <version>1.3.0</version>
+        </dependency>-->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -87,6 +87,17 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cache2k</groupId>
+            <artifactId>cache2k-api</artifactId>
+            <version>0.21.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cache2k</groupId>
+            <artifactId>cache2k-core</artifactId>
+            <version>0.21.1</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -115,6 +126,8 @@
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.0</appfuse.version>
         <java.version>1.7</java.version>
+        <jdbc.showSql>true</jdbc.showSql>
+        <catalina.home>/Users/sunlaihui/dumps</catalina.home>
     </properties>
 
     <profiles>
@@ -152,6 +165,8 @@
                 <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
                 <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
                 <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.clientDirectory>
+                <jdbc.showSql>false</jdbc.showSql>
+                <catalina.home>D:/jwsystem/apache-tomcat-7.0.42</catalina.home>
             </properties>
         </profile>
         <profile>
