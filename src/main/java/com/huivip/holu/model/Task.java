@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
@@ -180,6 +181,7 @@ public class Task extends BaseObject implements Serializable {
         this.acceptPush = acceptPush;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="CreateUserID",referencedColumnName = "userID")
     public User getCreateUser() {
         return createUser;

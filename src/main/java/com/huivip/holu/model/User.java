@@ -178,6 +178,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     @ManyToMany
     @Fetch(FetchMode.SELECT)
+    @JsonIgnore
     @JoinTable(
             name = "user_role",
             joinColumns = { @JoinColumn(name = "user_id") },
@@ -381,6 +382,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     @ManyToMany
     @Fetch(FetchMode.SELECT)
+    @JsonIgnore
     @JoinTable(
             name = "R_UserPostMappingTable",
             joinColumns = { @JoinColumn(name = "UserID",referencedColumnName = "userID") },

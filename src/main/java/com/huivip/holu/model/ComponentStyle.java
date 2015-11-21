@@ -48,6 +48,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     boolean operationer=false;
     Date confirmDate;
     User confirmer;
+    ProcessMid processMid;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -187,6 +188,14 @@ public class ComponentStyle extends BaseObject implements Serializable {
 
     public void setConfirmer(User confirmer) {
         this.confirmer = confirmer;
+    }
+    @Transient
+    public ProcessMid getProcessMid() {
+        return processMid;
+    }
+
+    public void setProcessMid(ProcessMid processMid) {
+        this.processMid = processMid;
     }
 
     @Override

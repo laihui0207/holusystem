@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.DocumentId;
@@ -154,6 +155,7 @@ public class Component extends BaseObject implements Serializable {
         this.pieceList = pieceList;
     }*/
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="UserID",referencedColumnName = "userID")
     public User getCreater() {
         return creater;

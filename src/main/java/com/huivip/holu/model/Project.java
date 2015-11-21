@@ -85,6 +85,7 @@ public class Project extends BaseObject implements Serializable {
         this.projectName = projectFullName;
     }
     @ManyToOne
+
     @JoinColumn(name = "CompanyID",referencedColumnName = "companyID")
     public Company getCompany() {
         return company;
@@ -183,6 +184,7 @@ public class Project extends BaseObject implements Serializable {
     }
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="R_DepartmentProjectMappingTable",
             joinColumns = {@JoinColumn(name="ProjectID",referencedColumnName = "projectID")},
@@ -196,6 +198,7 @@ public class Project extends BaseObject implements Serializable {
         this.departments = departments;
     }
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="R_UserNonProjectMappingTable",
             joinColumns = {@JoinColumn(name="ProjectID",referencedColumnName = "projectID")},

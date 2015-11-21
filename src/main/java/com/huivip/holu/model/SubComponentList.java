@@ -81,6 +81,7 @@ public class SubComponentList extends BaseObject implements Serializable {
         this.subQuantity = subQuantity;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="UserID",referencedColumnName = "userID")
     public User getUser() {
         return user;

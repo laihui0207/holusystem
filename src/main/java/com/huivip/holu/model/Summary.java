@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
@@ -234,6 +235,7 @@ public class Summary extends BaseObject implements Serializable {
         this.actualEnd = actualEnd;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="CreateUserID",referencedColumnName = "userID")
     public User getCreater() {
         return creater;

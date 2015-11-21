@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -91,6 +92,7 @@ public class ProcessMid extends BaseObject implements Serializable {
         this.endDate = endDate;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="UserID",referencedColumnName = "userID")
     public User getUser() {
         return user;

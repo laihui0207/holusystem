@@ -136,6 +136,7 @@ public class Department extends BaseObject implements Serializable {
     }
     @ManyToMany
     @Fetch(FetchMode.SELECT)
+    @JsonIgnore
     @JoinTable(
             name="R_DepartmentUserMappingTable",
             joinColumns = {@JoinColumn(name = "DepartmentId",referencedColumnName = "departmentID")},
@@ -159,6 +160,7 @@ public class Department extends BaseObject implements Serializable {
         this.parent = parent;
     }
     @OneToMany(mappedBy = "parent")
+    @JsonIgnore
     public Set<Department> getChild() {
         return child;
     }

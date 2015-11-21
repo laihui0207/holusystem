@@ -70,6 +70,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                     style.setConfirmDate(processMid.getCreateDate());
                     style.setConfirmer(processMid.getUser());
                     style.setOperationer(false);
+                    style.setProcessMid(processMid);
                 }
                 else {
                     break;
@@ -80,6 +81,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                 if(null!=processMid){
                     style.setConfirmDate(processMid.getCreateDate());
                     style.setConfirmer(processMid.getUser());
+                    style.setProcessMid(processMid);
                 }
                 style.setOperationer(true);
             }
