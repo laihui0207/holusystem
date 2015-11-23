@@ -1,11 +1,5 @@
 package com.huivip.holu.util;
 
-import com.huivip.holu.model.DocType;
-import org.cache2k.Cache;
-import org.cache2k.CacheBuilder;
-
-import static org.junit.Assert.assertNull;
-
 /**
  * Created by sunlaihui on 7/15/15.
  */
@@ -41,13 +35,19 @@ public class MyDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Cache<String,DocType> cache= CacheBuilder.newCache(String.class,DocType.class).build();
+       /* Cache<String,DocType> cache= CacheBuilder.newCache(String.class,DocType.class).build();
         DocType value=cache.peek("got");
         assertNull(value);
         DocType docType=new DocType();
         docType.setComment("good");
         cache.put("got",docType);
         value=cache.peek("got");
-        System.out.println(value.getComment());
+        System.out.println(value.getComment());*/
+
+        String file1="/Users/sunlaihui/Downloads/back.jpg";
+        String file2="/Users/sunlaihui/Downloads/play.png";
+        String file3="/Users/sunlaihui/Downloads/merge.png";
+        ImageUtil.mergeImage(file1,file2);
+
     }
 }

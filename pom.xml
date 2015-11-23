@@ -123,6 +123,7 @@
         <holu.attachement.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.attachement.directory>
         <holu.document.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.document.directory>
         <holu.clientDirectory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.clientDirectory>
+        <holu.videoConverTool>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/resources/bin/ffmpeg</holu.videoConverTool>
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.0</appfuse.version>
         <java.version>1.7</java.version>
@@ -165,6 +166,7 @@
                 <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
                 <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
                 <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.clientDirectory>
+                <holu.videoConverTool>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem/WEB-INFO/classes/bin/ffmpeg.exe</holu.videoConverTool>
                 <jdbc.showSql>false</jdbc.showSql>
                 <catalina.home>D:/jwsystem/apache-tomcat-7.0.42</catalina.home>
             </properties>

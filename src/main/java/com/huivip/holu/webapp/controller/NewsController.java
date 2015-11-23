@@ -4,6 +4,7 @@ import com.huivip.holu.model.News;
 import com.huivip.holu.service.NewsManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
+import org.displaytag.properties.SortOrderEnum;
 import org.hibernate.search.SearchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class NewsController {
     public Model handleRequest(@RequestParam(required = false, value = "q") String query,HttpServletRequest request)
     throws Exception {
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
         Model model = new ExtendedModelMap();
         try {
             newsManager.search(query, News.class, list);
