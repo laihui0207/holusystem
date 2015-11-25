@@ -3,7 +3,6 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.NewsDao;
 import com.huivip.holu.model.News;
 import com.huivip.holu.service.NewsManager;
-import com.huivip.holu.util.ImageAndVideo;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;

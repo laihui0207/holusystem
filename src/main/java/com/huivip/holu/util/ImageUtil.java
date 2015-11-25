@@ -40,6 +40,44 @@ public class ImageUtil {
         disposeImage(src, outImgPath, new_w, new_h);
     }
 
+    public static void mergeImage(String backImage,String frontImage){
+
+        String outImagePath=backImage+".png";
+        try {
+            BufferedImage img1 = ImageIO.read(new File(backImage));
+            BufferedImage img2=ImageIO.read(new File(frontImage));
+            BufferedImage joinedImg = joinBufferedImage(img1,img2);
+            OutImage(outImagePath,joinedImg);
+            File newFile=new File(outImagePath);
+            if(newFile.exists()){
+                File backfile=new File(backImage);
+                backfile.delete();
+                newFile.renameTo(backfile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static BufferedImage joinBufferedImage(BufferedImage img1,BufferedImage img2) {
+
+        //do some calculate first
+        int offset  = 5;
+        int wid = img1.getWidth();
+        int height = img1.getHeight();
+        //create a new buffer and draw two image into the new image
+        BufferedImage newImage = new BufferedImage(wid,height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = newImage.createGraphics();
+        Color oldColor = g2.getColor();
+        //fill background
+        g2.setPaint(Color.WHITE);
+        g2.fillRect(0, 0, wid, height);
+        //draw image
+        g2.setColor(oldColor);
+        g2.drawImage(img1, null, 0, 0);
+        g2.drawImage(img2, null, (img1.getWidth()/2-img2.getWidth()/2),(img1.getHeight()/2-img2.getHeight()/2));
+        g2.dispose();
+        return newImage;
+    }
     /**
      * * 指定长或者宽的最大值来压缩图片 * * @param srcImgPath * :源图片路径 * @param outImgPath *
      * :输出的压缩图片的路径 * @param maxLength * :长或者宽的最大值

@@ -42,6 +42,41 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="target/classes"/>
+                                <mkdir dir="target/classes/bin"/>
+                                <copy todir="target/classes/bin">
+                                    <fileset dir="bin/${holu.videoConvertType}" />
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant</groupId>
+                        <artifactId>ant-antlr</artifactId>
+                        <version>1.6.5</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>antlr</groupId>
+                        <artifactId>antlrall</artifactId>
+                        <version>2.7.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -117,12 +152,15 @@
         <jdbc.version>1.2</jdbc.version>
         <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
 <!--        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.130:1433/${db.name}</jdbc.url>-->
-        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.130:1433/holuOffical</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.130:1433/holuOffical</jdbc.url>
+<!--        <jdbc.url>jdbc:jtds:sqlserver://192.168.199.157:1433/holuOffical</jdbc.url>-->
         <jdbc.username>sa</jdbc.username>
         <jdbc.password>pass</jdbc.password>
         <holu.attachement.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.attachement.directory>
         <holu.document.directory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.document.directory>
         <holu.clientDirectory>/Users/sunlaihui/Documents/workspace/javaspace/holusystem/src/main/webapp/</holu.clientDirectory>
+        <holu.videoConverTool>bin/ffmpeg</holu.videoConverTool>
+        <holu.videoConvertType>mac</holu.videoConvertType>
         <!-- Framework/Plugin versions -->
         <appfuse.version>3.5.0</appfuse.version>
         <java.version>1.7</java.version>
@@ -162,9 +200,11 @@
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
 
-                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
-                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
-                <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.clientDirectory>
+                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem/</holu.attachement.directory>
+                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem/</holu.document.directory>
+                <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem/</holu.clientDirectory>
+                <holu.videoConverTool>bin/ffmpeg.exe</holu.videoConverTool>
+                <holu.videoConvertType>windows</holu.videoConvertType>
                 <jdbc.showSql>false</jdbc.showSql>
                 <catalina.home>D:/jwsystem/apache-tomcat-7.0.42</catalina.home>
             </properties>
@@ -181,12 +221,16 @@
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
                 <!--                <jdbc.url>jdbc:jtds:sqlserver://220.178.1.10:1433/${db.name}</jdbc.url>-->
-                <jdbc.url>jdbc:jtds:sqlserver://127.0.0.1:1433/${db.name}2</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://192.168.199.157:1433/holuOffical</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>band2010!@#</jdbc.password>
 
-                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.attachement.directory>
-                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.42/webapps/holusystem</holu.document.directory>
+                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.attachement.directory>
+                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.document.directory>
+                <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.clientDirectory>
+                <holu.videoConverTool>bin/ffmpeg.exe</holu.videoConverTool>
+                <jdbc.showSql>false</jdbc.showSql>
+                <catalina.home>D:/jwsystem/apache-tomcat-7.0.65</catalina.home>
             </properties>
         </profile>
         <profile>
@@ -200,9 +244,16 @@
                 <jdbc.artifactId>jtds</jdbc.artifactId>
                 <jdbc.version>1.2</jdbc.version>
                 <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.133:1433/${db.name}</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://192.168.199.157:1433/holuOffical</jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password>pass</jdbc.password>
+                <holu.attachement.directory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.attachement.directory>
+                <holu.document.directory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.document.directory>
+                <holu.clientDirectory>D:/jwsystem/apache-tomcat-7.0.65/webapps/holusystem/</holu.clientDirectory>
+                <holu.videoConverTool>bin/ffmpeg.exe</holu.videoConverTool>
+                <holu.videoConvertType>windows</holu.videoConvertType>
+                <jdbc.showSql>false</jdbc.showSql>
+                <catalina.home>D:/jwsystem/apache-tomcat-7.0.65</catalina.home>
             </properties>
         </profile>
 
