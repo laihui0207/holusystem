@@ -1,5 +1,7 @@
 package com.huivip.holu.util;
 
+import java.io.File;
+
 /**
  * Created by sunlaihui on 7/15/15.
  */
@@ -44,10 +46,13 @@ public class MyDemo {
         value=cache.peek("got");
         System.out.println(value.getComment());*/
 
-        String file1="/Users/sunlaihui/Downloads/back.jpg";
+       /* String file1="/Users/sunlaihui/Downloads/back.jpg";
         String file2="/Users/sunlaihui/Downloads/play.png";
         String file3="/Users/sunlaihui/Downloads/merge.png";
-        ImageUtil.mergeImage(file1,file2);
+        ImageUtil.mergeImage(file1,file2);*/
+
+        System.out.println(MyDemo.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+        System.out.println(File.class.getResource("/").getPath());
 
     }
 }

@@ -25,19 +25,21 @@ public class Thumbnail {
         String sourceFile=filePath+name;
         String thumbnailFile=filePath+name.substring(0,name.lastIndexOf("."))+"_smaller"+name.substring(name.lastIndexOf("."));
         File file=new File(thumbnailFile);
-        if(!file.exists())
-        ImageUtil.compressImage(sourceFile,thumbnailFile,200,200);
-        if(mergePlayImage){
-            ImageUtil.mergeImage(thumbnailFile,smallerPlayImage);
+        if(!file.exists()){
+            ImageUtil.compressImage(sourceFile,thumbnailFile,200,200);
+            if(mergePlayImage){
+                ImageUtil.mergeImage(thumbnailFile,smallerPlayImage);
+            }
         }
 
 
         String MidFile=filePath+name.substring(0,name.lastIndexOf("."))+"_mid"+name.substring(name.lastIndexOf("."));
         File midFile=new File(MidFile);
-        if(!midFile.exists())
-        ImageUtil.compressImage(sourceFile,MidFile,720,1280);
-        if(mergePlayImage){
-            ImageUtil.mergeImage(MidFile,midPlayerImage);
+        if(!midFile.exists()){
+            ImageUtil.compressImage(sourceFile,MidFile,720,1280);
+            if(mergePlayImage){
+                ImageUtil.mergeImage(MidFile,midPlayerImage);
+            }
         }
 
        /* String bigFile=filePath+name.substring(0,name.lastIndexOf("."))+"_big"+name.substring(name.lastIndexOf("."));
@@ -48,7 +50,7 @@ public class Thumbnail {
     public static String handleThumbnail(String content,ServletContext context){
         String thumbnailURL=null;
         String midImageUrl=null;
-
+        VideoUtil videoUtil=new VideoUtil();
 
         if(null==attacheDir || attacheDir.length()==0){
             attacheDir=context.getRealPath("/");
@@ -64,14 +66,15 @@ public class Thumbnail {
         while(videoMathcher.find()){
             String videoUrl=videoMathcher.group(2);
 
-            String fileUrl=attacheDir+videoUrl.substring(videoUrl.indexOf("/attached"));
+            String fileUrl=attacheDir+videoUrl.substring(videoUrl.indexOf("/attached")+1);
             File file=new File(fileUrl);
             if(!file.exists()){
                 continue;
             }
-            String videoThumbnail=attacheDir+"/attached/image/"+fileUrl.substring(fileUrl.lastIndexOf("/")+1,fileUrl.lastIndexOf("."))+".png";
-            VideoUtil.compressVideo(fileUrl);
-            VideoUtil.videoThumbnail(fileUrl,videoThumbnail);
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+            String videoThumbnail=attacheDir+"attached/image/"+df.format(new Date())+"/"+fileUrl.substring(fileUrl.lastIndexOf("/")+1,fileUrl.lastIndexOf("."))+".png";
+            videoUtil.videoThumbnail(fileUrl,videoThumbnail);
+            videoUtil.compressVideo_thread(fileUrl);
 
             File imageFile=new File(videoThumbnail);
             if(!imageFile.exists()){
@@ -92,12 +95,12 @@ public class Thumbnail {
         while(m.find()){
             String imgUrl=m.group(1);
             if(imgUrl.indexOf("attached")<0){
-                imgUrl=download(imgUrl,attacheDir+"/attached/","image" );
+                imgUrl=download(imgUrl,attacheDir+"attached/","image" );
             }
             if(imgUrl==null || imgUrl.equals("")){
                 continue;
             }
-            String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached"));
+            String fileUrl=attacheDir+imgUrl.substring(imgUrl.indexOf("/attached")+1);
             File orignalImage=new File(fileUrl);
             if(orignalImage.length()< 2000){
                 continue;
