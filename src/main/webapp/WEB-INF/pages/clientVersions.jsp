@@ -44,6 +44,7 @@
     <display:column sortProperty="createTime" sortable="true" titleKey="clientVersion.createTime">
          <fmt:formatDate value="${clientVersionList.createTime}" pattern="${datePattern}"/>
     </display:column>
+    <display:column property="downloadTimes" sortable="true" titleKey="clientVersion.downloadTimes"/>
     <display:column titleKey="list.action">
             <a href="clientVersions/${clientVersionList.version}/download"><fmt:message key="action.download"/></a>
     </display:column>

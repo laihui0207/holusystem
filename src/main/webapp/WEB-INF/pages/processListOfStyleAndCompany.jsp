@@ -54,7 +54,7 @@
     <display:column property="confirmer.username" sortable="true" titleKey="processMid.confirmer"/>
     <display:column title="">
     <c:if test="${componentStyleList.operationer}">
-        <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&itemID=${component.project.projectID}'/> ">
+        <a href="<c:url value='/processMidform/Confirm?SPID=${componentStyleList.styleProcessID}&componentID=${componentID}&type=${componentType}&projectID=${component.project.projectID}'/> ">
             <fmt:message key="processMidList.processMid"/>
         </a>
     </c:if>

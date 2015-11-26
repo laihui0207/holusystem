@@ -14,13 +14,13 @@ public interface NewsManager extends GenericManager<News, Long> {
 
     @GET
     List<News> getNewss(@DefaultValue("0") @QueryParam("page") String pageIndex,
-                        @DefaultValue("10") @QueryParam("pageSize") String pageSize,
+                        @DefaultValue("25") @QueryParam("pageSize") String pageSize,
                         @DefaultValue("all") @QueryParam("type") String newsType);
 
     @GET
     @Path("important")
     List<News> getImportantNewss(@DefaultValue("0") @QueryParam("page") String pageIndex,
-                        @DefaultValue("10") @QueryParam("pageSize") String pageSize);
+                        @DefaultValue("25") @QueryParam("pageSize") String pageSize);
     @Path("{id}")
     @GET
     News getNews(@PathParam("id")String id,@QueryParam("client") String clientType,@Context HttpServletRequest request);

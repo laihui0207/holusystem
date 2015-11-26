@@ -16,6 +16,9 @@ import java.util.Date;
 @Indexed
 @XmlRootElement
 public class Company extends BaseObject implements Serializable {
+    public final static String LIST_CACHE_KEY="Company_All";
+    public final static String LIST_CACHE_KEY_KEY="Company_All_key";
+
     Long id;
     String companyId;
     String companyFullName;

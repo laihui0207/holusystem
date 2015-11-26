@@ -7,7 +7,10 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.NewsManager;
 import com.huivip.holu.service.NewsTypeManager;
 import com.huivip.holu.util.Thumbnail;
+import com.huivip.holu.util.cache.Cache2kProvider;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -23,13 +26,14 @@ import java.beans.PropertyEditorSupport;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @RequestMapping("/newsform*")
 public class NewsFormController extends BaseFormController {
+    Cache<String,News> cache= Cache2kProvider.getinstance().getCache(News.class.getName());
+    Cache<String,ExtendedPaginatedList> listCache=Cache2kProvider.getinstance().getCache(ExtendedPaginatedList.class.getName());
+    Cache<String,Set<String>> keyCache=Cache2kProvider.getinstance().getCache(HashSet.class.getName());
     private NewsManager newsManager = null;
     @Autowired
     private NewsTypeManager newsTypeManager;
@@ -66,7 +70,12 @@ public class NewsFormController extends BaseFormController {
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
-            return newsManager.get(new Long(id));
+            News news=cache.peek(id);
+            if(news==null){
+                news=newsManager.get(new Long(id));
+                cache.put(id,news);
+            }
+            return news;
         }
 
         return new News();
@@ -98,6 +107,7 @@ public class NewsFormController extends BaseFormController {
 
         if (request.getParameter("delete") != null) {
             newsManager.remove(news.getId());
+            cache.remove(news.getId().toString());
             saveMessage(request, getText("news.deleted", locale));
         } else {
             final User cleanUser = getUserManager().getUserByLoginCode(
@@ -109,6 +119,7 @@ public class NewsFormController extends BaseFormController {
             }
             news.setCreater(cleanUser);
             newsManager.save(news);
+            cache.put(news.getId().toString(),news);
             String key = (isNew) ? "news.added" : "news.updated";
             saveMessage(request, getText(key, locale));
 
@@ -116,7 +127,14 @@ public class NewsFormController extends BaseFormController {
                 success = "redirect:newsform?id=" + news.getId();
             }*/
         }
-
+        //remove all list cache
+        if(keyCache.contains(News.LIST_NEWS_CACHE_KEY)){
+            Set<String> cacheKeys=keyCache.get(News.LIST_NEWS_CACHE_KEY);
+            for(String key:cacheKeys){
+                listCache.remove(key);
+            }
+            keyCache.remove(News.LIST_NEWS_CACHE_KEY);
+        }
         return success;
     }
     @ModelAttribute("newsTypeList")

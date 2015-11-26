@@ -1,12 +1,11 @@
 package com.huivip.holu.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.huivip.holu.service.CompanyManager;
 import com.huivip.holu.model.Company;
-import com.huivip.holu.webapp.controller.BaseFormController;
-
+import com.huivip.holu.service.CompanyManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
+import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
 @RequestMapping("/companyform*")
 public class CompanyFormController extends BaseFormController {
     private CompanyManager companyManager = null;
+    Cache<String,Company> cache= Cache2kProvider.getinstance().getCache(Company.class.getName());
+    Cache<String,List<Company>> listCache=Cache2kProvider.getinstance().getCache(ArrayList.class.getName());
 
     @Autowired
     public void setCompanyManager(CompanyManager companyManager) {
@@ -39,7 +42,12 @@ public class CompanyFormController extends BaseFormController {
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
-            return companyManager.get(new Long(id));
+            Company company=cache.peek(id);
+            if(company==null){
+                company=companyManager.get(new Long(id));
+                cache.put(id,company);
+            }
+            return company;
         }
 
         return new Company();
@@ -68,10 +76,12 @@ public class CompanyFormController extends BaseFormController {
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
+            cache.remove(company.getId().toString());
             companyManager.remove(company.getId());
             saveMessage(request, getText("company.deleted", locale));
         } else {
-            companyManager.save(company);
+            Company company1=companyManager.save(company);
+            cache.put(company1.getId().toString(),company1);
             String key = (isNew) ? "company.added" : "company.updated";
             saveMessage(request, getText(key, locale));
 
@@ -79,7 +89,7 @@ public class CompanyFormController extends BaseFormController {
                 success = "redirect:companyform?id=" + company.getId();
             }
         }
-
+        listCache.remove(Company.LIST_CACHE_KEY);
         return success;
     }
 }
