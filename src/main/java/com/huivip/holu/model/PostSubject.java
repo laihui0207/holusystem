@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -71,6 +72,7 @@ public class PostSubject extends BaseObject implements Serializable {
         this.updateTime = updateTime;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="createrID",updatable = false)
     public User getCreater() {
         return creater;
@@ -80,6 +82,7 @@ public class PostSubject extends BaseObject implements Serializable {
         this.creater = creater;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="updaterID")
     public User getUpdater() {
         return updater;

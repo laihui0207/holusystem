@@ -16,7 +16,7 @@ public class AccessToken {
         try {
             MessageDigest md5=MessageDigest.getInstance("md5");
             key+="~holu";
-            token= base64.encodeToString(covertToString(md5.digest(key.getBytes("utf-8"))).getBytes());
+            token= base64.encodeToString(ConvertUtil.covertToString(md5.digest(key.getBytes("utf-8"))).getBytes());
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -29,16 +29,7 @@ public class AccessToken {
 
         return createAccessToken(key).equals(token);
     }
-    public static String covertToString(byte[] md5Bytes){
-        StringBuffer hexValue = new StringBuffer();
-        for (int i = 0; i < md5Bytes.length; i++) {
-            int val = ((int) md5Bytes[i]) & 0xff;
-            if (val < 16)
-                hexValue.append("0");
-            hexValue.append(Integer.toHexString(val));
-        }
-        return hexValue.toString();
-    }
+
     public static void  main(String[] args){
         String token=AccessToken.createAccessToken("admin");
         System.out.println(token);

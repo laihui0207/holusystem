@@ -3,14 +3,13 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.CompanyDao;
 import com.huivip.holu.model.Company;
 import com.huivip.holu.service.CompanyManager;
-import com.huivip.holu.service.impl.GenericManagerImpl;
 
 import com.huivip.holu.util.cache.Cache2kProvider;
 import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.jws.WebService;
 
@@ -18,13 +17,14 @@ import javax.jws.WebService;
 @WebService(serviceName = "CompanyService", endpointInterface = "com.huivip.holu.service.CompanyManager")
 public class CompanyManagerImpl extends GenericManagerImpl<Company, Long> implements CompanyManager {
     CompanyDao companyDao;
-    Cache<String,Company> cache= Cache2kProvider.getinstance().getCache(Company.class.getName());
-    Cache<String,List<Company>> listCache=Cache2kProvider.getinstance().getCache(ArrayList.class.getName());
+    Cache<String,Company> cache= null;
+    Cache<String,List<Company>> listCache=Cache2kProvider.getinstance().getListCache();
 
     @Autowired
     public CompanyManagerImpl(CompanyDao companyDao) {
         super(companyDao);
         this.companyDao = companyDao;
+        cache=Cache2kProvider.getinstance().setCache(Company.class, CacheBuilder.newCache(String.class,Company.class).build());
     }
 
     @Override

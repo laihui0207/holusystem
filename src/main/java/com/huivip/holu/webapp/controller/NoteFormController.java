@@ -6,7 +6,10 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.NoteManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,12 +35,16 @@ public class NoteFormController extends BaseFormController {
     @Autowired
     private CustomGroupManager customGroupManager;
 
+    Cache<String,Note> cache=null;
+
     @Autowired
     public void setNoteManager(NoteManager noteManager) {
         this.noteManager = noteManager;
     }
 
     public NoteFormController() {
+        cache= Cache2kProvider.getinstance().setCache(Note.class,
+                CacheBuilder.newCache(String.class,Note.class).build());
         setCancelView("redirect:notes");
         setSuccessView("redirect:notes");
     }
@@ -49,7 +56,12 @@ public class NoteFormController extends BaseFormController {
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
-            return noteManager.get(new Long(id));
+            Note note=cache.peek(id);
+            if(note==null){
+                note=noteManager.get(new Long(id));
+                cache.put(id,note);
+            }
+            return note;
         }
 
         return new Note();
@@ -78,6 +90,7 @@ public class NoteFormController extends BaseFormController {
         Locale locale = request.getLocale();
 
         if (request.getParameter("delete") != null) {
+            cache.remove(note.getId().toString());
             noteManager.remove(note.getId());
             saveMessage(request, getText("note.deleted", locale));
         } else {
@@ -86,20 +99,25 @@ public class NoteFormController extends BaseFormController {
             note.setCreater(cleanUser);
             note.setUpdater(cleanUser);
             note.setReceiver(cleanUser);
-            noteManager.save(note);
+            Note savedNote=noteManager.save(note);
             String key = (isNew) ? "note.added" : "note.updated";
             saveMessage(request, getText(key, locale));
-
+            cache.put(savedNote.getId().toString(),savedNote);
             /*if (!isNew) {
                 success = "redirect:noteform?id=" + note.getId();
             }*/
         }
-
+        removeCacheByKeyPrefix(Note.LIST_NEWS_CACHE_KEY,Note.LIST_CACHE);
         return success;
     }
     @RequestMapping(method = RequestMethod.GET,value = "{id}/Send")
     public ModelAndView sendNoteForm(@PathVariable("id") String noteId){
-        Note note=noteManager.get(Long.parseLong(noteId));
+        Note note=cache.peek(noteId);
+        if(note==null){
+           note=noteManager.get(Long.parseLong(noteId));
+            cache.put(noteId,note);
+        }
+
         ModelAndView view=new ModelAndView("notesend");
         //note.setContent(StringEscapeUtils.escapeHtml(note.getContent()));
         view.addObject("note",note);
@@ -110,7 +128,11 @@ public class NoteFormController extends BaseFormController {
         if (request.getParameter("cancel") != null) {
             return "redirect:/notes";
         }
-        Note note=noteManager.get(Long.parseLong(noteID));
+        Note note=cache.peek(noteID);
+        if(note==null){
+            note=noteManager.get(Long.parseLong(noteID));
+            cache.put(noteID,note);
+        }
 
         String[] sendTousers=request.getParameterValues("sendToUserList");
         String[] sendToUserGroups=request.getParameterValues("sendToUserGroupList");
@@ -129,7 +151,8 @@ public class NoteFormController extends BaseFormController {
                 note.getSendToUserGroupList().add(customGroupManager.get(Long.parseLong(groupId)));
             }
         }
-        noteManager.save(note);
+        Note savedNote=noteManager.save(note);
+        cache.put(savedNote.getId().toString(),savedNote);
 
         Note copyNote=new Note();
         copyNote.setTitle(note.getTitle());
@@ -145,9 +168,11 @@ public class NoteFormController extends BaseFormController {
         for(User toUser:SendUserList){
             copyNote.setId(null);
             copyNote.setReceiver(toUser);
-            noteManager.save(copyNote);
+            Note newNote=noteManager.save(copyNote);
+            cache.put(newNote.getId().toString(),newNote);
         }
         saveMessage(request,"Send Success");
+        removeCacheByKeyPrefix(Note.LIST_NEWS_CACHE_KEY,Note.LIST_CACHE);
         return "redirect:/notes";
     }
     @ModelAttribute("userList")

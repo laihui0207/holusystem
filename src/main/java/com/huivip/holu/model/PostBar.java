@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -99,6 +100,7 @@ public class PostBar extends BaseObject implements Serializable {
         this.lastReplyUser = lastReplyUser;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "createrID",updatable = false)
     public User getCreater() {
         return creater;

@@ -37,7 +37,7 @@ public class TaskController {
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(taskManager.getAll());
         }*/
-        model.addAttribute(taskManager.getTaskOfUser(user.getUserID()));
+        model.addAttribute(taskManager.getTaskOfUser(user.getUserID(),"0","0"));
         return model;
     }
 

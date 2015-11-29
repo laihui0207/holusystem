@@ -3,7 +3,10 @@ package com.huivip.holu.webapp.controller;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
 import com.huivip.holu.util.SteelConfig;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,6 +29,7 @@ import java.util.Random;
 @RequestMapping("/documentationform*")
 public class DocumentationFormController extends BaseFormController {
     private DocumentationManager documentationManager = null;
+    Cache<String,Documentation> cache=null;
     @Autowired
     private DocTypeManager docTypeManager;
     @Autowired
@@ -40,6 +44,8 @@ public class DocumentationFormController extends BaseFormController {
     public DocumentationFormController() {
         setCancelView("redirect:documentations");
         setSuccessView("redirect:documentations");
+        cache= Cache2kProvider.getinstance().setCache(Documentation.class,
+                CacheBuilder.newCache(String.class,Documentation.class).build());
     }
 
     @ModelAttribute
@@ -79,6 +85,7 @@ public class DocumentationFormController extends BaseFormController {
 
         if (request.getParameter("delete") != null) {
             deleteUploadFile(documentation);
+            cache.remove(documentation.getId().toString());
             documentationManager.remove(documentation.getId());
             saveMessage(request, getText("documentation.deleted", locale));
         } else {
@@ -109,15 +116,15 @@ public class DocumentationFormController extends BaseFormController {
                     request.getRemoteUser());
             documentation.setCreater(cleanUser);
             documentation.setUpdater(cleanUser);
-            documentationManager.save(documentation);
+            Documentation savedDocumentaion= documentationManager.save(documentation);
             String key = (isNew) ? "documentation.added" : "documentation.updated";
             saveMessage(request, getText(key, locale));
-
+            cache.put(savedDocumentaion.getId().toString(),savedDocumentaion);
            /* if (!isNew) {
                 success = "redirect:documentationform?id=" + documentation.getId();
             }*/
         }
-
+        removeCacheByKeyPrefix(Documentation.LIST_NEWS_CACHE_KEY,Documentation.LIST_CACHE);
         return success;
     }
     private void deleteUploadFile(Documentation documentation){

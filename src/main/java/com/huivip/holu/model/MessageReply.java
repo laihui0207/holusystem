@@ -16,6 +16,8 @@ import java.sql.Timestamp;
 @Indexed
 @XmlRootElement
 public class MessageReply extends BaseObject implements Serializable {
+    public final static String LIST_CACHE="MessageReply_";
+    public final static String LIST_NEWS_CACHE_KEY="MessageReply_All_Keys";
 
     private Long id;
     private Message message;

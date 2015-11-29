@@ -1,11 +1,14 @@
 package com.huivip.holu.webapp.controller;
 
+import com.huivip.holu.util.cache.Cache2kProvider;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.huivip.holu.Constants;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.MailEngine;
 import com.huivip.holu.service.UserManager;
+import org.cache2k.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
@@ -20,14 +23,12 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.PropertyEditorSupport;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that contains
@@ -43,6 +44,8 @@ public class BaseFormController implements ServletContextAware {
     public static final String MESSAGES_KEY = "successMessages";
     public static final String ERRORS_MESSAGES_KEY = "errors";
     protected final transient Log log = LogFactory.getLog(getClass());
+    Cache<String,ExtendedPaginatedList> listCache= Cache2kProvider.getinstance().getExtendedPaginatedListCache();
+    Cache<String,Set<String>> keyCache=Cache2kProvider.getinstance().getSetCache();
     private UserManager userManager = null;
     protected MailEngine mailEngine = null;
     protected SimpleMailMessage message = null;
@@ -166,6 +169,17 @@ public class BaseFormController implements ServletContextAware {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, null, 
                                     new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(Timestamp.class,
+                new PropertyEditorSupport() {
+                    public void setAsText(String value) {
+                        try {
+                            Date parsedDate = new SimpleDateFormat("MM/dd/yyyy").parse(value);
+                            setValue(new Timestamp(parsedDate.getTime()));
+                        } catch (ParseException e) {
+                            setValue(null);
+                        }
+                    }
+                });
     }
 
     /**
@@ -235,5 +249,16 @@ public class BaseFormController implements ServletContextAware {
 
     protected ServletContext getServletContext() {
         return servletContext;
+    }
+
+    public void removeCacheByKeyPrefix(String keyKeys,String keyPrefix){
+        if(keyCache.contains(keyKeys)){
+            Set<String> cacheKeys=keyCache.get(keyKeys);
+            for(String k:cacheKeys){
+                if(k.startsWith(keyPrefix)){
+                    listCache.remove(k);
+                }
+            }
+        }
     }
 }

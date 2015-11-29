@@ -17,10 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/newss*")
@@ -29,9 +25,7 @@ public class NewsController {
     private NewsManager newsManager;
     @Autowired
     PaginateListFactory paginateListFactory;
-    Cache<String,News> cache= Cache2kProvider.getinstance().getCache(News.class.getName());
-    Cache<String,List<News>> listCache=Cache2kProvider.getinstance().getCache(ArrayList.class.getName());
-    Cache<String,Set<String>> keyCache=Cache2kProvider.getinstance().getCache(HashSet.class.getName());
+    Cache<String,News> cache= Cache2kProvider.getinstance().getCache(News.class);
 
     @Autowired
     public void setNewsManager(NewsManager newsManager) {

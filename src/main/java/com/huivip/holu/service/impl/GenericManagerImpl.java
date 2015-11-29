@@ -2,12 +2,16 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.GenericDao;
 import com.huivip.holu.service.GenericManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.cache2k.Cache;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class serves as the Base class for all other Managers - namely to hold
@@ -49,7 +53,8 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
      * Log variable for all child classes. Uses LogFactory.getLog(getClass()) from Commons Logging
      */
     protected final Log log = LogFactory.getLog(getClass());
-
+    Cache<String,ExtendedPaginatedList> listCache= Cache2kProvider.getinstance().getExtendedPaginatedListCache();
+    Cache<String,Set<String>> keyCache=Cache2kProvider.getinstance().getSetCache();
     /**
      * GenericDao instance, set by constructor of child classes
      */
@@ -147,5 +152,30 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
      */
     public void reindexAll(boolean async) {
         dao.reindexAll(async);
+    }
+
+    public void maintainCacheKey(String keyKey,String cacheKey){
+        if(!keyCache.contains(keyKey)){
+            Set<String> keys=new HashSet<>();
+            keys.add(cacheKey);
+            keyCache.put(keyKey,keys);
+        }
+        else {
+            Set<String> keys=keyCache.get(keyKey);
+            if(!keys.contains(cacheKey)){
+                keys.add(cacheKey);
+                keyCache.put(keyKey,keys);
+            }
+        }
+    }
+    public void removeCacheByKeyPrefix(String keyKeys,String keyPrefix){
+        if(keyCache.contains(keyKeys)){
+            Set<String> cacheKeys=keyCache.get(keyKeys);
+            for(String k:cacheKeys){
+                if(k.startsWith(keyPrefix)){
+                    listCache.remove(k);
+                }
+            }
+        }
     }
 }

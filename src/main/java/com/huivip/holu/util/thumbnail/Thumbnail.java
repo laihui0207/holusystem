@@ -1,5 +1,7 @@
-package com.huivip.holu.util;
+package com.huivip.holu.util.thumbnail;
 
+
+import com.huivip.holu.util.SteelConfig;
 
 import javax.servlet.ServletContext;
 import java.io.*;

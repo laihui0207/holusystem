@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,8 +21,8 @@ import java.util.Locale;
 @RequestMapping("/companyform*")
 public class CompanyFormController extends BaseFormController {
     private CompanyManager companyManager = null;
-    Cache<String,Company> cache= Cache2kProvider.getinstance().getCache(Company.class.getName());
-    Cache<String,List<Company>> listCache=Cache2kProvider.getinstance().getCache(ArrayList.class.getName());
+    Cache<String,Company> cache= Cache2kProvider.getinstance().getCache(Company.class);
+    Cache<String,List<Company>> listCache=Cache2kProvider.getinstance().getListCache();
 
     @Autowired
     public void setCompanyManager(CompanyManager companyManager) {

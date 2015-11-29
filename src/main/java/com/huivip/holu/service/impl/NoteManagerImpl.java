@@ -9,8 +9,11 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.DepartmentManager;
 import com.huivip.holu.service.NoteManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,15 +35,13 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
     @Autowired
     DepartmentManager departmentManager;
 
-    @Override
-    public boolean exists(Long id) {
-        return super.exists(id);
-    }
+    Cache<String,Note> cache=null;
 
     @Autowired
     public NoteManagerImpl(NoteDao noteDao) {
         super(noteDao);
         this.noteDao = noteDao;
+        cache=Cache2kProvider.getinstance().setCache(Note.class, CacheBuilder.newCache(String.class,Note.class).build());
     }
 
     @Override
@@ -50,7 +51,16 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         list.setPageSize(Integer.parseInt(pageSize));
         list.setSortCriterion("createTime");
         list.setSortDirection(SortOrderEnum.DESCENDING);
-        List<Note> dataList=myNotes(userId,list);
+        String cacheKey=Note.LIST_CACHE+userId+"_"+page+"_"+pageSize;
+        maintainCacheKey(Note.LIST_NEWS_CACHE_KEY,cacheKey);
+        ExtendedPaginatedList listFromCache=listCache.peek(cacheKey);
+        if(listFromCache==null){
+            myNotes(userId,list);
+            listCache.put(cacheKey,list);
+        }
+        else {
+            list=listFromCache;
+        }
         return list.getList();
     }
 
@@ -62,12 +72,19 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
 
     @Override
     public Note viewNote(String id) {
-        return noteDao.get(Long.parseLong(id));
+        Note note=cache.peek(id);
+        if(note==null){
+            note=noteDao.get(Long.parseLong(id));
+            cache.put(id,note);
+        }
+        return note;
     }
 
     @Override
     public void deleteNote(String noteId) {
         noteDao.remove(Long.parseLong(noteId));
+        cache.remove(noteId);
+        removeCacheByKeyPrefix(Note.LIST_NEWS_CACHE_KEY,Note.LIST_CACHE);
     }
 
     @Override
@@ -75,7 +92,10 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         User user=userDao.get(Long.parseLong(userId));
         Note note=new Note();
         if(noteId!=null && noteId.length()>0 && !noteId.equalsIgnoreCase("undefined")){
-            note=noteDao.get(Long.parseLong(noteId));
+            note=cache.peek(noteId);
+            if(note==null){
+                note=noteDao.get(Long.parseLong(noteId));
+            }
         }
         note.setTitle(title);
         note.setContent(content);
@@ -83,14 +103,19 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         note.setUpdater(user);
         note.setReceiver(user);
         note.setUpdateTime(new Timestamp(new Date().getTime()));
-        noteDao.save(note);
+        Note note1=noteDao.save(note);
+        cache.put(note1.getId().toString(),note1);
+        removeCacheByKeyPrefix(Note.LIST_NEWS_CACHE_KEY,Note.LIST_CACHE);
         return note;
     }
 
     @Override
     public Note sendNote( String noteId,String users,String groups,String departments,String userId) {
         User user=userDao.get(Long.parseLong(userId));
-        Note note=noteDao.get(Long.parseLong(noteId));
+        Note note=cache.peek(noteId);
+        if(note==null){
+            note=noteDao.get(Long.parseLong(noteId));
+        }
         List<User> receiverList=new ArrayList<>();
         if(null!=users && users.length()>0 && !users.equalsIgnoreCase("undefined")){
             if(note.getSendToUserList()!=null){
@@ -131,7 +156,8 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
                 }
             }
         }
-        noteDao.save(note);
+        Note savedNote=noteDao.save(note);
+        cache.put(savedNote.getId().toString(),savedNote);
         Note copyNote=new Note();
         copyNote.setTitle(note.getTitle());
         copyNote.setContent(note.getContent());
@@ -142,9 +168,10 @@ public class NoteManagerImpl extends GenericManagerImpl<Note, Long> implements N
         for(User u:receiverList){
             copyNote.setId(null);
             copyNote.setReceiver(u);
-            noteDao.save(copyNote);
+            Note newNote=noteDao.save(copyNote);
+            cache.put(newNote.getId().toString(),newNote);
         }
-
+        removeCacheByKeyPrefix(Note.LIST_NEWS_CACHE_KEY,Note.LIST_CACHE);
         return note;
     }
 }

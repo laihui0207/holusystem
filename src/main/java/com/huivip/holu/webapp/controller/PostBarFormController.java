@@ -2,7 +2,7 @@ package com.huivip.holu.webapp.controller;
 
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
-import com.huivip.holu.util.Thumbnail;
+import com.huivip.holu.util.thumbnail.Thumbnail;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -10,6 +10,7 @@ import com.huivip.holu.util.AccessToken;
 import com.huivip.holu.util.cache.Cache2kProvider;
 import org.apache.commons.lang.StringUtils;
 import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ import java.util.*;
 @WebService(serviceName = "UserService", endpointInterface = "com.huivip.holu.service.UserService")
 public class UserManagerImpl extends GenericManagerImpl<User, Long> implements UserManager, UserService {
     Logger logger= LoggerFactory.getLogger(this.getClass());
-    Cache<String,User> cache= Cache2kProvider.getinstance().getCache(User.class.getName());
+    Cache<String,User> cache= Cache2kProvider.getinstance().setCache(User.class, CacheBuilder.newCache(String.class,User.class).build());
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;
     @Autowired
@@ -106,31 +107,31 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
      */
     @Override
     public User getUser(final String userId) {
-        User user=cache.peek(userId);
+        User user=/*cache.peek(userId);
         if(user==null){
-            user=userDao.get(new Long(userId));
-            cache.put(userId,user);
-        }
+            user=*/userDao.get(new Long(userId));
+       /*     cache.put(userId,user);
+        }*/
         return user;
     }
 
     @Override
     public User getUserByLoginCode(String loginCode) {
-        User user=cache.peek(loginCode);
+        User user=/*cache.peek(loginCode);
         if(user==null || user.getAcceptRegistration()==0){
-            user=userDao.getUserByLoginCode(loginCode);
-            cache.put(loginCode,user);
-        }
+            user=*/userDao.getUserByLoginCode(loginCode);
+         /*   cache.put(loginCode,user);
+        }*/
         return user;
     }
 
     @Override
     public User getUserByUserID(String userID) {
-        User user=cache.peek(userID);
+        User user=/*cache.peek(userID);
         if(user==null){
-            user=userDao.getUserByUserID(userID);
-            cache.put(userID,user);
-        }
+            user=*/userDao.getUserByUserID(userID);
+        /*    cache.put(userID,user);
+        }*/
         return user;
     }
 

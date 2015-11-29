@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -63,6 +64,7 @@ public class DocType extends BaseObject implements Serializable {
         this.createTime = createTime;
     }
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "creater_id",updatable = false)
     public User getCreater() {
         return creater;

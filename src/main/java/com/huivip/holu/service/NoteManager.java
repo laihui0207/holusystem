@@ -14,7 +14,7 @@ public interface NoteManager extends GenericManager<Note, Long> {
     @GET
     @Path("user/{userID}")
     List<Note> noteList(@PathParam("userID")String userId,@DefaultValue("0") @QueryParam("page") String pageIndex,
-                        @DefaultValue("10") @QueryParam("pageSize") String pageSize);
+                        @DefaultValue("25") @QueryParam("pageSize") String pageSize);
 
     @GET
     @Path("mynote/{userid}")

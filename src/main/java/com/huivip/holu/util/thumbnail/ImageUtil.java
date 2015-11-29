@@ -1,4 +1,4 @@
-package com.huivip.holu.util;
+package com.huivip.holu.util.thumbnail;
 
 /**
  * Created by sunlaihui on 6/12/15.

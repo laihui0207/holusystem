@@ -8,7 +8,10 @@ import com.huivip.holu.service.CustomGroupManager;
 import com.huivip.holu.service.MessageManager;
 import com.huivip.holu.service.MessageReceiverManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,6 +29,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/messageform*")
 public class MessageFormController extends BaseFormController {
+    Cache<String,Message> cache= null;
     private MessageManager messageManager = null;
     @Autowired
     private UserManager userManager;
@@ -42,6 +46,8 @@ public class MessageFormController extends BaseFormController {
     public MessageFormController() {
         setCancelView("redirect:messages");
         setSuccessView("redirect:messages");
+        cache= Cache2kProvider.getinstance().setCache(Message.class,
+                CacheBuilder.newCache(String.class,Message.class).build());
     }
 
     @ModelAttribute
@@ -51,18 +57,29 @@ public class MessageFormController extends BaseFormController {
         String id = request.getParameter("id");
 
         if (!StringUtils.isBlank(id)) {
-            return messageManager.get(new Long(id));
+            Message message=cache.peek(id);
+            if(message==null){
+                message=messageManager.get(new Long(id));
+                cache.put(id,message);
+            }
+            return message;
         }
 
         return new Message();
     }
     @RequestMapping(method = RequestMethod.GET,value = "{id}/Send")
     public ModelAndView sendMessageForm(@PathVariable("id") String messageId){
-        Message message=messageManager.get(Long.parseLong(messageId));
+        Message message=cache.peek(messageId);
+        if(message==null){
+            message=messageManager.get(Long.parseLong(messageId));
+            cache.put(messageId,message);
+        }
         if(message.getStatus()==2){
             message.setStatus(3);
         }
-        messageManager.save(message);
+       Message message1= messageManager.save(message);
+        cache.put(message1.getId().toString(),message1);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
         ModelAndView view=new ModelAndView("messagesend");
         view.addObject("message",message);
         return view;
@@ -73,8 +90,11 @@ public class MessageFormController extends BaseFormController {
         if (request.getParameter("cancel") != null) {
             return "redirect:/messages";
         }
-        Message message=messageManager.get(Long.parseLong(messageId));
-        User currentUser=userManager.getUserByLoginCode(request.getRemoteUser());
+        Message message=cache.peek(messageId);
+        if(message==null){
+           message=messageManager.get(Long.parseLong(messageId));
+            cache.put(messageId,message);
+        }
 
         String[] receiveUsers=request.getParameterValues("receiveUsers");
         String[] receiveUserGroups=request.getParameterValues("receiveGroups");
@@ -95,7 +115,7 @@ public class MessageFormController extends BaseFormController {
             }
         }
         message.setStatus(1);
-        messageManager.save(message);
+        Message message1=messageManager.save(message);
 
         MessageReceiver receiver=new MessageReceiver();
         receiver.setMessage(message);
@@ -107,7 +127,8 @@ public class MessageFormController extends BaseFormController {
             receiver.setStatus(0);
             messageReceiverManager.save(receiver);
         }
-
+        cache.put(message1.getId().toString(),message1);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
         saveMessage(request,"Send Success");
         return "redirect:/messages";
     }
@@ -135,7 +156,9 @@ public class MessageFormController extends BaseFormController {
 
         if (request.getParameter("delete") != null) {
             messageReceiverManager.deleteReceiverOfMessage(message.getId().toString());
+            cache.remove(message.getId().toString());
             messageManager.remove(message.getId());
+            removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
             saveMessage(request, getText("message.deleted", locale));
         } else {
             final User cleanUser = getUserManager().getUserByLoginCode(
@@ -155,9 +178,11 @@ public class MessageFormController extends BaseFormController {
             String key = (isNew) ? "message.added" : "message.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
+            /*if (!isNew) {
                 success = "redirect:messageform?id=" + message.getId();
-            }
+            }*/
+            cache.put(newMessage.getId().toString(),newMessage);
+            removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
         }
 
         return success;

@@ -6,23 +6,27 @@ import com.huivip.holu.dao.MessageDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.MessageManager;
-
 import com.huivip.holu.service.MessageReceiverManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.WebService;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.jws.WebService;
 
 @Service("messageManager")
 @WebService(serviceName = "MessageService", endpointInterface = "com.huivip.holu.service.MessageManager")
 public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implements MessageManager {
+    Cache<String,Message> cache= null;
+
     MessageDao messageDao;
     @Autowired
     UserDao userDao;
@@ -37,6 +41,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     public MessageManagerImpl(MessageDao messageDao) {
         super(messageDao);
         this.messageDao = messageDao;
+        cache=Cache2kProvider.getinstance().setCache(Message.class,CacheBuilder.newCache(String.class,Message.class).build());
     }
 
     @Override
@@ -46,13 +51,21 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
 
     @Override
     public List<MessageReceiver> myMessage(String userId,String type, String page, String pageSize) {
-        User user=userDao.get(Long.parseLong(userId));
         ExtendedPaginatedList list=new PaginatedListImpl();
         list.setPageSize(Integer.parseInt(pageSize));
         list.setIndex(Integer.parseInt(page));
         list.setSortCriterion("createTime");
         list.setSortDirection(SortOrderEnum.DESCENDING);
-        List<MessageReceiver> datalist=messageReceiverManager.listMyMessage(userId,type , list);
+        String cacheKey=Message.LIST_CACHE+userId+"_"+page+"_"+pageSize;
+        maintainCacheKey(Message.LIST_NEWS_CACHE_KEY,cacheKey);
+        ExtendedPaginatedList listFromCache=listCache.peek(cacheKey);
+        if(listFromCache==null){
+            messageReceiverManager.listMyMessage(userId,type , list);
+            listCache.put(cacheKey,list);
+        }
+        else {
+            list=listFromCache;
+        }
         return list.getList();
     }
 
@@ -63,13 +76,21 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
 
     @Override
     public Message getMessage(String id) {
-        return messageDao.get(Long.parseLong(id));
+        Message message=cache.peek(id);
+        if(message==null){
+            message=messageDao.get(Long.parseLong(id));
+            cache.put(id,message);
+        }
+        return message;
     }
 
     @Override
     public Message readMessage(String id,String userId) {
         messageReceiverManager.messageRead(id,userId);
-        return messageDao.updateMessageStatus(id,"3");
+        Message message=messageDao.updateMessageStatus(id,"3");
+        cache.put(id,message);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
+        return message;
     }
 
     @Override
@@ -93,7 +114,8 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
         receiver.setCreateTime(new Timestamp(new Date().getTime()));
         receiver.setReceiver(user);
         messageReceiverManager.save(receiver);
-
+        cache.put(savedMessage.getId().toString(),savedMessage);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
         return savedMessage;
     }
 
@@ -166,6 +188,8 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
             receiver.setReceiver(u);
             messageReceiverManager.save(receiver);
         }
+        cache.put(savedMessage.getId().toString(),savedMessage);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
         return savedMessage;
     }
 
@@ -173,5 +197,7 @@ public class MessageManagerImpl extends GenericManagerImpl<Message, Long> implem
     public void deleteMessage(String messageId) {
         messageReceiverManager.deleteReceiverOfMessage(messageId);
         messageDao.remove(Long.parseLong(messageId));
+        cache.remove(messageId);
+        removeCacheByKeyPrefix(Message.LIST_NEWS_CACHE_KEY,Message.LIST_CACHE);
     }
 }
