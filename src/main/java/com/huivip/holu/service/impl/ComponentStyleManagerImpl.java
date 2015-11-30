@@ -2,9 +2,7 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.dao.*;
 import com.huivip.holu.model.*;
-import com.huivip.holu.service.ComponentManager;
-import com.huivip.holu.service.ComponentStyleManager;
-import com.huivip.holu.service.ProcessMidManager;
+import com.huivip.holu.service.*;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +20,13 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     @Autowired
     UserDao userDao;
     @Autowired
+    UserManager userManager;
+    @Autowired
     ProcessMidDao processMidDao;
     @Autowired
     CompanyDatabaseIndexDao companyDatabaseIndexDao;
+    @Autowired
+    CompanyDatabaseIndexManager companyDatabaseIndexManager;
     @Autowired
     ProjectDao projectDao;
     @Autowired
@@ -45,17 +47,19 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId,String componentId) {
-
-        return getProcessListByCompanyAndStyleName(styleID,companyId,userId,componentId,null);
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String userId, String componentId) {
+        User user=userManager.getUserByUserID(userId);
+        return getProcessListByCompanyAndStyleName(styleID, user,componentId,null);
     }
 
     @Override
-    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, String companyId, String userId,String componentID, ExtendedPaginatedList list) {
-        List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, companyId, list);
-        User user = userDao.getUserByUserID(userId);
+    public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, User user, String componentID, ExtendedPaginatedList list) {
+        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
+
+        List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
         Set<Post> posts = user.getPosts();
-        String processTableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyId,"ProcessMidTable");
+
+
         for (ComponentStyle style : componentStyles) {
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {
@@ -96,7 +100,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
     @Override
     public List<ComponentStyle> myTask(String userId) {
-        User user=userDao.getUserByUserID(userId);
+        User user=userManager.getUserByUserID(userId);
         List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
         List<Project> myProject=new ArrayList<>();
         for(Project project:projectList){
@@ -118,7 +122,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         List<ComponentStyle> result=new ArrayList<>();
         List<Mission> missions =new ArrayList<>();
         for(Component component: components){
-            List<ComponentStyle> list=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
+            List<ComponentStyle> list=getProcessListByCompanyAndStyleName(component.getStyleID(), user,component.getComponentID(),null);
             for(ComponentStyle style:list){
                 if(style.isOperationer()){
                     Mission mission =new Mission();
@@ -145,18 +149,22 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         return result;
     }
     @Override
-    public List<Mission> getMyTask(String userId){
+    public List<Mission> getMyTask(String userId, String projectID){
         List<Mission> missions =new ArrayList<>();
-        List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
-        handleProject(new HashSet<>(projectList),userId, missions);
+       /* List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
+        handleProject(new HashSet<>(projectList),userId, missions);*/
+        Project project=projectDao.getProjectByprojectID(projectID);
+        User user=userManager.getUserByUserID(userId);
+        handleComponents(project,user, missions);
         return missions;
     }
 
     private void handleProject(Set<Project> projects,String userId,List<Mission> missions){
         if(null==projects) return;
+        User user=userManager.getUserByUserID(userId);
         for(Project project:projects){
             if(project.getChildProjects()==null || project.getChildProjects().size()==0){
-                handleComponents(project,userId, missions);
+                handleComponents(project,user, missions);
             }
             else {
                 handleProject(project.getChildProjects(), userId, missions);
@@ -164,15 +172,19 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         }
     }
 
-    private void handleComponents(Project project,String userId,List<Mission> missions){
+    private void handleComponents(Project project,User user,List<Mission> missions){
         if(project==null) return;
-        List<Component> components=componentManager.listComponentByProject(project.getProjectID(),userId,null);
+        List<Component> components=componentManager.listComponentByProject(project.getProjectID(), user.getUserID(),null);
         for(Component component:components){
             if(component.getSubComponentListSet()==null || component.getSubComponentListSet().size()==0){
                 Mission mission =new Mission();
-                mission.setComponent(component);
+                //mission.setComponent(component);
+                mission.setProjectPathName(component.getProject().getProjectPathName());
+                mission.setProjectID(component.getProject().getProjectID());
+                mission.setComponentId(component.getComponentID());
+                mission.setComponentName(component.getComponentName());
                 mission.setComponentType("parent");
-                handleComponentStyle(component,component.getComponentID(), userId, mission);
+                handleComponentStyle(component,component.getComponentID(), user, mission);
                 if(mission.getComponentStyle()!=null){
                     missions.add(mission);
                 }
@@ -181,10 +193,16 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                 Set<SubComponentList> subComponentLists=component.getSubComponentListSet();
                 for(SubComponentList subComponentList:subComponentLists){
                     Mission mission =new Mission();
-                    mission.setComponent(component);
-                    mission.setSubComponent(subComponentList);
+                    //mission.setComponent(component);
+                    mission.setProjectPathName(component.getProject().getProjectPathName());
+                    mission.setProjectID(component.getProject().getProjectID());
+                    mission.setComponentId(component.getComponentID());
+                    mission.setComponentName(component.getComponentName());
+                    //mission.setSubComponent(subComponentList);
+                    mission.setSubComponentName(subComponentList.getSubComponentName());
+                    mission.setSubComponentID(subComponentList.getSubComponentID());
                     mission.setComponentType("sub");
-                    handleComponentStyle(component,subComponentList.getSubComponentID(),userId, mission);
+                    handleComponentStyle(component,subComponentList.getSubComponentID(),user, mission);
                     if(mission.getComponentStyle()!=null){
                         missions.add(mission);
                     }
@@ -193,14 +211,13 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         }
     }
 
-    private void handleComponentStyle(Component component, String subcomponentID,String userId, Mission mission) {
+    private void handleComponentStyle(Component component, String subcomponentID,User user, Mission mission) {
         if (null == component) return;
-        User user=userDao.getUserByUserID(userId);
-        List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(),user.getCompany().getCompanyId(),userId,component.getComponentID());
+        List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(), user,component.getComponentID(),null);
         for(ComponentStyle style: componentStyles){
             if(style.isOperationer()){
                 mission.setComponentStyle(style);
-                ProcessMid processMid=processMidManager.getProcessMid(subcomponentID, style.getStyleProcessID(), userId);
+                ProcessMid processMid=processMidManager.getProcessMid(subcomponentID, style.getStyleProcessID(), user.getUserID());
                 mission.setProcessMid(processMid);
             }
         }

@@ -55,6 +55,9 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
     protected final Log log = LogFactory.getLog(getClass());
     Cache<String,ExtendedPaginatedList> listCache= Cache2kProvider.getinstance().getExtendedPaginatedListCache();
     Cache<String,Set<String>> keyCache=Cache2kProvider.getinstance().getSetCache();
+    /*Cache<String,User> userCache=Cache2kProvider.getinstance().setCache(User.class,
+            CacheBuilder.newCache(String.class,User.class).build());*/
+    Cache<String,String> tableCache= Cache2kProvider.getinstance().getStringCache();
     /**
      * GenericDao instance, set by constructor of child classes
      */

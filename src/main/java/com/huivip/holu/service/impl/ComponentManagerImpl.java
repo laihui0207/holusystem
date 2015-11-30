@@ -6,9 +6,14 @@ import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Component;
 import com.huivip.holu.model.User;
+import com.huivip.holu.service.CompanyDatabaseIndexManager;
 import com.huivip.holu.service.ComponentManager;
+import com.huivip.holu.service.UserManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +24,16 @@ import java.util.List;
 @Service("componentManager")
 @WebService(serviceName = "ComponentService", endpointInterface = "com.huivip.holu.service.ComponentManager")
 public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> implements ComponentManager {
+
     ComponentDao componentDao;
     @Autowired
     CompanyDatabaseIndexDao companyDatabaseIndexDao;
     @Autowired
+    CompanyDatabaseIndexManager companyDatabaseIndexManager;
+    @Autowired
     UserDao userDao;
+    @Autowired
+    UserManager userManager;
     @Autowired
     SubComponentListDao subComponentListDao;
 
@@ -44,12 +54,12 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
 
     @Override
     public List<Component> listComponentByProject(String projectID,String userID,ExtendedPaginatedList list) {
-        User user=userDao.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"ComponentList");
-        String subtableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getComponentTableNameByCompany(user.getCompany().getCompanyId());
+        String subTableName=companyDatabaseIndexManager.getSubComponentTableNameByCompany(user.getCompany().getCompanyId());
         List<Component> components=componentDao.listComponentByProject(projectID,tableName,list);
         for(Component component:components){
-            component.setSubComponentListSet(new HashSet(subComponentListDao.getSubComponentListByComponentID(component.getComponentID(), subtableName, null)));
+            component.setSubComponentListSet(new HashSet(subComponentListDao.getSubComponentListByComponentID(component.getComponentID(), subTableName, null)));
         }
         if(list!=null){
             list.setList(components);
@@ -59,8 +69,8 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
 
     @Override
     public Component getComponentByComponentID(String componentID,String userID) {
-        User user=userDao.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"ComponentList");
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getComponentTableNameByCompany(user.getCompany().getCompanyId());
         Component component=componentDao.getComponentByComponentID(componentID,tableName);
         if(component!=null){
             component.setSubComponentListSet(null);

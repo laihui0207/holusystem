@@ -75,7 +75,7 @@ public class ComponentStyleController {
                 parent=subComponentListManager.getParentComponent(componentID,cleanUser.getUserID());
             }
         }
-        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,companyId,cleanUser.getUserID(),componentID,null);
+        List<ComponentStyle> componentStyleList=componentStyleManager.getProcessListByCompanyAndStyleName(styleId,cleanUser ,componentID,null);
         Locale locale = request.getLocale();
         view.addObject("language",locale.getDisplayLanguage());
         view.addObject("componentStyleList",componentStyleList);

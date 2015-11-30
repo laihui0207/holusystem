@@ -16,6 +16,10 @@ public interface ProjectManager extends GenericManager<Project, Long> {
                                @DefaultValue("") @QueryParam("parentID") String parentID,
                                @DefaultValue("0") @QueryParam("page") String page,
                                @DefaultValue("10") @QueryParam("pageSize") String pageSize);
+
+    @GET
+    @Path("all/{userID}")
+    List<Project> getMyAllProject(@PathParam("userID")String userID);
    /* @GET
     @Path("user/{userID}/{parentID}")
     List<Project> getMySubProject(@PathParam("userID")String userID,@PathParam("parentID")String parentID);*/

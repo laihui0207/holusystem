@@ -21,6 +21,8 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
     @Autowired
     UserDao userDao;
     @Autowired
+    UserManager userManager;
+    @Autowired
     CompanyDatabaseIndexManager companyDatabaseIndexManager;
     @Autowired
     ProjectManager projectManager;
@@ -45,7 +47,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
             list=null;
         }
 
-        User user=userDao.getUserByUserID(userId);
+        User user=userManager.getUserByUserID(userId);
         String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"TaskTable");
         Set<Post> posts=user.getPosts();
         List<String> myProcesses=new ArrayList<>();
@@ -89,7 +91,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
                 mission.setComponentType("sub");
                 mission.setUser(user);
                 mission.setType(task.getTaskStyle());
-                List<ComponentStyle> componentStyles=componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user.getCompany().getCompanyId(), userId, component.getComponentID());
+                List<ComponentStyle> componentStyles=componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user, component.getComponentID(),null);
                 for(ComponentStyle style: componentStyles){
                     if(style.isOperationer()){
                         mission.setComponentStyle(style);

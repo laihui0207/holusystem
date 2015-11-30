@@ -7,10 +7,16 @@ import java.io.Serializable;
  */
 public class Mission implements Serializable {
     private Component component;
+    private String componentName;
+    private String projectID;
+    private String projectPathName;
+
     private String componentType;
     private String projectChain;
     private String type;
     private SubComponentList subComponent;
+    private String subComponentName;
+    private String subComponentID;
     private ComponentStyle componentStyle;
     private String componentId;
     private User user;
@@ -82,6 +88,46 @@ public class Mission implements Serializable {
 
     public ProcessMid getProcessMid() {
         return processMid;
+    }
+
+    public String getComponentName() {
+        return componentName;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
+
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+
+    public String getProjectPathName() {
+        return projectPathName;
+    }
+
+    public void setProjectPathName(String projectPathName) {
+        this.projectPathName = projectPathName;
+    }
+
+    public String getSubComponentName() {
+        return subComponentName;
+    }
+
+    public void setSubComponentName(String subComponentName) {
+        this.subComponentName = subComponentName;
+    }
+
+    public String getSubComponentID() {
+        return subComponentID;
+    }
+
+    public void setSubComponentID(String subComponentID) {
+        this.subComponentID = subComponentID;
     }
 
     public void setProcessMid(ProcessMid processMid) {
