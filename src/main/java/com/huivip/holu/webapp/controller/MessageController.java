@@ -10,6 +10,7 @@ import com.huivip.holu.service.MessageReceiverManager;
 import com.huivip.holu.service.UserManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -44,6 +45,8 @@ public class MessageController {
         final User cleanUser =userManager.getUserByLoginCode(
                 request.getRemoteUser());
         ExtendedPaginatedList list=paginateListFactory.getPaginatedListFromRequest(request);
+        list.setSortDirection(SortOrderEnum.DESCENDING);
+        list.setSortCriterion("createTime");
         Model model = new ExtendedModelMap();
         try {
             if(request.isUserInRole(Constants.ADMIN_ROLE)){

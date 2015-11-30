@@ -7,7 +7,12 @@ import com.huivip.holu.model.User;
 import com.huivip.holu.model.UserTrack;
 import com.huivip.holu.service.*;
 import com.huivip.holu.util.AccessToken;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import org.apache.commons.lang.StringUtils;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,6 +34,8 @@ import java.util.*;
 @Service("userManager")
 @WebService(serviceName = "UserService", endpointInterface = "com.huivip.holu.service.UserService")
 public class UserManagerImpl extends GenericManagerImpl<User, Long> implements UserManager, UserService {
+    Logger logger= LoggerFactory.getLogger(this.getClass());
+    Cache<String,User> cache= Cache2kProvider.getinstance().setCache(User.class, CacheBuilder.newCache(String.class,User.class).build());
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;
     @Autowired
@@ -100,17 +107,32 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
      */
     @Override
     public User getUser(final String userId) {
-        return userDao.get(new Long(userId));
+        User user=/*cache.peek(userId);
+        if(user==null){
+            user=*/userDao.get(new Long(userId));
+       /*     cache.put(userId,user);
+        }*/
+        return user;
     }
 
     @Override
     public User getUserByLoginCode(String loginCode) {
-        return userDao.getUserByLoginCode(loginCode);
+        User user=/*cache.peek(loginCode);
+        if(user==null || user.getAcceptRegistration()==0){
+            user=*/userDao.getUserByLoginCode(loginCode);
+         /*   cache.put(loginCode,user);
+        }*/
+        return user;
     }
 
     @Override
     public User getUserByUserID(String userID) {
-        return userDao.getUserByUserID(userID);
+        User user=/*cache.peek(userID);
+        if(user==null){
+            user=*/userDao.getUserByUserID(userID);
+        /*    cache.put(userID,user);
+        }*/
+        return user;
     }
 
     /**
@@ -183,7 +205,12 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         }
 
         try {
-            return userDao.saveUser(user);
+            User user1=userDao.saveUser(user);
+            cache.put(user1.getId().toString(),user1);
+            cache.put(user1.getUserID(),user1);
+            cache.put(user1.getLoginCode(),user1);
+            cache.put(user1.getUsername(),user1);
+            return user1;
         } catch (final Exception e) {
             e.printStackTrace();
             log.warn(e.getMessage());
@@ -197,6 +224,10 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public void removeUser(final User user) {
         log.debug("removing user: " + user);
+        cache.remove(user.getLoginCode());
+        cache.remove(user.getUserID());
+        cache.remove(user.getId().toString());
+        cache.remove(user.getUsername());
         userDao.remove(user);
     }
 
@@ -206,6 +237,11 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public void removeUser(final String userId) {
         log.debug("removing user: " + userId);
+        User user=userDao.get(new Long(userId));
+        cache.remove(user.getLoginCode());
+        cache.remove(user.getUserID());
+        cache.remove(user.getId().toString());
+        cache.remove(user.getUsername());
         userDao.remove(new Long(userId));
     }
 
@@ -283,7 +319,12 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
      */
     @Override
     public User getUserByUsername(final String username) throws UsernameNotFoundException {
-        return (User) userDao.loadUserByUsername(username);
+        User user=cache.peek(username);
+        if(user==null || user.getAcceptRegistration()==0) {
+            user = (User) userDao.loadUserByUsername(username);
+            cache.put(username,user);
+        }
+        return user;
     }
 
     /**

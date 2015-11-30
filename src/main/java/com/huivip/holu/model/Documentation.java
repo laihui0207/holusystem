@@ -20,6 +20,8 @@ import java.util.Set;
 @Indexed
 @XmlRootElement
 public class Documentation extends BaseObject implements Serializable {
+    public final static String LIST_CACHE="Documentation_";
+    public final static String LIST_NEWS_CACHE_KEY="Documentations_All_Keys";
     Long id;
     String name;
     String introduction;

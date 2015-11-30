@@ -4,6 +4,8 @@ import com.huivip.holu.dao.TaskDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,15 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
     }
 
     @Override
-    public List<Mission> getTaskOfUser(String userId) {
+    public List<Mission> getTaskOfUser(String userId,String page,String pageSize) {
         List<Mission> missions=new ArrayList<>();
+        ExtendedPaginatedList list=new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(page));
+        list.setPageSize(Integer.parseInt(pageSize));
+        if(page.equals("0")&& pageSize.equals("0")){
+            list=null;
+        }
+
         User user=userDao.getUserByUserID(userId);
         String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"TaskTable");
         Set<Post> posts=user.getPosts();
@@ -66,7 +75,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         }
        /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
-        List<Task> myTasks=taskDao.getTaskofUser(projects,processes,tableName);
+        List<Task> myTasks=taskDao.getTaskofUser(projects,processes,tableName, list);
         if(null==myTasks) return missions;
         for(Task task:myTasks){
             String subComponents=task.getSubComponentIdList();

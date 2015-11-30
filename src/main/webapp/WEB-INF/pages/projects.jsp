@@ -35,9 +35,9 @@
 </div>--%>
 
 <display:table name="projectList" class="table table-condensed table-striped table-hover" requestURI="" id="projectList" export="true" pagesize="25">
-    <display:column property="id" sortable="true" href="projectform" media="html"
-        paramId="id" paramProperty="id" titleKey="project.id"/>
-    <display:column property="id" media="csv excel xml pdf" titleKey="project.id"/>
+    <%--<display:column property="id" sortable="true" href="projectform" media="html"
+        paramId="id" paramProperty="id" titleKey="project.id"/>--%>
+<%--    <display:column property="id" media="csv excel xml pdf" titleKey="project.id"/>--%>
     <display:column property="projectID" sortable="true" titleKey="project.projectID"/>
     <display:column property="projectName" sortable="true" titleKey="project.projectName"/>
     <display:column property="fullName" sortable="true" titleKey="project.fullName"/>

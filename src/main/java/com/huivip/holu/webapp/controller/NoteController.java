@@ -6,8 +6,12 @@ import com.huivip.holu.model.Note;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.NoteManager;
 import com.huivip.holu.service.UserManager;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginateListFactory;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
+import org.displaytag.properties.SortOrderEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -26,10 +30,17 @@ public class NoteController {
     private UserManager userManager;
     @Autowired
     PaginateListFactory paginateListFactory;
+    Cache<String,Note> cache=null;
 
     @Autowired
     public void setNoteManager(NoteManager noteManager) {
         this.noteManager = noteManager;
+    }
+
+    public NoteController() {
+        super();
+        cache= Cache2kProvider.getinstance().setCache(Note.class,
+                CacheBuilder.newCache(String.class,Note.class).build());
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -37,6 +48,8 @@ public class NoteController {
             throws Exception {
         Model model = new ExtendedModelMap();
         ExtendedPaginatedList list = paginateListFactory.getPaginatedListFromRequest(request);
+        list.setSortCriterion("createTime");
+        list.setSortDirection(SortOrderEnum.DESCENDING);
         try {
             if (request.isUserInRole(Constants.ADMIN_ROLE)) {
                 noteManager.search(query, Note.class, list);
@@ -69,7 +82,12 @@ public class NoteController {
     @RequestMapping(method = RequestMethod.GET, value = "/view/{id}", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String viewNews(@PathVariable("id") String id) {
-        Note note = noteManager.get(Long.parseLong(id));
+        Note note = cache.peek(id);
+        if(note==null){
+            note=noteManager.get(Long.parseLong(id));
+            cache.put(id,note);
+        }
+
         return note.getContent();
     }
 }

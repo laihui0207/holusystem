@@ -52,7 +52,7 @@ public class MyDemo {
         ImageUtil.mergeImage(file1,file2);*/
 
         System.out.println(MyDemo.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-        System.out.println(File.class.getResource("/").getPath());
+        System.out.println(File.class.getName());
 
     }
 }

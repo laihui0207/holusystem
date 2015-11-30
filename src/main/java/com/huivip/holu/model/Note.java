@@ -19,6 +19,10 @@ import java.util.Set;
 @Indexed
 @XmlRootElement
 public class Note extends BaseObject implements Serializable {
+
+    public final static String LIST_CACHE="Notes_";
+    public final static String LIST_NEWS_CACHE_KEY="Notes_All_Keys";
+
     Long id;
     String title;
     String content;

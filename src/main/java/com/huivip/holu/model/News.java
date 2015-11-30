@@ -18,8 +18,8 @@ import java.util.Date;
 @Indexed
 @XmlRootElement
 public class News extends BaseObject implements Serializable {
-    public static String CacheKey="News_";
-    public static String CacheKeys="Newss_";
+    public final static String LIST_CACHE="News_";
+    public final static String LIST_NEWS_CACHE_KEY="News_All_Keys";
     private Long id;
     private String title;
     private String content;

@@ -1,5 +1,6 @@
-package com.huivip.holu.util;
+package com.huivip.holu.util.thumbnail;
 
+import com.huivip.holu.util.SteelConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class VideoUtil {
      Logger logger= LoggerFactory.getLogger(this.getClass());
-     String ffmpeg=SteelConfig.getConfigure(SteelConfig.VideoConvertTool);
+     String ffmpeg= SteelConfig.getConfigure(SteelConfig.VideoConvertTool);
      String toolCommand=VideoUtil.class.getResource("/").getPath()+ffmpeg;
 
      public void compressVideo(String source){
