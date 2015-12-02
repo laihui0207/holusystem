@@ -61,9 +61,8 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
     }
     @Override
     public List<Project> getMyAllProject(String userId) {
-        User user=userDao.getUserByUserID(userId);
         List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
-        List<Project> myProject=new ArrayList<>();
+       /* List<Project> myProject=new ArrayList<>();
         for(Project project:projectList){
             if(project.getChildProjects()==null || project.getChildProjects().size()==0){
                 myProject.add(project);
@@ -71,8 +70,8 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
             else {
                 myProject.addAll(collectMyProjects(project.getChildProjects()));
             }
-        }
-        return myProject;
+        }*/
+        return projectList;
     }
 
   /*  @Override

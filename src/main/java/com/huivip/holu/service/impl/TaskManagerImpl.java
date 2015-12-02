@@ -30,6 +30,8 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
     SubComponentListManager subComponentListManager;
     @Autowired
     ComponentStyleManager componentStyleManager;
+    @Autowired
+    ProcessMidManager processMidManager;
 
     @Autowired
     public TaskManagerImpl(TaskDao taskDao) {
@@ -86,14 +88,23 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
                 SubComponentList subComponentList=subComponentListManager.getSubComponentBySubComponentID(subId,userId);
                 Component component=subComponentListManager.getParentComponent(subComponentList.getSubComponentID(),userId);
                 Mission mission=new Mission();
-                mission.setComponent(component);
-                mission.setSubComponent(subComponentList);
+                //mission.setComponent(component);
+                mission.setComponentName(component.getComponentName());
+                mission.setComponentId(component.getComponentID());
+                mission.setProjectPathName(component.getProject().getProjectPathName());
+                mission.setProjectID(component.getProject().getProjectID());
+
+                //mission.setSubComponent(subComponentList);
+                mission.setSubComponentID(subComponentList.getSubComponentID());
+                mission.setSubComponentName(subComponentList.getSubComponentName());
                 mission.setComponentType("sub");
                 mission.setUser(user);
                 mission.setType(task.getTaskStyle());
                 List<ComponentStyle> componentStyles=componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user, component.getComponentID(),null);
                 for(ComponentStyle style: componentStyles){
                     if(style.isOperationer()){
+                        ProcessMid processMid=processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
+                        mission.setProcessMid(processMid);
                         mission.setComponentStyle(style);
                     }
                 }

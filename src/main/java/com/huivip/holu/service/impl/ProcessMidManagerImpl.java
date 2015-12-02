@@ -48,6 +48,12 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
+    public ProcessMid getProcessMid2(String componentID, String processID, String companyID) {
+        String tableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(companyID);
+        return processMidDao.getProcessMid(componentID,processID,tableName);
+    }
+
+    @Override
     public ProcessMid save(String subComponentID,String styleProcessID,String processNote,
                            String startDate,String endDate,String positionGPS,String positionName,String userID) {
         ProcessMid processMid = new ProcessMid();

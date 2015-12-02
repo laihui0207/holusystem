@@ -30,4 +30,9 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     @Path("{userId}/Task/{projectID}")
     List<Mission> getMyTask(@PathParam("userId") String userId,@PathParam("projectID") String projectID);
 
+    @GET
+    @Path("processList/{styleID}/{userId}/{componentId}")
+    List<ComponentStyle> getProcessListBySubComponent(@PathParam("styleID") String styleID,
+                                        @PathParam("userId") String userId,
+                                        @PathParam("componentId") String subComponentID);
 }

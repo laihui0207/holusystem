@@ -12,7 +12,7 @@ public interface ProcessMidManager extends GenericManager<ProcessMid, Long> {
     @GET
     @Path("{userID}/{componentID}/{processID}")
     ProcessMid getProcessMid(@PathParam("componentID")String componentID,@PathParam("processID") String processID,@PathParam("userID") String userID);
-
+    ProcessMid getProcessMid2(String componentID,String processID,String companyID);
     @POST
     @Path("confirm")
     ProcessMid save(@FormParam("subComponentID") String subComponentID,

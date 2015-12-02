@@ -3,7 +3,10 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.*;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
+import com.huivip.holu.util.cache.Cache2kProvider;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.cache2k.Cache;
+import org.cache2k.CacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,9 @@ import java.util.Set;
 @Service("componentStyleManager")
 @WebService(serviceName = "ComponentStyleService", endpointInterface = "com.huivip.holu.service.ComponentStyleManager")
 public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle, Long> implements ComponentStyleManager {
+    Cache<String,List<ComponentStyle>> cache= Cache2kProvider.getinstance().getListCache();
+    Cache<String,ProcessMid> processMidCache=Cache2kProvider.getinstance().setCache(ProcessMid.class,
+            CacheBuilder.newCache(String.class,ProcessMid.class).build());
     ComponentStyleDao componentStyleDao;
     @Autowired
     UserDao userDao;
@@ -54,13 +60,25 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
     @Override
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, User user, String componentID, ExtendedPaginatedList list) {
-        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
+/*        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());*/
+        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
+        List<ComponentStyle> componentStyles = cache.peek(cacheKey);
+        if(componentStyles==null){
+            componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
+            cache.put(cacheKey,componentStyles);
+        }
 
-        List<ComponentStyle> componentStyles = componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
         Set<Post> posts = user.getPosts();
 
 
         for (ComponentStyle style : componentStyles) {
+            /*ProcessMid processMid=processMidDao.getProcessMid(componentID, style.getStyleProcessID(), processTableName);
+            if(null!=processMid){
+                style.setConfirmDate(processMid.getCreateDate());
+                style.setConfirmer(processMid.getUser());
+                style.setOperationer(false);
+                style.setProcessMid(processMid);
+            }*/
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {
                     if (post.getProcessDictionary()!=null && style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
@@ -69,24 +87,8 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                         break;
                     }
                 }
-                ProcessMid processMid=processMidDao.getProcessMid(componentID,style.getStyleProcessID(),processTableName);
-                if(null!=processMid){
-                    style.setConfirmDate(processMid.getCreateDate());
-                    style.setConfirmer(processMid.getUser());
-                    style.setOperationer(false);
-                    style.setProcessMid(processMid);
-                }
-                else {
-                    break;
-                }
 
             } else {
-                ProcessMid processMid=processMidDao.getProcessMid(componentID,style.getStyleProcessID(),processTableName);
-                if(null!=processMid){
-                    style.setConfirmDate(processMid.getCreateDate());
-                    style.setConfirmer(processMid.getUser());
-                    style.setProcessMid(processMid);
-                }
                 style.setOperationer(true);
             }
         }
@@ -151,12 +153,46 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     @Override
     public List<Mission> getMyTask(String userId, String projectID){
         List<Mission> missions =new ArrayList<>();
-       /* List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
-        handleProject(new HashSet<>(projectList),userId, missions);*/
         Project project=projectDao.getProjectByprojectID(projectID);
         User user=userManager.getUserByUserID(userId);
         handleComponents(project,user, missions);
         return missions;
+    }
+
+    @Override
+    public List<ComponentStyle> getProcessListBySubComponent(String styleID, String userId, String subComponentID) {
+        User user=userManager.getUserByUserID(userId);
+        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
+        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
+        List<ComponentStyle> componentStyles = cache.peek(cacheKey);
+        if(componentStyles==null){
+            componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), null);
+            cache.put(cacheKey,componentStyles);
+        }
+
+        Set<Post> posts = user.getPosts();
+
+
+        for (ComponentStyle style : componentStyles) {
+            ProcessMid processMid=processMidDao.getProcessMid(subComponentID, style.getStyleProcessID(), processTableName);
+            if(null!=processMid){
+                style.setOperationer(false);
+                style.setProcessMid(processMid);
+            }
+            if (!user.isAllowCreateProject()) {
+                for (Post post : posts) {
+                    if (post.getProcessDictionary()!=null && style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
+                            && user.getCompany().getCompanyId().equalsIgnoreCase(style.getCompany().getCompanyId())) {
+                        style.setOperationer(true);
+                        break;
+                    }
+                }
+
+            } else {
+                style.setOperationer(true);
+            }
+        }
+        return componentStyles;
     }
 
     private void handleProject(Set<Project> projects,String userId,List<Mission> missions){
@@ -217,7 +253,7 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         for(ComponentStyle style: componentStyles){
             if(style.isOperationer()){
                 mission.setComponentStyle(style);
-                ProcessMid processMid=processMidManager.getProcessMid(subcomponentID, style.getStyleProcessID(), user.getUserID());
+                ProcessMid processMid=processMidManager.getProcessMid2(subcomponentID, style.getStyleProcessID(), user.getCompany().getCompanyId());
                 mission.setProcessMid(processMid);
             }
         }

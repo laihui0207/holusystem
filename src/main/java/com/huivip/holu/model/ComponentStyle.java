@@ -194,7 +194,6 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.confirmer = confirmer;
     }
     @Transient
-    @JsonIgnore
     public ProcessMid getProcessMid() {
         return processMid;
     }
