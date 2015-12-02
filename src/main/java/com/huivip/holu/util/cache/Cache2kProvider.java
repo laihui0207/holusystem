@@ -72,5 +72,13 @@ public class Cache2kProvider {
         }
         return caches.get(ExtendedPaginatedList.class.getName());
     }
+    public Cache getStringCache(){
+        if(!caches.containsKey(String.class.getName())){
+            Cache<String,String> cache=CacheBuilder.newCache(String.class,String.class)
+                    .build();
+            caches.put(String.class.getName(),cache);
+        }
+        return caches.get(String.class.getName());
+    }
 
 }

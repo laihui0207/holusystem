@@ -130,7 +130,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         User user=/*cache.peek(userID);
         if(user==null){
             user=*/userDao.getUserByUserID(userID);
-        /*    cache.put(userID,user);
+       /*     cache.put(userID,user);
         }*/
         return user;
     }

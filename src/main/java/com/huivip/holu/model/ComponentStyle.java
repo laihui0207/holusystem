@@ -1,5 +1,6 @@
 package com.huivip.holu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 
@@ -108,6 +109,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "CompanyID",referencedColumnName = "companyID")
     public Company getCompany() {
         return company;
@@ -174,6 +176,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.processDictionary = processDictionary;
     }
     @Transient
+    @JsonIgnore
     public Date getConfirmDate() {
         return confirmDate;
     }
@@ -182,6 +185,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.confirmDate = confirmDate;
     }
     @Transient
+    @JsonIgnore
     public User getConfirmer() {
         return confirmer;
     }

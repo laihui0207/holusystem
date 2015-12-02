@@ -24,21 +24,45 @@ public class CompanyDatabaseIndexManagerImpl extends GenericManagerImpl<CompanyD
 
     @Override
     public String getTableNameByCompanyAndTableStyle(String companyId, String tableStyle) {
-        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyId,tableStyle);
+        String cacheKey=tableStyle+"_"+companyId;
+        String tableName=tableCache.peek(cacheKey);
+        if(tableName==null){
+            tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyId,tableStyle);;
+            tableCache.put(cacheKey,tableName);
+        }
+        return tableName;
     }
 
     @Override
     public String getComponentTableNameByCompany(String companyID) {
-        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ComponentList");
+        String cacheKey="ComponentList_"+companyID;
+        String tableName=tableCache.peek(cacheKey);
+        if(tableName==null){
+            tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ComponentList");
+            tableCache.put(cacheKey,tableName);
+        }
+        return tableName;
     }
 
     @Override
     public String getSubComponentTableNameByCompany(String companyID) {
-        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"SubComponentList");
+        String cacheKey="SubComponentList_"+companyID;
+        String tableName=tableCache.peek(cacheKey);
+        if(tableName==null){
+            tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"SubComponentList");
+            tableCache.put(cacheKey,tableName);
+        }
+        return tableName;
     }
 
     @Override
     public String getProcessMidTableNameByCompany(String companyID) {
-        return companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ProcessMidTable");
+        String cacheKey="ProcessMidTable_"+companyID;
+        String tableName=tableCache.peek(cacheKey);
+        if(tableName==null){
+            tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(companyID,"ProcessMidTable");
+            tableCache.put(cacheKey,tableName);
+        }
+        return tableName;
     }
 }

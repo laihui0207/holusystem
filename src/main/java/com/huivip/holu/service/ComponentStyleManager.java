@@ -2,6 +2,7 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.model.Mission;
+import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
@@ -16,19 +17,22 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     List<ComponentStyle> getComponentStypeListByCompany(String companyId);
     @GET
     @Path("processList/{companyID}/{styleID}/{userId}/{componentId}")
-    List<ComponentStyle> getProcessListByCompanyAndStyleName(@PathParam("styleID")String styleID,
-                                                             @PathParam("companyID")String companyId,
-                                                             @PathParam("userId")String userId,
+    List<ComponentStyle> getProcessListByCompanyAndStyleName(@PathParam("styleID") String styleID,
+                                                             @PathParam("userId") String userId,
                                                              @PathParam("componentId") String componentID);
     List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID,
-                                                             String companyId,
-                                                             String userId,String componentID,ExtendedPaginatedList list);
+                                                             User user, String componentID, ExtendedPaginatedList list);
     ComponentStyle getComponentProcessByProcessID(String styleProcessID);
     @GET
     @Path("user/{userId}")
     List<ComponentStyle> myTask(@PathParam("userId") String userId);
     @GET
-    @Path("{userId}/Task")
-    List<Mission> getMyTask(@PathParam("userId")String userId);
+    @Path("{userId}/Task/{projectID}")
+    List<Mission> getMyTask(@PathParam("userId") String userId,@PathParam("projectID") String projectID);
 
+    @GET
+    @Path("processList/{styleID}/{userId}/{componentId}")
+    List<ComponentStyle> getProcessListBySubComponent(@PathParam("styleID") String styleID,
+                                        @PathParam("userId") String userId,
+                                        @PathParam("componentId") String subComponentID);
 }
