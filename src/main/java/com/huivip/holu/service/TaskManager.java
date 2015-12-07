@@ -13,6 +13,7 @@ public interface TaskManager extends GenericManager<Task, Long> {
     @GET
     @Path("{userId}")
     List<Mission> getTaskOfUser(@PathParam("userId") String userId,
+                                @DefaultValue("all") @QueryParam("type") String taskType,
                                 @DefaultValue("0") @QueryParam("page") String page,
                                 @DefaultValue("25") @QueryParam("pageSize") String pageSize);
 }

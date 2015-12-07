@@ -62,11 +62,11 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, User user, String componentID, ExtendedPaginatedList list) {
 /*        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());*/
         String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
-        List<ComponentStyle> componentStyles = cache.peek(cacheKey);
+        List<ComponentStyle> componentStyles =/* cache.peek(cacheKey);
         if(componentStyles==null){
-            componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
-            cache.put(cacheKey,componentStyles);
-        }
+            componentStyles=c*/componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
+           /* cache.put(cacheKey,componentStyles);
+        }*/
 
         Set<Post> posts = user.getPosts();
 
@@ -151,11 +151,11 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         return result;
     }
     @Override
-    public List<Mission> getMyTask(String userId, String projectID){
+    public List<Mission> getMyTask(String userId, String projectID, String taskType){
         List<Mission> missions =new ArrayList<>();
         Project project=projectDao.getProjectByprojectID(projectID);
         User user=userManager.getUserByUserID(userId);
-        handleComponents(project,user, missions);
+        handleComponents(project,user, missions,taskType );
         return missions;
     }
 
@@ -163,12 +163,12 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     public List<ComponentStyle> getProcessListBySubComponent(String styleID, String userId, String subComponentID) {
         User user=userManager.getUserByUserID(userId);
         String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
-        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
-        List<ComponentStyle> componentStyles = cache.peek(cacheKey);
+        //String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
+        List<ComponentStyle> componentStyles /*= cache.peek(cacheKey);
         if(componentStyles==null){
-            componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), null);
-            cache.put(cacheKey,componentStyles);
-        }
+            componentStyles*/=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), null);
+           /* cache.put(cacheKey,componentStyles);
+        }*/
 
         Set<Post> posts = user.getPosts();
 
@@ -195,66 +195,49 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         return componentStyles;
     }
 
-    private void handleProject(Set<Project> projects,String userId,List<Mission> missions){
-        if(null==projects) return;
-        User user=userManager.getUserByUserID(userId);
-        for(Project project:projects){
-            if(project.getChildProjects()==null || project.getChildProjects().size()==0){
-                handleComponents(project,user, missions);
-            }
-            else {
-                handleProject(project.getChildProjects(), userId, missions);
-            }
-        }
-    }
-
-    private void handleComponents(Project project,User user,List<Mission> missions){
+    private void handleComponents(Project project, User user, List<Mission> missions, String taskType){
         if(project==null) return;
         List<Component> components=componentManager.listComponentByProject(project.getProjectID(), user.getUserID(),null);
-        for(Component component:components){
-            if(component.getSubComponentListSet()==null || component.getSubComponentListSet().size()==0){
-                Mission mission =new Mission();
-                //mission.setComponent(component);
-                mission.setProjectPathName(component.getProject().getProjectPathName());
-                mission.setProjectID(component.getProject().getProjectID());
-                mission.setComponentId(component.getComponentID());
-                mission.setComponentName(component.getComponentName());
-                mission.setComponentType("parent");
-                handleComponentStyle(component,component.getComponentID(), user, mission);
-                if(mission.getComponentStyle()!=null){
-                    missions.add(mission);
-                }
-            }
-            else {
-                Set<SubComponentList> subComponentLists=component.getSubComponentListSet();
-                for(SubComponentList subComponentList:subComponentLists){
-                    Mission mission =new Mission();
-                    //mission.setComponent(component);
-                    mission.setProjectPathName(component.getProject().getProjectPathName());
-                    mission.setProjectID(component.getProject().getProjectID());
-                    mission.setComponentId(component.getComponentID());
-                    mission.setComponentName(component.getComponentName());
-                    //mission.setSubComponent(subComponentList);
-                    mission.setSubComponentName(subComponentList.getSubComponentName());
-                    mission.setSubComponentID(subComponentList.getSubComponentID());
-                    mission.setComponentType("sub");
-                    handleComponentStyle(component,subComponentList.getSubComponentID(),user, mission);
-                    if(mission.getComponentStyle()!=null){
-                        missions.add(mission);
-                    }
-                }
+        for (Component component : components) {
+            Set<SubComponentList> subComponentLists = component.getSubComponentListSet();
+            for (SubComponentList subComponentList : subComponentLists) {
+                handleComponentStyle(component,subComponentList,user,taskType,missions);
             }
         }
     }
 
-    private void handleComponentStyle(Component component, String subcomponentID,User user, Mission mission) {
+    private void handleComponentStyle(Component component,SubComponentList subComponentList,User user,String taskType, List<Mission> missions) {
         if (null == component) return;
         List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(), user,component.getComponentID(),null);
         for(ComponentStyle style: componentStyles){
             if(style.isOperationer()){
-                mission.setComponentStyle(style);
-                ProcessMid processMid=processMidManager.getProcessMid2(subcomponentID, style.getStyleProcessID(), user.getCompany().getCompanyId());
-                mission.setProcessMid(processMid);
+                Mission mission =new Mission();
+                mission.setProjectPathName(component.getProject().getProjectPathName());
+                mission.setProjectID(component.getProject().getProjectID());
+                mission.setComponentId(component.getComponentID());
+                mission.setComponentName(component.getComponentName());
+                mission.setSubComponentName(subComponentList.getSubComponentName());
+                mission.setSubComponentID(subComponentList.getSubComponentID());
+                mission.setComponentType("sub");
+                ProcessMid processMid=processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
+                if (taskType.equalsIgnoreCase("doing")) {
+                    if (processMid==null || processMid.getStartDate() == null || processMid.getEndDate() == null) {
+                        mission.setProcessMid(processMid);
+                        mission.setComponentStyle(style);
+                    }
+                } else if (taskType.equalsIgnoreCase("finish")) {
+                    if (processMid!=null && processMid.getEndDate() != null) {
+                        mission.setProcessMid(processMid);
+                        mission.setComponentStyle(style);
+                    }
+                }
+                else {
+                    mission.setProcessMid(processMid);
+                    mission.setComponentStyle(style);
+                }
+                if(mission.getComponentStyle()!=null){
+                    missions.add(mission);
+                }
             }
         }
     }
