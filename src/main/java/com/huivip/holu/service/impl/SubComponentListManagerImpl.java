@@ -4,16 +4,20 @@ import com.huivip.holu.dao.CompanyDatabaseIndexDao;
 import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Component;
+import com.huivip.holu.model.Project;
 import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.ComponentManager;
+import com.huivip.holu.service.ProjectManager;
 import com.huivip.holu.service.SubComponentListManager;
+import com.huivip.holu.service.UserManager;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("subComponentListManager")
@@ -25,7 +29,11 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     @Autowired
     UserDao userDao;
     @Autowired
+    UserManager userManager;
+    @Autowired
     ComponentManager componentManager;
+    @Autowired
+    ProjectManager projectManager;
 
 
 
@@ -74,5 +82,18 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
     public Component getParentCompoentBySubComponentID(String subComponentID, String userID) {
         Component parent=getParentComponent(subComponentID,userID);
         return parent;
+    }
+
+    @Override
+    public List<SubComponentList> getAllMySubComponent(String userID) {
+        List<SubComponentList> subComponentLists=new ArrayList<>();
+        List<Component> componentsOfUser=componentManager.listComponentByUser(userID);
+        for(Component component:componentsOfUser){
+            if(component.getSubComponentListSet()!=null){
+                subComponentLists.addAll(component.getSubComponentListSet());
+            }
+        }
+
+        return subComponentLists;
     }
 }

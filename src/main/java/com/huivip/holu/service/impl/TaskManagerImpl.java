@@ -100,7 +100,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
                         mission.setSubComponentID(subComponentList.getSubComponentID());
                         mission.setSubComponentName(subComponentList.getSubComponentName());
                         mission.setComponentType("sub");
-                        mission.setUser(user);
+                        //mission.setUser(user);
                         mission.setType(task.getTaskStyle());
                         ProcessMid processMid = processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
                         if (taskType.equalsIgnoreCase("doing")) {
@@ -131,7 +131,100 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
             return missions;
         }
 
-        private List<String> collectProject (String userId, String parent){
+    @Override
+    public List<SubComponentList> getSubComponentOfTask(String userId) {
+        List<SubComponentList> subComponentLists=new ArrayList<>();
+        User user = userManager.getUserByUserID(userId);
+        String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
+        Set<Post> posts = user.getPosts();
+        List<String> myProcesses = new ArrayList<>();
+        for (Post post : posts) {
+            if (post.getProcessDictionary() != null) {
+                myProcesses.add(post.getProcessDictionary().getProcessID());
+            }
+        }
+        List<String> myProjects = collectProject(user.getUserID(), null);
+        String projects = "";
+        for (String project : myProjects) {
+            if (projects.length() == 0) {
+                projects = "'" + project + "'";
+            } else {
+                projects += ",'" + project + "'";
+            }
+        }
+        String processes = "";
+        for (String process : myProcesses) {
+            if (processes.length() == 0) {
+                processes = "'" + process + "'";
+            } else {
+                processes += ",'" + process + "'";
+            }
+        }
+       /* projects="'XM0000007','XM0000013'";
+        processes="'GX0000003','GX0000001'";*/
+        List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName, null);
+        if(myTasks==null) return subComponentLists;
+        for (Task task : myTasks) {
+            String subComponents = task.getSubComponentIdList();
+            String[] subs = subComponents.split(",");
+            for (String subId : subs) {
+                SubComponentList subComponentList = subComponentListManager.getSubComponentBySubComponentID(subId, userId);
+                subComponentLists.add(subComponentList);
+            }
+        }
+        return subComponentLists;
+    }
+
+    @Override
+    public List<Mission> getTaskBySubComponent(String userId, String subId,String taskType) {
+        User user=userManager.getUserByUserID(userId);
+        List<Mission> missions=new ArrayList<>();
+        SubComponentList subComponentList = subComponentListManager.getSubComponentBySubComponentID(subId, userId);
+        Component component = subComponentListManager.getParentComponent(subComponentList.getSubComponentID(), userId);
+
+        List<ComponentStyle> componentStyles = componentStyleManager.getProcessListByCompanyAndStyleName(component.getStyleID(), user, component.getComponentID(), null);
+        for (ComponentStyle style : componentStyles) {
+            if (style.isOperationer()) {
+                Mission mission = new Mission();
+                //mission.setComponent(component);
+                mission.setComponentName(component.getComponentName());
+                mission.setComponentId(component.getComponentID());
+                mission.setProjectPathName(component.getProject().getProjectPathName());
+                mission.setProjectID(component.getProject().getProjectID());
+
+                //mission.setSubComponent(subComponentList);
+                mission.setSubComponentID(subComponentList.getSubComponentID());
+                mission.setSubComponentName(subComponentList.getSubComponentName());
+                mission.setComponentType("sub");
+                //mission.setType(task.getTaskStyle());
+                //mission.setUser(user);
+                ProcessMid processMid = processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
+                if (taskType.equalsIgnoreCase("doing")) {
+                    if (processMid==null || processMid.getStartDate() == null || processMid.getEndDate() == null) {
+                        mission.setProcessMid(processMid);
+                        mission.setComponentStyle(style);
+                    }
+                } else if (taskType.equalsIgnoreCase("finish")) {
+                    if (processMid!=null && processMid.getEndDate() != null) {
+                        mission.setProcessMid(processMid);
+                        mission.setComponentStyle(style);
+                    }
+                }
+                else {
+                    mission.setProcessMid(processMid);
+                    mission.setComponentStyle(style);
+                }
+                if(mission.getComponentStyle()!=null){
+                    missions.add(mission);
+                }
+            }
+
+        }
+
+        return missions;
+    }
+
+    private List<String> collectProject (String userId, String parent){
             List<String> projects = new ArrayList<>();
             List<Project> parentProject = projectManager.getProjectByUserID(userId, parent, null);
             for (Project project : parentProject) {

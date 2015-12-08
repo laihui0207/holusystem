@@ -96,6 +96,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     }
     @Column(name="ProcessStep")
 /*    @Transient*/
+    @JsonIgnore
     public Integer getProcessStep() {
         return processStep;
     }
@@ -119,6 +120,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.company = company;
     }
     @Column(name="ProcessRight")
+    @JsonIgnore
     public String getProcessRight() {
         return processRight;
     }
@@ -127,6 +129,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.processRight = processRight;
     }
     @Column(name="ProcessProduction")
+    @JsonIgnore
     public String getProcessProduction() {
         return processProduction;
     }
@@ -135,6 +138,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
         this.processProduction = processProduction;
     }
     @Column(name="ProcessNote")
+    @JsonIgnore
     public String getProcessNote() {
         return processNote;
     }
@@ -168,6 +172,7 @@ public class ComponentStyle extends BaseObject implements Serializable {
     }*/
     @ManyToOne
     @JoinColumn(name="ProcessID",referencedColumnName = "processID")
+    @JsonIgnore
     public ProcessDictionary getProcessDictionary() {
         return processDictionary;
     }

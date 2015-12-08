@@ -27,4 +27,7 @@ public interface SubComponentListManager extends GenericManager<SubComponentList
     @GET
     @Path("{componentID}/{userID}/parent")
     Component getParentCompoentBySubComponentID(@PathParam("componentID")String subComponentID,@PathParam("userID")String userID);
+    @GET
+    @Path("{userID}")
+    List<SubComponentList> getAllMySubComponent(@PathParam("userID") String userID);
 }

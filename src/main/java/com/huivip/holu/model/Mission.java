@@ -12,14 +12,16 @@ public class Mission implements Serializable {
     private String projectPathName;
 
     private String componentType;
-    private String projectChain;
+/*    private String projectChain;*/
     private String type;
-    private SubComponentList subComponent;
+/*    private SubComponentList subComponent;*/
     private String subComponentName;
     private String subComponentID;
     private ComponentStyle componentStyle;
     private String componentId;
-    private User user;
+/*    private User user;*/
+    /*private String userId;
+    private String userName;*/
     private ProcessMid processMid;
 
     public Component getComponent() {
@@ -38,13 +40,13 @@ public class Mission implements Serializable {
         this.componentType = componentType;
     }
 
-    public SubComponentList getSubComponent() {
+    /*public SubComponentList getSubComponent() {
         return subComponent;
     }
 
     public void setSubComponent(SubComponentList subComponent) {
         this.subComponent = subComponent;
-    }
+    }*/
 
     public String getType() {
         return type;
@@ -62,13 +64,13 @@ public class Mission implements Serializable {
         this.componentId = componentId;
     }
 
-    public User getUser() {
+   /* public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
+    }*/
 
     public ComponentStyle getComponentStyle() {
         return componentStyle;
@@ -78,13 +80,13 @@ public class Mission implements Serializable {
         this.componentStyle = componentStyle;
     }
 
-    public String getProjectChain() {
+    /*public String getProjectChain() {
         return projectChain;
     }
 
     public void setProjectChain(String projectChain) {
         this.projectChain = projectChain;
-    }
+    }*/
 
     public ProcessMid getProcessMid() {
         return processMid;

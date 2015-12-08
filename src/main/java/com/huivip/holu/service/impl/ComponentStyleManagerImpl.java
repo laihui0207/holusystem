@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
+import javax.ws.rs.DefaultValue;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -39,6 +40,8 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     ComponentManager componentManager;
     @Autowired
     ProcessMidManager processMidManager;
+    @Autowired
+    SubComponentListManager subComponentListManager;
 
 
     @Autowired
@@ -60,11 +63,10 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
     @Override
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, User user, String componentID, ExtendedPaginatedList list) {
-/*        String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());*/
-        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
-        List<ComponentStyle> componentStyles =/* cache.peek(cacheKey);
+        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId()+"_"+user.getUserID();
+        List<ComponentStyle> componentStyles = /*cache.peek(cacheKey);
         if(componentStyles==null){
-            componentStyles=c*/componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
+            componentStyles=*/componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
            /* cache.put(cacheKey,componentStyles);
         }*/
 
@@ -72,13 +74,6 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
 
         for (ComponentStyle style : componentStyles) {
-            /*ProcessMid processMid=processMidDao.getProcessMid(componentID, style.getStyleProcessID(), processTableName);
-            if(null!=processMid){
-                style.setConfirmDate(processMid.getCreateDate());
-                style.setConfirmer(processMid.getUser());
-                style.setOperationer(false);
-                style.setProcessMid(processMid);
-            }*/
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {
                     if (post.getProcessDictionary()!=null && style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
@@ -156,6 +151,23 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
         Project project=projectDao.getProjectByprojectID(projectID);
         User user=userManager.getUserByUserID(userId);
         handleComponents(project,user, missions,taskType );
+        return missions;
+    }
+
+    @Override
+    public List<Mission> getTaskByComponentList(String userID, String componentList, String taskType) {
+        List<Mission> missions =new ArrayList<>();
+        String[] components=componentList.split(",");
+        User user=userManager.getUserByUserID(userID);
+        for(String componentID:components){
+            Component component=componentManager.getComponentByComponentID(componentID,userID);
+            if(component==null) continue;
+            List<SubComponentList> subComponentLists = subComponentListManager.getSubComponentListByComponentID(componentID,userID,null);
+            if(subComponentLists==null) continue;
+            for (SubComponentList subComponentList : subComponentLists) {
+                handleComponentStyle(component,subComponentList,user,taskType,missions);
+            }
+        }
         return missions;
     }
 

@@ -20,5 +20,8 @@ public interface ComponentManager extends GenericManager<Component, Long> {
     @GET
     @Path("{componentID}/{userID}")
     Component getComponentByComponentID(@PathParam("componentID")String componentID,@PathParam("userID")String userID);
-    
+    @GET
+    @Path("{userID}")
+    List<Component> listComponentByUser(@PathParam("userID") String userID);
+    List<Component> getComponentListOfProject(String userId,String projectID);
 }
