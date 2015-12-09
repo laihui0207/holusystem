@@ -19,6 +19,11 @@
     <jaxrs:server address="/api">
         <jaxrs:features>
             <cxf:logging/>
+            <bean class="org.apache.cxf.transport.common.gzip.GZIPFeature">
+                <property name="threshold">
+                    <value>5</value>
+                </property>
+            </bean>
         </jaxrs:features>
         <jaxrs:serviceBeans>
             <ref bean="userManager"/>

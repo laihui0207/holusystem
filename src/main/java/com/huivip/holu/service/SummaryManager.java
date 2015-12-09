@@ -2,12 +2,14 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Summary;
 import com.huivip.holu.model.SummaryItem;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/summaryDetail")
 public interface SummaryManager extends GenericManager<Summary, Long> {
    @GET

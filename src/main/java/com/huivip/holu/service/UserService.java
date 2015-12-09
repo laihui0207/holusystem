@@ -2,6 +2,7 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
@@ -11,6 +12,7 @@ import java.util.List;
  * Web Service interface so hierarchy of Generic Manager isn't carried through.
  */
 @WebService
+@GZIP
 @Path("/users")
 public interface UserService {
     /**

@@ -2,6 +2,7 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Documentation;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
@@ -9,6 +10,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/Documentations")
 public interface DocumentationManager extends GenericManager<Documentation, Long> {
     @GET

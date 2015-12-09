@@ -1,11 +1,13 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.ProcessMid;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 
 @WebService
+@GZIP
 @Path("/processMid")
 public interface ProcessMidManager extends GenericManager<ProcessMid, Long> {
     ProcessMid save(ProcessMid object, String userID);

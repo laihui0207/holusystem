@@ -4,12 +4,14 @@ import com.huivip.holu.model.Message;
 import com.huivip.holu.model.MessageReceiver;
 import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/msgs")
 public interface MessageManager extends GenericManager<Message, Long> {
     List<Message> messageByOwner(User user,ExtendedPaginatedList list);

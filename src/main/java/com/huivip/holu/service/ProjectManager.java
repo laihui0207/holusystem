@@ -2,12 +2,14 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Project;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/projects")
 public interface ProjectManager extends GenericManager<Project, Long> {
     @GET
@@ -27,6 +29,7 @@ public interface ProjectManager extends GenericManager<Project, Long> {
     @GET
     @Path("{projectID}")
     Project getProjectByprojectID(@PathParam("projectID")String projectID);
+    List<String> getProjectIDByUserID(String userID);
 
 
     

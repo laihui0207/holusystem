@@ -12,4 +12,5 @@ public interface ProjectDao extends GenericDao<Project, Long> {
 
     List<Project> getProjectByUserID(String userID,String parentProject,ExtendedPaginatedList list);
     Project getProjectByprojectID(String projectID);
+    List<String> getProjectIDsByUserID(String userID);
 }

@@ -3,6 +3,7 @@ package com.huivip.holu.dao.hibernate;
 import com.huivip.holu.dao.ComponentDao;
 import com.huivip.holu.model.Component;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -47,5 +48,13 @@ public class ComponentDaoHibernate extends GenericDaoHibernate<Component, Long> 
             return list.get(0);
         }
         return null;
+    }
+
+    @Override
+    public List<String> listComponentIDsOfProject(String projectID, String tableName) {
+        String sql="select ComponentID from "+tableName+" where ProjectID='"+projectID+"'";
+        Query query=getSession().createSQLQuery(sql);
+        List<String> list=query.list();
+        return list;
     }
 }

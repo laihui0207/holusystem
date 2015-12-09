@@ -63,7 +63,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setProcessNote(processNote);
         processMid.setPositionGPS(positionGPS);
         processMid.setPositionName(positionName);
-        processMid.setUser(userManager.getUserByUserID(userID));
+        processMid.setUserID(userID);
         // to do  check if confirm again
         return save(processMid, userID);
     }
@@ -79,7 +79,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setPositionGPS(positionGPS);
         processMid.setStartDate(new Date());
         processMid.setPositionName(positionName);
-        processMid.setUser(userManager.getUserByUserID(userID));
+        processMid.setUserID(userID);
         // to do  check if confirm again
         log.info("User confirm start:"+subComponentID+","+styleProcessID+
                 " on "+processMid.getStartDate()+" at "+processMid.getPositionName());
@@ -97,7 +97,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setPositionGPS(positionGPS);
         processMid.setPositionName(positionName);
         processMid.setEndDate(new Date());
-        processMid.setUser(userManager.getUserByUserID(userID));
+        processMid.setUserID(userID);
         log.info("User confirm end:"+subComponentID+","+styleProcessID+
                 " on "+processMid.getEndDate()+" at "+processMid.getPositionName());
         // to do  check if confirm again
@@ -114,7 +114,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         processMid.setProcessNote(processNote);
         processMid.setPositionGPS(positionGPS);
         processMid.setPositionName(positionName);
-        processMid.setUser(userManager.getUserByUserID(userID));
+        processMid.setUserID(userID);
         log.info("User send question:"+subComponentID+","+styleProcessID+
                 " : "+processMid.getProcessNote()+" at "+processMid.getPositionName());
         // to do  check if confirm again

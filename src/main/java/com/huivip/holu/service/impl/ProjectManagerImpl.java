@@ -3,7 +3,6 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.ProjectDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Project;
-import com.huivip.holu.model.User;
 import com.huivip.holu.service.ProjectManager;
 
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
@@ -87,5 +86,10 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
     @Override
     public Project getProjectByprojectID(String projectID) {
         return projectDao.getProjectByprojectID(projectID);
+    }
+
+    @Override
+    public List<String> getProjectIDByUserID(String userID) {
+        return projectDao.getProjectIDsByUserID(userID);
     }
 }

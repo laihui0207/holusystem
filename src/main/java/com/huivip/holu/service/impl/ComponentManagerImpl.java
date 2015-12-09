@@ -86,11 +86,24 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     @Override
     public List<Component> listComponentByUser(String userID) {
         List<Component> components=new ArrayList<>();
-        List<Project> projectList=projectManager.getMyAllProject(userID);
-        for (Project project:projectList){
-            List<Component> componentsOfProject=getComponentListOfProject(userID,project.getProjectID());
+        List<String> projects=projectManager.getProjectIDByUserID(userID);
+        for (String projectID:projects){
+            List<Component> componentsOfProject=getComponentListOfProject(userID,projectID);
             if(componentsOfProject!=null){
                 components.addAll(componentsOfProject);
+            }
+        }
+        return components;
+    }
+
+    @Override
+    public List<String> listComponentIdsByUser(String userID) {
+        List<String> components=new ArrayList<>();
+        List<String> projects=projectManager.getProjectIDByUserID(userID);
+        for(String projectId:projects){
+            List<String> componentList=getComponentIDsOfProject(userID,projectId);
+            if(componentList!=null){
+                components.addAll(componentList);
             }
         }
         return components;
@@ -105,5 +118,10 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
             component.setSubComponentListSet(null);
         }
         return components;
+    }
+    private List<String> getComponentIDsOfProject(String userID,String projectID){
+        User user=userManager.getUserByUserID(userID);
+        String tableName=companyDatabaseIndexManager.getComponentTableNameByCompany(user.getCompany().getCompanyId());
+        return componentDao.listComponentIDsOfProject(projectID,tableName);
     }
 }

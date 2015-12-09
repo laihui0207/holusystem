@@ -1,14 +1,15 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.Mission;
-import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.model.Task;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/tasks")
 public interface TaskManager extends GenericManager<Task, Long> {
     @GET
@@ -20,7 +21,7 @@ public interface TaskManager extends GenericManager<Task, Long> {
 
     @GET
     @Path("subComponents/{userId}")
-    List<SubComponentList> getSubComponentOfTask(@PathParam("userId")String userId);
+    List<String> getSubComponentOfTask(@PathParam("userId")String userId);
     @GET
     @Path("{userId}/{subId}")
     List<Mission> getTaskBySubComponent(@PathParam("userId") String userId,

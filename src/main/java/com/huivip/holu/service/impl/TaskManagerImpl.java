@@ -132,8 +132,8 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         }
 
     @Override
-    public List<SubComponentList> getSubComponentOfTask(String userId) {
-        List<SubComponentList> subComponentLists=new ArrayList<>();
+    public List<String> getSubComponentOfTask(String userId) {
+        List<String> subComponentLists=new ArrayList<>();
         User user = userManager.getUserByUserID(userId);
         String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
         Set<Post> posts = user.getPosts();
@@ -168,8 +168,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
             String subComponents = task.getSubComponentIdList();
             String[] subs = subComponents.split(",");
             for (String subId : subs) {
-                SubComponentList subComponentList = subComponentListManager.getSubComponentBySubComponentID(subId, userId);
-                subComponentLists.add(subComponentList);
+                subComponentLists.add(subId);
             }
         }
         return subComponentLists;

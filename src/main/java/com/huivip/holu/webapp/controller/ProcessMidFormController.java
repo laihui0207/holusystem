@@ -116,7 +116,7 @@ public class ProcessMidFormController extends BaseFormController {
             processMidManager.remove(processMid.getId());
             saveMessage(request, getText("processMid.deleted", locale));
         } else {
-            processMid.setUser(currentUser);
+            processMid.setUserID(currentUser.getUserID());
             processMidManager.save(processMid,currentUser.getUserID());
             String key = (isNew) ? "processMid.added" : "processMid.updated";
             saveMessage(request, getText(key, locale));

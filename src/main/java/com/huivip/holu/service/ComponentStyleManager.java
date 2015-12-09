@@ -4,12 +4,14 @@ import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.model.Mission;
 import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/componentStyles")
 public interface ComponentStyleManager extends GenericManager<ComponentStyle, Long> {
     List<ComponentStyle> getComponentStypeListByCompany(String companyId);

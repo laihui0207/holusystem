@@ -11,4 +11,5 @@ import java.util.List;
 public interface ComponentDao extends GenericDao<Component, Long> {
     public List<Component> listComponentByProject(String projectID,String tableName,ExtendedPaginatedList list);
     Component getComponentByComponentID(String componentID,String tableName);
+    List<String> listComponentIDsOfProject(String projectID,String tableName);
 }

@@ -66,7 +66,7 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
             } else {
                 sql += "'',";
             }
-            sql += "'" + object.getSubComponentID() + "','" + object.getUser().getUserID() + "')";
+            sql += "'" + object.getSubComponentID() + "','" + object.getUserID() + "')";
         }
         SQLQuery query = getSession().createSQLQuery(sql);
         query.addEntity(ProcessMid.class);

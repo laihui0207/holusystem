@@ -2,12 +2,14 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Component;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.apache.cxf.annotations.GZIP;
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
 @WebService
+@GZIP
 @Path("/components")
 public interface ComponentManager extends GenericManager<Component, Long> {
     @GET
@@ -23,5 +25,8 @@ public interface ComponentManager extends GenericManager<Component, Long> {
     @GET
     @Path("{userID}")
     List<Component> listComponentByUser(@PathParam("userID") String userID);
+    @GET
+    @Path("{userID}")
+    List<String> listComponentIdsByUser(@PathParam("userID")String userID);
     List<Component> getComponentListOfProject(String userId,String projectID);
 }

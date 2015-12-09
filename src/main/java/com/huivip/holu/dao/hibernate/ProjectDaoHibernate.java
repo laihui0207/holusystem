@@ -49,4 +49,13 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
         }
         return null;
     }
+
+    @Override
+    public List<String> getProjectIDsByUserID(String userID) {
+        String sql="select ProjectID from R_DepartmentProjectMappingTable where DepartmentId in(" +
+                "select DepartmentId from R_DepartmentUserMappingTable where UserID='"+userID+"')";
+        Query query=getSession().createSQLQuery(sql);
+        List<String> list=query.list();
+        return list;
+    }
 }
