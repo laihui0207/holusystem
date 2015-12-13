@@ -21,7 +21,7 @@ public interface ProjectManager extends GenericManager<Project, Long> {
 
     @GET
     @Path("all/{userID}")
-    List<Project> getMyAllProject(@PathParam("userID")String userID);
+    List<String> getMyAllProject(@PathParam("userID")String userID);
    /* @GET
     @Path("user/{userID}/{parentID}")
     List<Project> getMySubProject(@PathParam("userID")String userID,@PathParam("parentID")String parentID);*/

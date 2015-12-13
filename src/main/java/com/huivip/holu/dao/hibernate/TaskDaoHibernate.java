@@ -16,9 +16,12 @@ public class TaskDaoHibernate extends GenericDaoHibernate<Task, Long> implements
     }
 
     @Override
-    public List<Task> getTaskofUser(String projectId, String processId, String tableName, ExtendedPaginatedList pageList) {
+    public List<Task> getTaskofUser(String projectId, String processId, String tableName, Boolean isAdmin, ExtendedPaginatedList pageList) {
         if(processId.length()==0 || projectId.length()==0) return null;
-        String sql="Select * from "+tableName+" where ProjectID in ("+projectId+") and ProcessID in ("+processId+")";
+        String sql="Select * from "+tableName+" where ProjectID in ("+projectId+") ";
+        if(!isAdmin){
+            sql+=" and ProcessID in ("+processId+")";
+        }
         SQLQuery query=getSession().createSQLQuery(sql);
         query.addEntity(Task.class);
         if(pageList!=null){

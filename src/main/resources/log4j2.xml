@@ -49,7 +49,7 @@
         <Logger name="com.huivip.holu" level="debug"/>
         <Logger name="com.huivip.holu.tool" level="info"/>
 
-        <Root level="warn">
+        <Root level="ERROR">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile"/>
         </Root>

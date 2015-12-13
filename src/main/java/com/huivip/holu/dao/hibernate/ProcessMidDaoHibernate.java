@@ -50,7 +50,7 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
                 sql+=setString+" WHERE ID="+processMid.getId();
             }
         }
-        else {
+       /* else {
 
             sql = "insert into " + tableName + " (CreateDate, PositionGPS, ProcessNote,  StyleProcessID,StartDate,EndDate, SubComponentID, UserID)" +  // EndDate,StartDate,
                     " values ('" + format.format(object.getCreateDate()) + "','" + object.getPositionGPS() +"','"+
@@ -67,7 +67,7 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
                 sql += "'',";
             }
             sql += "'" + object.getSubComponentID() + "','" + object.getUserID() + "')";
-        }
+        }*/
         SQLQuery query = getSession().createSQLQuery(sql);
         query.addEntity(ProcessMid.class);
         int updated=query.executeUpdate();

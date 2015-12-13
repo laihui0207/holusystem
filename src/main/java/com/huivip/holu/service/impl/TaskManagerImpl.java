@@ -77,7 +77,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         }
        /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
-        List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName, list);
+        List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName,user.isAllowCreateProject() , list);
         if (null == myTasks) return missions;
         for (Task task : myTasks) {
             String subComponents = task.getSubComponentIdList();
@@ -162,13 +162,15 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         }
        /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
-        List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName, null);
+        List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName,user.isAllowCreateProject(), null);
         if(myTasks==null) return subComponentLists;
         for (Task task : myTasks) {
             String subComponents = task.getSubComponentIdList();
-            String[] subs = subComponents.split(",");
-            for (String subId : subs) {
-                subComponentLists.add(subId);
+            if(subComponents!=null){
+                String[] subs = subComponents.split(",");
+                for (String subId : subs) {
+                    subComponentLists.add(subId);
+                }
             }
         }
         return subComponentLists;

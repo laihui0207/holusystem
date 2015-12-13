@@ -45,12 +45,12 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
         List<Project> dataList=getProjectByUserID(userID,parentID,list);
         return list.getList();
     }
-    private Set<Project> collectMyProjects(Set<Project> list){
-        Set<Project> result=new HashSet<>();
+    private Set<String> collectMyProjects(Set<Project> list){
+        Set<String> result=new HashSet<>();
         if(list==null || list.size()==0 ) return result;
         for(Project p: list){
             if(p.getChildProjects()==null || p.getChildProjects().size()==0){
-                result.add(p);
+                result.add(p.getProjectID());
             }
             else {
                 result.addAll(collectMyProjects(p.getChildProjects()));
@@ -59,12 +59,12 @@ public class ProjectManagerImpl extends GenericManagerImpl<Project, Long> implem
         return result;
     }
     @Override
-    public List<Project> getMyAllProject(String userId) {
+    public List<String> getMyAllProject(String userId) {
         List<Project> projectList=projectDao.getProjectByUserID(userId,"",null);
-        List<Project> myProject=new ArrayList<>();
+        List<String> myProject=new ArrayList<>();
         for(Project project:projectList){
             if(project.getChildProjects()==null || project.getChildProjects().size()==0){
-                myProject.add(project);
+                myProject.add(project.getProjectID());
             }
             else {
                 myProject.addAll(collectMyProjects(project.getChildProjects()));

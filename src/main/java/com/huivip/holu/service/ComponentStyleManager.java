@@ -27,7 +27,7 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     @Path("user/{userId}")
     List<ComponentStyle> myTask(@PathParam("userId") String userId);
     @GET
-    @Path("{userId}/Task/{projectID}")
+    @Path("task/{userId}/{projectID}")
     List<Mission> getMyTask(@PathParam("userId") String userId,
                             @PathParam("projectID") String projectID,
                             @DefaultValue("all") @QueryParam("type") String taskType);
