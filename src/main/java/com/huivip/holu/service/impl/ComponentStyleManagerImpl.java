@@ -221,9 +221,40 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     private void handleComponentStyle(Component component,SubComponentList subComponentList,User user,String taskType, List<Mission> missions) {
         if (null == component) return;
         List<ComponentStyle> componentStyles=getProcessListByCompanyAndStyleName(component.getStyleID(), user,component.getComponentID(),null);
-        for(ComponentStyle style: componentStyles){
-            if(style.isOperationer()){
-                Mission mission =new Mission();
+        boolean preProcessFinished=true;
+        int processOrder=0;
+        for (ComponentStyle style : componentStyles) {
+            /*if(style.isOperationer()){*/
+            boolean isMyProcess = false;
+            ProcessMid processMid = processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
+            if(user.isAllowCreateProject()){
+                isMyProcess=true;
+            }
+            else {
+                if (processOrder == 0 ) {
+                    if (style.isOperationer()) {
+                        isMyProcess = true;
+                    }
+                    if (processMid.getEndDate()!=null){
+                        preProcessFinished=true;
+                    } else {
+                        preProcessFinished=false;
+                    }
+                } else if (processOrder > 0 && preProcessFinished) {
+                    if (style.isOperationer()) {
+                        isMyProcess = true;
+                    }
+                    if (processMid.getEndDate()!=null){
+                        preProcessFinished=true;
+                    } else {
+                        preProcessFinished=false;
+                    }
+                }
+                processOrder++;
+            }
+
+            if (isMyProcess) {
+                Mission mission = new Mission();
                 mission.setProjectPathName(component.getProject().getProjectPathName());
                 mission.setProjectID(component.getProject().getProjectID());
                 mission.setComponentId(component.getComponentID());
@@ -231,19 +262,18 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                 mission.setSubComponentName(subComponentList.getSubComponentName());
                 mission.setSubComponentID(subComponentList.getSubComponentID());
                 mission.setComponentType("sub");
-                ProcessMid processMid=processMidManager.getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
+
                 if (taskType.equalsIgnoreCase("doing")) {
-                    if (processMid==null || processMid.getStartDate() == null || processMid.getEndDate() == null) {
+                    if (processMid == null || processMid.getStartDate() == null || processMid.getEndDate() == null) {
                         mission.setProcessMid(processMid);
                         mission.setComponentStyle(style);
                     }
                 } else if (taskType.equalsIgnoreCase("finish")) {
-                    if (processMid!=null && processMid.getEndDate() != null) {
+                    if (processMid != null && processMid.getEndDate() != null) {
                         mission.setProcessMid(processMid);
                         mission.setComponentStyle(style);
                     }
-                }
-                else {
+                } else {
                     mission.setProcessMid(processMid);
                     mission.setComponentStyle(style);
                 }
@@ -251,6 +281,10 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
                     missions.add(mission);
                 }
             }
+            else if(!preProcessFinished){
+                break;
+            }
         }
+        /*}*/
     }
 }
