@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="650b3dd5-cb7c-422c-b09a-676d24fa6cc8" name="Default" comment="k">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ComponentStyleManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ComponentStyleManagerImpl.java" />
-    </list>
+    <list default="true" id="650b3dd5-cb7c-422c-b09a-676d24fa6cc8" name="Default" comment="k" />
     <ignored path="holusystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -254,13 +251,13 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1450287170000" expanded="true" signature="59:145880" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="98:329" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="193:329" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="143178:143195" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="143178:143213" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="143178:143226" placeholder="..." />
-                <marker date="1450287170000" expanded="true" signature="143178:143241" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="59:145880" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="98:329" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="193:329" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="143178:143195" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="143178:143213" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="143178:143226" placeholder="..." />
+                <marker date="1450287212000" expanded="true" signature="143178:143241" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -1585,12 +1582,12 @@
       <workItem from="1449736392618" duration="1579000" />
       <workItem from="1449989467819" duration="7993000" />
       <workItem from="1450056456914" duration="2667000" />
-      <workItem from="1450273640514" duration="8288000" />
+      <workItem from="1450273640514" duration="8411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1156519000" />
+    <option name="totallyTimeSpent" value="1156642000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2359,13 +2356,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1450287170000" expanded="true" signature="59:145880" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="98:329" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="193:329" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="143178:143195" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="143178:143213" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="143178:143226" placeholder="..." />
-            <marker date="1450287170000" expanded="true" signature="143178:143241" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="59:145880" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="98:329" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="193:329" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="143178:143195" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="143178:143213" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="143178:143226" placeholder="..." />
+            <marker date="1450287212000" expanded="true" signature="143178:143241" placeholder="..." />
           </folding>
         </state>
       </provider>
