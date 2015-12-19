@@ -175,34 +175,49 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
     public List<ComponentStyle> getProcessListBySubComponent(String styleID, String userId, String subComponentID) {
         User user=userManager.getUserByUserID(userId);
         String processTableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
-        //String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId();
-        List<ComponentStyle> componentStyles /*= cache.peek(cacheKey);
-        if(componentStyles==null){
-            componentStyles*/=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), null);
-           /* cache.put(cacheKey,componentStyles);
-        }*/
+        List<ComponentStyle> componentStyles=componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), null);
 
         Set<Post> posts = user.getPosts();
-
-
+        String postOfProcess="";
+        for(Post post:posts){
+            if(post.getProcessDictionary()!=null) {
+                postOfProcess += post.getProcessDictionary().getProcessID();
+            }
+        }
+        boolean preProcessFinished=true;
+        int processOrder=0;
         for (ComponentStyle style : componentStyles) {
             ProcessMid processMid=processMidDao.getProcessMid(subComponentID, style.getStyleProcessID(), processTableName);
+            style.setOperationer(false);
             if(null!=processMid){
-                style.setOperationer(false);
                 style.setProcessMid(processMid);
+
             }
             if (!user.isAllowCreateProject()) {
-                for (Post post : posts) {
-                    if (post.getProcessDictionary()!=null && style.getProcessDictionary().getProcessID().equalsIgnoreCase(post.getProcessDictionary().getProcessID())
+                    if ( postOfProcess.indexOf(style.getProcessDictionary().getProcessID().toString())>-1
                             && user.getCompany().getCompanyId().equalsIgnoreCase(style.getCompany().getCompanyId())) {
                         style.setOperationer(true);
+                    }
+                if(processOrder==0){
+                    if(processMid!=null && processMid.getEndDate()!=null){
+                        preProcessFinished=true;
+                    }
+                    else {
                         break;
                     }
                 }
-
+                else if(preProcessFinished){
+                    if(processMid!=null && processMid.getEndDate()!=null){
+                        preProcessFinished=true;
+                    }
+                    else {
+                        break;
+                    }
+                }
             } else {
                 style.setOperationer(true);
             }
+            processOrder++;
         }
         return componentStyles;
     }

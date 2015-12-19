@@ -40,7 +40,7 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
                 setString+=",ProcessNote='"+ object.getProcessNote()+"' ";
             }
             if(object.getStartDate()!=null){
-                setString=",StartDate='"+format.format(object.getStartDate())+"' ";
+                setString+=",StartDate='"+format.format(object.getStartDate())+"' ";
             }
             if(object.getEndDate()!=null){
                 setString+=",EndDate='"+format.format(object.getCreateDate())+"' ";
