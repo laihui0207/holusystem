@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -163,15 +164,20 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
        /* projects="'XM0000007','XM0000013'";
         processes="'GX0000003','GX0000001'";*/
         List<Task> myTasks = taskDao.getTaskofUser(projects, processes, tableName,user.isAllowCreateProject(), null);
+        Set<String> subSet=new HashSet<>();
         if(myTasks==null) return subComponentLists;
         for (Task task : myTasks) {
             String subComponents = task.getSubComponentIdList();
             if(subComponents!=null){
                 String[] subs = subComponents.split(",");
                 for (String subId : subs) {
-                    subComponentLists.add(subId);
+                    subSet.add(subId);
+                    //subComponentLists.add(subId);
                 }
             }
+        }
+        if(subSet.size()>0){
+            subComponentLists.addAll(subSet);
         }
         return subComponentLists;
     }
