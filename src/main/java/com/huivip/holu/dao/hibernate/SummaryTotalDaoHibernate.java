@@ -204,7 +204,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "from  " +
                 "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Actual' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as a left join " +
                 "(SELECT ProjectRootID AS ItemName,Max(MaxDate) AS SumDate_actual_end " +
                 "FROM "+tableName+" "+
@@ -212,17 +212,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
                 "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_plan_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Plan' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
-                "(SELECT ProjectRootID AS ItemName,Min(MaxDate) AS SumDate_plan_end " +
+                "(SELECT ProjectRootID AS ItemName,Max(MaxDate) AS SumDate_plan_end " +
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
                 "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_predict_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Predict' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
-                "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_predict_end " +
+                "(SELECT ProjectRootID AS ItemName,Max(MaxDate) AS SumDate_predict_end " +
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName, " +
@@ -238,7 +238,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "from  " +
                 "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Actual' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as a left join " +
                 "(SELECT DepartmentID AS ItemName,departmentPathName,Max(MaxDate) AS SumDate_actual_end " +
                 "FROM "+tableName+" "+
@@ -246,17 +246,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
                 "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_plan_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Plan' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
-                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MaxDate) AS SumDate_plan_end " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,MAX(MaxDate) AS SumDate_plan_end " +
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Plan' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
                 "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_predict_start " +
                 "FROM "+tableName+" "+
-                "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "WHERE StartOrEnd='Start' AND ActualPlanPredict='Predict' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
-                "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_predict_end " +
+                "(SELECT DepartmentID AS ItemName,departmentPathName,MAX(MaxDate) AS SumDate_predict_end " +
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
@@ -272,7 +272,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
-                "And StartOrEnd='End' AND ActualPlanPredict='Actual'  " +
+                "And StartOrEnd='Start' AND ActualPlanPredict='Actual'  " +
                 "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as a left join " +
                 "(SELECT processID AS ItemName,processName,Max(MaxDate) AS SumDate_actual_end " +
                 "FROM "+ tableName+ " "+
@@ -282,9 +282,9 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_plan_start " +
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
-                "And StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "And StartOrEnd='Start' AND ActualPlanPredict='Plan' " +
                 "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
-                "(SELECT processID AS ItemName,processName,Min(MaxDate) AS SumDate_plan_end " +
+                "(SELECT processID AS ItemName,processName,Max(MaxDate) AS SumDate_plan_end " +
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
                 "and StartOrEnd='End' AND ActualPlanPredict='Plan' " +
@@ -292,9 +292,9 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_predict_start " +
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
-                "And StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "And StartOrEnd='Start' AND ActualPlanPredict='Predict' " +
                 "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
-                "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_predict_end " +
+                "(SELECT processID AS ItemName,processName,Max(MaxDate) AS SumDate_predict_end " +
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
                 "and StartOrEnd='End' AND ActualPlanPredict='Predict'   " +
@@ -310,7 +310,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "from  " +
                 "(SELECT projectID, ProjectPathName AS ItemName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
-                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' " +
+                "AND StartOrEnd='Start' AND ActualPlanPredict='Actual' " +
                 "GROUP BY projectID, ProjectPathName,StartOrEnd,ActualPlanPredict) as a left join " +
                 "(SELECT projectID, ProjectPathName AS ItemName,Max(MaxDate) AS SumDate_actual_end " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
@@ -318,17 +318,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "GROUP BY projectID, ProjectPathName,StartOrEnd,ActualPlanPredict) as b on a.itemName=b.itemName left join " +
                 "(SELECT projectID, ProjectPathName AS ItemName,Min(MinDate) AS SumDate_plan_start " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
-                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' " +
+                "AND StartOrEnd='Start' AND ActualPlanPredict='Plan' " +
                 "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as c on a.itemname=c.itemname left join " +
-                "(SELECT projectID,ProjectPathName AS ItemName,Min(MaxDate) AS SumDate_plan_end " +
+                "(SELECT projectID,ProjectPathName AS ItemName,Max(MaxDate) AS SumDate_plan_end " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Plan' " +
                 "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as d on a.itemName=d.itemName left join " +
                 "(SELECT projectID,ProjectPathName AS ItemName,Min(MinDate) AS SumDate_predict_start " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
-                "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
+                "AND StartOrEnd='Start' AND ActualPlanPredict='Predict' " +
                 "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as e on a.itemName=e.itemName left join " +
-                "(SELECT projectID,ProjectPathName AS ItemName,Min(MinDate) AS SumDate_predict_end " +
+                "(SELECT projectID,ProjectPathName AS ItemName,Max(MaxDate) AS SumDate_predict_end " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";

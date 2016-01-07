@@ -89,17 +89,17 @@ public class SummaryProcess implements Serializable {
 
     public int getPlanDuration() {
         if(sumDate_plan_start==null || sumDate_plan_end==null) return 0;
-        return DateUtil.betweenofTwoDate(sumDate_plan_start,sumDate_plan_end);
+        return DateUtil.betweenofTwoDate(sumDate_plan_start,sumDate_plan_end)+1;
     }
 
     public int getActualDuration() {
         if(sumDate_actual_end==null || sumDate_actual_start==null) return 0;
-        return DateUtil.betweenofTwoDate(sumDate_actual_start,sumDate_actual_end);
+        return DateUtil.betweenofTwoDate(sumDate_actual_start,sumDate_actual_end)+1;
     }
 
     public int getPredictDuration() {
         if(sumDate_predict_end==null || sumDate_predict_start==null) return 0;
-        return DateUtil.betweenofTwoDate(sumDate_predict_start,sumDate_predict_end);
+        return DateUtil.betweenofTwoDate(sumDate_predict_start,sumDate_predict_end)+1;
     }
 
     public int getCurrentStatus() {

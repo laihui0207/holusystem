@@ -1,6 +1,7 @@
 package com.huivip.holu.util;
 
-import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by sunlaihui on 7/15/15.
@@ -51,9 +52,19 @@ public class MyDemo {
         String file3="/Users/sunlaihui/Downloads/merge.png";
         ImageUtil.mergeImage(file1,file2);*/
 
-        System.out.println(MyDemo.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+       /* System.out.println(MyDemo.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         System.out.println(MyDemo.class.getClass().getResource("/").getPath());
-        System.out.println(File.class.getName());
+        System.out.println(File.class.getName());*/
 
+        Calendar c= Calendar.getInstance();
+        c.set(Calendar.DATE,5);
+        Date date=c.getTime();
+       /* c.set(Calendar.DATE,10);
+        Date date1=c.getTime();
+        System.out.println(DateUtil.betweenofTwoDate(date,date1));*/
+        Calendar d=Calendar.getInstance();
+        d.set(Calendar.DATE,10);
+        System.out.println();
+        ;
     }
 }
