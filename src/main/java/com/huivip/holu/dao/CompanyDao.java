@@ -9,4 +9,8 @@ public interface CompanyDao extends GenericDao<Company, Long> {
 
     Company getCompanyByCompanyID(String companyID);
 
+    boolean isValidCompanyNote(String note);
+
+    Company getCompanyFromNote(String note);
+
 }

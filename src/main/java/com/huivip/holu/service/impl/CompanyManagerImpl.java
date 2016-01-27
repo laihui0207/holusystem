@@ -48,6 +48,16 @@ public class CompanyManagerImpl extends GenericManagerImpl<Company, Long> implem
     }
 
     @Override
+    public boolean isValidCompanyNote(String note) {
+        return companyDao.isValidCompanyNote(note);
+    }
+
+    @Override
+    public Company getCompanyFromNote(String note) {
+        return companyDao.getCompanyFromNote(note);
+    }
+
+    @Override
     public List<Company> getAll() {
         List<Company> list=listCache.peek(Company.LIST_CACHE_KEY);
         if(list==null){

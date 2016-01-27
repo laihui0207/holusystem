@@ -24,4 +24,28 @@ public class CompanyDaoHibernate extends GenericDaoHibernate<Company, Long> impl
         }
         return companyList.get(0);
     }
+
+    @Override
+    public boolean isValidCompanyNote(String note) {
+        String sql="select id from R_Company where companyFullName='"+note+"' or companyCode='"
+                +note+"' or companyShortNameCN='"+note+"'";
+        Query query=getSession().createSQLQuery(sql);
+        List list=query.list();
+        if(list!=null && list.size()>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Company getCompanyFromNote(String note) {
+        String sql="From Company where companyFullName='"+note+"' or companyCode='"
+                +note+"' or companyShortNameCN='"+note+"'";
+        Query query=getSession().createQuery(sql);
+        List<Company> list=query.list();
+        if(null!=list && list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
 }

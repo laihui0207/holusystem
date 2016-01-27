@@ -2,6 +2,7 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.Constants;
 import com.huivip.holu.dao.UserDao;
+import com.huivip.holu.model.Company;
 import com.huivip.holu.model.SelectLabelValue;
 import com.huivip.holu.model.User;
 import com.huivip.holu.model.UserTrack;
@@ -42,6 +43,8 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     private RoleManager roleManager;
     @Autowired
     private UserTrackManager userTrackManager;
+    @Autowired
+    private CompanyManager companyManager;
 
     private MailEngine mailEngine;
     private SimpleMailMessage message;
@@ -284,10 +287,16 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
     @Override
     public User signup(String loginCode, String userName, String password, String userNote) {
         User user=new User();
+        Company company=companyManager.getCompanyFromNote(userNote);
+        if(null==company){
+            return null;
+        }
+
         user.setUsername(userName);
         user.setLoginCode(loginCode);
-        user.setPhoneNumber("");
+        user.setPhoneNumber(loginCode);
         user.setPassword(password);
+        user.setCompany(company);
 /*        user.setBirthday(null);*/
         SimpleDateFormat sdf=new SimpleDateFormat("ddssSSS");
         String userID=sdf.format(System.currentTimeMillis());
@@ -300,7 +309,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         try {
             this.saveUser(user);
         } catch (UserExistsException e) {
-            e.printStackTrace();
+            return null;
         }
         return user;
     }
