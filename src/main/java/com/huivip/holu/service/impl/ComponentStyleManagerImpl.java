@@ -63,16 +63,8 @@ public class ComponentStyleManagerImpl extends GenericManagerImpl<ComponentStyle
 
     @Override
     public List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID, User user, String componentID, ExtendedPaginatedList list) {
-        String cacheKey="ComponentStyle_"+styleID+"_"+user.getCompany().getCompanyId()+"_"+user.getUserID();
-        List<ComponentStyle> componentStyles = /*cache.peek(cacheKey);
-        if(componentStyles==null){
-            componentStyles=*/componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
-           /* cache.put(cacheKey,componentStyles);
-        }*/
-
+        List<ComponentStyle> componentStyles =componentStyleDao.getProcessListByCompanyAndStyleName(styleID, user.getCompany().getCompanyId(), list);
         Set<Post> posts = user.getPosts();
-
-
         for (ComponentStyle style : componentStyles) {
             if (!user.isAllowCreateProject()) {
                 for (Post post : posts) {

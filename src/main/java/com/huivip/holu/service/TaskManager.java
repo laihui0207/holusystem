@@ -1,5 +1,6 @@
 package com.huivip.holu.service;
 
+import com.huivip.holu.model.LabelValue;
 import com.huivip.holu.model.Mission;
 import com.huivip.holu.model.Task;
 import org.apache.cxf.annotations.GZIP;
@@ -27,4 +28,13 @@ public interface TaskManager extends GenericManager<Task, Long> {
     List<Mission> getTaskBySubComponent(@PathParam("userId") String userId,
                                         @PathParam("subId") String subComponentID,
                                        @DefaultValue("all") @QueryParam("type") String taskType);
+    @GET
+    @Path("projects/{userID}")
+    List<LabelValue> getProjects(@PathParam("userID") String userID,@DefaultValue("all") @QueryParam("type") String taskType);
+    @GET
+    @Path("sub/{projectID}/{userID}")
+    List<LabelValue> getSubComponent(@PathParam("userID") String userID,
+                                     @PathParam("projectID") String projectID,
+                                     @DefaultValue("all") @QueryParam("type") String taskType);
+
 }

@@ -3,6 +3,7 @@ package com.huivip.holu.dao.hibernate;
 import com.huivip.holu.dao.TaskDao;
 import com.huivip.holu.model.Task;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -35,5 +36,20 @@ public class TaskDaoHibernate extends GenericDaoHibernate<Task, Long> implements
             pageList.setList(dataList);
         }
         return dataList;
+    }
+
+    @Override
+    public List<Object[]> getProject(String tableName, String taskType) {
+        String sql="select pmt.projectID,rp.projectpathname from "+tableName+" pmt,R_project rp where pmt.ProjectID=rp.projectID ";
+        /*if(taskType.equalsIgnoreCase("doing")){
+            sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
+        }
+        else if(taskType.equalsIgnoreCase("finish")){
+            sql+=" and pmt.StartDate is not null and pmt.EndDate is not  null ";
+        }
+*/
+        sql+=" group by pmt.ProjectID,rp.ProjectPathName";
+        Query query=getSession().createSQLQuery(sql);
+        return query.list();
     }
 }

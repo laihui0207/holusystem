@@ -119,11 +119,11 @@
             $("#viewGroupdiv").hide();
         }
         KindEditor.ready(function (K) {
-            window.editor = K.create('#introduction', {
+            /*window.editor = K.create('#introduction', {
                 uploadJson: "<c:url value='/editeruploadattachement'/>",
                 fileManagerJson: "<c:url value='/editeruploadattachement'/>",
                 allowFileManager: true, filterMode: false
-            });
+            });*/
             window.editor = K.create('#DocContent', {
                 uploadJson: "<c:url value='/editeruploadattachement'/>",
                 fileManagerJson: "<c:url value='/editeruploadattachement'/>",

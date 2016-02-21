@@ -22,7 +22,9 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
                                                              @PathParam("componentId") String componentID);
     List<ComponentStyle> getProcessListByCompanyAndStyleName(String styleID,
                                                              User user, String componentID, ExtendedPaginatedList list);
-    ComponentStyle getComponentProcessByProcessID(String styleProcessID);
+    @GET
+    @Path("{id}")
+    ComponentStyle getComponentProcessByProcessID(@PathParam("id") String styleProcessID);
     @GET
     @Path("user/{userId}")
     List<ComponentStyle> myTask(@PathParam("userId") String userId);
@@ -31,6 +33,7 @@ public interface ComponentStyleManager extends GenericManager<ComponentStyle, Lo
     List<Mission> getMyTask(@PathParam("userId") String userId,
                             @PathParam("projectID") String projectID,
                             @DefaultValue("all") @QueryParam("type") String taskType);
+
     @GET
     @Path("task/{userID}")
     List<Mission> getTaskByComponentList(@PathParam("userID")String userID,

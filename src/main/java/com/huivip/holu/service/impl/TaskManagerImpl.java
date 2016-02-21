@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service("taskManager")
 @WebService(serviceName = "TaskService", endpointInterface = "com.huivip.holu.service.TaskManager")
@@ -229,6 +226,57 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         }
 
         return missions;
+    }
+
+    @Override
+    public List<LabelValue> getProjects(String userID,String taskType) {
+        List<LabelValue> result=new ArrayList<>();
+        User user = userManager.getUserByUserID(userID);
+        String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
+        List<Object[]> projects=taskDao.getProject(tableName,taskType);
+        if(projects==null || projects.size()==0) return  result;
+        for(Object[] objs:projects){
+            LabelValue lv=new LabelValue((String)objs[1],(String)objs[0]);
+            result.add(lv);
+        }
+        return result;
+    }
+
+    @Override
+    public List<LabelValue> getSubComponent(String userId, String projectID,String taskType) {
+        List<LabelValue> result=new ArrayList<>();
+        User user = userManager.getUserByUserID(userId);
+        String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
+        Set<Post> posts = user.getPosts();
+        List<String> myProcesses = new ArrayList<>();
+        for (Post post : posts) {
+            if (post.getProcessDictionary() != null) {
+                myProcesses.add(post.getProcessDictionary().getProcessID());
+            }
+        }
+        String processes = "";
+        for (String process : myProcesses) {
+            if (processes.length() == 0) {
+                processes = "'" + process + "'";
+            } else {
+                processes += ",'" + process + "'";
+            }
+        }
+        List<Task> myTasks = taskDao.getTaskofUser("'"+projectID+"'", processes, tableName,user.isAllowCreateProject(), null);
+        if(myTasks==null) return result;
+        Set<LabelValue> resultSet=new HashSet<>();
+        for (Task task : myTasks) {
+            String subComponents = task.getSubComponentIdList();
+            if(subComponents!=null){
+                String[] subs = subComponents.split(",");
+                for (String subId : subs) {
+                    SubComponentList sub=subComponentListManager.getSubComponentBySubComponentID(subId,userId);
+                    resultSet.add(new LabelValue(sub.getSubComponentName(),sub.getSubComponentID()));
+                }
+            }
+        }
+        result.addAll(resultSet);
+        return result;
     }
 
     private List<String> collectProject (String userId, String parent){

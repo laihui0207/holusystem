@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.model.Component;
+import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.apache.cxf.annotations.GZIP;
 
@@ -29,4 +30,7 @@ public interface ComponentManager extends GenericManager<Component, Long> {
     @Path("{userID}")
     List<String> listComponentIdsByUser(@PathParam("userID")String userID);
     List<Component> getComponentListOfProject(String userId,String projectID);
+    @GET
+    @Path("style/{projectID}/{userID}")
+    List<ComponentStyle> listAllComponentStyleOfProject(@PathParam("projectID") String projectID,@PathParam("userID") String userID);
 }

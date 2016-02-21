@@ -5,6 +5,7 @@ import com.huivip.holu.dao.ComponentDao;
 import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
 import com.huivip.holu.model.Component;
+import com.huivip.holu.model.ComponentStyle;
 import com.huivip.holu.model.Project;
 import com.huivip.holu.model.User;
 import com.huivip.holu.service.CompanyDatabaseIndexManager;
@@ -119,6 +120,13 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
         }
         return components;
     }
+
+    @Override
+    public List<ComponentStyle> listAllComponentStyleOfProject(String projectID, String userID) {
+
+        return null;
+    }
+
     private List<String> getComponentIDsOfProject(String userID,String projectID){
         User user=userManager.getUserByUserID(userID);
         String tableName=companyDatabaseIndexManager.getComponentTableNameByCompany(user.getCompany().getCompanyId());

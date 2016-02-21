@@ -2,6 +2,7 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.ProcessMidDao;
 import com.huivip.holu.model.ProcessMid;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -73,5 +74,36 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
         int updated=query.executeUpdate();
         ProcessMid processMid2=getProcessMid(object.getSubComponentID(),object.getStyleProcessID(),tableName);
         return processMid2;
+    }
+
+    @Override
+    public List<Object[]> getComponentStylesOfProject(String projectID, String taskType, String tableName) {
+        String sql="select pmt.styleID,rc.StyleName from "+tableName+"  pmt,R_ComponentStyle rc " +
+                "where pmt.StyleID=rc.StyleID and pmt.projectID='"+projectID+"' ";
+
+        if(taskType.equalsIgnoreCase("doing")){
+            sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
+        }
+        else if(taskType.equalsIgnoreCase("finish")){
+            sql+=" and pmt.StartDate is not null and pmt.EndDate is not  null ";
+        }
+       sql+=" group by pmt.styleID,rc.styleName ";
+        Query query=getSession().createSQLQuery(sql);
+        return query.list();
+    }
+
+    @Override
+    public List<Object[]> getProjectListOfUser(String taskType, String tableName) {
+        String sql="select pmt.projectID,rp.projectpathname from "+tableName+" pmt,R_project rp where pmt.ProjectID=rp.projectID ";
+        if(taskType.equalsIgnoreCase("doing")){
+            sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
+        }
+        else if(taskType.equalsIgnoreCase("finish")){
+            sql+=" and pmt.StartDate is not null and pmt.EndDate is not  null ";
+        }
+
+        sql+=" group by pmt.ProjectID,rp.ProjectPathName";
+        Query query=getSession().createSQLQuery(sql);
+        return query.list();
     }
 }
