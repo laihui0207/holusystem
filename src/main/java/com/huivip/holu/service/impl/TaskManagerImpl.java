@@ -247,21 +247,26 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         List<LabelValue> result=new ArrayList<>();
         User user = userManager.getUserByUserID(userId);
         String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
-        Set<Post> posts = user.getPosts();
-        List<String> myProcesses = new ArrayList<>();
-        for (Post post : posts) {
-            if (post.getProcessDictionary() != null) {
-                myProcesses.add(post.getProcessDictionary().getProcessID());
-            }
-        }
         String processes = "";
-        for (String process : myProcesses) {
-            if (processes.length() == 0) {
-                processes = "'" + process + "'";
-            } else {
-                processes += ",'" + process + "'";
+        /*if (user.isAllowCreateProject()) {
+            processes = null;
+        } else {*/
+
+            Set<Post> posts = user.getPosts();
+            List<String> myProcesses = new ArrayList<>();
+            for (Post post : posts) {
+                if (post.getProcessDictionary() != null) {
+                    myProcesses.add(post.getProcessDictionary().getProcessID());
+                }
             }
-        }
+            for (String process : myProcesses) {
+                if (processes.length() == 0) {
+                    processes = "'" + process + "'";
+                } else {
+                    processes += ",'" + process + "'";
+                }
+            }
+       /* }*/
         List<Task> myTasks = taskDao.getTaskofUser("'"+projectID+"'", processes, tableName,user.isAllowCreateProject(), null);
         if(myTasks==null) return result;
         Set<LabelValue> resultSet=new HashSet<>();

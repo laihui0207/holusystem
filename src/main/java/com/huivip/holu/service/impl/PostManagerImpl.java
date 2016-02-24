@@ -21,4 +21,9 @@ public class PostManagerImpl extends GenericManagerImpl<Post, Long> implements P
         super(postDao);
         this.postDao = postDao;
     }
+
+    @Override
+    public List<Post> getPostsOfUser(String userID) {
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package com.huivip.holu.dao.hibernate;
 
 import com.huivip.holu.dao.ProcessMidDao;
 import com.huivip.holu.model.ProcessMid;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
@@ -77,10 +78,12 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
     }
 
     @Override
-    public List<Object[]> getComponentStylesOfProject(String projectID, String taskType, String tableName) {
+    public List<Object[]> getComponentStylesOfProject(String projectID, String taskType, String processes, String tableName) {
         String sql="select pmt.styleID,rc.StyleName from "+tableName+"  pmt,R_ComponentStyle rc " +
                 "where pmt.StyleID=rc.StyleID and pmt.projectID='"+projectID+"' ";
-
+        if(processes!=null){
+            sql+=" and pmt.processId in ("+processes+")";
+        }
         if(taskType.equalsIgnoreCase("doing")){
             sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
         }
@@ -93,8 +96,11 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
     }
 
     @Override
-    public List<Object[]> getProjectListOfUser(String taskType, String tableName) {
+    public List<Object[]> getProjectListOfUser(String taskType, String Processes, String tableName) {
         String sql="select pmt.projectID,rp.projectpathname from "+tableName+" pmt,R_project rp where pmt.ProjectID=rp.projectID ";
+        if(Processes!=null){
+            sql+=" and pmt.processId in ("+Processes+")";
+        }
         if(taskType.equalsIgnoreCase("doing")){
             sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
         }
@@ -105,5 +111,36 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
         sql+=" group by pmt.ProjectID,rp.ProjectPathName";
         Query query=getSession().createSQLQuery(sql);
         return query.list();
+    }
+
+    @Override
+    public List<Object[]> getMission(String projectID, String styleID, String processes, String companyID, String taskType, ExtendedPaginatedList list) {
+        String sql="select pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate"
+        +" from U_"+companyID+"_ProcessMidTable pm,U_"+companyID+"_SubComponentList usb,R_Project rp,R_ComponentStyle rc ,U_"+companyID+"_ComponentList uc "
+        +" where  pm.SubComponentID=usb.SubComponentID and pm.ProjectID=rp.projectID and pm.StyleProcessID=rc.StyleProcessID and pm.ComponentID=uc.componentID"
+        +" and pm.projectID='"+projectID+"' and pm.styleID='"+styleID+"' ";
+        if(processes!=null){
+            sql+=" and pm.processID in ("+processes+") ";
+        }
+        if(taskType.equalsIgnoreCase("doing")){
+            sql+=" and (pm.StartDate  is  null or pm.EndDate is  null) ";
+        }
+        else if(taskType.equalsIgnoreCase("finish")){
+            sql+=" and pm.StartDate is not null and pm.EndDate is not  null ";
+        }
+        sql+=" order by pm.projectID,pm.componentID,pm.subComponentID,rc.ProcessOrder";
+        Query query=getSession().createSQLQuery(sql);
+        if(null!=list){
+            List<Object[]> totalList=query.list();
+            list.setTotalNumberOfRows(totalList.size());
+            query.setFirstResult(list.getFirstRecordIndex());
+            query.setMaxResults(list.getPageSize());
+        }
+        List<Object[]> data=query.list();
+        if(null!=list){
+            list.setList(data);
+        }
+
+        return data;
     }
 }

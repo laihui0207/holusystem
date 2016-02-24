@@ -1,6 +1,7 @@
 package com.huivip.holu.service;
 
 import com.huivip.holu.dao.UserDao;
+import com.huivip.holu.model.Post;
 import com.huivip.holu.model.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,7 @@ public interface UserManager extends GenericManager<User, Long> {
     User getUser(String userId);
     User getUserByLoginCode(String loginCode);
     User getUserByUserID(String userID);
+    List<Post> getPostsOfUser(String userID);
 
     /**
      * Finds a user by their username.

@@ -2,10 +2,7 @@ package com.huivip.holu.service.impl;
 
 import com.huivip.holu.Constants;
 import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.model.Company;
-import com.huivip.holu.model.SelectLabelValue;
-import com.huivip.holu.model.User;
-import com.huivip.holu.model.UserTrack;
+import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
 import com.huivip.holu.util.AccessToken;
 import com.huivip.holu.util.cache.Cache2kProvider;
@@ -136,6 +133,11 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
        /*     cache.put(userID,user);
         }*/
         return user;
+    }
+
+    @Override
+    public List<Post> getPostsOfUser(String userID) {
+        return null;
     }
 
     /**

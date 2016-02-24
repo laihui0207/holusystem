@@ -1,6 +1,7 @@
 package com.huivip.holu.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by sunlaihui on 8/28/15.
@@ -19,6 +20,11 @@ public class Mission implements Serializable {
     private String subComponentID;
     private ComponentStyle componentStyle;
     private String componentId;
+    private String styleProcessID;
+    private String styleName;
+    private String processName;
+    private Date startDate;
+    private Date endDate;
 /*    private User user;*/
     /*private String userId;
     private String userName;*/
@@ -130,6 +136,46 @@ public class Mission implements Serializable {
 
     public void setSubComponentID(String subComponentID) {
         this.subComponentID = subComponentID;
+    }
+
+    public String getStyleProcessID() {
+        return styleProcessID;
+    }
+
+    public void setStyleProcessID(String styleProcessID) {
+        this.styleProcessID = styleProcessID;
+    }
+
+    public String getProcessName() {
+        return processName;
+    }
+
+    public void setProcessName(String processName) {
+        this.processName = processName;
+    }
+
+    public String getStyleName() {
+        return styleName;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStyleName(String styleName) {
+        this.styleName = styleName;
     }
 
     public void setProcessMid(ProcessMid processMid) {

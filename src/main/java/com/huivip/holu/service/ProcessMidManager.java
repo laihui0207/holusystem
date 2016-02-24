@@ -31,7 +31,10 @@ public interface ProcessMidManager extends GenericManager<ProcessMid, Long> {
     List<Mission> getMyMissions(@PathParam("projectID") String projectID,
                                 @PathParam("styleID") String styleID,
                                 @PathParam("userID") String userID,
-                                @QueryParam("type")String type);
+                                @QueryParam("type")String type,
+                                @DefaultValue("0") @QueryParam("page") String pageIndex,
+                                @DefaultValue("25") @QueryParam("pageSize") String pageSize);
+
     @POST
     @Path("confirm")
     ProcessMid save(@FormParam("subComponentID") String subComponentID,

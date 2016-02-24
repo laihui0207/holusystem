@@ -4,6 +4,8 @@ import com.huivip.holu.dao.ProcessMidDao;
 import com.huivip.holu.dao.ProjectDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
+import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import com.huivip.holu.webapp.helper.PaginatedListImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,8 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         List<LabelValue> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
         String tableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
-        List<Object[]> projects=processMidDao.getProjectListOfUser(taskType,tableName);
+        String userProcesses=collectProcessOfUser(user);
+        List<Object[]> projects=processMidDao.getProjectListOfUser(taskType,userProcesses, tableName );
         if(projects==null || projects.size()==0) return  result;
         for(Object[] objs:projects){
             LabelValue lv=new LabelValue((String)objs[1],(String)objs[0]);
@@ -70,13 +73,34 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         }
         return result;
     }
-
+    private String collectProcessOfUser(User user){
+        if(user.isAllowCreateProject()){
+            return null;
+        }
+        Set<Post> posts = user.getPosts();
+        List<String> myProcesses = new ArrayList<>();
+        for (Post post : posts) {
+            if (post.getProcessDictionary() != null) {
+                myProcesses.add(post.getProcessDictionary().getProcessID());
+            }
+        }
+        String processes = "";
+        for (String process : myProcesses) {
+            if (processes.length() == 0) {
+                processes = "'" + process + "'";
+            } else {
+                processes += ",'" + process + "'";
+            }
+        }
+        return processes;
+    }
     @Override
     public List<LabelValue> getComponentStyleOfProject(String projectID, String userId,String taskType) {
         List<LabelValue> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userId);
+        String userProcesses=collectProcessOfUser(user);
         String tableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
-        List<Object[]> componentStyles=processMidDao.getComponentStylesOfProject(projectID,taskType , tableName);
+        List<Object[]> componentStyles=processMidDao.getComponentStylesOfProject(projectID,taskType,userProcesses , tableName);
         if(componentStyles==null || componentStyles.size()==0) return result;
         for(Object[] objs:componentStyles){
             LabelValue lv=new LabelValue((String)objs[1],(String)objs[0]);
@@ -86,11 +110,34 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
-    public List<Mission> getMyMissions(String projectID, String styleID, String userID, String type) {
+    public List<Mission> getMyMissions(String projectID, String styleID, String userID, String type,String pageIndex,String pageSize) {
         List<Mission> missions =new ArrayList<>();
-        Project project=projectDao.getProjectByprojectID(projectID);
+        /*Project project=projectDao.getProjectByprojectID(projectID);
         User user=userManager.getUserByUserID(userID);
-        handleComponents(project,user, missions,type,styleID);
+        handleComponents(project,user, missions,type,styleID);*/
+        // todo  check pre-process if confirm
+        User user=userManager.getUserByUserID(userID);
+        String userProcesses=collectProcessOfUser(user);
+
+        ExtendedPaginatedList list= new PaginatedListImpl();
+        list.setIndex(Integer.parseInt(pageIndex));
+        list.setPageSize(Integer.parseInt(pageSize));
+        List<Object[]> data=processMidDao.getMission(projectID,styleID,userProcesses,user.getCompany().getCompanyId(),type, list);
+        // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
+        if(data==null || data.size()==0) return missions;
+        for(Object[] objs:data){
+            Mission mission=new Mission();
+            mission.setSubComponentID((String)objs[0]);
+            mission.setSubComponentName((String)objs[1]);
+            mission.setProjectPathName((String)objs[2]);
+            mission.setProjectID(projectID);
+            mission.setStyleProcessID((String)objs[3]);
+            mission.setProcessName((String)objs[5]);
+            mission.setStyleName((String)objs[7]);
+            mission.setStartDate((Date)objs[9]);
+            mission.setEndDate((Date)objs[10]);
+            missions.add(mission);
+        }
         return missions;
     }
 

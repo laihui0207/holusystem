@@ -100,7 +100,11 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
 
     @Override
     public User getUserByUserID(String userID) {
-        List users = getSession().createCriteria(User.class).add(Restrictions.eq("userID", userID)).list();
+        String sql="From User where id in(select id from User where userID='"+userID+"')";
+        Query query=getSession().createQuery(sql);
+        List<User> users=query.list();
+
+        //List users = getSession().createCriteria(User.class).add(Restrictions.eq("userID", userID)).list();
         if (users == null || users.isEmpty()) {
             return null;
         } else {
