@@ -39,8 +39,9 @@ public class TaskDaoHibernate extends GenericDaoHibernate<Task, Long> implements
     }
 
     @Override
-    public List<Object[]> getProject(String tableName, String taskType) {
-        String sql="select pmt.projectID,rp.projectpathname from "+tableName+" pmt,R_project rp where pmt.ProjectID=rp.projectID ";
+    public List<Object[]> getProject(String tableName, String taskType, String userID) {
+        String sql="select pmt.projectID,rp.projectpathname from "+tableName+" pmt,R_project rp where pmt.ProjectID=rp.projectID and rp.projectID in ";
+        sql+="(select rp1.projectID from R_project rp1,R_departmentProjectmappingtable rdp where rp1.projectid=rdp.projectid and rdp.departmentID in (Select rd.departmentID from r_department rd,R_departmentusermappingtable rdu where rd.departmentID=rdu.departmentid and rdu.userid='"+userID+"'))";
         /*if(taskType.equalsIgnoreCase("doing")){
             sql+=" and (pmt.StartDate  is  null or pmt.EndDate is  null) ";
         }

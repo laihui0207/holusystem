@@ -62,13 +62,14 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     @Override
     public List<LabelValue> getProjectOfUser(String userID,String taskType) {
         List<LabelValue> result=new ArrayList<>();
-        User user=userManager.getUserByUserID(userID);
+        /*User user=userManager.getUserByUserID(userID);
         String tableName=companyDatabaseIndexManager.getProcessMidTableNameByCompany(user.getCompany().getCompanyId());
         String userProcesses=collectProcessOfUser(user);
-        List<Object[]> projects=processMidDao.getProjectListOfUser(taskType,userProcesses, tableName );
+        List<Object[]> projects=processMidDao.getProjectListOfUser(taskType,userProcesses, tableName );*/
+        List<Project> projects=projectDao.getProjectByUserID(userID,"",null);
         if(projects==null || projects.size()==0) return  result;
-        for(Object[] objs:projects){
-            LabelValue lv=new LabelValue((String)objs[1],(String)objs[0]);
+        for(Project project:projects){
+            LabelValue lv=new LabelValue(project.getProjectPathName(),project.getProjectID());
             result.add(lv);
         }
         return result;
@@ -117,7 +118,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         handleComponents(project,user, missions,type,styleID);*/
         // todo  check pre-process if confirm
         User user=userManager.getUserByUserID(userID);
-        String userProcesses=collectProcessOfUser(user);
+        String userProcesses=null;//collectProcessOfUser(user);
 
         ExtendedPaginatedList list= new PaginatedListImpl();
         list.setIndex(Integer.parseInt(pageIndex));
@@ -125,6 +126,8 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         List<Object[]> data=processMidDao.getMission(projectID,styleID,userProcesses,user.getCompany().getCompanyId(),type, list);
         // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
         if(data==null || data.size()==0) return missions;
+        int processOrder=0;
+        boolean preProcessFinished=false;
         for(Object[] objs:data){
             Mission mission=new Mission();
             mission.setSubComponentID((String)objs[0]);
@@ -136,7 +139,30 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
             mission.setStyleName((String)objs[7]);
             mission.setStartDate((Date)objs[9]);
             mission.setEndDate((Date)objs[10]);
-            missions.add(mission);
+            //missions.add(mission);
+
+            if(user.isAllowCreateProject()){
+                mission.setOwner(true);
+                missions.add(mission);
+            }
+            else {
+                for (Post post : user.getPosts()) {
+                    if (post.getProcessDictionary()!=null && ((String)objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
+                        if (processOrder == 0 ||(processOrder > 0 && preProcessFinished)) {
+                            mission.setOwner(true);
+                        }
+                        missions.add(mission);
+                    }
+                    else {
+                        if (mission.getEndDate()!=null){
+                            preProcessFinished=true;
+                        } else {
+                            preProcessFinished=false;
+                        }
+                    }
+                }
+                processOrder++;
+            }
         }
         return missions;
     }

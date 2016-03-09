@@ -233,7 +233,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
         List<LabelValue> result=new ArrayList<>();
         User user = userManager.getUserByUserID(userID);
         String tableName = companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(), "TaskTable");
-        List<Object[]> projects=taskDao.getProject(tableName,taskType);
+        List<Object[]> projects=taskDao.getProject(tableName,taskType, userID);
         if(projects==null || projects.size()==0) return  result;
         for(Object[] objs:projects){
             LabelValue lv=new LabelValue((String)objs[1],(String)objs[0]);
@@ -275,8 +275,7 @@ public class TaskManagerImpl extends GenericManagerImpl<Task, Long> implements T
             if(subComponents!=null){
                 String[] subs = subComponents.split(",");
                 for (String subId : subs) {
-                    SubComponentList sub=subComponentListManager.getSubComponentBySubComponentID(subId,userId);
-                    resultSet.add(new LabelValue(sub.getSubComponentName(),sub.getSubComponentID()));
+                    resultSet.add(new LabelValue(subComponentListManager.getSubComponetName(subId,user),subId));
                 }
             }
         }

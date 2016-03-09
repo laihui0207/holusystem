@@ -29,6 +29,7 @@ public class Mission implements Serializable {
     /*private String userId;
     private String userName;*/
     private ProcessMid processMid;
+    private boolean owner;
 
     public Component getComponent() {
         return component;
@@ -176,6 +177,14 @@ public class Mission implements Serializable {
 
     public void setStyleName(String styleName) {
         this.styleName = styleName;
+    }
+
+    public boolean isOwner() {
+        return owner;
+    }
+
+    public void setOwner(boolean owner) {
+        this.owner = owner;
     }
 
     public void setProcessMid(ProcessMid processMid) {

@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TaskDao extends GenericDao<Task, Long> {
     List<Task> getTaskofUser(String projectId, String processId, String tableName, Boolean isAdmin, ExtendedPaginatedList pageList);
-    List<Object[]> getProject(String tableName, String taskType);
+    List<Object[]> getProject(String tableName, String taskType, String userID);
 }

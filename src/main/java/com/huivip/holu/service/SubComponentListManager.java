@@ -2,6 +2,7 @@ package com.huivip.holu.service;
 
 import com.huivip.holu.model.Component;
 import com.huivip.holu.model.SubComponentList;
+import com.huivip.holu.model.User;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
 
 import javax.jws.WebService;
@@ -30,4 +31,5 @@ public interface SubComponentListManager extends GenericManager<SubComponentList
     @GET
     @Path("{userID}")
     List<SubComponentList> getAllMySubComponent(@PathParam("userID") String userID);
+    String getSubComponetName(String subID, User user);
 }

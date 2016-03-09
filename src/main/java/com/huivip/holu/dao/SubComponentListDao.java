@@ -12,5 +12,6 @@ public interface SubComponentListDao extends GenericDao<SubComponentList, Long> 
     List<SubComponentList> getSubComponentListByComponentID(String componentID,String tableName,ExtendedPaginatedList list);
     SubComponentList getSubComponentBySubComponentID(String subComponentID,String tableName);
     String getParentComponentId(String SubComponentId, String tableName);
+    String getSubComponentName(String subID, String tableName);
 
 }

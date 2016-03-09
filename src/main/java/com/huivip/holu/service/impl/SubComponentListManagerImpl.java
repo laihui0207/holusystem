@@ -3,10 +3,7 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.CompanyDatabaseIndexDao;
 import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.dao.UserDao;
-import com.huivip.holu.model.Component;
-import com.huivip.holu.model.Project;
-import com.huivip.holu.model.SubComponentList;
-import com.huivip.holu.model.User;
+import com.huivip.holu.model.*;
 import com.huivip.holu.service.ComponentManager;
 import com.huivip.holu.service.ProjectManager;
 import com.huivip.holu.service.SubComponentListManager;
@@ -95,5 +92,11 @@ public class SubComponentListManagerImpl extends GenericManagerImpl<SubComponent
         }
 
         return subComponentLists;
+    }
+
+    @Override
+    public String getSubComponetName(String subID, User user) {
+        String tableName=companyDatabaseIndexDao.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SubComponentList");
+        return subComponentListDao.getSubComponentName(subID,tableName);
     }
 }

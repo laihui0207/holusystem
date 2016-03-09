@@ -3,6 +3,7 @@ package com.huivip.holu.dao.hibernate;
 import com.huivip.holu.dao.SubComponentListDao;
 import com.huivip.holu.model.SubComponentList;
 import com.huivip.holu.webapp.helper.ExtendedPaginatedList;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
@@ -55,5 +56,14 @@ public class SubComponentListDaoHibernate extends GenericDaoHibernate<SubCompone
             return (String) list.get(0);
         }
         return null;
+    }
+
+    @Override
+    public String getSubComponentName(String subID, String tableName) {
+        String sql="select SubComponentName from "+tableName+" where SubComponentID='"+subID+"'";
+        Query query=getSession().createSQLQuery(sql);
+        List<String> list=query.list();
+        if(null==list && list.size()==0) return null;
+        return list.get(0);
     }
 }
