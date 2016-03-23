@@ -43,6 +43,29 @@
                 <artifactId>dbunit-maven-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>native2ascii-maven-plugin</artifactId>
+                <version>1.0-beta-1</version>
+                <executions>
+                    <execution>
+                        <id>native2ascii-utf8</id>
+                        <goals>
+                            <goal>native2ascii</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <encoding>UTF8</encoding>
+
+                            <includes>
+                                <include>ApplicationResources_*.properties</include>
+                                <include>displaytag_*.properties</include>
+                                <include>errors_*.properties</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -157,7 +180,7 @@
         <jdbc.version>1.2</jdbc.version>
         <jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
 <!--        <jdbc.url>jdbc:jtds:sqlserver://172.16.182.130:1433/${db.name}</jdbc.url>-->
-                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.163:1433/holu</jdbc.url>
+                <jdbc.url>jdbc:jtds:sqlserver://172.16.182.163:1433/holu2</jdbc.url>
 <!--        <jdbc.url>jdbc:jtds:sqlserver://192.168.199.157:1433/holuOffical</jdbc.url>-->
         <jdbc.username>sa</jdbc.username>
         <jdbc.password>pass</jdbc.password>

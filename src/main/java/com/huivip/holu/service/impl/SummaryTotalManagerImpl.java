@@ -3,11 +3,14 @@ package com.huivip.holu.service.impl;
 import com.huivip.holu.dao.SummaryTotalDao;
 import com.huivip.holu.model.*;
 import com.huivip.holu.service.*;
+import com.huivip.holu.util.DateUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -37,7 +40,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public List<SummaryItem> getHomePageSummary(String userID, String ItemStyle, String sumDate, String startOrEnd) {
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String tableName=user.getCompany().getCompanyId(); ///companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
 
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
@@ -64,7 +67,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public HashMap<String, List<SummaryItem>> getHomePageDetailSummary(String userID, String ItemStyle, String sumDate, String startOrEnd) {
         HashMap<String,List<SummaryItem>> result=new HashMap<>();
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String tableName=user.getCompany().getCompanyId(); //companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
 
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
@@ -78,6 +81,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         List<Object[]> validItem=summaryTotalDao.getSummaryValidItem(searchDateStart,searchDateEnd , processes, ItemStyle, startOrEnd, tableName);
         if(null==validItem || validItem.size()==0) return result;
         for(Object[] item:validItem){
+            if(StringUtils.isBlank((String)item[0])) continue;
             List<Object[]> itemSummary=summaryTotalDao.getSummaryDetail((String) item[0], searchDateStart, searchDateEnd, processes, ItemStyle, startOrEnd, tableName);
             List<SummaryItem> list=new ArrayList<>();
             for(Object[] objs:itemSummary){
@@ -95,7 +99,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public HashMap<String, List<SummaryItem>> getSummaryDetail(String userID, String itemName, String ItemStyle, String sumDate, String startOrEnd) {
         HashMap<String,List<SummaryItem>> result=new HashMap<>();
         User user=userManager.getUserByUserID(userID);
-        String summaryTableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
+        String summaryTableName=user.getCompany().getCompanyId();  //companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.equalsIgnoreCase("")) return result;
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
@@ -141,7 +145,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     @Override
     public List<SummaryProcess> getSummaryProcess(String userID, String itemStyle) {
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
+        String tableName=user.getCompany().getCompanyId() ;//companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
         List<Object[]> list=new ArrayList<>();
         if(itemStyle.equalsIgnoreCase("project")){
              list=summaryTotalDao.getProjectSummaryProcess(tableName);
@@ -190,7 +194,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public List<SummaryItem> searchBetweenDate(String userID, String start, String end,String itemStyle) {
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
+        String tableName=user.getCompany().getCompanyId(); //companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTotalTable");
         if(tableName==null) return result;
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.length()==0) return result;
@@ -211,7 +215,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     public List<SummaryItem> searchItemBetweenDate(String userID,String itemID, String start, String end,String itemStyle) {
         List<SummaryItem> result=new ArrayList<>();
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
+        String tableName=user.getCompany().getCompanyId();//  companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryTable");
         if(tableName==null) return result;
         String processes=getHomeProcessIds(userID);
         if(processes==null || processes.length()==0) return result;
@@ -273,13 +277,23 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
             item.setPlan((Double) objs[1]);
         }
         if(objs.length >2 && objs[2]!=null) {
-            if(objs[2] instanceof Timestamp){
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-                Timestamp curdate= (Timestamp) objs[2];
-                item.setItemName(simpleDateFormat.format(new Date(curdate.getTime())));
-            }
-            else {
+            try {
+                if(objs[2] instanceof Timestamp || DateUtil.convertStringToDate("yyyy-MM-dd",(String)objs[2])!=null){
+                    if(objs[2] instanceof Timestamp) {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        Timestamp curdate = (Timestamp) objs[2];
+                        item.setItemName(simpleDateFormat.format(new Date(curdate.getTime())));
+                    }
+                    else {
+                        item.setItemName((String) objs[2]);
+                    }
+                }
+                else {
+                    item.setProcessID((String) objs[2]);
+                }
+            } catch (ParseException e) {
                 item.setProcessID((String) objs[2]);
+                //e.printStackTrace();
             }
         }
         if (objs.length >3 && objs[3] !=null) {

@@ -1,7 +1,9 @@
 package com.huivip.holu.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sunlaihui on 8/28/15.
@@ -30,6 +32,8 @@ public class Mission implements Serializable {
     private String userName;*/
     private ProcessMid processMid;
     private boolean owner;
+    private boolean operater;
+    private List<String> subComponentList=new ArrayList<>();
 
     public Component getComponent() {
         return component;
@@ -183,8 +187,24 @@ public class Mission implements Serializable {
         return owner;
     }
 
+    public boolean isOperater() {
+        return operater;
+    }
+
+    public void setOperater(boolean operater) {
+        this.operater = operater;
+    }
+
     public void setOwner(boolean owner) {
         this.owner = owner;
+    }
+
+    public List<String> getSubComponentList() {
+        return subComponentList;
+    }
+
+    public void setSubComponentList(List<String> subComponentList) {
+        this.subComponentList = subComponentList;
     }
 
     public void setProcessMid(ProcessMid processMid) {

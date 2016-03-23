@@ -17,7 +17,7 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
 
     @Override
     public List<Project> getProjectByUserID(String userID, String parentProject, ExtendedPaginatedList list) {
-        String hsqlString = "select p From Project p join p.departments pd "
+        String hsqlString = "select distinct p From Project p join p.departments pd "
                 + " where pd.departmentID in (select d.departmentID From Department d join d.users u where u.userID='" + userID + "')"
                 +
                 " and p.projectID not in (select pe.projectID From Project pe join pe.extendUsers u2 where u2.userID='"+userID+"')";

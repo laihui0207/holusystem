@@ -118,53 +118,71 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         handleComponents(project,user, missions,type,styleID);*/
         // todo  check pre-process if confirm
         User user=userManager.getUserByUserID(userID);
-        String userProcesses=null;//collectProcessOfUser(user);
-
         ExtendedPaginatedList list= new PaginatedListImpl();
         list.setIndex(Integer.parseInt(pageIndex));
         list.setPageSize(Integer.parseInt(pageSize));
-        List<Object[]> data=processMidDao.getMission(projectID,styleID,userProcesses,user.getCompany().getCompanyId(),type, list);
-        // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
-        if(data==null || data.size()==0) return missions;
-        int processOrder=0;
-        boolean preProcessFinished=false;
-        for(Object[] objs:data){
-            Mission mission=new Mission();
-            mission.setSubComponentID((String)objs[0]);
-            mission.setSubComponentName((String)objs[1]);
-            mission.setProjectPathName((String)objs[2]);
-            mission.setProjectID(projectID);
-            mission.setStyleProcessID((String)objs[3]);
-            mission.setProcessName((String)objs[5]);
-            mission.setStyleName((String)objs[7]);
-            mission.setStartDate((Date)objs[9]);
-            mission.setEndDate((Date)objs[10]);
-            //missions.add(mission);
+       /* String userProcesses=null;//collectProcessOfUser(user);
+        if(!user.isAllowCreateProject()){
+           // userProcesses=collectProcessOfUser(user);
+           list=null;
+        }*/
+        List<String> subComponents=processMidDao.getSubComponentOfMission(projectID,styleID,user.getCompany().getCompanyId(),type,list );
+        if(subComponents==null || subComponents.size()==0) return missions;
+        for(String subComponentID:subComponents) {
 
-            if(user.isAllowCreateProject()){
-                mission.setOwner(true);
-                missions.add(mission);
-            }
-            else {
-                for (Post post : user.getPosts()) {
-                    if (post.getProcessDictionary()!=null && ((String)objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
-                        if (processOrder == 0 ||(processOrder > 0 && preProcessFinished)) {
-                            mission.setOwner(true);
-                        }
+            List<Object[]> data = processMidDao.getMission(projectID, styleID, subComponentID, user.getCompany().getCompanyId());
+            // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
+            boolean preProcessFinished = true;
+            for (Object[] objs : data) {
+                Mission mission = new Mission();
+                mission.setSubComponentID((String) objs[0]);
+                mission.setSubComponentName((String) objs[1]);
+                mission.setProjectPathName((String) objs[2]);
+                mission.setProjectID(projectID);
+                mission.setStyleProcessID((String) objs[3]);
+                mission.setProcessName((String) objs[5]);
+                mission.setStyleName((String) objs[7]);
+                mission.setStartDate((Date) objs[9]);
+                mission.setEndDate((Date) objs[10]);
+                mission.setSubComponentList(subComponents);
+                boolean ifFinished = mission.getEndDate() != null;
+                if (!ifFinished && preProcessFinished) {
+                    mission.setOwner(true);
+                } else if (ifFinished) {
+                    mission.setOwner(true);
+                }
+                preProcessFinished = ifFinished;
+                if (user.isAllowCreateProject()) {
+                    if (type.equalsIgnoreCase("finish") && ifFinished) {
+                        missions.add(mission);
+                    } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
+                        missions.add(mission);
+                    } else if (type.equalsIgnoreCase("all")) {
                         missions.add(mission);
                     }
-                    else {
-                        if (mission.getEndDate()!=null){
-                            preProcessFinished=true;
-                        } else {
-                            preProcessFinished=false;
+                } else {
+                    for (Post post : user.getPosts()) {
+                        if (post.getProcessDictionary() != null && ((String) objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
+                            if (type.equalsIgnoreCase("finish") && ifFinished) {
+                                missions.add(mission);
+                            } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
+                                missions.add(mission);
+                            } else if (type.equalsIgnoreCase("all")) {
+                                missions.add(mission);
+                            }
+                            break;
                         }
+
                     }
                 }
-                processOrder++;
             }
         }
         return missions;
+    }
+
+    @Override
+    public List<Mission> getSumComponentsOfMyMissions(String projectID, String styleID, String userID, String type) {
+        return null;
     }
 
     @Override
