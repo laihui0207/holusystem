@@ -181,8 +181,55 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
-    public List<Mission> getSumComponentsOfMyMissions(String projectID, String styleID, String userID, String type) {
-        return null;
+    public List<Mission> getSumComponentsOfMyMissions(String projectID, String styleID, String userID,String subComponentID, String type) {
+        User user=userManager.getUserByUserID(userID);
+        List<Mission> missions =new ArrayList<>();
+        List<Object[]> data = processMidDao.getMission(projectID, styleID, subComponentID, user.getCompany().getCompanyId());
+        // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
+        boolean preProcessFinished = true;
+        for (Object[] objs : data) {
+            Mission mission = new Mission();
+            mission.setSubComponentID((String) objs[0]);
+            mission.setSubComponentName((String) objs[1]);
+            mission.setProjectPathName((String) objs[2]);
+            mission.setProjectID(projectID);
+            mission.setStyleProcessID((String) objs[3]);
+            mission.setProcessName((String) objs[5]);
+            mission.setStyleName((String) objs[7]);
+            mission.setStartDate((Date) objs[9]);
+            mission.setEndDate((Date) objs[10]);
+            boolean ifFinished = mission.getEndDate() != null;
+            if (!ifFinished && preProcessFinished) {
+                mission.setOwner(true);
+            } else if (ifFinished) {
+                mission.setOwner(true);
+            }
+            preProcessFinished = ifFinished;
+            if (user.isAllowCreateProject()) {
+                if (type.equalsIgnoreCase("finish") && ifFinished) {
+                    missions.add(mission);
+                } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
+                    missions.add(mission);
+                } else if (type.equalsIgnoreCase("all")) {
+                    missions.add(mission);
+                }
+            } else {
+                for (Post post : user.getPosts()) {
+                    if (post.getProcessDictionary() != null && ((String) objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
+                        if (type.equalsIgnoreCase("finish") && ifFinished) {
+                            missions.add(mission);
+                        } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
+                            missions.add(mission);
+                        } else if (type.equalsIgnoreCase("all")) {
+                            missions.add(mission);
+                        }
+                        break;
+                    }
+
+                }
+            }
+        }
+        return missions;
     }
 
     @Override
@@ -207,7 +254,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         String[] datas=data.split(",");
         for(String ids:datas){
             //ids format: projectID, SubcomponentID,processID
-            String[] idStrs=ids.split("-");
+            String[] idStrs=ids.split("#");
             String subcomponentID=idStrs[1];
             String processID=idStrs[2];
             String processNote="";

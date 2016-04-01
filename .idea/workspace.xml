@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="650b3dd5-cb7c-422c-b09a-676d24fa6cc8" name="Default" comment="k">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProjectDaoHibernate.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProjectDaoHibernate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryManagerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java" />
     </list>
     <ignored path="holusystem.iws" />
@@ -62,24 +58,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/util/DateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5283017">
-              <caret line="183" column="90" selection-start-line="183" selection-start-column="90" selection-end-line="183" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="177" column="48" selection-start-line="177" selection-start-column="48" selection-end-line="177" selection-end-column="48" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="userform.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userform.jsp">
+      <file leaf-file-name="SummaryProcess.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/SummaryProcess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.5">
-              <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -95,517 +88,120 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SummaryTotalDaoHibernate.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SummaryTotalDaoHibernate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21717171">
-              <caret line="201" column="49" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="423" column="71" selection-start-line="423" selection-start-column="71" selection-end-line="423" selection-end-column="71" />
               <folding>
-                <marker date="1458662717000" expanded="true" signature="652:961" placeholder="select sum(b..itemID..." />
-                <marker date="1458662717000" expanded="true" signature="756:961" placeholder="SELECT itemI..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="2219:2507" placeholder="select disti..ItemName..." />
-                <marker date="1458662717000" expanded="true" signature="2283:2507" placeholder="SELECT ItemN..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="3783:4121" placeholder="select b.Sum..projectPathName..." />
-                <marker date="1458662717000" expanded="true" signature="3874:4121" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="5506:5838" placeholder="select sum(b..processID..." />
-                <marker date="1458662717000" expanded="true" signature="5613:5838" placeholder="SELECT disti..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="7143:8256" placeholder="select disti..ProjectID..." />
-                <marker date="1458662717000" expanded="true" signature="7197:7703" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="7742:8229" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="8550:9675" placeholder="select disti..ProjectID..." />
-                <marker date="1458662717000" expanded="true" signature="8604:9119" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="9158:9648" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="9970:11286" placeholder="select disti..ProjectID..." />
-                <marker date="1458662717000" expanded="true" signature="10084:10662" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="10701:11259" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="11585:12931" placeholder="select disti..ProjectID..." />
-                <marker date="1458662717000" expanded="true" signature="11699:12292" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="12331:12904" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="13132:15261" placeholder="select disti..ProjectRootID..." />
-                <marker date="1458662717000" expanded="true" signature="13340:13598" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="13637:13891" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="13955:14209" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="14273:14523" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="14587:14847" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="14911:15167" placeholder="SELECT Proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="15463:17752" placeholder="select disti..DepartmentID..." />
-                <marker date="1458662717000" expanded="true" signature="15678:15972" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="16011:16301" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="16365:16655" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="16719:17005" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="17069:17365" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="17429:17721" placeholder="SELECT Depar..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="17977:20569" placeholder="select disti..processID..." />
-                <marker date="1458662717000" expanded="true" signature="18185:18531" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="18570:18912" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="18976:19317" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="19381:19718" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="19782:20129" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="20193:20538" placeholder="SELECT proce..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="20797:23230" placeholder="select a.pro..projectID..." />
-                <marker date="1458662717000" expanded="true" signature="20995:21317" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="21356:21674" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="21738:22055" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="22119:22431" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="22495:22817" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="22881:23199" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="23484:24550" placeholder="select b.Sum..curDate..." />
-                <marker date="1458662717000" expanded="true" signature="23587:23931" placeholder="SELECT ItemD..view_missingValue_SummaryTableTotalByProject..." />
-                <marker date="1458662717000" expanded="true" signature="23587:23998" placeholder="SELECT curDa..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="24060:24407" placeholder="SELECT ItemD..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="24060:24474" placeholder="SELECT curDa..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="24803:25863" placeholder="select b.Sum..itemName..." />
-                <marker date="1458662717000" expanded="true" signature="24916:25272" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
-                <marker date="1458662717000" expanded="true" signature="24916:25343" placeholder="SELECT itemN..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="25405:25761" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
-                <marker date="1458662717000" expanded="true" signature="25405:25835" placeholder="SELECT itemN..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="26136:27289" placeholder="select b.Sum..projectPathName..." />
-                <marker date="1458662717000" expanded="true" signature="26249:26724" placeholder="SELECT proje..missingValue..." />
-                <marker date="1458662717000" expanded="true" signature="26786:27261" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="654:963" placeholder="select sum(b..itemID..." />
+                <marker date="1459445461000" expanded="true" signature="758:963" placeholder="SELECT itemI..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="1928:2150" placeholder="select ItemP..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="2619:2907" placeholder="select disti..ItemName..." />
+                <marker date="1459445461000" expanded="true" signature="2683:2907" placeholder="SELECT ItemN..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="3897:4076" placeholder="select itemN..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="4501:4826" placeholder="select b.Sum..projectPathName..." />
+                <marker date="1459445461000" expanded="true" signature="4592:4826" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="5887:6125" placeholder="select ItemA..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="5887:6138" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="5887:6151" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="6332:7816" placeholder="select sum(S..*..." />
+                <marker date="1459445461000" expanded="true" signature="6452:7090" placeholder="select * fro..projectrootName..." />
+                <marker date="1459445461000" expanded="true" signature="6488:6725" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+                <marker date="1459445461000" expanded="true" signature="6488:7062" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+                <marker date="1459445461000" expanded="true" signature="7101:7765" placeholder="select * fro..projectrootName..." />
+                <marker date="1459445461000" expanded="true" signature="7137:7737" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+                <marker date="1459445461000" expanded="true" signature="8125:8457" placeholder="select sum(b..processID..." />
+                <marker date="1459445461000" expanded="true" signature="8232:8457" placeholder="SELECT disti..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="9518:9757" placeholder="select ItemA..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="9518:9766" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="9518:9772" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="9518:9785" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="9518:9787" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="10207:11320" placeholder="select disti..ProjectID..." />
+                <marker date="1459445461000" expanded="true" signature="10261:10767" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="10806:11293" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="11614:12739" placeholder="select disti..ProjectID..." />
+                <marker date="1459445461000" expanded="true" signature="11668:12183" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="12222:12712" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="13034:14350" placeholder="select disti..ProjectID..." />
+                <marker date="1459445461000" expanded="true" signature="13148:13726" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="13765:14323" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="14649:15995" placeholder="select disti..ProjectID..." />
+                <marker date="1459445461000" expanded="true" signature="14763:15356" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="15395:15968" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="16198:18327" placeholder="select disti..ProjectRootID..." />
+                <marker date="1459445461000" expanded="true" signature="16406:16664" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="16703:16957" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="17021:17275" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="17339:17589" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="17653:17913" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="17977:18233" placeholder="SELECT Proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="18353:18531" placeholder="SELECT Proje..." />
+                <marker date="1459445461000" expanded="true" signature="18353:18559" placeholder="SELECT Proje..view_..." />
+                <marker date="1459445461000" expanded="true" signature="18353:18663" placeholder="SELECT Proje..view_GS1627269_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="18866:21155" placeholder="select disti..DepartmentID..." />
+                <marker date="1459445461000" expanded="true" signature="19081:19375" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="19414:19704" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="19768:20058" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="20122:20408" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="20472:20768" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="20832:21124" placeholder="SELECT Depar..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="21180:21486" placeholder="SELECT Depar..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="21712:24304" placeholder="select disti..processID..." />
+                <marker date="1459445461000" expanded="true" signature="21920:22266" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="22305:22647" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="22711:23052" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="23116:23453" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="23517:23864" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="23928:24273" placeholder="SELECT proce..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="24329:24582" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="24329:24597" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="24329:24631" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="24329:24649" placeholder="SELECT proce..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="24878:27311" placeholder="select a.pro..projectID..." />
+                <marker date="1459445461000" expanded="true" signature="25076:25398" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="25437:25755" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="25819:26136" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="26200:26512" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="26576:26898" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="26962:27280" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="27336:27662" placeholder="SELECT proce..view_missingValue_SummaryDateByProjectProcessDetail..." />
+                <marker date="1459445461000" expanded="true" signature="27917:28983" placeholder="select b.Sum..curDate..." />
+                <marker date="1459445461000" expanded="true" signature="28020:28364" placeholder="SELECT ItemD..view_missingValue_SummaryTableTotalByProject..." />
+                <marker date="1459445461000" expanded="true" signature="28020:28431" placeholder="SELECT curDa..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="28493:28840" placeholder="SELECT ItemD..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="28493:28907" placeholder="SELECT curDa..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="29009:29223" placeholder="select ItemP..view_missingValue_SummaryTableTotalByProjectByDate..." />
+                <marker date="1459445461000" expanded="true" signature="29476:29612" placeholder="select sum(S..*..." />
+                <marker date="1459445461000" expanded="true" signature="29476:29613" placeholder="select sum(S..." />
+                <marker date="1459445461000" expanded="true" signature="29476:30599" placeholder="select selec..." />
+                <marker date="1459445461000" expanded="true" signature="29476:30630" placeholder="select sum(S..SumWeight_actual..." />
+                <marker date="1459445461000" expanded="true" signature="29597:29612" placeholder="select * fro..." />
+                <marker date="1459445461000" expanded="true" signature="29615:30599" placeholder="select b.Sum..itemName..." />
+                <marker date="1459445461000" expanded="true" signature="29633:30012" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
+                <marker date="1459445461000" expanded="true" signature="29633:30083" placeholder="SELECT itemN..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="30102:30598" placeholder="select * fro..itemName..." />
+                <marker date="1459445461000" expanded="true" signature="30139:30517" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
+                <marker date="1459445461000" expanded="true" signature="30139:30591" placeholder="SELECT itemN..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="30903:32143" placeholder="select b.Sum..projectPathName..." />
+                <marker date="1459445461000" expanded="true" signature="30903:32174" placeholder="select sum(S..*..." />
+                <marker date="1459445461000" expanded="true" signature="31028:31569" placeholder="select * fro..ItemPathName..." />
+                <marker date="1459445461000" expanded="true" signature="31028:32136" placeholder="select * fro..ItemPathName..." />
+                <marker date="1459445461000" expanded="true" signature="31028:32143" placeholder="select * fro..ItemPathName..." />
+                <marker date="1459445461000" expanded="true" signature="31064:31562" placeholder="SELECT proje..missingValue..." />
+                <marker date="1459445461000" expanded="true" signature="31639:32136" placeholder="SELECT proje..missingValue..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Setting.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Setting.java">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.58900523">
+              <caret line="95" column="12" selection-start-line="95" selection-start-column="12" selection-end-line="95" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/SettingManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SummaryManagerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryManagerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProcessMidManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProcessMidManagerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="52" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Company.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1294#1295#0" expanded="false" />
-                <element signature="e#1319#1320#0" expanded="false" />
-                <element signature="e#1353#1354#0" expanded="false" />
-                <element signature="e#1381#1382#0" expanded="false" />
-                <element signature="e#1530#1531#0" expanded="false" />
-                <element signature="e#1572#1573#0" expanded="false" />
-                <element signature="e#1717#1718#0" expanded="false" />
-                <element signature="e#1755#1756#0" expanded="false" />
-                <element signature="e#1817#1818#0" expanded="false" />
-                <element signature="e#1871#1872#0" expanded="false" />
-                <element signature="e#2022#2023#0" expanded="false" />
-                <element signature="e#2063#2064#0" expanded="false" />
-                <element signature="e#2131#2132#0" expanded="false" />
-                <element signature="e#2191#2192#0" expanded="false" />
-                <element signature="e#2342#2343#0" expanded="false" />
-                <element signature="e#2383#2384#0" expanded="false" />
-                <element signature="e#2451#2452#0" expanded="false" />
-                <element signature="e#2511#2512#0" expanded="false" />
-                <element signature="e#2648#2649#0" expanded="false" />
-                <element signature="e#2682#2683#0" expanded="false" />
-                <element signature="e#2767#2768#0" expanded="false" />
-                <element signature="e#2813#2814#0" expanded="false" />
-                <element signature="e#2888#2889#0" expanded="false" />
-                <element signature="e#2925#2926#0" expanded="false" />
-                <element signature="e#2985#2986#0" expanded="false" />
-                <element signature="e#3037#3038#0" expanded="false" />
-                <element signature="e#3104#3105#0" expanded="false" />
-                <element signature="e#3137#3138#0" expanded="false" />
-                <element signature="e#3189#3190#0" expanded="false" />
-                <element signature="e#3233#3234#0" expanded="false" />
-                <element signature="e#3300#3301#0" expanded="false" />
-                <element signature="e#3333#3334#0" expanded="false" />
-                <element signature="e#3385#3386#0" expanded="false" />
-                <element signature="e#3429#3430#0" expanded="false" />
-                <element signature="e#3502#3503#0" expanded="false" />
-                <element signature="e#3538#3539#0" expanded="false" />
-                <element signature="e#3596#3597#0" expanded="false" />
-                <element signature="e#3646#3647#0" expanded="false" />
-                <element signature="e#3720#3721#0" expanded="false" />
-                <element signature="e#3756#3757#0" expanded="false" />
-                <element signature="e#3813#3814#0" expanded="false" />
-                <element signature="e#3863#3864#0" expanded="false" />
-                <element signature="e#3946#3947#0" expanded="false" />
-                <element signature="e#3987#3988#0" expanded="false" />
-                <element signature="e#4055#4056#0" expanded="false" />
-                <element signature="e#4115#4116#0" expanded="false" />
-                <element signature="e#4190#4191#0" expanded="false" />
-                <element signature="e#4227#4228#0" expanded="false" />
-                <element signature="e#4287#4288#0" expanded="false" />
-                <element signature="e#4339#4340#0" expanded="false" />
-                <element signature="e#4408#4409#0" expanded="false" />
-                <element signature="e#4442#4443#0" expanded="false" />
-                <element signature="e#4496#4497#0" expanded="false" />
-                <element signature="e#4542#4543#0" expanded="false" />
-                <element signature="e#4613#4614#0" expanded="false" />
-                <element signature="e#4648#4649#0" expanded="false" />
-                <element signature="e#4704#4705#0" expanded="false" />
-                <element signature="e#4752#4753#0" expanded="false" />
-                <element signature="e#4823#4824#0" expanded="false" />
-                <element signature="e#4858#4859#0" expanded="false" />
-                <element signature="e#4915#4916#0" expanded="false" />
-                <element signature="e#4963#4964#0" expanded="false" />
-                <element signature="e#5032#5033#0" expanded="false" />
-                <element signature="e#5066#5067#0" expanded="false" />
-                <element signature="e#5120#5121#0" expanded="false" />
-                <element signature="e#5166#5167#0" expanded="false" />
-                <element signature="e#5241#5242#0" expanded="false" />
-                <element signature="e#5278#5279#0" expanded="false" />
-                <element signature="e#5338#5339#0" expanded="false" />
-                <element signature="e#5390#5391#0" expanded="false" />
-                <element signature="e#5455#5456#0" expanded="false" />
-                <element signature="e#5488#5489#0" expanded="false" />
-                <element signature="e#5538#5539#0" expanded="false" />
-                <element signature="e#5582#5583#0" expanded="false" />
-                <element signature="e#5921#5922#0" expanded="false" />
-                <element signature="e#5956#5957#0" expanded="false" />
-                <element signature="e#6012#6013#0" expanded="false" />
-                <element signature="e#6060#6061#0" expanded="false" />
-                <element signature="e#6137#6138#0" expanded="false" />
-                <element signature="e#6175#6176#0" expanded="false" />
-                <element signature="e#6237#6238#0" expanded="false" />
-                <element signature="e#6291#6292#0" expanded="false" />
-                <element signature="e#6370#6371#0" expanded="false" />
-                <element signature="e#6409#6410#0" expanded="false" />
-                <element signature="e#6473#6474#0" expanded="false" />
-                <element signature="e#6529#6530#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RestAuthFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/webapp/filter/RestAuthFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3454#3455#0" expanded="false" />
-                <element signature="e#3494#3495#0" expanded="false" />
-                <element signature="e#3597#3598#0" expanded="false" />
-                <element signature="e#3622#3623#0" expanded="false" />
-                <element signature="e#3694#3695#0" expanded="false" />
-                <element signature="e#3725#3726#0" expanded="false" />
-                <element signature="e#3823#3824#0" expanded="false" />
-                <element signature="e#3854#3855#0" expanded="false" />
-                <element signature="e#3945#3946#0" expanded="false" />
-                <element signature="e#3983#3984#0" expanded="false" />
-                <element signature="e#4076#4077#0" expanded="false" />
-                <element signature="e#4111#4112#0" expanded="false" />
-                <element signature="e#4221#4222#0" expanded="false" />
-                <element signature="e#4253#4254#0" expanded="false" />
-                <element signature="e#4361#4362#0" expanded="false" />
-                <element signature="e#4392#4393#0" expanded="false" />
-                <element signature="e#4477#4478#0" expanded="false" />
-                <element signature="e#4505#4506#0" expanded="false" />
-                <element signature="e#4641#4642#0" expanded="false" />
-                <element signature="e#4675#4676#0" expanded="false" />
-                <element signature="e#4820#4821#0" expanded="false" />
-                <element signature="e#4851#4852#0" expanded="false" />
-                <element signature="e#5125#5126#0" expanded="false" />
-                <element signature="e#5153#5154#0" expanded="false" />
-                <element signature="e#5201#5202#0" expanded="false" />
-                <element signature="e#5240#5241#0" expanded="false" />
-                <element signature="e#5291#5292#0" expanded="false" />
-                <element signature="e#5316#5317#0" expanded="false" />
-                <element signature="e#5352#5353#0" expanded="false" />
-                <element signature="e#5380#5381#0" expanded="false" />
-                <element signature="e#6525#6526#0" expanded="false" />
-                <element signature="e#6564#6565#0" expanded="false" />
-                <element signature="e#6626#6627#0" expanded="false" />
-                <element signature="e#6682#6683#0" expanded="false" />
-                <element signature="e#6771#6772#0" expanded="false" />
-                <element signature="e#6816#6817#0" expanded="false" />
-                <element signature="e#7017#7018#0" expanded="false" />
-                <element signature="e#7044#7045#0" expanded="false" />
-                <element signature="e#7084#7085#0" expanded="false" />
-                <element signature="e#7116#7117#0" expanded="false" />
-                <element signature="e#7179#7180#0" expanded="false" />
-                <element signature="e#7210#7211#0" expanded="false" />
-                <element signature="e#7258#7259#0" expanded="false" />
-                <element signature="e#7298#7299#0" expanded="false" />
-                <element signature="e#7357#7358#0" expanded="false" />
-                <element signature="e#7386#7387#0" expanded="false" />
-                <element signature="e#7430#7431#0" expanded="false" />
-                <element signature="e#7466#7467#0" expanded="false" />
-                <element signature="e#7581#7582#0" expanded="false" />
-                <element signature="e#7622#7623#0" expanded="false" />
-                <element signature="e#7687#7688#0" expanded="false" />
-                <element signature="e#7747#7748#0" expanded="false" />
-                <element signature="e#7876#7877#0" expanded="false" />
-                <element signature="e#7915#7916#0" expanded="false" />
-                <element signature="e#7980#7981#0" expanded="false" />
-                <element signature="e#8036#8037#0" expanded="false" />
-                <element signature="e#8169#8170#0" expanded="false" />
-                <element signature="e#8210#8211#0" expanded="false" />
-                <element signature="e#8279#8280#0" expanded="false" />
-                <element signature="e#8339#8340#0" expanded="false" />
-                <element signature="e#8406#8407#0" expanded="false" />
-                <element signature="e#8439#8440#0" expanded="false" />
-                <element signature="e#8491#8492#0" expanded="false" />
-                <element signature="e#8535#8536#0" expanded="false" />
-                <element signature="e#8600#8601#0" expanded="false" />
-                <element signature="e#8632#8633#0" expanded="false" />
-                <element signature="e#8682#8683#0" expanded="false" />
-                <element signature="e#8724#8725#0" expanded="false" />
-                <element signature="e#8919#8920#0" expanded="false" />
-                <element signature="e#8957#8958#0" expanded="false" />
-                <element signature="e#10070#10071#0" expanded="false" />
-                <element signature="e#10105#10106#0" expanded="false" />
-                <element signature="e#10161#10162#0" expanded="false" />
-                <element signature="e#10209#10210#0" expanded="false" />
-                <element signature="e#10349#10350#0" expanded="false" />
-                <element signature="e#10385#10386#0" expanded="false" />
-                <element signature="e#10734#10735#0" expanded="false" />
-                <element signature="e#10762#10763#0" expanded="false" />
-                <element signature="e#10807#10808#0" expanded="false" />
-                <element signature="e#10841#10842#0" expanded="false" />
-                <element signature="e#11363#11364#0" expanded="false" />
-                <element signature="e#11393#11394#0" expanded="false" />
-                <element signature="e#11499#11500#0" expanded="false" />
-                <element signature="e#11529#11530#0" expanded="false" />
-                <element signature="e#11659#11660#0" expanded="false" />
-                <element signature="e#11696#11697#0" expanded="false" />
-                <element signature="e#11910#11911#0" expanded="false" />
-                <element signature="e#11952#11953#0" expanded="false" />
-                <element signature="e#12080#12081#0" expanded="false" />
-                <element signature="e#12116#12117#0" expanded="false" />
-                <element signature="e#12323#12324#0" expanded="false" />
-                <element signature="e#12364#12365#0" expanded="false" />
-                <element signature="e#12502#12503#0" expanded="false" />
-                <element signature="e#12543#12544#0" expanded="false" />
-                <element signature="e#12769#12770#0" expanded="false" />
-                <element signature="e#12811#12812#0" expanded="false" />
-                <element signature="e#12845#12846#0" expanded="false" />
-                <element signature="e#12873#12874#0" expanded="false" />
-                <element signature="e#12921#12922#0" expanded="false" />
-                <element signature="e#12961#12962#0" expanded="false" />
-                <element signature="e#13009#13010#0" expanded="false" />
-                <element signature="e#13049#13050#0" expanded="false" />
-                <element signature="e#13111#13112#0" expanded="false" />
-                <element signature="e#13165#13166#0" expanded="false" />
-                <element signature="e#13221#13222#0" expanded="false" />
-                <element signature="e#13269#13270#0" expanded="false" />
-                <element signature="e#13319#13320#0" expanded="false" />
-                <element signature="e#13361#13362#0" expanded="false" />
-                <element signature="e#13409#13410#0" expanded="false" />
-                <element signature="e#13449#13450#0" expanded="false" />
-                <element signature="e#13491#13492#0" expanded="false" />
-                <element signature="e#13525#13526#0" expanded="false" />
-                <element signature="e#13579#13580#0" expanded="false" />
-                <element signature="e#13625#13626#0" expanded="false" />
-                <element signature="e#13670#13671#0" expanded="false" />
-                <element signature="e#13704#13705#0" expanded="false" />
-                <element signature="e#13751#13752#0" expanded="false" />
-                <element signature="e#13789#13790#0" expanded="false" />
-                <element signature="e#13836#13837#0" expanded="false" />
-                <element signature="e#13874#13875#0" expanded="false" />
-                <element signature="e#13935#13936#0" expanded="false" />
-                <element signature="e#13987#13988#0" expanded="false" />
-                <element signature="e#14046#14047#0" expanded="false" />
-                <element signature="e#14096#14097#0" expanded="false" />
-                <element signature="e#14165#14166#0" expanded="false" />
-                <element signature="e#14225#14226#0" expanded="false" />
-                <element signature="e#14287#14288#0" expanded="false" />
-                <element signature="e#14316#14317#0" expanded="false" />
-                <element signature="e#14360#14361#0" expanded="false" />
-                <element signature="e#14396#14397#0" expanded="false" />
-                <element signature="e#14475#14476#0" expanded="false" />
-                <element signature="e#14507#14508#0" expanded="false" />
-                <element signature="e#14557#14558#0" expanded="false" />
-                <element signature="e#14599#14600#0" expanded="false" />
-                <element signature="e#15022#15023#0" expanded="false" />
-                <element signature="e#15089#15090#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mission.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="185" column="28" selection-start-line="185" selection-start-column="28" selection-end-line="185" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1079#1080#0" expanded="false" />
-                <element signature="e#1111#1112#0" expanded="false" />
-                <element signature="e#1164#1165#0" expanded="false" />
-                <element signature="e#1206#1207#0" expanded="false" />
-                <element signature="e#1246#1247#0" expanded="false" />
-                <element signature="e#1282#1283#0" expanded="false" />
-                <element signature="e#1340#1341#0" expanded="false" />
-                <element signature="e#1390#1391#0" expanded="false" />
-                <element signature="e#1623#1624#0" expanded="false" />
-                <element signature="e#1650#1651#0" expanded="false" />
-                <element signature="e#1690#1691#0" expanded="false" />
-                <element signature="e#1722#1723#0" expanded="false" />
-                <element signature="e#1760#1761#0" expanded="false" />
-                <element signature="e#1794#1795#0" expanded="false" />
-                <element signature="e#1848#1849#0" expanded="false" />
-                <element signature="e#1894#1895#0" expanded="false" />
-                <element signature="e#2073#2074#0" expanded="false" />
-                <element signature="e#2110#2111#0" expanded="false" />
-                <element signature="e#2178#2179#0" expanded="false" />
-                <element signature="e#2230#2231#0" expanded="false" />
-                <element signature="e#2453#2454#0" expanded="false" />
-                <element signature="e#2486#2487#0" expanded="false" />
-                <element signature="e#2526#2527#0" expanded="false" />
-                <element signature="e#2562#2563#0" expanded="false" />
-                <element signature="e#2620#2621#0" expanded="false" />
-                <element signature="e#2670#2671#0" expanded="false" />
-                <element signature="e#2706#2707#0" expanded="false" />
-                <element signature="e#2738#2739#0" expanded="false" />
-                <element signature="e#2788#2789#0" expanded="false" />
-                <element signature="e#2830#2831#0" expanded="false" />
-                <element signature="e#2872#2873#0" expanded="false" />
-                <element signature="e#2910#2911#0" expanded="false" />
-                <element signature="e#2972#2973#0" expanded="false" />
-                <element signature="e#3026#3027#0" expanded="false" />
-                <element signature="e#3069#3070#0" expanded="false" />
-                <element signature="e#3108#3109#0" expanded="false" />
-                <element signature="e#3172#3173#0" expanded="false" />
-                <element signature="e#3228#3229#0" expanded="false" />
-                <element signature="e#3269#3270#0" expanded="false" />
-                <element signature="e#3306#3307#0" expanded="false" />
-                <element signature="e#3366#3367#0" expanded="false" />
-                <element signature="e#3418#3419#0" expanded="false" />
-                <element signature="e#3459#3460#0" expanded="false" />
-                <element signature="e#3496#3497#0" expanded="false" />
-                <element signature="e#3556#3557#0" expanded="false" />
-                <element signature="e#3608#3609#0" expanded="false" />
-                <element signature="e#3646#3647#0" expanded="false" />
-                <element signature="e#3680#3681#0" expanded="false" />
-                <element signature="e#3734#3735#0" expanded="false" />
-                <element signature="e#3780#3781#0" expanded="false" />
-                <element signature="e#3816#3817#0" expanded="false" />
-                <element signature="e#3848#3849#0" expanded="false" />
-                <element signature="e#3882#3883#0" expanded="false" />
-                <element signature="e#3914#3915#0" expanded="false" />
-                <element signature="e#3962#3963#0" expanded="false" />
-                <element signature="e#4004#4005#0" expanded="false" />
-                <element signature="e#4036#4037#0" expanded="false" />
-                <element signature="e#4066#4067#0" expanded="false" />
-                <element signature="e#4110#4111#0" expanded="false" />
-                <element signature="e#4148#4149#0" expanded="false" />
-                <element signature="e#4198#4199#0" expanded="false" />
-                <element signature="e#4240#4241#0" expanded="false" />
-                <element signature="e#4272#4273#0" expanded="false" />
-                <element signature="e#4300#4301#0" expanded="false" />
-                <element signature="e#4335#4336#0" expanded="false" />
-                <element signature="e#4366#4367#0" expanded="false" />
-                <element signature="e#4415#4416#0" expanded="false" />
-                <element signature="e#4455#4456#0" expanded="false" />
-                <element signature="e#4498#4499#0" expanded="false" />
-                <element signature="e#4532#4533#0" expanded="false" />
-                <element signature="e#4581#4582#0" expanded="false" />
-                <element signature="e#4620#4621#0" expanded="false" />
-                <element signature="e#4690#4691#0" expanded="false" />
-                <element signature="e#4746#4747#0" expanded="false" />
-                <element signature="e#4802#4803#0" expanded="false" />
-                <element signature="e#4846#4847#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProcessMidDaoHibernate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="158" column="44" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#556#557#0" expanded="false" />
-                <element signature="e#595#596#0" expanded="false" />
-                <marker date="1458491030000" expanded="true" signature="726:827" placeholder="select * fro..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="1922:2036" placeholder="UPDATE missi..." />
-                <marker date="1458491030000" expanded="true" signature="2165:2520" placeholder="insert into missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="3449:3608" placeholder="select pmt.s..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="3449:3609" placeholder="select pmt.s..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="4265:4373" placeholder="select pmt.p..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="4265:4374" placeholder="select pmt.p..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="4265:4376" placeholder="select pmt.p..missingValue..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5357" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5622" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5623" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5645" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5646" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="5051:5665" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="6756:7205" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="6756:7530" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-                <marker date="1458491030000" expanded="true" signature="6756:7531" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProcessMidDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="125" selection-start-line="16" selection-start-column="125" selection-end-line="16" selection-end-column="125" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -631,8 +227,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/DocumentationManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/MessageManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/MessageReplyManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/webapp/controller/ProcessMidFormController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProjectDao.java" />
@@ -674,14 +268,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/TaskDaoHibernate.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/TaskManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProjectDaoHibernate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
       </list>
     </option>
   </component>
@@ -1766,12 +1362,20 @@
       <workItem from="1458226773138" duration="5198000" />
       <workItem from="1458354216620" duration="12370000" />
       <workItem from="1458539094495" duration="1313000" />
-      <workItem from="1458657163839" duration="2668000" />
+      <workItem from="1458657163839" duration="2714000" />
+      <workItem from="1458736000327" duration="891000" />
+      <workItem from="1458827684623" duration="4210000" />
+      <workItem from="1458920500819" duration="11414000" />
+      <workItem from="1459170405919" duration="3596000" />
+      <workItem from="1459250890153" duration="7188000" />
+      <workItem from="1459342648512" duration="7166000" />
+      <workItem from="1459407288882" duration="1168000" />
+      <workItem from="1459440707591" duration="3610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1319487000" />
+    <option name="totallyTimeSpent" value="1358776000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1783,34 +1387,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58096415" sideWeight="0.5343348" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13662376" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6341162" sideWeight="0.46566522" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43510506" sideWeight="0.49427754" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6341162" sideWeight="0.537196" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13662376" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5723115" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3053152" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30160692" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44252163" sideWeight="0.48426324" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46353522" sideWeight="0.48426324" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20243205" sideWeight="0.3658838" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25608012" sideWeight="0.6341162" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2739628" sideWeight="0.3313253" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263288" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3831891" sideWeight="0.46280402" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hibernate Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65665233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1819,6 +1422,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3250927" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1939,13 +1543,13 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>196</line>
+          <line>238</line>
           <properties />
           <option name="timeStamp" value="293" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>153</line>
+          <line>195</line>
           <properties />
           <option name="timeStamp" value="295" />
         </line-breakpoint>
@@ -1955,15 +1559,9 @@
           <properties />
           <option name="timeStamp" value="302" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="350" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>271</line>
+          <line>318</line>
           <properties />
           <option name="timeStamp" value="418" />
         </line-breakpoint>
@@ -2040,12 +1638,6 @@
           <option name="timeStamp" value="488" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>235</line>
-          <properties />
-          <option name="timeStamp" value="494" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/TaskManagerImpl.java</url>
           <line>79</line>
           <properties />
@@ -2077,13 +1669,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>236</line>
+          <line>281</line>
           <properties />
           <option name="timeStamp" value="529" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>202</line>
+          <line>244</line>
           <properties />
           <option name="timeStamp" value="530" />
         </line-breakpoint>
@@ -2113,19 +1705,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>204</line>
+          <line>251</line>
           <properties />
           <option name="timeStamp" value="536" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>219</line>
+          <line>266</line>
           <properties />
           <option name="timeStamp" value="538" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>248</line>
+          <line>295</line>
           <properties />
           <option name="timeStamp" value="539" />
         </line-breakpoint>
@@ -2148,65 +1740,118 @@
           <option name="timeStamp" value="551" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>179</line>
-          <properties />
-          <option name="timeStamp" value="590" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>89</line>
+          <line>126</line>
           <properties />
           <option name="timeStamp" value="599" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
-          <line>81</line>
-          <properties />
-          <option name="timeStamp" value="600" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="601" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
-          <line>217</line>
-          <properties />
-          <option name="timeStamp" value="602" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
-          <line>395</line>
+          <line>446</line>
           <properties />
           <option name="timeStamp" value="603" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java</url>
-          <line>138</line>
+          <line>72</line>
           <properties />
-          <option name="timeStamp" value="604" />
+          <option name="timeStamp" value="614" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java</url>
-          <line>160</line>
+          <line>34</line>
           <properties />
-          <option name="timeStamp" value="610" />
+          <option name="timeStamp" value="616" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="mission.getSubComponentName().equals(&quot;D-1GZ-23&quot;)" language="JAVA" custom="" />
-          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
-          <line>147</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java</url>
+          <line>26</line>
           <properties />
-          <option name="timeStamp" value="613" />
+          <option name="timeStamp" value="617" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/TaskDaoHibernate.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="618" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="619" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
+          <line>392</line>
+          <properties />
+          <option name="timeStamp" value="623" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SubComponentListManagerImpl.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="625" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ComponentDaoHibernate.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="626" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SubComponentListDaoHibernate.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="627" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
+          <line>128</line>
+          <properties />
+          <option name="timeStamp" value="628" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java</url>
+          <line>179</line>
+          <properties />
+          <option name="timeStamp" value="630" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
+          <line>427</line>
+          <properties />
+          <option name="timeStamp" value="634" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java</url>
+          <line>276</line>
+          <properties />
+          <option name="timeStamp" value="640" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
+          <line>155</line>
+          <properties />
+          <option name="timeStamp" value="641" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
+          <line>309</line>
+          <properties />
+          <option name="timeStamp" value="642" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryTotalManagerImpl.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="644" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="614" />
+      <option name="time" value="645" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2215,55 +1860,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/UserDaoHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
-          <folding>
-            <marker date="1456235461000" expanded="true" signature="4695:4747" placeholder="select passw..missingValue..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/NewsManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6914213">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/SubComponentList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ComponentStyleManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ComponentStyleManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/webapp/controller/UserFormController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/SubComponentListDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2271,34 +1867,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SubComponentListDaoHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#534#535#0" expanded="false" />
-            <element signature="e#579#580#0" expanded="false" />
-            <marker date="1456332072000" expanded="true" signature="750:813" placeholder="select * fro..missingValue..." />
-            <marker date="1456332072000" expanded="true" signature="1543:1612" placeholder="select * fro..missingValue..." />
-            <marker date="1456332072000" expanded="true" signature="1998:2077" placeholder="select Compo..missingValue..." />
-            <marker date="1456332072000" expanded="true" signature="2395:2470" placeholder="select SubCo..missingValue..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/webapp/controller/ClientVersionFormController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="200" column="42" selection-start-line="200" selection-start-column="42" selection-end-line="200" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SubComponentListManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -2347,36 +1919,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/TaskManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/TaskDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/TaskDaoHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#450#451#0" expanded="false" />
-            <element signature="e#483#484#0" expanded="false" />
-            <marker date="1457450625000" expanded="true" signature="733:795" placeholder="Select * fro..missingValue..." />
-            <marker date="1457450625000" expanded="true" signature="733:797" placeholder="Select * fro..missingValue..." />
-            <marker date="1457450625000" expanded="true" signature="1508:1616" placeholder="select pmt.p..missingValue..." />
-            <marker date="1457450625000" expanded="true" signature="1508:1636" placeholder="select pmt.p..missingValue..." />
-            <marker date="1457450625000" expanded="true" signature="1654:1935" placeholder="(select rp.p..." />
-            <marker date="1457450625000" expanded="true" signature="1655:1934" placeholder="select rp.pr..R_project..." />
-            <marker date="1457450625000" expanded="true" signature="1790:1933" placeholder="Select rd.de..r_department..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2408,23 +1954,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/TaskManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProjectManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2432,9 +1965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2456,16 +1986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/util/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="23" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -2477,17 +1997,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/SummaryManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="185" column="28" selection-start-line="185" selection-start-column="28" selection-end-line="185" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <caret line="16" column="125" selection-start-line="16" selection-start-column="125" selection-end-line="16" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-core/3.0.1/cxf-core-3.0.1.jar!/org/apache/cxf/service/invoker/AbstractInvoker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5318302">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.020547945">
+          <caret line="183" column="90" selection-start-line="183" selection-start-column="90" selection-end-line="183" selection-end-column="90" />
         </state>
       </provider>
     </entry>
@@ -2496,283 +2035,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3454#3455#0" expanded="false" />
-            <element signature="e#3494#3495#0" expanded="false" />
-            <element signature="e#3597#3598#0" expanded="false" />
-            <element signature="e#3622#3623#0" expanded="false" />
-            <element signature="e#3694#3695#0" expanded="false" />
-            <element signature="e#3725#3726#0" expanded="false" />
-            <element signature="e#3823#3824#0" expanded="false" />
-            <element signature="e#3854#3855#0" expanded="false" />
-            <element signature="e#3945#3946#0" expanded="false" />
-            <element signature="e#3983#3984#0" expanded="false" />
-            <element signature="e#4076#4077#0" expanded="false" />
-            <element signature="e#4111#4112#0" expanded="false" />
-            <element signature="e#4221#4222#0" expanded="false" />
-            <element signature="e#4253#4254#0" expanded="false" />
-            <element signature="e#4361#4362#0" expanded="false" />
-            <element signature="e#4392#4393#0" expanded="false" />
-            <element signature="e#4477#4478#0" expanded="false" />
-            <element signature="e#4505#4506#0" expanded="false" />
-            <element signature="e#4641#4642#0" expanded="false" />
-            <element signature="e#4675#4676#0" expanded="false" />
-            <element signature="e#4820#4821#0" expanded="false" />
-            <element signature="e#4851#4852#0" expanded="false" />
-            <element signature="e#5125#5126#0" expanded="false" />
-            <element signature="e#5153#5154#0" expanded="false" />
-            <element signature="e#5201#5202#0" expanded="false" />
-            <element signature="e#5240#5241#0" expanded="false" />
-            <element signature="e#5291#5292#0" expanded="false" />
-            <element signature="e#5316#5317#0" expanded="false" />
-            <element signature="e#5352#5353#0" expanded="false" />
-            <element signature="e#5380#5381#0" expanded="false" />
-            <element signature="e#6525#6526#0" expanded="false" />
-            <element signature="e#6564#6565#0" expanded="false" />
-            <element signature="e#6626#6627#0" expanded="false" />
-            <element signature="e#6682#6683#0" expanded="false" />
-            <element signature="e#6771#6772#0" expanded="false" />
-            <element signature="e#6816#6817#0" expanded="false" />
-            <element signature="e#7017#7018#0" expanded="false" />
-            <element signature="e#7044#7045#0" expanded="false" />
-            <element signature="e#7084#7085#0" expanded="false" />
-            <element signature="e#7116#7117#0" expanded="false" />
-            <element signature="e#7179#7180#0" expanded="false" />
-            <element signature="e#7210#7211#0" expanded="false" />
-            <element signature="e#7258#7259#0" expanded="false" />
-            <element signature="e#7298#7299#0" expanded="false" />
-            <element signature="e#7357#7358#0" expanded="false" />
-            <element signature="e#7386#7387#0" expanded="false" />
-            <element signature="e#7430#7431#0" expanded="false" />
-            <element signature="e#7466#7467#0" expanded="false" />
-            <element signature="e#7581#7582#0" expanded="false" />
-            <element signature="e#7622#7623#0" expanded="false" />
-            <element signature="e#7687#7688#0" expanded="false" />
-            <element signature="e#7747#7748#0" expanded="false" />
-            <element signature="e#7876#7877#0" expanded="false" />
-            <element signature="e#7915#7916#0" expanded="false" />
-            <element signature="e#7980#7981#0" expanded="false" />
-            <element signature="e#8036#8037#0" expanded="false" />
-            <element signature="e#8169#8170#0" expanded="false" />
-            <element signature="e#8210#8211#0" expanded="false" />
-            <element signature="e#8279#8280#0" expanded="false" />
-            <element signature="e#8339#8340#0" expanded="false" />
-            <element signature="e#8406#8407#0" expanded="false" />
-            <element signature="e#8439#8440#0" expanded="false" />
-            <element signature="e#8491#8492#0" expanded="false" />
-            <element signature="e#8535#8536#0" expanded="false" />
-            <element signature="e#8600#8601#0" expanded="false" />
-            <element signature="e#8632#8633#0" expanded="false" />
-            <element signature="e#8682#8683#0" expanded="false" />
-            <element signature="e#8724#8725#0" expanded="false" />
-            <element signature="e#8919#8920#0" expanded="false" />
-            <element signature="e#8957#8958#0" expanded="false" />
-            <element signature="e#10070#10071#0" expanded="false" />
-            <element signature="e#10105#10106#0" expanded="false" />
-            <element signature="e#10161#10162#0" expanded="false" />
-            <element signature="e#10209#10210#0" expanded="false" />
-            <element signature="e#10349#10350#0" expanded="false" />
-            <element signature="e#10385#10386#0" expanded="false" />
-            <element signature="e#10734#10735#0" expanded="false" />
-            <element signature="e#10762#10763#0" expanded="false" />
-            <element signature="e#10807#10808#0" expanded="false" />
-            <element signature="e#10841#10842#0" expanded="false" />
-            <element signature="e#11363#11364#0" expanded="false" />
-            <element signature="e#11393#11394#0" expanded="false" />
-            <element signature="e#11499#11500#0" expanded="false" />
-            <element signature="e#11529#11530#0" expanded="false" />
-            <element signature="e#11659#11660#0" expanded="false" />
-            <element signature="e#11696#11697#0" expanded="false" />
-            <element signature="e#11910#11911#0" expanded="false" />
-            <element signature="e#11952#11953#0" expanded="false" />
-            <element signature="e#12080#12081#0" expanded="false" />
-            <element signature="e#12116#12117#0" expanded="false" />
-            <element signature="e#12323#12324#0" expanded="false" />
-            <element signature="e#12364#12365#0" expanded="false" />
-            <element signature="e#12502#12503#0" expanded="false" />
-            <element signature="e#12543#12544#0" expanded="false" />
-            <element signature="e#12769#12770#0" expanded="false" />
-            <element signature="e#12811#12812#0" expanded="false" />
-            <element signature="e#12845#12846#0" expanded="false" />
-            <element signature="e#12873#12874#0" expanded="false" />
-            <element signature="e#12921#12922#0" expanded="false" />
-            <element signature="e#12961#12962#0" expanded="false" />
-            <element signature="e#13009#13010#0" expanded="false" />
-            <element signature="e#13049#13050#0" expanded="false" />
-            <element signature="e#13111#13112#0" expanded="false" />
-            <element signature="e#13165#13166#0" expanded="false" />
-            <element signature="e#13221#13222#0" expanded="false" />
-            <element signature="e#13269#13270#0" expanded="false" />
-            <element signature="e#13319#13320#0" expanded="false" />
-            <element signature="e#13361#13362#0" expanded="false" />
-            <element signature="e#13409#13410#0" expanded="false" />
-            <element signature="e#13449#13450#0" expanded="false" />
-            <element signature="e#13491#13492#0" expanded="false" />
-            <element signature="e#13525#13526#0" expanded="false" />
-            <element signature="e#13579#13580#0" expanded="false" />
-            <element signature="e#13625#13626#0" expanded="false" />
-            <element signature="e#13670#13671#0" expanded="false" />
-            <element signature="e#13704#13705#0" expanded="false" />
-            <element signature="e#13751#13752#0" expanded="false" />
-            <element signature="e#13789#13790#0" expanded="false" />
-            <element signature="e#13836#13837#0" expanded="false" />
-            <element signature="e#13874#13875#0" expanded="false" />
-            <element signature="e#13935#13936#0" expanded="false" />
-            <element signature="e#13987#13988#0" expanded="false" />
-            <element signature="e#14046#14047#0" expanded="false" />
-            <element signature="e#14096#14097#0" expanded="false" />
-            <element signature="e#14165#14166#0" expanded="false" />
-            <element signature="e#14225#14226#0" expanded="false" />
-            <element signature="e#14287#14288#0" expanded="false" />
-            <element signature="e#14316#14317#0" expanded="false" />
-            <element signature="e#14360#14361#0" expanded="false" />
-            <element signature="e#14396#14397#0" expanded="false" />
-            <element signature="e#14475#14476#0" expanded="false" />
-            <element signature="e#14507#14508#0" expanded="false" />
-            <element signature="e#14557#14558#0" expanded="false" />
-            <element signature="e#14599#14600#0" expanded="false" />
-            <element signature="e#15022#15023#0" expanded="false" />
-            <element signature="e#15089#15090#0" expanded="false" />
+            <element signature="e#8872#8873#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Company.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.037037">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.204651">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Mission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="185" column="28" selection-start-line="185" selection-start-column="28" selection-end-line="185" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1079#1080#0" expanded="false" />
-            <element signature="e#1111#1112#0" expanded="false" />
-            <element signature="e#1164#1165#0" expanded="false" />
-            <element signature="e#1206#1207#0" expanded="false" />
-            <element signature="e#1246#1247#0" expanded="false" />
-            <element signature="e#1282#1283#0" expanded="false" />
-            <element signature="e#1340#1341#0" expanded="false" />
-            <element signature="e#1390#1391#0" expanded="false" />
-            <element signature="e#1623#1624#0" expanded="false" />
-            <element signature="e#1650#1651#0" expanded="false" />
-            <element signature="e#1690#1691#0" expanded="false" />
-            <element signature="e#1722#1723#0" expanded="false" />
-            <element signature="e#1760#1761#0" expanded="false" />
-            <element signature="e#1794#1795#0" expanded="false" />
-            <element signature="e#1848#1849#0" expanded="false" />
-            <element signature="e#1894#1895#0" expanded="false" />
-            <element signature="e#2073#2074#0" expanded="false" />
-            <element signature="e#2110#2111#0" expanded="false" />
-            <element signature="e#2178#2179#0" expanded="false" />
-            <element signature="e#2230#2231#0" expanded="false" />
-            <element signature="e#2453#2454#0" expanded="false" />
-            <element signature="e#2486#2487#0" expanded="false" />
-            <element signature="e#2526#2527#0" expanded="false" />
-            <element signature="e#2562#2563#0" expanded="false" />
-            <element signature="e#2620#2621#0" expanded="false" />
-            <element signature="e#2670#2671#0" expanded="false" />
-            <element signature="e#2706#2707#0" expanded="false" />
-            <element signature="e#2738#2739#0" expanded="false" />
-            <element signature="e#2788#2789#0" expanded="false" />
-            <element signature="e#2830#2831#0" expanded="false" />
-            <element signature="e#2872#2873#0" expanded="false" />
-            <element signature="e#2910#2911#0" expanded="false" />
-            <element signature="e#2972#2973#0" expanded="false" />
-            <element signature="e#3026#3027#0" expanded="false" />
-            <element signature="e#3069#3070#0" expanded="false" />
-            <element signature="e#3108#3109#0" expanded="false" />
-            <element signature="e#3172#3173#0" expanded="false" />
-            <element signature="e#3228#3229#0" expanded="false" />
-            <element signature="e#3269#3270#0" expanded="false" />
-            <element signature="e#3306#3307#0" expanded="false" />
-            <element signature="e#3366#3367#0" expanded="false" />
-            <element signature="e#3418#3419#0" expanded="false" />
-            <element signature="e#3459#3460#0" expanded="false" />
-            <element signature="e#3496#3497#0" expanded="false" />
-            <element signature="e#3556#3557#0" expanded="false" />
-            <element signature="e#3608#3609#0" expanded="false" />
-            <element signature="e#3646#3647#0" expanded="false" />
-            <element signature="e#3680#3681#0" expanded="false" />
-            <element signature="e#3734#3735#0" expanded="false" />
-            <element signature="e#3780#3781#0" expanded="false" />
-            <element signature="e#3816#3817#0" expanded="false" />
-            <element signature="e#3848#3849#0" expanded="false" />
-            <element signature="e#3882#3883#0" expanded="false" />
-            <element signature="e#3914#3915#0" expanded="false" />
-            <element signature="e#3962#3963#0" expanded="false" />
-            <element signature="e#4004#4005#0" expanded="false" />
-            <element signature="e#4036#4037#0" expanded="false" />
-            <element signature="e#4066#4067#0" expanded="false" />
-            <element signature="e#4110#4111#0" expanded="false" />
-            <element signature="e#4148#4149#0" expanded="false" />
-            <element signature="e#4198#4199#0" expanded="false" />
-            <element signature="e#4240#4241#0" expanded="false" />
-            <element signature="e#4272#4273#0" expanded="false" />
-            <element signature="e#4300#4301#0" expanded="false" />
-            <element signature="e#4335#4336#0" expanded="false" />
-            <element signature="e#4366#4367#0" expanded="false" />
-            <element signature="e#4415#4416#0" expanded="false" />
-            <element signature="e#4455#4456#0" expanded="false" />
-            <element signature="e#4498#4499#0" expanded="false" />
-            <element signature="e#4532#4533#0" expanded="false" />
-            <element signature="e#4581#4582#0" expanded="false" />
-            <element signature="e#4620#4621#0" expanded="false" />
-            <element signature="e#4690#4691#0" expanded="false" />
-            <element signature="e#4746#4747#0" expanded="false" />
-            <element signature="e#4802#4803#0" expanded="false" />
-            <element signature="e#4846#4847#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/ProcessMidDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="125" selection-start-line="16" selection-start-column="125" selection-end-line="16" selection-end-column="125" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="158" column="44" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#556#557#0" expanded="false" />
-            <element signature="e#595#596#0" expanded="false" />
-            <marker date="1458491030000" expanded="true" signature="726:827" placeholder="select * fro..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="1922:2036" placeholder="UPDATE missi..." />
-            <marker date="1458491030000" expanded="true" signature="2165:2520" placeholder="insert into missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="3449:3608" placeholder="select pmt.s..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="3449:3609" placeholder="select pmt.s..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="4265:4373" placeholder="select pmt.p..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="4265:4374" placeholder="select pmt.p..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="4265:4376" placeholder="select pmt.p..missingValue..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5357" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5622" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5623" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5645" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5646" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="5051:5665" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="6756:7205" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="6756:7530" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-            <marker date="1458491030000" expanded="true" signature="6756:7531" placeholder="select disti..U_missingValue_ProcessMidTable..." />
-          </folding>
+        <state vertical-scroll-proportion="0.019206146">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2784,98 +2055,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Company.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/TaskManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/TaskDaoHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1294#1295#0" expanded="false" />
-            <element signature="e#1319#1320#0" expanded="false" />
-            <element signature="e#1353#1354#0" expanded="false" />
-            <element signature="e#1381#1382#0" expanded="false" />
-            <element signature="e#1530#1531#0" expanded="false" />
-            <element signature="e#1572#1573#0" expanded="false" />
-            <element signature="e#1717#1718#0" expanded="false" />
-            <element signature="e#1755#1756#0" expanded="false" />
-            <element signature="e#1817#1818#0" expanded="false" />
-            <element signature="e#1871#1872#0" expanded="false" />
-            <element signature="e#2022#2023#0" expanded="false" />
-            <element signature="e#2063#2064#0" expanded="false" />
-            <element signature="e#2131#2132#0" expanded="false" />
-            <element signature="e#2191#2192#0" expanded="false" />
-            <element signature="e#2342#2343#0" expanded="false" />
-            <element signature="e#2383#2384#0" expanded="false" />
-            <element signature="e#2451#2452#0" expanded="false" />
-            <element signature="e#2511#2512#0" expanded="false" />
-            <element signature="e#2648#2649#0" expanded="false" />
-            <element signature="e#2682#2683#0" expanded="false" />
-            <element signature="e#2767#2768#0" expanded="false" />
-            <element signature="e#2813#2814#0" expanded="false" />
-            <element signature="e#2888#2889#0" expanded="false" />
-            <element signature="e#2925#2926#0" expanded="false" />
-            <element signature="e#2985#2986#0" expanded="false" />
-            <element signature="e#3037#3038#0" expanded="false" />
-            <element signature="e#3104#3105#0" expanded="false" />
-            <element signature="e#3137#3138#0" expanded="false" />
-            <element signature="e#3189#3190#0" expanded="false" />
-            <element signature="e#3233#3234#0" expanded="false" />
-            <element signature="e#3300#3301#0" expanded="false" />
-            <element signature="e#3333#3334#0" expanded="false" />
-            <element signature="e#3385#3386#0" expanded="false" />
-            <element signature="e#3429#3430#0" expanded="false" />
-            <element signature="e#3502#3503#0" expanded="false" />
-            <element signature="e#3538#3539#0" expanded="false" />
-            <element signature="e#3596#3597#0" expanded="false" />
-            <element signature="e#3646#3647#0" expanded="false" />
-            <element signature="e#3720#3721#0" expanded="false" />
-            <element signature="e#3756#3757#0" expanded="false" />
-            <element signature="e#3813#3814#0" expanded="false" />
-            <element signature="e#3863#3864#0" expanded="false" />
-            <element signature="e#3946#3947#0" expanded="false" />
-            <element signature="e#3987#3988#0" expanded="false" />
-            <element signature="e#4055#4056#0" expanded="false" />
-            <element signature="e#4115#4116#0" expanded="false" />
-            <element signature="e#4190#4191#0" expanded="false" />
-            <element signature="e#4227#4228#0" expanded="false" />
-            <element signature="e#4287#4288#0" expanded="false" />
-            <element signature="e#4339#4340#0" expanded="false" />
-            <element signature="e#4408#4409#0" expanded="false" />
-            <element signature="e#4442#4443#0" expanded="false" />
-            <element signature="e#4496#4497#0" expanded="false" />
-            <element signature="e#4542#4543#0" expanded="false" />
-            <element signature="e#4613#4614#0" expanded="false" />
-            <element signature="e#4648#4649#0" expanded="false" />
-            <element signature="e#4704#4705#0" expanded="false" />
-            <element signature="e#4752#4753#0" expanded="false" />
-            <element signature="e#4823#4824#0" expanded="false" />
-            <element signature="e#4858#4859#0" expanded="false" />
-            <element signature="e#4915#4916#0" expanded="false" />
-            <element signature="e#4963#4964#0" expanded="false" />
-            <element signature="e#5032#5033#0" expanded="false" />
-            <element signature="e#5066#5067#0" expanded="false" />
-            <element signature="e#5120#5121#0" expanded="false" />
-            <element signature="e#5166#5167#0" expanded="false" />
-            <element signature="e#5241#5242#0" expanded="false" />
-            <element signature="e#5278#5279#0" expanded="false" />
-            <element signature="e#5338#5339#0" expanded="false" />
-            <element signature="e#5390#5391#0" expanded="false" />
-            <element signature="e#5455#5456#0" expanded="false" />
-            <element signature="e#5488#5489#0" expanded="false" />
-            <element signature="e#5538#5539#0" expanded="false" />
-            <element signature="e#5582#5583#0" expanded="false" />
-            <element signature="e#5921#5922#0" expanded="false" />
-            <element signature="e#5956#5957#0" expanded="false" />
-            <element signature="e#6012#6013#0" expanded="false" />
-            <element signature="e#6060#6061#0" expanded="false" />
-            <element signature="e#6137#6138#0" expanded="false" />
-            <element signature="e#6175#6176#0" expanded="false" />
-            <element signature="e#6237#6238#0" expanded="false" />
-            <element signature="e#6291#6292#0" expanded="false" />
-            <element signature="e#6370#6371#0" expanded="false" />
-            <element signature="e#6409#6410#0" expanded="false" />
-            <element signature="e#6473#6474#0" expanded="false" />
-            <element signature="e#6529#6530#0" expanded="false" />
+            <marker date="1457450625000" expanded="true" signature="733:795" placeholder="Select * fro..missingValue..." />
+            <marker date="1457450625000" expanded="true" signature="733:797" placeholder="Select * fro..missingValue..." />
+            <marker date="1457450625000" expanded="true" signature="1508:1616" placeholder="select pmt.p..missingValue..." />
+            <marker date="1457450625000" expanded="true" signature="1508:1636" placeholder="select pmt.p..missingValue..." />
+            <marker date="1457450625000" expanded="true" signature="1654:1935" placeholder="(select rp.p..." />
+            <marker date="1457450625000" expanded="true" signature="1655:1934" placeholder="select rp.pr..R_project..." />
+            <marker date="1457450625000" expanded="true" signature="1790:1933" placeholder="Select rd.de..r_department..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ComponentManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="65" selection-start-line="79" selection-start-column="65" selection-end-line="79" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SubComponentListManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SubComponentListDaoHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <marker date="1456332072000" expanded="true" signature="750:813" placeholder="select * fro..missingValue..." />
+            <marker date="1456332072000" expanded="true" signature="1543:1612" placeholder="select * fro..missingValue..." />
+            <marker date="1456332072000" expanded="true" signature="1998:2077" placeholder="select Compo..missingValue..." />
+            <marker date="1456332072000" expanded="true" signature="2395:2470" placeholder="select SubCo..missingValue..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ComponentDaoHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <marker date="1449679827000" expanded="true" signature="852:913" placeholder="select * fro..missingValue..." />
+            <marker date="1449679827000" expanded="true" signature="1542:1607" placeholder="select * fro..missingValue..." />
+            <marker date="1449679827000" expanded="true" signature="1985:2054" placeholder="select Compo..missingValue..." />
           </folding>
         </state>
       </provider>
@@ -2884,71 +2124,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/SummaryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="52" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.13444301">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SettingDaoHibernate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.23047376">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userform.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.5">
+        <state vertical-scroll-proportion="0.01981506">
           <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-core/3.0.1/cxf-core-3.0.1.jar!/org/apache/cxf/service/invoker/AbstractInvoker.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5318302">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5283017">
-          <caret line="183" column="90" selection-start-line="183" selection-start-column="90" selection-end-line="183" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Setting.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SettingManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06981982">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/ProcessMidDaoHibernate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding>
+            <marker date="1459096817000" expanded="true" signature="726:827" placeholder="select * fro..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="1922:2036" placeholder="UPDATE missi..." />
+            <marker date="1459096817000" expanded="true" signature="2165:2520" placeholder="insert into missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="3449:3608" placeholder="select pmt.s..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="3449:3609" placeholder="select pmt.s..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="4265:4373" placeholder="select pmt.p..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="4265:4374" placeholder="select pmt.p..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="4265:4376" placeholder="select pmt.p..missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5357" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5622" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5623" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5645" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5646" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="5051:5665" placeholder="select pm.su..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="6756:6982" placeholder="select disti..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="6756:7205" placeholder="select disti..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="6756:7206" placeholder="select disti..U_missingValue..." />
+            <marker date="1459096817000" expanded="true" signature="6756:7530" placeholder="select disti..U_missingValue_ProcessMidTable..." />
+            <marker date="1459096817000" expanded="true" signature="6756:7531" placeholder="select disti..U_missingValue_ProcessMidTable..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/SettingManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/Setting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/ProcessMidManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="39" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/ProcessMidManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019206146">
+          <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -2956,7 +2228,47 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/SummaryManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/service/impl/TaskManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="235" column="49" selection-start-line="235" selection-start-column="49" selection-end-line="235" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/model/SummaryProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.4814816">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.1.3.RELEASE/spring-aop-4.1.3.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.222222">
+          <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/util/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="177" column="48" selection-start-line="177" selection-start-column="48" selection-end-line="177" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -2979,71 +2291,115 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huivip/holu/dao/hibernate/SummaryTotalDaoHibernate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21717171">
-          <caret line="201" column="49" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="423" column="71" selection-start-line="423" selection-start-column="71" selection-end-line="423" selection-end-column="71" />
           <folding>
-            <marker date="1458662717000" expanded="true" signature="652:961" placeholder="select sum(b..itemID..." />
-            <marker date="1458662717000" expanded="true" signature="756:961" placeholder="SELECT itemI..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="2219:2507" placeholder="select disti..ItemName..." />
-            <marker date="1458662717000" expanded="true" signature="2283:2507" placeholder="SELECT ItemN..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="3783:4121" placeholder="select b.Sum..projectPathName..." />
-            <marker date="1458662717000" expanded="true" signature="3874:4121" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="5506:5838" placeholder="select sum(b..processID..." />
-            <marker date="1458662717000" expanded="true" signature="5613:5838" placeholder="SELECT disti..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="7143:8256" placeholder="select disti..ProjectID..." />
-            <marker date="1458662717000" expanded="true" signature="7197:7703" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="7742:8229" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="8550:9675" placeholder="select disti..ProjectID..." />
-            <marker date="1458662717000" expanded="true" signature="8604:9119" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="9158:9648" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="9970:11286" placeholder="select disti..ProjectID..." />
-            <marker date="1458662717000" expanded="true" signature="10084:10662" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="10701:11259" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="11585:12931" placeholder="select disti..ProjectID..." />
-            <marker date="1458662717000" expanded="true" signature="11699:12292" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="12331:12904" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="13132:15261" placeholder="select disti..ProjectRootID..." />
-            <marker date="1458662717000" expanded="true" signature="13340:13598" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="13637:13891" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="13955:14209" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="14273:14523" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="14587:14847" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="14911:15167" placeholder="SELECT Proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="15463:17752" placeholder="select disti..DepartmentID..." />
-            <marker date="1458662717000" expanded="true" signature="15678:15972" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="16011:16301" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="16365:16655" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="16719:17005" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="17069:17365" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="17429:17721" placeholder="SELECT Depar..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="17977:20569" placeholder="select disti..processID..." />
-            <marker date="1458662717000" expanded="true" signature="18185:18531" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="18570:18912" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="18976:19317" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="19381:19718" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="19782:20129" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="20193:20538" placeholder="SELECT proce..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="20797:23230" placeholder="select a.pro..projectID..." />
-            <marker date="1458662717000" expanded="true" signature="20995:21317" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="21356:21674" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="21738:22055" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="22119:22431" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="22495:22817" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="22881:23199" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="23484:24550" placeholder="select b.Sum..curDate..." />
-            <marker date="1458662717000" expanded="true" signature="23587:23931" placeholder="SELECT ItemD..view_missingValue_SummaryTableTotalByProject..." />
-            <marker date="1458662717000" expanded="true" signature="23587:23998" placeholder="SELECT curDa..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="24060:24407" placeholder="SELECT ItemD..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="24060:24474" placeholder="SELECT curDa..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="24803:25863" placeholder="select b.Sum..itemName..." />
-            <marker date="1458662717000" expanded="true" signature="24916:25272" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
-            <marker date="1458662717000" expanded="true" signature="24916:25343" placeholder="SELECT itemN..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="25405:25761" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
-            <marker date="1458662717000" expanded="true" signature="25405:25835" placeholder="SELECT itemN..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="26136:27289" placeholder="select b.Sum..projectPathName..." />
-            <marker date="1458662717000" expanded="true" signature="26249:26724" placeholder="SELECT proje..missingValue..." />
-            <marker date="1458662717000" expanded="true" signature="26786:27261" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="654:963" placeholder="select sum(b..itemID..." />
+            <marker date="1459445461000" expanded="true" signature="758:963" placeholder="SELECT itemI..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="1928:2150" placeholder="select ItemP..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="2619:2907" placeholder="select disti..ItemName..." />
+            <marker date="1459445461000" expanded="true" signature="2683:2907" placeholder="SELECT ItemN..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="3897:4076" placeholder="select itemN..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="4501:4826" placeholder="select b.Sum..projectPathName..." />
+            <marker date="1459445461000" expanded="true" signature="4592:4826" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="5887:6125" placeholder="select ItemA..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="5887:6138" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="5887:6151" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="6332:7816" placeholder="select sum(S..*..." />
+            <marker date="1459445461000" expanded="true" signature="6452:7090" placeholder="select * fro..projectrootName..." />
+            <marker date="1459445461000" expanded="true" signature="6488:6725" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+            <marker date="1459445461000" expanded="true" signature="6488:7062" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+            <marker date="1459445461000" expanded="true" signature="7101:7765" placeholder="select * fro..projectrootName..." />
+            <marker date="1459445461000" expanded="true" signature="7137:7737" placeholder="SELECT proje..view_missingValue_SummaryTableTotalByProject..." />
+            <marker date="1459445461000" expanded="true" signature="8125:8457" placeholder="select sum(b..processID..." />
+            <marker date="1459445461000" expanded="true" signature="8232:8457" placeholder="SELECT disti..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="9518:9757" placeholder="select ItemA..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="9518:9766" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="9518:9772" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="9518:9785" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="9518:9787" placeholder="select sum(I..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="10207:11320" placeholder="select disti..ProjectID..." />
+            <marker date="1459445461000" expanded="true" signature="10261:10767" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="10806:11293" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="11614:12739" placeholder="select disti..ProjectID..." />
+            <marker date="1459445461000" expanded="true" signature="11668:12183" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="12222:12712" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="13034:14350" placeholder="select disti..ProjectID..." />
+            <marker date="1459445461000" expanded="true" signature="13148:13726" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="13765:14323" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="14649:15995" placeholder="select disti..ProjectID..." />
+            <marker date="1459445461000" expanded="true" signature="14763:15356" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="15395:15968" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="16198:18327" placeholder="select disti..ProjectRootID..." />
+            <marker date="1459445461000" expanded="true" signature="16406:16664" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="16703:16957" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="17021:17275" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="17339:17589" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="17653:17913" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="17977:18233" placeholder="SELECT Proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="18353:18531" placeholder="SELECT Proje..." />
+            <marker date="1459445461000" expanded="true" signature="18353:18559" placeholder="SELECT Proje..view_..." />
+            <marker date="1459445461000" expanded="true" signature="18353:18663" placeholder="SELECT Proje..view_GS1627269_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="18866:21155" placeholder="select disti..DepartmentID..." />
+            <marker date="1459445461000" expanded="true" signature="19081:19375" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="19414:19704" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="19768:20058" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="20122:20408" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="20472:20768" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="20832:21124" placeholder="SELECT Depar..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="21180:21486" placeholder="SELECT Depar..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="21712:24304" placeholder="select disti..processID..." />
+            <marker date="1459445461000" expanded="true" signature="21920:22266" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="22305:22647" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="22711:23052" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="23116:23453" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="23517:23864" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="23928:24273" placeholder="SELECT proce..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="24329:24582" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="24329:24597" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="24329:24631" placeholder="SELECT Proje..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="24329:24649" placeholder="SELECT proce..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="24878:27311" placeholder="select a.pro..projectID..." />
+            <marker date="1459445461000" expanded="true" signature="25076:25398" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="25437:25755" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="25819:26136" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="26200:26512" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="26576:26898" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="26962:27280" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="27336:27662" placeholder="SELECT proce..view_missingValue_SummaryDateByProjectProcessDetail..." />
+            <marker date="1459445461000" expanded="true" signature="27917:28983" placeholder="select b.Sum..curDate..." />
+            <marker date="1459445461000" expanded="true" signature="28020:28364" placeholder="SELECT ItemD..view_missingValue_SummaryTableTotalByProject..." />
+            <marker date="1459445461000" expanded="true" signature="28020:28431" placeholder="SELECT curDa..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="28493:28840" placeholder="SELECT ItemD..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="28493:28907" placeholder="SELECT curDa..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="29009:29223" placeholder="select ItemP..view_missingValue_SummaryTableTotalByProjectByDate..." />
+            <marker date="1459445461000" expanded="true" signature="29476:29612" placeholder="select sum(S..*..." />
+            <marker date="1459445461000" expanded="true" signature="29476:29613" placeholder="select sum(S..." />
+            <marker date="1459445461000" expanded="true" signature="29476:30599" placeholder="select selec..." />
+            <marker date="1459445461000" expanded="true" signature="29476:30630" placeholder="select sum(S..SumWeight_actual..." />
+            <marker date="1459445461000" expanded="true" signature="29597:29612" placeholder="select * fro..." />
+            <marker date="1459445461000" expanded="true" signature="29615:30599" placeholder="select b.Sum..itemName..." />
+            <marker date="1459445461000" expanded="true" signature="29633:30012" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
+            <marker date="1459445461000" expanded="true" signature="29633:30083" placeholder="SELECT itemN..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="30102:30598" placeholder="select * fro..itemName..." />
+            <marker date="1459445461000" expanded="true" signature="30139:30517" placeholder="SELECT itemN..view_missingValue_SummaryTableTotalByDepartment..." />
+            <marker date="1459445461000" expanded="true" signature="30139:30591" placeholder="SELECT itemN..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="30903:32143" placeholder="select b.Sum..projectPathName..." />
+            <marker date="1459445461000" expanded="true" signature="30903:32174" placeholder="select sum(S..*..." />
+            <marker date="1459445461000" expanded="true" signature="31028:31569" placeholder="select * fro..ItemPathName..." />
+            <marker date="1459445461000" expanded="true" signature="31028:32136" placeholder="select * fro..ItemPathName..." />
+            <marker date="1459445461000" expanded="true" signature="31028:32143" placeholder="select * fro..ItemPathName..." />
+            <marker date="1459445461000" expanded="true" signature="31064:31562" placeholder="SELECT proje..missingValue..." />
+            <marker date="1459445461000" expanded="true" signature="31639:32136" placeholder="SELECT proje..missingValue..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58900523">
+          <caret line="95" column="12" selection-start-line="95" selection-start-column="12" selection-end-line="95" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

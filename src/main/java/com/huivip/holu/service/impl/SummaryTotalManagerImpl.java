@@ -145,7 +145,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     @Override
     public List<SummaryProcess> getSummaryProcess(String userID, String itemStyle) {
         User user=userManager.getUserByUserID(userID);
-        String tableName=user.getCompany().getCompanyId() ;//companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
+        String tableName=user.getCompany().getCompanyId();//companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
         List<Object[]> list=new ArrayList<>();
         if(itemStyle.equalsIgnoreCase("project")){
              list=summaryTotalDao.getProjectSummaryProcess(tableName);
@@ -163,7 +163,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     @Override
     public HashMap<String,List<SummaryProcess>> getSummaryProcessDetail(String userID, String itemStyle, String itemId) {
         User user=userManager.getUserByUserID(userID);
-        String tableName=companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
+        String tableName=user.getCompany().getCompanyId();//companyDatabaseIndexManager.getTableNameByCompanyAndTableStyle(user.getCompany().getCompanyId(),"SummaryDateTable");
         String itemName="";
         HashMap<String,List<SummaryProcess>> result=new HashMap<>();
         if(itemStyle.equalsIgnoreCase("project")){
@@ -234,7 +234,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     }
     private String getHomeProcessIds(String userID){
         User user=userManager.getUserByUserID(userID);
-        Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessDisplayList");
+        Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessByTotal");
         if(setting==null) return "";
         String processIds=setting.getKeyValue();
         if(null==processIds || processIds.length()==0) return "";
@@ -308,25 +308,32 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
     private SummaryProcess convertSummaryProcess(Object[] objs){
         //a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end
         SummaryProcess process=new SummaryProcess();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         process.setItemID((String) objs[0]);
         process.setItemName((String) objs[1]);
-        if(objs[2]!=null){
-            process.setSumDate_actual_start((Date) objs[2]);
-        }
-        if(objs[3]!=null){
-            process.setSumDate_actual_end((Date) objs[3]);
-        }
-        if(objs[4]!=null){
-            process.setSumDate_plan_start((Date) objs[4]);
-        }
-        if(objs[5]!=null){
-            process.setSumDate_plan_end((Date) objs[5]);
-        }
-        if(objs[6]!=null){
+        try {
+            if (objs[2] != null) {
+
+                process.setSumDate_actual_start(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[2]));
+
+            }
+            if (objs[3] != null) {
+                process.setSumDate_actual_end(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[3]));
+            }
+            if (objs[4] != null) {
+                process.setSumDate_plan_start(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[4]));
+            }
+            if (objs[5] != null) {
+                process.setSumDate_plan_end(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[5]));
+            }
+        /*if(objs.length > 6 && objs[6]!=null){
             process.setSumDate_predict_start((Date) objs[6]);
         }
-        if(objs[7]!=null){
+        if(objs.length > 7 && objs[7]!=null){
             process.setSumDate_predict_end((Date) objs[7]);
+        }*/
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         return process;
     }

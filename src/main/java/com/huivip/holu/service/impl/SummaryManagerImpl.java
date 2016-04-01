@@ -57,7 +57,7 @@ public class SummaryManagerImpl extends GenericManagerImpl<Summary, Long> implem
     }
     private String getHomeProcessIds(String userID){
         User user=userManager.getUserByUserID(userID);
-        Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessDisplayList");
+        Setting setting=settingManager.getSettingBySearch(user.getCompany().getCompanyId(),"HomePage","HomePageProcessByTotal");
         String processIds=setting.getKeyValue();
         if(null==processIds || processIds.length()==0) return "";
         String[] processIdArray=processIds.split(",");

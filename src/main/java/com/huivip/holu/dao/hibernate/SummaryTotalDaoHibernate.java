@@ -16,7 +16,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
 
     @Override
     public List<Object[]> getSummaryItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select sum(b.SumWeight_actual) as actual,sum(a.SumWeight_plan) as planData from  ( " +
+        /*String sql = "select sum(b.SumWeight_actual) as actual,sum(a.SumWeight_plan) as planData from  ( " +
                 "SELECT itemID,SUM(TotalWeight)*0.001 AS SumWeight_plan " +
                 "FROM view_" + tableName + "_SummaryTableTotalByProjectRoot " +
                 "WHERE ItemDate<='" + sumDateEnd + " 00:00:00.000' ";
@@ -34,15 +34,21 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         }
         sql += " and ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual' " +
-                "GROUP BY itemID,StartOrEnd,ActualPlanPredict) as b on a.itemID=b.itemID ";
-        Query query = getSession().createSQLQuery(sql);
+                "GROUP BY itemID,StartOrEnd,ActualPlanPredict) as b on a.itemID=b.itemID ";*/
+        String sql2="select sum(ItemActualTotal) as actualtotal,sum(ItemPlanTotal) as plantotal from view_"+tableName+"_SummaryTableTotalByProjectByDate"+
+                " where ProcessID in ("+processIds+") and ItemDate<='" + sumDateEnd + "'";
+        if (sumDateStart != null) {
+            sql2 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        //sql2+=" group by itemDate";
+        Query query = getSession().createSQLQuery(sql2);
         List list = query.list();
         return list;
     }
 
     @Override
     public List<Object[]> getSummaryValidItem(String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select distinct a.ItemName,a.itemID from  (" +
+       /* String sql = "select distinct a.ItemName,a.itemID from  (" +
                 "SELECT ItemName,itemID,processID,SUM(TotalWeight)*0.001 AS SumWeight_plan " +
                 "FROM view_" + tableName + "_SummaryTableTotalByProjectRoot " +
                 "WHERE ItemDate<='" + sumDateEnd + " 00:00:00.000' ";
@@ -60,39 +66,70 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         }
         sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual' " +
-                "GROUP BY ItemName,itemID,ProcessID,StartOrEnd,ActualPlanPredict) as b";
-        Query query = getSession().createSQLQuery(sql);
+                "GROUP BY ItemName,itemID,ProcessID,StartOrEnd,ActualPlanPredict) as b";*/
+
+        String sql2="select distinct itemName,ItemId from view_"+tableName+"_SummaryTableTotalByProjectByDate"+
+                " where ProcessID in ("+processIds+") and ItemDate<='" + sumDateEnd + "'";
+        if (sumDateStart != null) {
+            sql2 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        Query query = getSession().createSQLQuery(sql2);
         return query.list();
     }
 
     @Override
     public List<Object[]> getSummaryDetailByItem(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select b.SumWeight_actual,a.SumWeight_plan,a.itemID,a.itemName from  (" +
-                "SELECT  projectPathName as itemName,projectID as itemID,SUM(TotalWeight)*0.001 AS SumWeight_plan " +
-                "FROM view_" + tableName + "_SummaryTableTotalByProjectRoot " +
-                "WHERE ItemDate<='" + sumDateEnd + " 00:00:00.000' ";
+        /*String sql = "select b.SumWeight_actual,a.SumWeight_plan,a.itemID,a.itemName from  (" +
+                "SELECT  projectrootName as itemName,projectrootID as itemID,SUM(TotalWeight)*0.001 AS SumWeight_plan " +
+                "FROM view_" + tableName + "_SummaryTableTotalByProject " +
+                "WHERE ItemDate<='" + sumDateEnd + "' ";
         if(sumDateStart!=null){
-            sql+=" and ItemDate >='" + sumDateStart + " 00:00:00.000' ";
+            sql+=" and ItemDate >='" + sumDateStart + "' ";
         }
         sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
-                "AND ActualPlanPredict='Plan' and projectRootID='" + itemName + "' " +
-                "GROUP BY projectID,projectPathName,StartOrEnd,ActualPlanPredict) as a left Join " +
-                "(SELECT projectPathName as itemName,projectID as itemID, SUM(TotalWeight)*0.001 AS SumWeight_actual " +
-                "FROM view_" + tableName + "_SummaryTableTotalByProjectRoot " +
-                "WHERE ItemDate<='" + sumDateEnd + " 00:00:00.000' ";
+                "AND ActualPlanPredict='Plan' and itemID='" + itemName + "' " +
+                "GROUP BY projectrootID,projectrootName,StartOrEnd,ActualPlanPredict) as a left Join " +
+                "(SELECT projectrootName as itemName,projectrootID as itemID, SUM(TotalWeight)*0.001 AS SumWeight_actual " +
+                "FROM view_" + tableName + "_SummaryTableTotalByProject " +
+                "WHERE ItemDate<='" + sumDateEnd + "' ";
         if(sumDateStart!=null){
-            sql+=" and ItemDate >='" + sumDateStart + " 00:00:00.000' ";
+            sql+=" and ItemDate >='" + sumDateStart + "' ";
         }
         sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
-                "AND ActualPlanPredict='Actual'  and projectRootID='" + itemName + "' " +
-                "GROUP BY projectID,projectPathName,StartOrEnd,ActualPlanPredict) as b on a.itemID=b.itemID";
-
-        Query query = getSession().createSQLQuery(sql);
+                "AND ActualPlanPredict='Actual'  and itemID='" + itemName + "' " +
+                "GROUP BY projectrootID,projectrootName,StartOrEnd,ActualPlanPredict) as b on a.itemID=b.itemID";*/
+        /*String sql2="select sum(ItemActualTotal) as actualTotal,sum(ItemPlanTotal) as plantotal,ItemId,itemName from view_"+tableName+"_SummaryTableTotalByProjectByDate"+
+                " where ProcessID in ("+processIds+") and ItemDate<='" + sumDateEnd + "' and itemid='"+itemName+"' ";
+        if (sumDateStart != null) {
+            sql2 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        sql2+=" group by itemID,itemName";*/
+        String sql3 = "select sum(SumWeight_actual) as actualTotal,sum(SumWeight_plan) as planTotal,itemID,itemname from (" +
+                "select * from (" +
+                "SELECT  projectrootName as itemName,projectrootID as itemID,SUM(TotalWeight)*0.001 AS SumWeight_plan, 0 as SumWeight_actual " +
+                " FROM view_" + tableName + "_SummaryTableTotalByProject WHERE ItemDate<='" + sumDateEnd + "'";
+        if (sumDateStart != null) {
+            sql3 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        sql3 += "and  ProcessID in (" + processIds + ")  AND StartOrEnd='end' AND ActualPlanPredict='Plan' and itemID='" + itemName + "' " +
+                "GROUP BY projectrootID,projectrootName,StartOrEnd,ActualPlanPredict " +
+                ") as a UNION ALL select * from (" +
+                "SELECT projectrootName as itemName,projectrootID as itemID,0 as SumWeight_plan,  SUM(TotalWeight)*0.001 AS SumWeight_actual " +
+                " FROM view_" + tableName + "_SummaryTableTotalByProject " +
+                "WHERE ItemDate<='" + sumDateEnd + "'";
+        if (sumDateStart != null) {
+            sql3 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        sql3 += "and  ProcessID in (" + processIds + ")  AND StartOrEnd='end' AND ActualPlanPredict='Actual'  " +
+                "and itemID='" + itemName + "'   GROUP BY projectrootID,projectrootName,StartOrEnd,ActualPlanPredict " +
+                ") as b  " +
+                ") x group by itemid,itemname";
+        Query query = getSession().createSQLQuery(sql3);
         return query.list();
     }
     @Override
     public List<Object[]> getSummaryDetail(String itemName, String sumDateStart, String sumDateEnd, String processIds, String itemStyle, String startOrEnd, String tableName) {
-        String sql = "select sum(b.SumWeight_actual) as actualData,sum(a.SumWeight_plan) as planData from  (" +
+       /* String sql = "select sum(b.SumWeight_actual) as actualData,sum(a.SumWeight_plan) as planData from  (" +
                 "SELECT distinct processID, itemID,SUM(TotalWeight)*0.001 AS SumWeight_plan " +
                 "FROM view_" + tableName + "_SummaryTableTotalByProjectRoot " +
                 "WHERE ItemDate<='" + sumDateEnd + " 00:00:00.000' ";
@@ -110,9 +147,14 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
         }
         sql+=" and  ProcessID in (" + processIds + ") AND StartOrEnd='" + startOrEnd + "' " +
                 "AND ActualPlanPredict='Actual'  and ItemName='" + itemName + "' " +
-                "GROUP BY ProcessID,itemID,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";
-
-        Query query = getSession().createSQLQuery(sql);
+                "GROUP BY ProcessID,itemID,StartOrEnd,ActualPlanPredict) as b on a.processID=b.processID";*/
+        String sql2="select sum(ItemActualTotal) as actualTotal,sum(ItemPlanTotal) as planTotal,ItemId,itemName from view_"+tableName+"_SummaryTableTotalByProjectByDate "+
+                " where ProcessID in ("+processIds+") and ItemDate<='" + sumDateEnd + "' and itemName='"+itemName+"'";
+        if (sumDateStart != null) {
+            sql2 += " and ItemDate >='" + sumDateStart + "' ";
+        }
+        sql2+=" group by itemID,itemName";
+        Query query = getSession().createSQLQuery(sql2);
         return query.list();
     }
     @Override
@@ -200,7 +242,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
 
     @Override
     public List<Object[]> getProjectSummaryProcess(String tableName) {
-        String sql="select distinct a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+        /*String sql="select distinct a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
                 "from  " +
                 "(SELECT ProjectRootID AS ItemName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+tableName+" "+
@@ -226,7 +268,10 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName, " +
-                "R_Project r where a.itemName=r.ProjectID ";
+                "R_Project r where a.itemName=r.ProjectID ";*/
+        String sql="SELECT  ProjectID ,ProjectPathName AS projectName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+                " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail " +
+                " GROUP BY ProjectID,ProjectPathName";
 
         Query query = getSession().createSQLQuery(sql);
         return query.list();
@@ -234,7 +279,7 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
 
     @Override
     public List<Object[]> getFactorySummaryProcess(String tableName) {
-        String sql="select distinct a.ItemName,a.departmentPathName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+       /* String sql="select distinct a.ItemName,a.departmentPathName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
                 "from  " +
                 "(SELECT DepartmentID AS ItemName,departmentPathName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+tableName+" "+
@@ -259,15 +304,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "(SELECT DepartmentID AS ItemName,departmentPathName,MAX(MaxDate) AS SumDate_predict_end " +
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
-                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
-
+                "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
+        String sql="SELECT  DepartmentID,DepartmentPathName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+                " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail " +
+                " GROUP BY DepartmentID,DepartmentPathName";
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
 
     @Override
     public List<Object[]> getProjectSummaryProcessDetail(String tableName, String projectID) {
-        String sql="select distinct a.ItemName,a.processName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+       /* String sql="select distinct a.ItemName,a.processName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
                 "from  " +
                 "(SELECT processID AS ItemName,processName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+ tableName+ " "+
@@ -298,15 +345,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "FROM "+ tableName+ " "+
                 "WHERE ProjectRootID='"+projectID+"' " +
                 "and StartOrEnd='End' AND ActualPlanPredict='Predict'   " +
-                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
-
+                "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
+        String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+                " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail where projectID='" +projectID+"' "+
+                " GROUP BY ProcessId,processName";
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
 
     @Override
     public List<Object[]> getFactorySummaryProcessDetail(String tableName, String departmentID) {
-        String sql="select a.projectID, a.ItemName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
+       /* String sql="select a.projectID, a.ItemName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end " +
                 "from  " +
                 "(SELECT projectID, ProjectPathName AS ItemName,Min(MinDate) AS SumDate_actual_start " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
@@ -331,15 +380,17 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "(SELECT projectID,ProjectPathName AS ItemName,Max(MaxDate) AS SumDate_predict_end " +
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
-                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";
-
+                "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
+        String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+                " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail where departmentID='" +departmentID+"' "+
+                " GROUP BY ProcessId,processName";
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
 
     @Override
     public List<Object[]> SearchProjectBetweenDate(String startDate, String endDate, String processIds, String companyId) {
-        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.ItemDate from " +
+       /* String sql="select b.SumWeight_actual,a.SumWeight_plan, a.ItemDate from " +
                 "(" +
                 "SELECT ItemDate,SUM(TotalWeight)*0.001 AS SumWeight_plan  " +
                 "FROM view_" + companyId +"_SummaryTableTotalByProject "+
@@ -352,26 +403,26 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "WHERE ItemDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Actual' "+
                 "GROUP BY ItemDate,StartOrEnd,ActualPlanPredict ) as b on a.ItemDate=b.ItemDate " +
-                "ORDER BY ItemDate DESC";
-
-        Query query = getSession().createSQLQuery(sql);
+                "ORDER BY ItemDate DESC";*/
+        String sql2="select ItemActualTotal, ItemPlanTotal,ItemDate from view_"+companyId+"_SummaryTableTotalByProjectByDate"+
+                " where ProcessID in ("+processIds+") and ItemDate Between '"+startDate+"' AND '"+endDate+"'";
+        Query query = getSession().createSQLQuery(sql2);
         return query.list();
     }
     @Override
     public List<Object[]> SearchFactoryBetweenDate(String startDate, String endDate, String processIds, String tableName) {
-        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.itemID, a.itemName from " +
-                "(" +
-                "SELECT itemName,itemID,SUM(TotalWeight)*0.001 AS  SumWeight_plan " +
+        String sql="select sum(SumWeight_actual) as actualTotal,sum(SumWeight_plan) as planTotal,itemID,itemName from (" +
+                " select * from ( "+
+                "SELECT itemName,itemID, 0 as SumWeight_actual,SUM(TotalWeight)*0.001 AS  SumWeight_plan " +
                 "FROM view_" +tableName+"_SummaryTableTotalByDepartment "+
                 "WHERE ItemDate  Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Plan' "+
-                "GROUP BY itemName,itemID,StartOrEnd,ActualPlanPredict ) as a left join  " +
-                "(" +
-                "SELECT itemName,itemID,SUM(TotalWeight)*0.001 AS SumWeight_actual " +
+                "GROUP BY itemName,itemID,StartOrEnd,ActualPlanPredict ) as a  UNION ALL select * from ( " +
+                "SELECT itemName,itemID,SUM(TotalWeight)*0.001 AS SumWeight_actual, 0 as  SumWeight_plan " +
                 "FROM view_" +tableName+"_SummaryTableTotalByDepartment "+
                 "WHERE ItemDate  Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Actual' "+
-                "GROUP BY itemName,itemID,StartOrEnd,ActualPlanPredict ) as b on a.itemID=b.itemID ";
+                "GROUP BY itemName,itemID,StartOrEnd,ActualPlanPredict ) as b ) AS X group by itemID,itemName ";
 
         Query query = getSession().createSQLQuery(sql);
         return query.list();
@@ -379,19 +430,19 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
 
     @Override
     public List<Object[]> SearchFactoryItemBetweenDate(String itemID,String startDate, String endDate, String processIds, String tableName) {
-        String sql="select b.SumWeight_actual,a.SumWeight_plan, a.itemID, a.itemName from " +
-                "(" +
-                "SELECT ItemPathName as itemName, itemID,SUM(TotalWeight)*0.001 AS  SumWeight_plan " +
+        String sql="select sum(SumWeight_actual) as actutalTotal,sum(SumWeight_plan) as planTotal, itemID, itemName from " +
+                " ( select * from (" +
+                "SELECT ItemPathName as itemName, itemID,SUM(TotalWeight)*0.001 AS  SumWeight_plan, 0 as SumWeight_actual " +
                 "FROM view_" +tableName+"_SummaryTableTotalByProject  "+
                 "WHERE ItemDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND DepartmentID='"+itemID+"' "+
-                "GROUP BY itemID,ItemPathName,StartOrEnd,ActualPlanPredict ) as a left join  " +
+                "GROUP BY itemID,ItemPathName,StartOrEnd,ActualPlanPredict ) as a  UNION ALL select * from  " +
                 "(" +
-                "SELECT ItemPathName as itemName,itemID,SUM(TotalWeight)*0.001 AS SumWeight_actual " +
+                "SELECT ItemPathName as itemName,itemID,0 as SumWeight_plan,SUM(TotalWeight)*0.001 AS SumWeight_actual " +
                 "FROM view_" +tableName+"_SummaryTableTotalByProject  "+
                 "WHERE ItemDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
-                "AND StartOrEnd='End' AND ActualPlanPredict='Plan' AND DepartmentID='"+itemID+"' "+
-                "GROUP BY itemID,ItemPathName,StartOrEnd,ActualPlanPredict ) as b on a.itemID=b.itemID ";
+                "AND StartOrEnd='End' AND ActualPlanPredict='Actual' AND DepartmentID='"+itemID+"' "+
+                "GROUP BY itemID,ItemPathName,StartOrEnd,ActualPlanPredict ) as b) as X group by itemid,itemName ";
 
         Query query = getSession().createSQLQuery(sql);
         return query.list();
