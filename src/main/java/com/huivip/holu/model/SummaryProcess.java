@@ -20,8 +20,12 @@ public class SummaryProcess implements Serializable {
     int planDuration;
     int actualDuration;
     int predictDuration;
-    int currentStatus;
-    int predictStatus;
+    int currentStatus; // current start status
+    int predictStatus=-1;  // predict start status
+
+    int currentStartStatus=-1;
+
+    String extendItem;
 
     public String getItemID() {
         return itemID;
@@ -108,8 +112,31 @@ public class SummaryProcess implements Serializable {
     }
 
     public int getPredictStatus() {
+        if(this.predictStatus!=-1) return  this.predictStatus;
         if(sumDate_predict_end==null || sumDate_plan_end==null) return 0;
         return DateUtil.betweenofTwoDate(sumDate_predict_end,sumDate_plan_end);
+    }
+
+    public void setCurrentStartStatus(int currentStartStatus) {
+        this.currentStartStatus = currentStartStatus;
+    }
+
+    public void setPredictStatus(int predictStatus) {
+        this.predictStatus = predictStatus;
+    }
+
+    public String getExtendItem() {
+        return extendItem;
+    }
+
+    public void setExtendItem(String extendItem) {
+        this.extendItem = extendItem;
+    }
+
+    public int getCurrentStartStatus() {
+        if(this.currentStartStatus!=1) return currentStartStatus;
+        if(sumDate_actual_start==null || sumDate_plan_start==null) return 0;
+        return DateUtil.betweenofTwoDate(sumDate_actual_start,sumDate_plan_start);
     }
 
     @Override

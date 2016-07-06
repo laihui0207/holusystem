@@ -111,21 +111,64 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
     }
 
     @Override
+    public int  getMissionCountOfUser(String userID) {
+        List<Mission> missions =new ArrayList<>();
+        User user=userManager.getUserByUserID(userID);
+        if(user.isAllowCreateProject()) {
+            return 0;
+        }
+        String type="doing";
+        List<Project> projects=projectDao.getProjectByUserID(userID,null,null);
+        for (Project project : projects) {
+
+            handleComponents(project, user, missions, "doing", null);
+            // todo  check pre-process if confirm
+            ExtendedPaginatedList list = null;
+            List<String> subComponents = processMidDao.getSubComponentOfMission(project.getProjectID(), null, user.getCompany().getCompanyId(), type, list);
+           // if (subComponents == null || subComponents.size() == 0) continue;
+            for (String subComponentID : subComponents) {
+
+                List<Object[]> data = processMidDao.getMission(project.getProjectID(), null, subComponentID, user.getCompany().getCompanyId());
+                // data format: pm.subcomponentID,usb.SubComponentName,rp.ProjectPathName,pm.StyleProcessID,pm.processID,rc.ProcessName,uc.ComponentName,rc.StyleName,rc.processOrder,pm.startDate,pm.EndDate
+                boolean preProcessFinished = true;
+                for (Object[] objs : data) {
+                    Mission mission = new Mission();
+                    mission.setSubComponentID((String) objs[0]);
+                    mission.setSubComponentName((String) objs[1]);
+                    mission.setProjectPathName((String) objs[2]);
+                    mission.setProjectID(project.getProjectID());
+                    mission.setStyleProcessID((String) objs[3]);
+                    mission.setProcessName((String) objs[5]);
+                    mission.setStyleName((String) objs[7]);
+                    mission.setStartDate((Date) objs[9]);
+                    mission.setEndDate((Date) objs[10]);
+                    mission.setSubComponentList(subComponents);
+                    boolean ifFinished = mission.getEndDate() != null;
+                    if (!ifFinished && preProcessFinished) {
+                        mission.setOwner(true);
+                    } else if (ifFinished) {
+                        mission.setOwner(true);
+                    }
+                    preProcessFinished = ifFinished;
+                    if(isMyMission(user,ifFinished,type,(String)objs[4])){
+                        missions.add(mission);
+                    }
+                }
+            }
+        }
+        return missions.size();
+    }
+
+    @Override
     public List<Mission> getMyMissions(String projectID, String styleID, String userID, String type,String pageIndex,String pageSize) {
         List<Mission> missions =new ArrayList<>();
-        /*Project project=projectDao.getProjectByprojectID(projectID);
-        User user=userManager.getUserByUserID(userID);
-        handleComponents(project,user, missions,type,styleID);*/
-        // todo  check pre-process if confirm
         User user=userManager.getUserByUserID(userID);
         ExtendedPaginatedList list= new PaginatedListImpl();
         list.setIndex(Integer.parseInt(pageIndex));
         list.setPageSize(Integer.parseInt(pageSize));
-       /* String userProcesses=null;//collectProcessOfUser(user);
         if(!user.isAllowCreateProject()){
-           // userProcesses=collectProcessOfUser(user);
            list=null;
-        }*/
+        }
         List<String> subComponents=processMidDao.getSubComponentOfMission(projectID,styleID,user.getCompany().getCompanyId(),type,list );
         if(subComponents==null || subComponents.size()==0) return missions;
         for(String subComponentID:subComponents) {
@@ -152,30 +195,12 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
                     mission.setOwner(true);
                 }
                 preProcessFinished = ifFinished;
-                if (user.isAllowCreateProject()) {
-                    if (type.equalsIgnoreCase("finish") && ifFinished) {
-                        missions.add(mission);
-                    } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
-                        missions.add(mission);
-                    } else if (type.equalsIgnoreCase("all")) {
-                        missions.add(mission);
-                    }
-                } else {
-                    for (Post post : user.getPosts()) {
-                        if (post.getProcessDictionary() != null && ((String) objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
-                            if (type.equalsIgnoreCase("finish") && ifFinished) {
-                                missions.add(mission);
-                            } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
-                                missions.add(mission);
-                            } else if (type.equalsIgnoreCase("all")) {
-                                missions.add(mission);
-                            }
-                            break;
-                        }
 
-                    }
+                if(isMyMission(user,ifFinished,type,(String)objs[4])){
+                    missions.add(mission);
                 }
             }
+
         }
         return missions;
     }
@@ -205,33 +230,40 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
                 mission.setOwner(true);
             }
             preProcessFinished = ifFinished;
-            if (user.isAllowCreateProject()) {
-                if (type.equalsIgnoreCase("finish") && ifFinished) {
-                    missions.add(mission);
-                } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
-                    missions.add(mission);
-                } else if (type.equalsIgnoreCase("all")) {
-                    missions.add(mission);
-                }
-            } else {
-                for (Post post : user.getPosts()) {
-                    if (post.getProcessDictionary() != null && ((String) objs[4]).equalsIgnoreCase(post.getProcessDictionary().getProcessID())) {
-                        if (type.equalsIgnoreCase("finish") && ifFinished) {
-                            missions.add(mission);
-                        } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
-                            missions.add(mission);
-                        } else if (type.equalsIgnoreCase("all")) {
-                            missions.add(mission);
-                        }
-                        break;
-                    }
 
-                }
+            if(isMyMission(user,ifFinished,type,(String)objs[4])){
+                missions.add(mission);
             }
         }
         return missions;
     }
+    private boolean isMyMission(User user,boolean ifFinished,String type,String process){
+        boolean myMission=false;
+        if (user.isAllowCreateProject()) {
+            myMission=isRequestCheckType(type,ifFinished);
+        } else {
+            for (Post post : user.getPosts()) {
+                if (post.getProcessDictionary() != null && (process.equalsIgnoreCase(post.getProcessDictionary().getProcessID()))) {
+                    myMission=isRequestCheckType(type,ifFinished);
+                    break;
+                }
 
+            }
+        }
+        return myMission;
+    }
+
+    private boolean isRequestCheckType(String type, boolean ifFinished) {
+        boolean result = false;
+        if (type.equalsIgnoreCase("finish") && ifFinished) {
+            result = true;
+        } else if (type.equalsIgnoreCase("doing") && !ifFinished) {
+            result = true;
+        } else if (type.equalsIgnoreCase("all")) {
+            result = true;
+        }
+        return result;
+    }
     @Override
     public ProcessMid save(String subComponentID,String styleProcessID,String processNote,
                            String startDate,String endDate,String positionGPS,String positionName,String userID) {
@@ -254,7 +286,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         String[] datas=data.split(",");
         for(String ids:datas){
             //ids format: projectID, SubcomponentID,processID
-            String[] idStrs=ids.split("#");
+            String[] idStrs=ids.split("##");
             String subcomponentID=idStrs[1];
             String processID=idStrs[2];
             String processNote="";
@@ -349,7 +381,7 @@ public class ProcessMidManagerImpl extends GenericManagerImpl<ProcessMid, Long> 
         for (ComponentStyle style : componentStyles) {
             /*if(style.isOperationer()){*/
             boolean isMyProcess = false;
-            if(!style.getStyleID().equalsIgnoreCase(styleID)) continue;
+            if(styleID!=null && !style.getStyleID().equalsIgnoreCase(styleID)) continue;
             ProcessMid processMid = getProcessMid2(subComponentList.getSubComponentID(), style.getStyleProcessID(), user.getCompany().getCompanyId());
             if(user.isAllowCreateProject()){
                 isMyProcess=true;

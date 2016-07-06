@@ -269,7 +269,12 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY ProjectRootID,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName, " +
                 "R_Project r where a.itemName=r.ProjectID ";*/
-        String sql="SELECT  ProjectID ,ProjectPathName AS projectName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+        //String sql="SELECT  ProjectID ,ProjectPathName AS projectName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+                String sql="SELECT  ProjectID ,ProjectPathName AS projectName,"+
+                        "Min(AS1) AS SumDate_actual_start,Max(AE2) AS SumDate_actual_end,"+
+                        "Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end,"+
+                        "Min(YS1) SumDate_predict_start,Max(YE2) SumDate_predict_end,"+
+                        "Min(PSAS1) as currentStatus,Max(PEYE2) as predictStatus " +
                 " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail " +
                 " GROUP BY ProjectID,ProjectPathName";
 
@@ -305,7 +310,12 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "FROM "+tableName+" "+
                 "WHERE StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY DepartmentID,departmentPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
-        String sql="SELECT  DepartmentID,DepartmentPathName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+        //String sql="SELECT  DepartmentID,DepartmentPathName,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end,MIN() " +
+                String sql="SELECT  DepartmentID ,DepartmentPathName AS projectName,"+
+                        "Min(AS1) AS SumDate_actual_start,Max(AE2) AS SumDate_actual_end,"+
+                        "Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end,"+
+                        "Min(YS1) AS SumDate_predict_start,Max(YE2) AS SumDate_predict_end," +
+                        "Min(PSAS1) AS currentStatus,Max(PEYE2) AS predictStatus "+
                 " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail " +
                 " GROUP BY DepartmentID,DepartmentPathName";
         Query query = getSession().createSQLQuery(sql);
@@ -346,9 +356,14 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "WHERE ProjectRootID='"+projectID+"' " +
                 "and StartOrEnd='End' AND ActualPlanPredict='Predict'   " +
                 "GROUP BY ProjectRootID,processID,processName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
-        String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+       // String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+        String sql="SELECT  processID ,ProcessName AS projectName,"+
+                "Min(AS1) AS SumDate_actual_start,Max(AE2) AS SumDate_actual_end,"+
+                "Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end,"+
+                "Min(YS1) SumDate_predict_start,Max(YE2) SumDate_predict_end,"+
+                "Min(PSAS1) as currentStatus,Max(PEYE2) as predictStatus,DepartmentName " +
                 " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail where projectID='" +projectID+"' "+
-                " GROUP BY ProcessId,processName";
+                " GROUP BY ProcessId,processName,DepartmentName";
         Query query = getSession().createSQLQuery(sql);
         return query.list();
     }
@@ -381,7 +396,12 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "FROM "+ tableName+" WHERE DepartmentID='"+departmentID+"' " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Predict' " +
                 "GROUP BY projectID,ProjectPathName,StartOrEnd,ActualPlanPredict) as f on a.itemName=f.itemName";*/
-        String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+       // String sql="SELECT  processID ,ProcessName ,Min(YS1) AS SumDate_actual_start,Max(YE2) AS SumDate_actual_end,Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end " +
+        String sql="SELECT  processID ,ProcessName AS projectName,"+
+                "Min(AS1) AS SumDate_actual_start,Max(AE2) AS SumDate_actual_end,"+
+                "Min(PS1) AS SumDate_plan_start,Max(PE2) AS SumDate_plan_end,"+
+                "Min(YS1) AS SumDate_predict_start,Max(YE2) AS SumDate_predict_end," +
+                "Min(PSAS1) AS currentStatus,Max(PEYE2) AS predictStatus "+
                 " FROM view_"+tableName+"_SummaryDateByProjectProcessDetail where departmentID='" +departmentID+"' "+
                 " GROUP BY ProcessId,processName";
         Query query = getSession().createSQLQuery(sql);
@@ -403,9 +423,10 @@ public class SummaryTotalDaoHibernate extends GenericDaoHibernate<SummaryTotal, 
                 "WHERE ItemDate Between '"+startDate+" 00:00:00.000' AND '"+endDate+" 00:00:00.000' AND ProcessID in (" + processIds + ") " +
                 "AND StartOrEnd='End' AND ActualPlanPredict='Actual' "+
                 "GROUP BY ItemDate,StartOrEnd,ActualPlanPredict ) as b on a.ItemDate=b.ItemDate " +
-                "ORDER BY ItemDate DESC";*/
-        String sql2="select ItemActualTotal, ItemPlanTotal,ItemDate from view_"+companyId+"_SummaryTableTotalByProjectByDate"+
-                " where ProcessID in ("+processIds+") and ItemDate Between '"+startDate+"' AND '"+endDate+"'";
+                "ORDER BY ItemDate DESC";
+        Query query=getSession().createSQLQuery(sql);*/
+        String sql2="select sum(ItemActualTotal) as actualTotal,sum(ItemPlanTotal) as planTotal from (select ItemActualTotal, ItemPlanTotal,ItemDate from view_"+companyId+"_SummaryTableTotalByProjectByDate"+
+                " where ProcessID in ("+processIds+") and ItemDate Between '"+startDate+"' AND '"+endDate+"') as A";
         Query query = getSession().createSQLQuery(sql2);
         return query.list();
     }

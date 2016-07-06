@@ -27,6 +27,9 @@ public interface ProcessMidManager extends GenericManager<ProcessMid, Long> {
                                                 @PathParam("userID") String userId,
                                                 @DefaultValue("all") @QueryParam("type") String taskType);
     @GET
+    @Path("missions/{userID}/count")
+    int getMissionCountOfUser(@PathParam("userID") String userID);
+    @GET
     @Path("missions/{projectID}/{styleID}/{userID}")
     List<Mission> getMyMissions(@PathParam("projectID") String projectID,
                                 @PathParam("styleID") String styleID,

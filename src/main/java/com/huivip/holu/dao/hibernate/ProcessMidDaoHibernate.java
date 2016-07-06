@@ -149,13 +149,16 @@ public class ProcessMidDaoHibernate extends GenericDaoHibernate<ProcessMid, Long
         String sql="select distinct pm.subcomponentID "
                 +" from U_"+companyID+"_ProcessMidTable pm,U_"+companyID+"_SubComponentList usb,R_Project rp,R_ComponentStyle rc ,U_"+companyID+"_ComponentList uc "
                 +" where  pm.SubComponentID=usb.SubComponentID and pm.ProjectID=rp.projectID and pm.StyleProcessID=rc.StyleProcessID and pm.ComponentID=uc.componentID"
-                +" and pm.projectID='"+projectID+"' and pm.styleID='"+styleID+"' ";
+                +" and pm.projectID='"+projectID+"' ";
         /* if(taskType.equalsIgnoreCase("doing")){
             sql+=" and (pm.StartDate  is  null or pm.EndDate is  null) ";
         }
         else if(taskType.equalsIgnoreCase("finish")){
             sql+=" and pm.StartDate is not null and pm.EndDate is not  null ";
         }*/
+        if(styleID!=null){
+            sql+=" and pm.styleID='"+styleID+"' ";
+        }
         sql+=" group by pm.subcomponentID ";
 
         Query query = getSession().createSQLQuery(sql);

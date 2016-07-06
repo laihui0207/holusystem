@@ -306,7 +306,7 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         return item;
     }
     private SummaryProcess convertSummaryProcess(Object[] objs){
-        //a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end
+        //a.ItemName,r.ProjectName,SumDate_actual_start,SumDate_actual_end,SumDate_plan_start,SumDate_plan_end,SumDate_predict_start,SumDate_predict_end,currentstatus, predictStatus
         SummaryProcess process=new SummaryProcess();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         process.setItemID((String) objs[0]);
@@ -314,24 +314,34 @@ public class SummaryTotalManagerImpl extends GenericManagerImpl<SummaryTotal, Lo
         try {
             if (objs[2] != null) {
 
-                process.setSumDate_actual_start(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[2]));
+                process.setSumDate_actual_start(DateUtil.convertStringToDate("yyyy-MM-dd", (String) objs[2]));
 
             }
             if (objs[3] != null) {
-                process.setSumDate_actual_end(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[3]));
+                process.setSumDate_actual_end(DateUtil.convertStringToDate("yyyy-MM-dd", (String) objs[3]));
             }
             if (objs[4] != null) {
-                process.setSumDate_plan_start(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[4]));
+                process.setSumDate_plan_start(DateUtil.convertStringToDate("yyyy-MM-dd", (String) objs[4]));
             }
             if (objs[5] != null) {
-                process.setSumDate_plan_end(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[5]));
+                process.setSumDate_plan_end(DateUtil.convertStringToDate("yyyy-MM-dd", (String) objs[5]));
             }
-        /*if(objs.length > 6 && objs[6]!=null){
-            process.setSumDate_predict_start((Date) objs[6]);
-        }
-        if(objs.length > 7 && objs[7]!=null){
-            process.setSumDate_predict_end((Date) objs[7]);
-        }*/
+            if (objs.length > 6 && objs[6] != null) {
+                process.setSumDate_predict_start(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[6]));
+            }
+            if (objs.length > 7 && objs[7] != null) {
+                process.setSumDate_predict_end(DateUtil.convertStringToDate("yyyy-MM-dd",(String) objs[7]));
+            }
+
+            if(objs.length>8 && objs[8]!=null){
+                process.setCurrentStartStatus((int) objs[8]);
+            }
+            if(objs.length>9 && objs[9]!=null){
+                process.setPredictStatus((int)objs[9]);
+            }
+            if(objs.length>10 && objs[10]!=null){
+                process.setExtendItem((String)objs[10]);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
