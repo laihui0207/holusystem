@@ -2,16 +2,18 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="MySQL - holusystem@localhost" uuid="b28cba8c-ec4a-4748-b87f-098063cc28b8">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>holusystem.*</schema-pattern>
-      <default-schemas>holusystem.*</default-schemas>
+      <introspection-scope>holusystem:*</introspection-scope>
+      <resolve-scope>holusystem:*</resolve-scope>
     </data-source>
     <data-source name="SQL Server - holusystem@172.16.182.147" uuid="f035e604-729e-4fd9-af70-a6a03f063d6f">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <user-name>sa</user-name>
-      <schema-pattern>holusystem.*</schema-pattern>
-      <default-schemas>holusystem.*</default-schemas>
+      <introspection-scope>holusystem:*</introspection-scope>
+      <resolve-scope>holusystem:*</resolve-scope>
     </data-source>
   </component>
 </project>
